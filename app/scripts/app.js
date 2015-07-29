@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name phundusSpaApp
+ * @name phundusApp
  * @description
- * # phundusSpaApp
+ * # phundusApp
  *
  * Main module of the application.
  */
 angular
-  .module('phundusSpaApp', [
+  .module('phundusApp', [
     'ngAnimate',
     'ngCookies',
     'ngMessages',
@@ -25,11 +25,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
+      /*.when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
-      })
+      })*/
       .otherwise({
         redirectTo: '/'
       });

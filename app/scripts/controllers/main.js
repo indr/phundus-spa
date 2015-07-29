@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name phundusSpaApp.controller:MainCtrl
+ * @name phundusApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the phundusSpaApp
+ * Controller of the phundusApp
  */
-angular.module('phundusSpaApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('phundusApp')
+  .controller('MainCtrl', function ($timeout, $window) {
+
+    $timeout(function() {
+      $window.location.href = 'shop';
+    }, 2000);
+
   });
