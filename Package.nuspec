@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>phundus-spa</id>
+    <version>0.0.1</version>
+    <authors>Reto Inderbitzin</authors>
+    <owners>Reto Inderbitzin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>phundus-spa</description>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+  <files>
+    <file src="dist/**" target="content" exclude="dist/.htaccess;dist/404.html;dist/favicon.ico;dist/robots.txt" />
+  </files>
+</package>

@@ -25,8 +25,30 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  // https://www.npmjs.com/package/grunt-nuget
+  grunt.loadNpmTasks('grunt-nuget');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    nugetpack: {
+	    nuget: {
+	      src: 'Package.nuspec',
+        dest: 'nuget',
+        options: {
+          version: '0.0.' + (process.env.TRAVIS_BUILD_NUMBER || '0')
+        }
+	    }
+    },
+
+    nugetpush: {
+      nuget: {
+        src: 'nuget/*.nupkg',
+        options: {
+          apiKey: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+        }
+      }
+    },
 
     // Project settings
     yeoman: appConfig,
@@ -150,7 +172,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      nuget: 'nuget'
     },
 
     // Add vendor prefixed styles
@@ -440,6 +463,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'clean:nuget',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -453,7 +477,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'nugetpack'
   ]);
 
   grunt.registerTask('default', [
