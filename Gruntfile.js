@@ -45,7 +45,8 @@ module.exports = function (grunt) {
       nuget: {
         src: 'nuget/*.nupkg',
         options: {
-          apiKey: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+          apiKey: process.env.NUGET_APIKEY,
+          source: 'http://nuget.phundus.ch/'
         }
       }
     },
