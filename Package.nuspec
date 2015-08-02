@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>phundus-spa</id>
-    <version>0.0.1</version>
+    <id>phundus.spa</id>
+    <version>0.0.0</version>
     <authors>Reto Inderbitzin</authors>
     <owners>Reto Inderbitzin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>phundus-spa</description>
+    <description>Phundus Single Page Application (SPA)</description>
     <copyright>Copyright 2015</copyright>
   </metadata>
   <files>
