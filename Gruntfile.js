@@ -36,7 +36,8 @@ module.exports = function (grunt) {
 	      src: 'Package.nuspec',
         dest: 'nuget',
         options: {
-          version: '0.0.' + (process.env.TRAVIS_BUILD_NUMBER || '0')
+          //version: '0.0.' + (process.env.TRAVIS_BUILD_NUMBER || '0')
+          version: grunt.option('nuget.version') || '0.0.0'
         }
 	    }
     },
@@ -45,7 +46,8 @@ module.exports = function (grunt) {
       nuget: {
         src: 'nuget/*.nupkg',
         options: {
-          apiKey: process.env.NUGET_APIKEY,
+          //apiKey: process.env.NUGET_APIKEY,
+          apiKey: grunt.option('nuget.apikey'),
           source: 'http://nuget.phundus.ch/'
         }
       }
@@ -486,5 +488,10 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('publish', [
+    'default',
+    'nugetpush'
   ]);
 };
