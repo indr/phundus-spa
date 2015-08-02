@@ -12,6 +12,6 @@ angular.module('phundusApp')
 
     $timeout(function() {
       $window.location.href = 'shop';
-    }, 2000);
+    }, 0);
 
   });
