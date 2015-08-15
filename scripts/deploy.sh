@@ -1,0 +1,2 @@
+#!/bin/b
+grunt publish

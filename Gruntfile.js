@@ -22,7 +22,10 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    version: process.env.TRAVIS_BUILD_NUMBER ?
+      '0.0.' + process.env.TRAVIS_BUILD_NUMBER :
+      grunt.option('nuget.version') || '0.0.0'
   };
 
   // https://www.npmjs.com/package/grunt-nuget
@@ -36,18 +39,16 @@ module.exports = function (grunt) {
 	      src: 'Package.nuspec',
         dest: 'nuget',
         options: {
-          //version: '0.0.' + (process.env.TRAVIS_BUILD_NUMBER || '0')
-          version: grunt.option('nuget.version') || '0.0.0'
+          version: appConfig.version
         }
 	    }
     },
 
     nugetpush: {
       nuget: {
-        src: 'nuget/*.nupkg',
+        src: 'nuget/phundus.spa.' + appConfig.version + '.nupkg',
         options: {
-          //apiKey: process.env.NUGET_APIKEY,
-          apiKey: grunt.option('nuget.apikey'),
+          apiKey: process.env.NUGET_APIKEY || grunt.option('nuget.apiKey') || '',
           source: 'http://nuget.phundus.ch/'
         }
       }
