@@ -1,2 +1,3 @@
-#!/bin/b
+#!/bin/bash
+
 grunt publish
