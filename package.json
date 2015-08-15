@@ -1,6 +1,21 @@
 {
-  "name": "phundusspa",
+  "name": "phundus-spa",
+  "version": "0.0.0",
+  "description": "",
+  "licence": "MIT",
   "private": true,
+  "repository": "indr/phundus-spa",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "phundus"
+  ],
+  "dependencies": {
+  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
@@ -30,11 +45,5 @@
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
     "time-grunt": "^1.0.0"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
   }
 }
