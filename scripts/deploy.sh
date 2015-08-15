@@ -1,3 +1,4 @@
 #!/bin/bash
 
-grunt publish
+echo "Deploy.sh"
+pwdgi
