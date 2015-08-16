@@ -5,7 +5,7 @@
  * @name phundusApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the phundusSpaApp
+ * Controller of the phundusApp
  */
 angular.module('phundusApp')
   .controller('AboutCtrl', function () {

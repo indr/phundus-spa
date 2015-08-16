@@ -16,7 +16,7 @@ filename=$tmp/$name.$version.nupkg
 echo Generating NuGet package $filename
 
 rm -rf $tmp_nuget
-rm $filename
+rm -f $filename
 
 mkdir -p $tmp_nuget && cd $_
 echo '<?xml version="1.0" encoding="utf-8"?>
@@ -39,13 +39,7 @@ echo '<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.o
 mkdir -p $tmp_nuget/package/services/metadata/core-properties && cd $_
 echo '<?xml version="1.0" encoding="UTF-8"?><coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"><dc:creator>indr</dc:creator><dc:description>phundus Single Page Application (SPA)</dc:description><dc:identifier>phundus.spa</dc:identifier><keywords /><lastModifiedBy>NuGet, Version=2.8.50506.491, Culture=neutral, PublicKeyToken=null;Unix 4.1.4.200;.NET Framework 4</lastModifiedBy><version>'$version'</version></coreProperties>' > 1.psmdcp
 
-mkdir -p $tmp_nuget/content
-cp -r $dist/* $tmp_nuget/content
-cd $tmp_nuget/content
-#unlink .htaccess
-unlink 404.html
-unlink favicon.ico
-unlink robots.txt
-
+cp -r $dist $tmp_nuget
+mv $tmp_nuget/dist $tmp_nuget/content
 cd $tmp_nuget
-zip -r $filename *
+zip -r $filename * -x /content/.htaccess /content/404.html /content/favicon.ico /content/robots.txt
