@@ -22,37 +22,11 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist',
-    version: process.env.TRAVIS_BUILD_NUMBER ?
-      '0.0.' + process.env.TRAVIS_BUILD_NUMBER :
-      grunt.option('nuget.version') || '0.0.0'
+    dist: 'dist'
   };
-
-  // https://www.npmjs.com/package/grunt-nuget
-  grunt.loadNpmTasks('grunt-nuget');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
-    nugetpack: {
-	    nuget: {
-	      src: 'Package.nuspec',
-        dest: 'nuget',
-        options: {
-          version: appConfig.version
-        }
-	    }
-    },
-
-    nugetpush: {
-      nuget: {
-        src: 'nuget/phundus.spa.' + appConfig.version + '.nupkg',
-        options: {
-          apiKey: process.env.NUGET_APIKEY || grunt.option('nuget.apiKey') || '',
-          source: 'http://nuget.phundus.ch/'
-        }
-      }
-    },
 
     // Project settings
     yeoman: appConfig,
@@ -432,6 +406,12 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    shell: {
+      pack: {
+        command: './scripts/pack.sh'
+      }
     }
   });
 
@@ -482,17 +462,12 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-    'nugetpack'
+    'shell:pack'
   ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
     'build'
-  ]);
-
-  grunt.registerTask('publish', [
-    'default',
-    'nugetpush'
   ]);
 };
