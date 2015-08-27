@@ -67,6 +67,21 @@ angular
         controller: 'RegisterCtrl'
       });
 
+    // Admin routes
+    $stateProvider
+      .state('admin', {
+        abstract: true,
+        template: "<ui-view/>",
+        data: {
+          access: access.admin
+        }
+      })
+      .state('admin.admin', {
+        url: '/admin/',
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+      });
+
 
 
     $urlRouterProvider.otherwise('/404');

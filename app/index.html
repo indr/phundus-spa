@@ -47,6 +47,7 @@
                   <li><a href="organization#/search">Suchen</a></li>
                 </ul>
               </li>
+              <li data-access-level="accessLevels.admin"><a ui-sref="admin.admin">Admin</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -54,7 +55,7 @@
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a data-ng-click="logout()">Abmelden</a></li>
+                  <li><a href="" data-ng-click="logout()">Abmelden</a></li>
                 </ul>
               </li>
               <li data-access-level="accessLevels.anon"><a ui-sref="anon.register">Registrieren</a></li>
@@ -111,6 +112,7 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/routingConfig.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
     <script src="scripts/controllers/debug.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/nav.js"></script>
