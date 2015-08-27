@@ -5,6 +5,7 @@
   "eqeqeq": true,
   "esnext": true,
   "latedef": true,
+  "laxcomma": true,
   "noarg": true,
   "node": true,
   "strict": true,

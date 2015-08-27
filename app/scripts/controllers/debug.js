@@ -8,6 +8,6 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('AboutCtrl', function () {
+  .controller('DebugCtrl', function () {
 
   });

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:MainCtrl
+ * @name phundusApp.controller:ShopCtrl
  * @description
- * # MainCtrl
+ * # ShopCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('MainCtrl', function ($timeout, $window) {
+  .controller('ShopCtrl', function ($timeout, $window) {
 
     $timeout(function() {
       $window.location.href = 'shop';
