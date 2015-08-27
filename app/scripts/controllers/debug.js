@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:AboutCtrl
+ * @name phundusApp.controller:DebugCtrl
  * @description
- * # AboutCtrl
+ * # DebugCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('DebugCtrl', function () {
-
+  .controller('DebugCtrl', function ($scope) {
+    $scope.test = 'Test';
   });

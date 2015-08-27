@@ -21,14 +21,16 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
+    var access = window.routingConfig.accessLevels;
+
     // Public routes
     $stateProvider
       .state('public', {
         abstract: true,
-        template: '<ui-view/>'
-        //data: {
-        //  access: access.public
-        //}
+        template: '<ui-view/>',
+        data: {
+          access: access.public
+        }
       })
       .state('public.shop', {
         url: '/',
@@ -36,14 +38,35 @@ angular
         controller: 'ShopCtrl'
       })
       .state('public.404', {
-        url: '/404',
+        url: '/404/',
         templateUrl: 'views/404.html'
       })
       .state('public.debug', {
-        url: '/debug',
+        url: '/debug/',
         templateUrl: 'views/debug.html',
-        controller: 'DebugController'
+        controller: 'DebugCtrl'
       });
+
+    // Anonymous routes
+    $stateProvider
+      .state('anon', {
+        abstract: true,
+        template: "<ui-view/>",
+        data: {
+          access: access.anon
+        }
+      })
+      .state('anon.login', {
+        url: '/login/',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('anon.register', {
+        url: '/register/',
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
+      });
+
 
 
     $urlRouterProvider.otherwise('/404');

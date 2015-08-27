@@ -1,27 +1,23 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: AboutCtrl', function () {
 
   // load the controller's module
   beforeEach(module('phundusApp'));
 
-  var MainCtrl,
+  var DebugCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    DebugCtrl = $controller('DebugCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
-  it('dummy: should be true', function() {
-    expect(true).toBe(true);
-  });
-
   /*it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+    expect(AboutCtrl.awesomeThings.length).toBe(3);
   });*/
 });
