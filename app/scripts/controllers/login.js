@@ -14,12 +14,13 @@ angular.module('phundusApp')
       $scope.rememberMe = true;
       $scope.login = function() {
         Auth.login({
+            port: ':8000',
             username: $scope.username,
             password: $scope.password,
-            rememberMe: $scope.rememberMe
+            rememberme: $scope.rememberMe
           },
           function() {
-            $location.path('/');
+            $location.path('/debug/');
           },
           function(err) {
             $rootScope.error = "Failed to login: " + err;

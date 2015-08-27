@@ -28,19 +28,19 @@ angular.module('phundusApp')
         return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
       },
       register: function(user, success, error) {
-        $http.post('/register', user).success(function(res) {
+        $http.post('/node/register', user).success(function(res) {
           changeUser(res);
           success();
         }).error(error);
       },
       login: function(user, success, error) {
-        $http.post('/login', user).success(function(user){
+        $http.post('/node/login', user).success(function(user){
           changeUser(user);
           success(user);
         }).error(error);
       },
       logout: function(success, error) {
-        $http.post('/logout').success(function(){
+        $http.post('/node/logout').success(function(){
           changeUser({
             username: '',
             role: userRoles.public
@@ -58,7 +58,7 @@ angular.module('phundusApp')
   .factory('Users', function($http) {
     return {
       getAll: function(success, error) {
-        $http.get('/users').success(success).error(error);
+        $http.get('/node/users').success(success).error(error);
       }
     };
   });
