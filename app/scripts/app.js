@@ -65,6 +65,10 @@ angular
         url: '/register/',
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
+      })
+      .state('anon.logout', {
+        url: '/goodbye/',
+        templateUrl: 'views/logout.html'
       });
 
     // Admin routes
