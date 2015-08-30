@@ -35,7 +35,7 @@ angular.module('phundusApp')
       },
       login: function (user, success, error) {
         $http.post('/api/v1/login', user).success(function (data) {
-          $http.post('/account/login', {
+          $http.post('/account/logon', {
             "email": user.username,
             "password": user.password,
             "rememberme": user.rememberme
