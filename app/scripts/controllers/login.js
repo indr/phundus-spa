@@ -24,6 +24,15 @@ angular.module('phundusApp')
           },
           function(err) {
             $rootScope.error = "Failed to login: " + err;
+          },
+          function(warn) {
+            $rootScope.warn = "Failed to login: " + warn;
           });
         };
+    }]);
+
+angular.module('phundusApp')
+  .controller('LogoutCtrl', ['$rootScope', '$location',
+    function($rootScope, $location){
+      $rootScope.warn = $location.search().warn || '';
     }]);

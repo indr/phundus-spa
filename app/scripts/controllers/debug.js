@@ -11,7 +11,7 @@ angular.module('phundusApp')
   .controller('DebugCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.status = '';
 
-    $http.get('/node/status').success(function(data) {
+    $http.get('/api/v1/status').success(function(data) {
       var flatten = function(data, prefix) {
         prefix = prefix || '';
         var result = '';

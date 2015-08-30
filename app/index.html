@@ -67,12 +67,20 @@
     </div>
 
     <div class="container">
-      <div id="alertBox" class="alert alert-danger alert-dismissible" role="alert" data-ng-show="error">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <div id="alertBoxError" class="alert alert-danger alert-dismissible" role="alert" data-ng-show="error">
+        <button type="button" class="close" ng-click="err=''" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <strong>Oh snap!&nbsp;</strong>{{error}}
       </div>
+
+      <div id="alertBoxWarn" class="alert alert-warning alert-dismissible" role="alert" data-ng-show="warn">
+        <button type="button" class="close" ng-click="warn=''" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Warning!&nbsp;</strong>{{warn}}
+      </div>
+
       <div data-ui-view />
     </div>
 

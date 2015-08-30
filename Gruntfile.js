@@ -78,13 +78,23 @@ module.exports = function (grunt) {
       },
       proxies: [
         {
-          context: '/node',
+          context: '/api/v1',
           host: 'localhost',
           port: 9000,
           https: false,
           xforward: false,
           rewrite: {
-            '^/node': ''
+            '^/api/v1': ''
+          }
+        },
+        {
+          context: '/api/v0',
+          host: 'vbox-w7',
+          port: 9000,
+          https: false,
+          xforward: false,
+          rewrite: {
+            '`/api/v0': '/api'
           }
         }
       ],
