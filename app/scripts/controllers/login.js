@@ -30,9 +30,3 @@ angular.module('phundusApp')
           });
         };
     }]);
-
-angular.module('phundusApp')
-  .controller('LogoutCtrl', ['$rootScope', '$location',
-    function($rootScope, $location){
-      $rootScope.warn = $location.search().warn || '';
-    }]);

@@ -20,9 +20,6 @@ angular.module('phundusApp')
           },
           function (err) {
             $rootScope.error = err;
-          },
-          function (warn) {
-            $location.path('/goodbye/?warn=' + encodeURI(warn));
           });
       };
     }]);

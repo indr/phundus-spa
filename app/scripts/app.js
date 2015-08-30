@@ -68,8 +68,7 @@ angular
       })
       .state('anon.logout', {
         url: '/goodbye/',
-        templateUrl: 'views/logout.html',
-        controller: 'LogoutCtrl'
+        templateUrl: 'views/logout.html'
       });
 
     // Admin routes

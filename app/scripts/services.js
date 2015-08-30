@@ -33,32 +33,27 @@ angular.module('phundusApp')
           success();
         }).error(error);
       },
-      login: function (user, success, error, warn) {
-        $http.post('/api/v1/login', user).success(function (user) {
-          $http.post('/api/v0/login', user).success(function () {
-            changeUser(user);
-            success(user);
-          }).error(function (err) {
-            changeUser(user);
-            warn(err);
-          });
+      login: function (user, success, error) {
+        $http.post('/api/v1/login', user).success(function (data) {
+          $http.post('/account/login', {
+            "email": user.username,
+            "password": user.password,
+            "rememberme": user.rememberme
+          }).success(function () {
+            changeUser(data);
+            success(data);
+          }).error(error);
         }).error(error);
       },
-      logout: function (success, error, warn) {
+      logout: function (success, error) {
         $http.post('/api/v1/logout').success(function () {
-          $http.post('/api/v0/logout').success(function () {
+          $http.post('/account/logoff').success(function () {
             changeUser({
               username: '',
               role: userRoles.public
             });
             success();
-          }).error(function (err) {
-            changeUser({
-              username: '',
-              role: userRoles.public
-            });
-            warn(err);
-          });
+          }).error(error);
         }).error(error);
       },
       accessLevels: accessLevels,
