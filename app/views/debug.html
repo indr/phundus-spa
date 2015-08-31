@@ -1,5 +1,7 @@
-<h1>debug</h1>
-<p>This is the debug view.</p>
-<h2>/status</h2>
-<pre data-ng-bind="status"></pre>
-<div ui-view></div>
+<h1>Debug</h1>
+
+<h2>Status</h2>
+<pre>{{status|json}}</pre>
+
+<h2>Cookies</h2>
+<pre>{{cookies|json}}</pre>

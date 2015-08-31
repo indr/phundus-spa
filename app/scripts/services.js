@@ -1,15 +1,26 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Auth', function ($http, $cookieStore, $location) {
+  .factory('Auth', function ($http, $cookies, $location) {
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
-      , currentUser = $cookieStore.get('user') || {username: '', role: userRoles.public};
+      , currentUser =  {username: '', role: userRoles.public};
 
-    $cookieStore.remove('user');
+    try {
+      var cookie = $cookies.get('ph.user');
+      console.log('Cookie: ', cookie);
+      if (cookie) {
+        cookie = decodeURIComponent(cookie);
+        currentUser = JSON.parse(cookie);
+      }
+    }
+    catch(ex) {
+    }
+    console.log('Current user: ', currentUser);
 
     function changeUser(user) {
+      console.log('Change user: ', user);
       angular.extend(currentUser, user);
     }
 
