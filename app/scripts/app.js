@@ -126,7 +126,11 @@ angular
       return {
         'responseError': function(response) {
           if(response.status === 401 || response.status === 403) {
-            $location.path('/login');
+            var returnUrl = encodeURI($location.path());
+            if (returnUrl[returnUrl.length - 1] === '/') {
+              returnUrl = returnUrl.slice(0, returnUrl.length - 1);
+            }
+            $location.path('/login/?returnUrl=' + returnUrl);
           }
           return $q.reject(response);
         }

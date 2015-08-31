@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Auth', function ($http, $cookieStore) {
+  .factory('Auth', function ($http, $cookieStore, $location) {
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
@@ -35,6 +35,11 @@ angular.module('phundusApp')
       },
       login: function (user, success, error) {
         $http.post('/api/v1/login', user).success(function (data) {
+          if ($location.host() === 'localhost') {
+            changeUser(data);
+            return success(data);
+          }
+
           $http.post('/account/logon', {
             "email": user.username,
             "password": user.password,
@@ -47,6 +52,15 @@ angular.module('phundusApp')
       },
       logout: function (success, error) {
         $http.post('/api/v1/logout').success(function () {
+
+          if ($location.host() === 'localhost') {
+            changeUser({
+              username: '',
+              role: userRoles.public
+            });
+            return success();
+          }
+
           $http.post('/account/logoff').success(function () {
             changeUser({
               username: '',

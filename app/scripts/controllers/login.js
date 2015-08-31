@@ -11,22 +11,24 @@ angular.module('phundusApp')
   .controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'Auth',
     function($rootScope, $scope, $location, Auth) {
 
+      $rootScope.error = '';
+      $rootScope.warn = '';
+
       $scope.rememberMe = true;
       $scope.login = function() {
+
         Auth.login({
-            port: ':8000',
             username: $scope.username,
             password: $scope.password,
             rememberme: $scope.rememberMe
           },
           function() {
-            $location.path('/debug/');
+            var path = $location.search().returnUrl || '/debug/';
+            delete $location.search().returnUrl;
+            $location.path(path);
           },
-          function(err) {
-            $rootScope.error = "Failed to login: " + err;
-          },
-          function(warn) {
-            $rootScope.warn = "Failed to login: " + warn;
+          function() {
+            $rootScope.error = "Failed to login.";
           });
         };
     }]);
