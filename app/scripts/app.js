@@ -38,11 +38,11 @@ angular
         controller: 'ShopCtrl'
       })
       .state('public.404', {
-        url: '/404/',
+        url: '/404',
         templateUrl: 'views/404.html'
       })
       .state('public.debug', {
-        url: '/debug/',
+        url: '/debug',
         templateUrl: 'views/debug.html',
         controller: 'DebugCtrl'
       });
@@ -57,17 +57,17 @@ angular
         }
       })
       .state('anon.login', {
-        url: '/login/',
+        url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
       .state('anon.register', {
-        url: '/register/',
+        url: '/register',
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
       })
       .state('anon.logout', {
-        url: '/goodbye/',
+        url: '/goodbye',
         templateUrl: 'views/logout.html'
       });
 
@@ -81,44 +81,12 @@ angular
         }
       })
       .state('admin.admin', {
-        url: '/admin/',
+        url: '/admin',
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl'
       });
 
-
-
     $urlRouterProvider.otherwise('/404');
-
-    // FIX for trailing slashes. Gracefully "borrowed" from https://github.com/angular-ui/ui-router/issues/50
-    $urlRouterProvider.rule(function($injector, $location) {
-      if($location.protocol() === 'file') {
-        return;
-      }
-
-      var path = $location.path()
-      // Note: misnomer. This returns a query object, not a search string
-        , search = $location.search()
-        , params
-        ;
-
-      // check to see if the path already ends in '/'
-      if (path[path.length - 1] === '/') {
-        return;
-      }
-
-      // If there was no search string / query params, return with a `/`
-      if (Object.keys(search).length === 0) {
-        return path + '/';
-      }
-
-      // Otherwise build the search string and return a `/?` prefix
-      params = [];
-      angular.forEach(search, function(v, k){
-        params.push(k + '=' + v);
-      });
-      return path + '/?' + params.join('&');
-    });
 
     $locationProvider.html5Mode(false);
 
@@ -126,11 +94,8 @@ angular
       return {
         'responseError': function(response) {
           if(response.status === 401 || response.status === 403) {
-            var returnUrl = encodeURI($location.path());
-            if (returnUrl[returnUrl.length - 1] === '/') {
-              returnUrl = returnUrl.slice(0, returnUrl.length - 1);
-            }
-            $location.path('/login/?returnUrl=' + returnUrl);
+            $location.search('returnUrl', encodeURI($location.path()));
+            $location.path('/login');
           }
           return $q.reject(response);
         }

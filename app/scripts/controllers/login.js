@@ -23,7 +23,7 @@ angular.module('phundusApp')
             rememberme: $scope.rememberMe
           },
           function() {
-            var path = $location.search().returnUrl || '/debug/';
+            var path = $location.search().returnUrl || '/debug';
             delete $location.search().returnUrl;
             $location.path(path);
           },
