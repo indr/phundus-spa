@@ -94,7 +94,7 @@ angular
       return {
         'responseError': function(response) {
           if(response.status === 401 || response.status === 403) {
-            $location.search('returnUrl', encodeURI($location.path()));
+            $location.search('returnPath', encodeURI($location.path()));
             $location.path('/login');
           }
           return $q.reject(response);
