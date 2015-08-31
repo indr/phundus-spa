@@ -1,18 +1,27 @@
-<h1>login</h1>
+<h1>Anmelden</h1>
 
 <form class="form-horizontal" ng-submit="login()" name="loginForm">
 
   <div class="form-group">
-    <label class="control-label col-sm-3" label-for="username">E-Mail-Adresse</label>
+    <label class="control-label col-sm-3" for="username">E-Mail-Adresse</label>
     <div class="col-sm-9">
-      <input class="form-control" type="text" data-ng-model="username" placeholder="E-Mail-Adresse" name="username" required autofocus />
+      <input class="form-control" type="text" data-ng-model="username" placeholder="E-Mail-Adresse" id="username" required autofocus />
     </div>
   </div>
 
   <div class="form-group">
-    <label class="control-label col-sm-3" label-for="password">Passwort</label>
+    <label class="control-label col-sm-3" for="password">Passwort</label>
     <div class="col-sm-9">
-      <input class="form-control" type="password" data-ng-model="password" placeholder="Passwort" name="password" required />
+      <input class="form-control" type="password" data-ng-model="password" placeholder="Passwort" id="password" required />
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="checkbox col-sm-offset-3 col-sm-9">
+      <label>
+        <input type="checkbox" data-ng-model="rememberMe" /> Angemeldet bleiben
+      </label>
     </div>
   </div>
 

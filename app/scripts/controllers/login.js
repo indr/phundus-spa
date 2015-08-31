@@ -8,8 +8,8 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'Auth',
-    function ($rootScope, $scope, $location, Auth) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$window', 'Auth',
+    function ($rootScope, $scope, $location, $window, Auth) {
 
       $rootScope.error = '';
       $rootScope.warn = '';
@@ -23,9 +23,15 @@ angular.module('phundusApp')
             rememberme: $scope.rememberMe
           },
           function () {
-            var returnPath = $location.search().returnPath || '/debug';
-            delete $location.search().returnPath;
-            $location.path(returnPath);
+            var returnUrl = $location.search().ReturnUrl;
+            if (returnUrl) {
+              $window.location.href = returnUrl;
+            }
+            else {
+              var returnPath = $location.search().returnPath || '/debug';
+              delete $location.search().returnPath;
+              $location.path(returnPath);
+            }
           },
           function () {
             $rootScope.error = "Failed to login.";
