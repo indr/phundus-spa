@@ -5,18 +5,9 @@ angular.module('phundusApp')
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
-      , currentUser =  {username: '', role: userRoles.public};
+      , currentUser = $cookies.getObject('ph.user') ||  {username: '', role: userRoles.public};
 
-    try {
-      var cookie = $cookies.get('ph.user');
-      console.log('Cookie: ', cookie);
-      if (cookie) {
-        cookie = decodeURIComponent(cookie);
-        currentUser = JSON.parse(cookie);
-      }
-    }
-    catch(ex) {
-    }
+
     console.log('Current user: ', currentUser);
 
     function changeUser(user) {
