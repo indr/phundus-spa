@@ -90,6 +90,18 @@ angular
 
     $locationProvider.html5Mode(false);
 
+    $urlRouterProvider.rule(function($injector, $location) {
+      if ($location.protocol() === 'file') {
+        return;
+      }
+
+      if ($location.path() !== '') {
+        return;
+      }
+
+      return '/';
+    });
+
     $httpProvider.interceptors.push(function($q, $location) {
       return {
         'responseError': function(response) {
