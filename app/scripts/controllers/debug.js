@@ -9,7 +9,7 @@
  */
 angular.module('phundusApp')
   .controller('DebugCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
-    $scope.status = '';
+    $scope.status = {};
 
     $http.get('/api/v1/status').success(function (data) {
       $scope.status = data;
