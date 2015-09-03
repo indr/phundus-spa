@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Auth', function ($http, $cookies, $location) {
+  .factory('Auth', function ($http, $cookies) {
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
