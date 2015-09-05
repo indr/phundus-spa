@@ -39,12 +39,12 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li><a href="shop">Shop</a></li>
+              <li><a href="/shop">Shop</a></li>
               <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="organization#/search">Suchen</a></li>
+                  <li><a href="/organization#/search">Suchen</a></li>
                 </ul>
               </li>
               <li data-access-level="accessLevels.admin"><a ui-sref="admin.admin">Admin</a></li>
@@ -58,7 +58,7 @@
                   <li><a href="" data-ng-click="logout()">Abmelden</a></li>
                 </ul>
               </li>
-              <li data-access-level="accessLevels.anon"><a ui-sref="anon.register">Registrieren</a></li>
+              <li data-access-level="accessLevels.anon"><a href="/account/signup">Registrieren</a></li>
               <li data-access-level="accessLevels.anon"><a ui-sref="anon.login">Anmelden</a></li>
             </ul>
           </div>
