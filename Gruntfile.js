@@ -86,17 +86,17 @@ module.exports = function (grunt) {
           rewrite: {
             '^/api/v1': ''
           }
-        },
-        {
-          context: '/api/v0',
-          host: 'vbox-w7',
-          port: 9000,
-          https: false,
-          xforward: false,
-          rewrite: {
-            '`/api/v0': '/api'
-          }
         }
+        //, {
+        //  context: '/api/v0',
+        //  host: 'localhost',
+        //  port: 9000,
+        //  https: false,
+        //  xforward: false,
+        //  rewrite: {
+        //    '`/api/v0': '/api'
+        //  }
+        //}
       ],
       livereload: {
         options: {
@@ -104,6 +104,10 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               require('grunt-connect-proxy/lib/utils').proxyRequest,
+              connect().use('/account', function (req, res, next) {
+                res.statusCode = 204;
+                res.end();
+              }),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
