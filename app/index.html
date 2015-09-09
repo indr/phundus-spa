@@ -45,6 +45,8 @@
                    aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="/organization#/search">Suchen</a></li>
+                  <li class="divider"></li>
+                  <li data-ng-repeat="membership in user.memberships"><a href="#">{{membership.organizationName}}</a></li>
                 </ul>
               </li>
 
