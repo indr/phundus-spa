@@ -104,7 +104,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               require('grunt-connect-proxy/lib/utils').proxyRequest,
-              connect().use('/account', function (req, res, next) {
+              connect().use('/account', function (req, res) {
                 res.statusCode = 204;
                 res.end();
               }),

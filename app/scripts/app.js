@@ -19,6 +19,16 @@ angular
     //'ngTouch'
     'ui.router'
   ])
+
+  // http://snippetrepo.com/snippets/lodash-in-angularjs
+  //.factory('_', ['$window',
+  //  function ($window) {
+  //    // place lodash include before angular
+  //    return $window._;
+  //  }
+  //])
+  .constant('_', window._)
+
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     var access = window.routingConfig.accessLevels;
@@ -90,7 +100,7 @@ angular
 
     $locationProvider.html5Mode(false);
 
-    $urlRouterProvider.rule(function($injector, $location) {
+    $urlRouterProvider.rule(function ($injector, $location) {
       if ($location.protocol() === 'file') {
         return;
       }
@@ -102,10 +112,10 @@ angular
       return '/';
     });
 
-    $httpProvider.interceptors.push(function($q, $location) {
+    $httpProvider.interceptors.push(function ($q, $location) {
       return {
-        'responseError': function(response) {
-          if(response.status === 401 || response.status === 403) {
+        'responseError': function (response) {
+          if (response.status === 401 || response.status === 403) {
             $location.search('returnPath', encodeURI($location.path()));
             $location.path('/login');
           }

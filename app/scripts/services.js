@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Auth', function ($http, $cookies) {
+  .factory('Auth', function ($http, $cookies, _) {
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
@@ -25,7 +25,9 @@ angular.module('phundusApp')
     }
 
     function updateCurrentUserRoleBitMask() {
-      if (!currentMembership) return;
+      if (!currentMembership) {
+        return;
+      }
       var bitMask = userRoles.manager.bitMask;
       if (currentMembership.isManager) {
         currentUser.role.bitMask = currentUser.role.bitMask | bitMask;
