@@ -45,7 +45,7 @@
                    aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li data-ng-repeat="membership in user.memberships">
-                    <a href="/organization/select/{{membership.organizationId}}"><span class="glyphicon glyphicon-check" data-ng-class="{'white': !membership.selected}"></span> {{membership.organizationName}}</a></li>
+                    <a href="" data-ng-click="select(membership)"><span class="glyphicon glyphicon-check" data-ng-class="{'white': !membership.selected}"></span> {{membership.organizationName}}</a></li>
                   <li data-ng-show="user.memberships" class="divider"></li>
                   <li><a href="/organization#/search">Suchen</a></li>
                 </ul>
@@ -57,6 +57,24 @@
                 <ul class="dropdown-menu">
                   <li><a href="/documents#orders">Bestellungen</a></li>
                   <li><a href="/documents#contracts">Verträge</a></li>
+                </ul>
+              </li>
+
+              <li data-access-level="accessLevels.manager" class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">Verwaltung <span class="caret"></span></a>
+                <ul>
+                  <li><a href="/management#/orders">Bestellungen</a></li>
+                  <li><a href="/management#/contracts">Verträge</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/article/create">Neues Material</a></li>
+                  <li><a href="/article">Erfasstes Material</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/management#/members">Mitglieder</a></li>
+                  <li><a href="/management#/applications">Beitrittsanfragen</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/management#/settings">Einstellungen</a></li>
+                  <li><a href="/management#/files">Dateien</a></li>
                 </ul>
               </li>
 
@@ -80,6 +98,7 @@
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><a href="/account/profile">Kontoeinstellungen</a></li>
                   <li><a href="" data-ng-click="logout()">Abmelden</a></li>
                 </ul>
               </li>
@@ -96,14 +115,16 @@
         <button type="button" class="close" ng-click="error=''" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Oh snap!&nbsp;</strong>{{error}}
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error: </span>{{error}}
       </div>
 
       <div id="alertBoxWarn" class="alert alert-warning alert-dismissible" role="alert" data-ng-show="warn">
         <button type="button" class="close" ng-click="warn=''" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Warning!&nbsp;</strong>{{warn}}
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+        <span class="sr-only">Warning: </span>{{warn}}
       </div>
 
       <div data-ui-view />
@@ -139,6 +160,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

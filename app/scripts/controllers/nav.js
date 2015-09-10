@@ -14,6 +14,12 @@ angular.module('phundusApp')
       $scope.userRoles = Auth.userRoles;
       $scope.accessLevels = Auth.accessLevels;
 
+      $scope.select = function (membership) {
+        Auth.select(membership, undefined, function (err) {
+          $rootScope.error = err;
+        });
+      };
+
       $scope.logout = function () {
         Auth.logout(function () {
             $location.path('/goodbye');

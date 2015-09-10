@@ -5,14 +5,24 @@ angular.module('phundusApp')
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
-      , currentUser = $cookies.getObject('ph.user') ||  {username: '', role: userRoles.public};
+      , currentUser = $cookies.getObject('ph.user') || {username: '', role: userRoles.public}
+      , currentMembership = _.find(currentUser.memberships, {selected: true});
 
 
     console.log('Current user: ', currentUser);
+    console.log('Current membership: ', currentMembership);
 
     function changeUser(user) {
       console.log('Change user: ', user);
       angular.extend(currentUser, user);
+      angular.extend(currentMembership, _.find(user.memberships, {selected: true}))
+    }
+
+    function changeMembership(membership) {
+      console.log('Change membership: ', membership);
+      _.forEach(currentUser.memberships, function (each) {
+        each.selected = each === membership;
+      });
     }
 
     return {
@@ -56,6 +66,12 @@ angular.module('phundusApp')
             });
             success();
           }).error(error);
+        }).error(error);
+      },
+      select: function (membership, success, error) {
+        $http.get('/organization/select/' + membership.organizationId).success(function (data) {
+          changeMembership(membership);
+          success(data);
         }).error(error);
       },
       accessLevels: accessLevels,
