@@ -16,7 +16,7 @@ angular.module('phundusApp')
 
       $scope.select = function (membership) {
         Auth.select(membership, undefined, function (err) {
-          $rootScope.error = err;
+          $rootScope.warn = err;
         });
       };
 

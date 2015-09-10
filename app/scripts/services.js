@@ -8,21 +8,31 @@ angular.module('phundusApp')
       , currentUser = $cookies.getObject('ph.user') || {username: '', role: userRoles.public}
       , currentMembership = _.find(currentUser.memberships, {selected: true});
 
-
-    console.log('Current user: ', currentUser);
-    console.log('Current membership: ', currentMembership);
+    updateCurrentUserRoleBitMask();
 
     function changeUser(user) {
-      console.log('Change user: ', user);
       angular.extend(currentUser, user);
-      angular.extend(currentMembership, _.find(user.memberships, {selected: true}))
+      currentMembership = _.find(user.memberships, {selected: true});
+      updateCurrentUserRoleBitMask();
     }
 
     function changeMembership(membership) {
-      console.log('Change membership: ', membership);
       _.forEach(currentUser.memberships, function (each) {
         each.selected = each === membership;
       });
+      currentMembership = membership;
+      updateCurrentUserRoleBitMask();
+    }
+
+    function updateCurrentUserRoleBitMask() {
+      if (!currentMembership) return;
+      var bitMask = userRoles.manager.bitMask;
+      if (currentMembership.isManager) {
+        currentUser.role.bitMask = currentUser.role.bitMask | bitMask;
+      }
+      else {
+        currentUser.role.bitMask = currentUser.role.bitMask & ~bitMask;
+      }
     }
 
     return {
@@ -61,6 +71,7 @@ angular.module('phundusApp')
         $http.post('/api/v1/logout').success(function () {
           $http.post('/account/logoff').success(function () {
             changeUser({
+              memberships: undefined,
               username: '',
               role: userRoles.public
             });
@@ -69,9 +80,11 @@ angular.module('phundusApp')
         }).error(error);
       },
       select: function (membership, success, error) {
+        changeMembership(membership);
         $http.get('/organization/select/' + membership.organizationId).success(function (data) {
-          changeMembership(membership);
-          success(data);
+          if (success) {
+            success(data)
+          }
         }).error(error);
       },
       accessLevels: accessLevels,
