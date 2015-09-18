@@ -9,11 +9,15 @@
       <span class="vcard-fullname">{{user.firstName}} {{user.lastName}}</span>
     </h1>
 
+    <ul class="vcard-details list-unstyled">
+      <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:{{user.email}}">{{user.email}}</a></li>
+    </ul>
+
     <div class="vcard-memberships">
       <div class="panel panel-default">
         <div class="panel-heading">Organisationen</div>
-        <div class="panel-body"><p>Hallo: {{user.memberships == undefined}}</p></div>
-        <table class="table">
+        <div class="panel-body" data-ng-hide="user.memberships">Der Benutzer ist noch keiner Organisation beigetreten.</div>
+        <table class="table" data-ng-show="user.memberships">
           <tr data-ng-repeat="membership in user.memberships">
             <td><a href="#/organizations/{{membership.organizationId}}">
               {{membership.organizationName}}</a>

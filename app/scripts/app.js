@@ -92,7 +92,7 @@ angular
         }
       })
       .state('user.home', {
-        url: '/user/:userId',
+        url: '/users/:userId',
         templateUrl: 'views/user.html',
         controller: 'UserCtrl'
       });

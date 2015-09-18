@@ -101,8 +101,9 @@ img.avatar {
   color: #666;
 }
 
-.vcard-memberships {
+.vcard-details, .vcard-memberships {
   padding-top: 15px;
   padding-bottom: 15px;
   border-top: solid #eee 1px;
 }
+
