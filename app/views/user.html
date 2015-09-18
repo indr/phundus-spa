@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-4 vcard">
+    <a class="vcard-avatar">
+      <img class="avatar" gravatar-src-once="user.username" gravatar-size="212"/>
+    </a>
+
+    <h1 class="vcard-names">
+      <span class="vcard-username">{{user.username}}</span>
+      <span class="vcard-fullname"></span>
+    </h1>
+
+    <div class="vcard-memberships">
+      <div class="panel panel-default">
+        <div class="panel-heading">Organisationen</div>
+        <table class="table">
+          <tr data-ng-repeat="membership in user.memberships">
+            <td><a href="#/organizations/{{membership.organizationId}}"
+              >
+              {{membership.organizationName}}</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-8">
+    <div class="jumbotron">
+      <button class="btn btn-default">Eigene Materialstelle eröffnen</button>
+    </div>
+  </div>
+</div>

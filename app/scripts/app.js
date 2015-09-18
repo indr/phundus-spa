@@ -16,7 +16,8 @@ angular
     //'ngResource',
     //'ngRoute',
     //'ngSanitize',
-    //'ngTouch'
+    //'ngTouch',
+    'ui.gravatar',
     'ui.router'
   ])
 
@@ -79,6 +80,21 @@ angular
       .state('anon.logout', {
         url: '/goodbye',
         templateUrl: 'views/logout.html'
+      });
+
+    // User routes
+    $stateProvider
+      .state('user', {
+        abstract: true,
+        template: '<ui-view class="row"/>',
+        data: {
+          access: access.user
+        }
+      })
+      .state('user.home', {
+        url: '/user/:userId',
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl'
       });
 
     // Admin routes

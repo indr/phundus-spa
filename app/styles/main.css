@@ -86,3 +86,23 @@ body {
 .white {
   color: #fff;
 }
+
+
+/* vcard */
+img.avatar {
+  border-radius: 6px;
+}
+
+.vcard-username {
+  display: block;
+  overflow: hidden;
+  font-size: 20px;
+  width: 100%;
+  color: #666;
+}
+
+.vcard-memberships {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: solid #eee 1px;
+}
