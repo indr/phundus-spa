@@ -100,6 +100,10 @@ angular.module('phundusApp')
     return {
       getAll: function (success, error) {
         $http.get('/api/v1/users').success(success).error(error);
+      },
+
+      get: function (userId, success, error) {
+        $http.get('/api/v1/users/' + userId).success(success).error(error);
       }
     };
   });

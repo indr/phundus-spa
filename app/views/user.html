@@ -1,21 +1,21 @@
-<div class="row">
+<div class="row" data-ng-show="loaded">
   <div class="col-md-4 vcard">
     <a class="vcard-avatar">
-      <img class="avatar" gravatar-src-once="user.username" gravatar-size="212"/>
+      <img class="avatar" gravatar-src-once="user.email" gravatar-size="212"/>
     </a>
 
     <h1 class="vcard-names">
       <span class="vcard-username">{{user.username}}</span>
-      <span class="vcard-fullname"></span>
+      <span class="vcard-fullname">{{user.firstName}} {{user.lastName}}</span>
     </h1>
 
     <div class="vcard-memberships">
       <div class="panel panel-default">
         <div class="panel-heading">Organisationen</div>
+        <div class="panel-body"><p>Hallo: {{user.memberships == undefined}}</p></div>
         <table class="table">
           <tr data-ng-repeat="membership in user.memberships">
-            <td><a href="#/organizations/{{membership.organizationId}}"
-              >
+            <td><a href="#/organizations/{{membership.organizationId}}">
               {{membership.organizationName}}</a>
             </td>
           </tr>
