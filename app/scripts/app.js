@@ -84,17 +84,29 @@ angular
 
     // User routes
     $stateProvider
-      .state('user', {
+      .state('users', {
         abstract: true,
-        template: '<ui-view class="row"/>',
+        url: '/users/:userId',
+        templateUrl: '/views/users.html',
         data: {
           access: access.user
-        }
+        },
+        controller: 'UsersCtrl'
       })
-      .state('user.home', {
-        url: '/users/:userId',
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl'
+      .state('users.home', {
+        url: '',
+        templateUrl: 'views/users/home.html',
+        controller: 'UsersHomeCtrl'
+      })
+      .state('users.articles', {
+        url: '/articles',
+        templateUrl: 'views/users/articles.html',
+        controller: 'UsersArticlesCtrl'
+      })
+      .state('users.documents', {
+        url: '/documents',
+        templateUrl: 'views/users/documents.html',
+        controller: 'UsersDocumentsCtrl'
       });
 
     // Admin routes

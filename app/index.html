@@ -8,7 +8,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -114,7 +114,7 @@
           <li data-access-level="accessLevels.user" title="Warenkorb"><a href="/cart"><span
             class="glyphicon glyphicon-shopping-cart"></span></a></li>
           <li data-access-level="accessLevels.user" title="{{user.username}}"><a
-            ui-sref="user.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span></a></li>
+            ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span></a></li>
           <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
@@ -195,7 +195,7 @@
 <script src="scripts/controllers/nav.js"></script>
 <script src="scripts/controllers/register.js"></script>
 <script src="scripts/controllers/shop.js"></script>
-<script src="scripts/controllers/user.js"></script>
+<script src="scripts/controllers/users.js"></script>
 <script src="scripts/directives.js"></script>
 <script src="scripts/services.js"></script>
 <!-- endbuild -->

@@ -10,13 +10,14 @@
     </h1>
 
     <ul class="vcard-details list-unstyled">
-      <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:{{user.email}}">{{user.email}}</a></li>
+      <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:{{user.email}}">{{user.email}}</a>
+      </li>
     </ul>
 
     <div class="vcard-memberships" data-ng-show="user.memberships.length">
       <div class="panel panel-default">
         <div class="panel-heading">Organisationen</div>
-        <table class="table" >
+        <table class="table">
           <tr data-ng-repeat="membership in user.memberships">
             <td><a href="/{{membership.organizationFriendlyPath}}">
               {{membership.organizationName}}</a>
@@ -33,6 +34,18 @@
     </div>
     <div class="jumbotron" data-ng-hide="isHome">
       <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+      <p><strong>Notiz</strong></p>
+
+      <p>Wenn eine Materialstelle eröffnet wurde, so soll im oberen Bereich die Info betreffend Ort und Öffnungszeiten
+        angezeigt werden.</p>
+
+      <p>Im unteren Bereich eine Auswahl der beliebtesten Artikel. Mit einem Link "alle Artikel im Shop anzeigen.". Oder
+        so.</p>
+
+      <p>Was meinst du @lukasmuellerme dazu?</p>
     </div>
   </div>
 </div>

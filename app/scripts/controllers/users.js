@@ -2,13 +2,27 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:UserCtrl
+ * @name phundusApp.controller:UsersCtrl
  * @description
- * # UserCtrl
+ * # UsersCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UserCtrl', ['$rootScope', '$scope', '$stateParams', 'Users', 'Auth',
+  .controller('UsersCtrl', ['$scope', '$stateParams',
+    function ($scope, $stateParams) {
+      $scope.userId = $stateParams.userId;
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersHomeCtrl
+ * @description
+ * # UsersHomeCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersHomeCtrl', ['$rootScope', '$scope', '$stateParams', 'Users', 'Auth',
     function ($rootScope, $scope, $stateParams, Users, Auth) {
       $scope.loaded = false;
       $scope.isHome = false;
