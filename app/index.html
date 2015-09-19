@@ -93,13 +93,13 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li data-access-level="accessLevels.user"><a href="/cart">Warenkorb</a></li>
+              <li data-access-level="accessLevels.user" title="Warenkorb"><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+              <li data-access-level="accessLevels.user" title="{{user.username}}"><a ui-sref="user.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span></a></li>
               <li data-access-level="accessLevels.user" class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
+                   aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a ui-sref="user.home({userId: user.userId})">Profil</a></li>
-                  <li><a href="/account/profile">Kontoeinstellungen</a></li>
+                  <li><a href="/account/profile">Einstellungen</a></li>
                   <li><a href="" data-ng-click="logout()">Abmelden</a></li>
                 </ul>
               </li>
