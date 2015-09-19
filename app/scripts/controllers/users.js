@@ -8,9 +8,10 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersCtrl', ['$scope', '$stateParams',
-    function ($scope, $stateParams) {
+  .controller('UsersCtrl', ['$scope', '$stateParams', 'Auth',
+    function ($scope, $stateParams, Auth) {
       $scope.userId = $stateParams.userId;
+      $scope.isHome = $scope.userId + '' === Auth.user.userId + '';
     }
   ]);
 
