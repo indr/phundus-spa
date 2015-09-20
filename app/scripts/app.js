@@ -87,7 +87,7 @@ angular
       .state('users', {
         abstract: true,
         url: '/users/:userId',
-        templateUrl: '/views/users.html',
+        templateUrl: 'views/users.html',
         data: {
           access: access.user
         },
