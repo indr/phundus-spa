@@ -141,8 +141,18 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          open: true,
-          base: '<%= yeoman.dist %>'
+          open: false,
+          base: '<%= yeoman.dist %>',
+          middleware: function (connect) {
+            return [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+              connect().use('/account', function (req, res) {
+                res.statusCode = 204;
+                res.end();
+              }),
+              connect.static(appConfig.dist)
+            ];
+          }
         }
       }
     },
@@ -464,7 +474,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'configureProxies', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
