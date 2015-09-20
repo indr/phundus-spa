@@ -22,13 +22,13 @@ angular.module('phundusApp')
             password: $scope.password,
             rememberme: $scope.rememberMe
           },
-          function () {
+          function (data) {
             var returnUrl = $location.search().ReturnUrl;
             if (returnUrl) {
               $window.location.href = returnUrl;
             }
             else {
-              var returnPath = $location.search().returnPath || '/debug';
+              var returnPath = $location.search().returnPath || '/users/' + data.userId;
               delete $location.search().returnPath;
               $location.path(returnPath);
             }
