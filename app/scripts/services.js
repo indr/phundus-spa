@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Auth', function ($http, $cookies, _) {
+  .factory('Auth', ['$http', '$cookies', '_', function ($http, $cookies, _) {
 
     var accessLevels = window.routingConfig.accessLevels
       , userRoles = window.routingConfig.userRoles
@@ -93,10 +93,10 @@ angular.module('phundusApp')
       userRoles: userRoles,
       user: currentUser
     };
-  });
+  }]);
 
 angular.module('phundusApp')
-  .factory('Users', function ($http) {
+  .factory('Users', ['$http', function ($http) {
     return {
       getAll: function (success, error) {
         $http.get('/api/v1/users').success(success).error(error);
@@ -106,18 +106,18 @@ angular.module('phundusApp')
         $http.get('/api/v1/users/' + userId).success(success).error(error);
       }
     };
-  })
-  .factory('Orders', function ($http) {
+  }])
+  .factory('Orders', ['$http', function ($http) {
     return {
       getAll: function (success, error) {
         $http.get('/api/orders').success(success).error(error);
       }
     };
-  })
-  .factory('Contracts', function ($http) {
+  }])
+  .factory('Contracts', ['$http', function ($http) {
     return {
       getAll: function (success, error) {
         $http.get('/api/contracts').success(success).error(error);
       }
     };
-  });
+  }]);
