@@ -23,8 +23,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$rootScope', '$scope', '$stateParams', 'Users', 'Auth',
-    function ($rootScope, $scope, $stateParams, Users, Auth) {
+  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Auth', 'Alerts',
+    function ($scope, $stateParams, Users, Auth, Alerts) {
       $scope.loaded = false;
       $scope.isHome = false;
 
@@ -33,8 +33,12 @@ angular.module('phundusApp')
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
       }, function () {
-        $rootScope.showError("Failed to fetch users.");
+        Alerts.showError("Failed to fetch users.");
       });
+
+      $scope.openStore = function() {
+        Alerts.showError('Failed to open your store.');
+      }
     }
   ]);
 

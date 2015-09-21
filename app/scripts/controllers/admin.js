@@ -8,8 +8,8 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('AdminCtrl', ['$rootScope', '$scope', 'Users', 'Auth',
-    function ($rootScope, $scope, Users, Auth) {
+  .controller('AdminCtrl', ['$scope', 'Users', 'Auth', 'Alerts',
+    function ($scope, Users, Auth, Alerts) {
       $scope.loading = true;
       $scope.userRoles = Auth.userRoles;
 
@@ -17,7 +17,7 @@ angular.module('phundusApp')
         $scope.users = res;
         $scope.loading = false;
       }, function () {
-        $rootScope.showError("Failed to fetch users.");
+        Alerts.showError("Failed to fetch users.");
         $scope.loading = false;
       });
     }
