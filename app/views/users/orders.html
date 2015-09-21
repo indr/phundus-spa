@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th><a href="" data-ng-click="orderBy('orderId')">Nummer</a></th>
+    <th><a href="" data-ng-click="orderBy('organizationName')">Organisation</a></th>
+    <th><a href="" data-ng-click="orderBy('createdUtc')">Erstellt</a></th>
+    <th><a href="" data-ng-click="orderBy('status')">Status</a></th>
+    <th><a href="" data-ng-click="orderBy('modifiedUtc')">Bearbeitet</a></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="order in filtered = (orders | filter:search) | orderBy:order">
+    <td>{{order.orderId}}</td>
+    <td>{{order.organizationName}}</td>
+    <td>
+      <ph-date value="order.createdUtc"></ph-date>
+    </td>
+    <td>{{order.status | orderStatusText}}</td>
+    <td>
+      <ph-date value="order.modifiedUtc"></ph-date>
+    </td>
+    <td class="text-right">
+      <!--
+      <a class="btn btn-default btn-small" data-ng-click="openOrder(order)">Öffnen</a>
+      -->
+      <a class="btn btn-default btn-small" href="/api/orders/{{order.orderId}}.pdf">PDF</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

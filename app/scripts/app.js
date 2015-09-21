@@ -103,10 +103,15 @@ angular
         templateUrl: 'views/users/articles.html',
         controller: 'UsersArticlesCtrl'
       })
-      .state('users.documents', {
-        url: '/documents',
-        templateUrl: 'views/users/documents.html',
-        controller: 'UsersDocumentsCtrl'
+      .state('users.orders', {
+        url: '/orders',
+        templateUrl: 'views/users/orders.html',
+        controller: 'UsersOrdersCtrl'
+      })
+      .state('users.contracts', {
+        url: '/orders',
+        templateUrl: 'views/users/contracts.html',
+        controller: 'UsersContractsCtrl'
       });
 
     // Admin routes
@@ -140,6 +145,8 @@ angular
       return '/';
     });
 
+
+
     $httpProvider.interceptors.push(function ($q, $location) {
       return {
         'responseError': function (response) {
@@ -152,3 +159,13 @@ angular
       };
     });
   });
+
+
+angular.module('phundusApp') .filter('orderStatusText', function () {
+  return function (input) {
+    return {
+      "Pending": "Provisorisch", "Approved": "Bestätigt", "Rejected": "Abgelehnt", "Closed": "Abgeschlossen"
+    }
+      [input];
+  };
+});

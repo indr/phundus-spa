@@ -37,3 +37,48 @@ angular.module('phundusApp')
       });
     }
   ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersOrdersCtrl
+ * @description
+ * # UsersOrdersCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersOrdersCtrl', ['$rootScope', '$scope', 'Orders',
+    function ($rootScope, $scope, Orders) {
+
+      $scope.search = { status: '' };
+      $scope.order = '-createdUtc';
+      $scope.orderBy = function (by) {
+        if ($scope.order === by) {
+          $scope.order = '-' + by;
+        }
+        else {
+          $scope.order = by;
+        }
+      };
+
+      Orders.getAll(function (res) {
+        $scope.orders = res;
+      }, function(err) {
+        $rootScope.error = err;
+      });
+
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersContractsCtrl
+ * @description
+ * # UsersContractsCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersContractsCtrl', ['$scope', '$stateParams',
+    function ($scope, $stateParams) {
+      $scope.$stateParams = $stateParams;
+    }
+  ]);

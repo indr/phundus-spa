@@ -107,3 +107,12 @@ angular.module('phundusApp')
       }
     };
   });
+
+angular.module('phundusApp')
+  .factory('Orders', function ($http) {
+    return {
+      getAll: function (success, error) {
+        $http.get('/api/orders').success(success).error(error);
+      }
+    };
+  });

@@ -108,6 +108,14 @@ module.exports = function (grunt) {
                 res.statusCode = 204;
                 res.end();
               }),
+              connect().use('/api/orders', function(req, res){
+                res.statusCode = 200;
+                res.end(JSON.stringify([{
+                  orderId:10122,version:2,organizationId:1001,organizationName:"Pfadi Luzern",status:"Rejected",createdUtc:"2013-05-29T14:41:08Z",modifiedUtc:"2013-05-29T14:41:39Z"
+                }, {
+                  orderId:10123,version:2,organizationId:1001,organizationName:"Pfadi Luzern",status:"Approved",createdUtc:"2013-05-29T14:41:08Z",modifiedUtc:"2013-05-29T14:41:39Z"
+                }]))
+              }),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',

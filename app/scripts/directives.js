@@ -1,6 +1,18 @@
 'use strict';
 
 angular.module('phundusApp')
+  .directive('phDate', [function() {
+    return {
+      restrict: 'E',
+      replace: 'true',
+      scope: {
+        value: '=value'
+      },
+      template: '<span title="{{value | date:\'medium\'}}">{{value | date:\'shortDate\'}}</span>'
+    }
+  }]);
+
+angular.module('phundusApp')
   .directive('accessLevel', ['Auth', function(Auth) {
     return {
       restrict: 'A',
