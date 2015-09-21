@@ -77,8 +77,25 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersContractsCtrl', ['$scope', '$stateParams',
-    function ($scope, $stateParams) {
-      $scope.$stateParams = $stateParams;
+  .controller('UsersContractsCtrl', ['$rootScope', '$scope',
+    function ($rootScope, $scope) {
+
+      $scope.search = { status: '' };
+      $scope.order = '-createdUtc';
+      $scope.orderBy = function (by) {
+        if ($scope.order === by) {
+          $scope.order = '-' + by;
+        }
+        else {
+          $scope.order = by;
+        }
+      };
+
+      //Contracts.getAll(function (res) {
+      //  $scope.contracts = res;
+      //}, function(err) {
+      //  $rootScope.error = err;
+      //});
+
     }
   ]);

@@ -107,12 +107,12 @@ angular
         url: '/orders',
         templateUrl: 'views/users/orders.html',
         controller: 'UsersOrdersCtrl'
-      })
-      .state('users.contracts', {
-        url: '/orders',
-        templateUrl: 'views/users/contracts.html',
-        controller: 'UsersContractsCtrl'
       });
+      //.state('users.contracts', {
+      //  url: '/orders',
+      //  templateUrl: 'views/users/contracts.html',
+      //  controller: 'UsersContractsCtrl'
+      //});
 
     // Admin routes
     $stateProvider

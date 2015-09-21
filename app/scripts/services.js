@@ -106,13 +106,18 @@ angular.module('phundusApp')
         $http.get('/api/v1/users/' + userId).success(success).error(error);
       }
     };
-  });
-
-angular.module('phundusApp')
+  })
   .factory('Orders', function ($http) {
     return {
       getAll: function (success, error) {
         $http.get('/api/orders').success(success).error(error);
+      }
+    };
+  })
+  .factory('Contracts', function ($http) {
+    return {
+      getAll: function (success, error) {
+        $http.get('/api/contracts').success(success).error(error);
       }
     };
   });
