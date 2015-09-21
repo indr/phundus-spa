@@ -33,7 +33,7 @@ angular.module('phundusApp')
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
       }, function () {
-        Alerts.showError("Failed to fetch users.");
+        Alerts.showError("Failed to fetch user.");
       });
 
       $scope.openStore = function() {

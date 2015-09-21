@@ -1,39 +1,6 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Alerts', ['$timeout', 'uuid4', function ($timeout, uuid4) {
-    var alerts = {};
-
-    var dismissAlert = function (type, id) {
-      delete alerts[type][id];
-    };
-
-    var showAlert = function (type, msg) {
-      var id = uuid4.generate();
-      alerts[type] = alerts[type] || {};
-      alerts[type][id] = msg;
-      $timeout(dismissAlert, 4000, true, type, id);
-    };
-
-    return {
-      alerts: alerts,
-      dismiss: dismissAlert,
-      showDanger: function (msg) {
-        showAlert('danger', msg);
-      },
-      showError: function (msg) {
-        showAlert('danger', msg);
-      },
-      showWarning: function (msg) {
-        showAlert('warning', msg);
-      },
-      showSuccess: function (msg) {
-        showAlert('success', msg);
-      }
-    };
-  }]);
-
-angular.module('phundusApp')
   .factory('Auth', ['$http', '$cookies', '_', function ($http, $cookies, _) {
 
     var accessLevels = window.routingConfig.accessLevels
@@ -125,32 +92,5 @@ angular.module('phundusApp')
       accessLevels: accessLevels,
       userRoles: userRoles,
       user: currentUser
-    };
-  }]);
-
-angular.module('phundusApp')
-  .factory('Users', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/v1/users').success(success).error(error);
-      },
-
-      get: function (userId, success, error) {
-        $http.get('/api/v1/users/' + userId).success(success).error(error);
-      }
-    };
-  }])
-  .factory('Orders', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/orders').success(success).error(error);
-      }
-    };
-  }])
-  .factory('Contracts', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/contracts').success(success).error(error);
-      }
     };
   }]);
