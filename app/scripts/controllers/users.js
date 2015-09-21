@@ -23,8 +23,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Auth', 'Alerts',
-    function ($scope, $stateParams, Users, Auth, Alerts) {
+  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Stores', 'Auth', 'Alerts',
+    function ($scope, $stateParams, Users, Stores, Auth, Alerts) {
       $scope.loaded = false;
       $scope.isHome = false;
 
@@ -32,12 +32,22 @@ angular.module('phundusApp')
         $scope.user = res;
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
-      }, function () {
-        Alerts.showError("Failed to fetch user.");
+
+        if (!$scope.user.storeId) {
+          return;
+        }
+        Stores.get($scope.user.storeId, function (res) {
+          $scope.store = res;
+        }, function (error) {
+          Alerts.showError('Failed to fetch users store: ' + error)
+        });
+
+      }, function (error) {
+        Alerts.showError('Failed to fetch user: ' + error);
       });
 
-      $scope.openStore = function() {
-        Alerts.showError('Failed to open your store.');
+      $scope.openStore = function () {
+        Alerts.showError('Failed to open your store: ' + 'Not implemented');
       }
     }
   ]);
@@ -53,7 +63,7 @@ angular.module('phundusApp')
   .controller('UsersOrdersCtrl', ['$rootScope', '$scope', 'Orders',
     function ($rootScope, $scope, Orders) {
 
-      $scope.search = { status: '' };
+      $scope.search = {status: ''};
       $scope.order = '-createdUtc';
       $scope.orderBy = function (by) {
         if ($scope.order === by) {
@@ -66,7 +76,7 @@ angular.module('phundusApp')
 
       Orders.getAll(function (res) {
         $scope.orders = res;
-      }, function(err) {
+      }, function (err) {
         $rootScope.showError(err);
       });
 
@@ -84,7 +94,7 @@ angular.module('phundusApp')
   .controller('UsersContractsCtrl', ['$rootScope', '$scope',
     function ($rootScope, $scope) {
 
-      $scope.search = { status: '' };
+      $scope.search = {status: ''};
       $scope.order = '-createdUtc';
       $scope.orderBy = function (by) {
         if ($scope.order === by) {
