@@ -11,9 +11,6 @@ angular.module('phundusApp')
   .controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$window', 'Auth',
     function ($rootScope, $scope, $location, $window, Auth) {
 
-      $rootScope.error = '';
-      $rootScope.warn = '';
-
       $scope.rememberMe = true;
       $scope.login = function () {
 
@@ -34,7 +31,7 @@ angular.module('phundusApp')
             }
           },
           function () {
-            $rootScope.error = "Failed to login.";
+            $rootScope.showError("Failed to login.");
           });
       };
     }]);

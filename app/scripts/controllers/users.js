@@ -33,7 +33,7 @@ angular.module('phundusApp')
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
       }, function () {
-        $rootScope.error = "Failed to fetch users.";
+        $rootScope.showError("Failed to fetch users.");
       });
     }
   ]);
@@ -63,7 +63,7 @@ angular.module('phundusApp')
       Orders.getAll(function (res) {
         $scope.orders = res;
       }, function(err) {
-        $rootScope.error = err;
+        $rootScope.showError(err);
       });
 
     }

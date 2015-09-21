@@ -1,7 +1,18 @@
 <h1>Debug</h1>
 
+<h2>Test Alerts</h2>
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" id="inputAlertMsg" data-ng-model="alertMsg"/>
+  </div>
+  <button class="btn btn-default" data-ng-click="addDanger()">Add danger</button>
+  <button class="btn btn-default" data-ng-click="addWarning()">Add warning</button>
+  <button class="btn btn-default" data-ng-click="addSuccess()">Add success</button>
+</form>
+
 <h2>Status</h2>
 <pre>{{status|json}}</pre>
 
 <h2>Cookies</h2>
 <pre>{{cookies|json}}</pre>
+

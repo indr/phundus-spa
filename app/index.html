@@ -132,20 +132,28 @@
 </div>
 
 <div class="container">
-  <div id="alertBoxError" class="alert alert-danger alert-dismissible" role="alert" data-ng-show="error">
-    <button type="button" class="close" ng-click="error=''" aria-label="Close">
+  <div class="alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']" >
+    <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error: </span>{{error}}
+    <span class="sr-only">Error: </span>{{msg}}
   </div>
 
-  <div id="alertBoxWarn" class="alert alert-warning alert-dismissible" role="alert" data-ng-show="warn">
-    <button type="button" class="close" ng-click="warn=''" aria-label="Close">
+  <div class="alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']" >
+    <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
     <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <span class="sr-only">Warning: </span>{{warn}}
+    <span class="sr-only">Warning: </span>{{msg}}
+  </div>
+
+  <div class="alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']" >
+    <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <span class="sr-only">Success: </span>{{msg}}
   </div>
 
   <div data-ui-view/>
@@ -153,7 +161,7 @@
 
 <div class="footer">
   <div class="container">
-    <p><a href="feedback">Feedback</a> | <span class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
+    <p><a href="feedback">Feedback</a> &middot; <a href="https://github.com/indr/phundus">GitHub</a> &middot; <span class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
   </div>
 </div>
 
@@ -181,6 +189,7 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-uuid/uuid.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
 <!-- endbower -->

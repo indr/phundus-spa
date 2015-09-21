@@ -10,6 +10,7 @@
  */
 angular
   .module('phundusApp', [
+    'uuid',
     //'ngAnimate',
     'ngCookies',
     //'ngMessages',

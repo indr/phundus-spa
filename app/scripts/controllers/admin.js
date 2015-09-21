@@ -17,7 +17,7 @@ angular.module('phundusApp')
         $scope.users = res;
         $scope.loading = false;
       }, function () {
-        $rootScope.error = "Failed to fetch users.";
+        $rootScope.showError("Failed to fetch users.");
         $scope.loading = false;
       });
     }
