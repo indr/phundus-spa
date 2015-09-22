@@ -12,7 +12,8 @@ angular.module('phundusApp')
       restrict: 'E',
       replace: 'true',
       scope: {
-        user: '=user'
+        user: '=user',
+        isEditable: '=isEditable'
       },
       templateUrl: 'views/directives/ph-user-vcard.html'
     }
@@ -25,7 +26,8 @@ angular.module('phundusApp')
       restrict: 'E',
       replace: 'true',
       scope: {
-        store: '=store'
+        store: '=store',
+        isEditable: '=isEditable'
       },
       templateUrl: 'views/directives/ph-user-store.html'
     }

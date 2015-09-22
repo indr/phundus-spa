@@ -22,6 +22,7 @@ body {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -46,6 +47,7 @@ body {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
@@ -55,6 +57,7 @@ body {
 .marketing {
   margin: 40px 0;
 }
+
 .marketing p + h4 {
   margin-top: 28px;
 }
@@ -72,10 +75,12 @@ body {
     padding-left: 0;
     padding-right: 0;
   }
+
   /* Space out the masthead */
   .header {
     margin-bottom: 30px;
   }
+
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
@@ -87,17 +92,18 @@ body {
   color: #fff;
 }
 
-
 /* vcard */
 img.avatar {
   border-radius: 6px;
 }
+
 .vcard-fullname {
-  display:block;
+  display: block;
   overflow: hidden;
   font-size: 22px;
   width: 100%;
 }
+
 .vcard-username {
   display: block;
   overflow: hidden;
@@ -112,3 +118,33 @@ img.avatar {
   border-top: solid #eee 1px;
 }
 
+.editable-empty {
+  text-decoration: none;
+  color: #428BCA;
+  /*border-bottom: 1px dashed #428BCA;*/
+}
+
+.editable-empty:hover {
+  text-decoration: none;
+  color: #2A6496;
+  border-bottom-color: #2A6496;
+  cursor: pointer;
+}
+
+.editable-click {
+  border-bottom-width: 0;
+}
+
+.editable-click:hover {
+  cursor: pointer;
+}
+
+.editable-click:after {
+  content: "✏";
+  font-family: "Glyphicons Halflings";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  margin-left: 5px;
+  cursor: pointer;
+}

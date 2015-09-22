@@ -2,28 +2,27 @@
   <h2>Materialstelle</h2>
 
   <div class="row">
-    <div class="col-md-3"><label>Adresse</label></div>
-
-    <div class="col-md-7">
-      <span editable-textarea="store.address" e-form="addressForm">{{store.address}}</span>
+    <div class="col-sm-4">
+      <label>Adresse</label>
     </div>
+    <div class="col-sm-8">
+      <p data-ng-hide="isEditable" style="white-space:pre">{{store.address}}</p>
 
-    <div class="col-md-1">
-      <button class="btn btn-default" ng-click="addressForm.$show()" ng-hide="addressForm.$visible"><span
-        class="glyphicon glyphicon-edit"></span></button>
+      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.address" data-e-rows="5">{{store.address}}</span>
+      </p>
     </div>
   </div>
 
+
   <div class="row">
-    <div class="col-md-3"><label>Öffnungszeiten</label></div>
-
-    <div class="col-md-7">
-      <span editable-textarea="store.openingHours" e-form="openingHoursForm">{{store.openingHours}}</span>
+    <div class="col-sm-4">
+      <label>Öffnungszeiten</label>
     </div>
+    <div class="col-sm-8">
+      <p data-ng-hide="isEditable" style="white-space:pre">{{store.openingHours}}</p>
 
-    <div class="col-md-1">
-      <button class="btn btn-default" ng-click="openingHoursForm.$show()" ng-hide="openingHoursForm.$visible"><span
-        class="glyphicon glyphicon-edit"></span></button>
+      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.openingHours">{{store.openingHours}}</span>
+      </p>
     </div>
   </div>
 </div>
