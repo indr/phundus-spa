@@ -24,7 +24,9 @@ angular.module('phundusApp')
         $http.get('/api/v1/stores/' + storeId).success(success).error(error);
       },
       post: function (userId, success, error) {
-        $http.post('/api/v1/users/' + userId + '/stores').success(success).error(error);
+        $http.post('/api/v1/stores', {
+          userId: userId
+        }).success(success).error(error);
       }
     }
   }])
