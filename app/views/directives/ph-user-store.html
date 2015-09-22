@@ -1,7 +1,29 @@
-<div data-ng-show="store">
-  <div class="alert alert-info" role="alert">
-    <p><strong>Materialstelle vorhanden</strong></p>
+<div data-ng-show="store" class="store">
+  <h2>Materialstelle</h2>
 
-    <p>Id: {{store.storeId}}</p>
+  <div class="row">
+    <div class="col-md-3"><label>Adresse</label></div>
+
+    <div class="col-md-7">
+      <span editable-textarea="store.address" e-form="addressForm">{{store.address}}</span>
+    </div>
+
+    <div class="col-md-1">
+      <button class="btn btn-default" ng-click="addressForm.$show()" ng-hide="addressForm.$visible"><span
+        class="glyphicon glyphicon-edit"></span></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><label>Öffnungszeiten</label></div>
+
+    <div class="col-md-7">
+      <span editable-textarea="store.openingHours" e-form="openingHoursForm">{{store.openingHours}}</span>
+    </div>
+
+    <div class="col-md-1">
+      <button class="btn btn-default" ng-click="openingHoursForm.$show()" ng-hide="openingHoursForm.$visible"><span
+        class="glyphicon glyphicon-edit"></span></button>
+    </div>
   </div>
 </div>

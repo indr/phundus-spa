@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('phundusApp', [
     'uuid',
     //'ngAnimate',
@@ -19,7 +19,8 @@ angular
     //'ngSanitize',
     //'ngTouch',
     'ui.gravatar',
-    'ui.router'
+    'ui.router',
+    'xeditable'
   ])
 
   // http://snippetrepo.com/snippets/lodash-in-angularjs
@@ -169,4 +170,9 @@ angular.module('phundusApp') .filter('orderStatusText', function () {
     }
       [input];
   };
+});
+
+
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
 });
