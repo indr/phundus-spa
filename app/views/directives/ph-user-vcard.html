@@ -1,0 +1,30 @@
+<div class="vcard">
+  <a class="vcard-avatar">
+    <img class="avatar" gravatar-src-once="user.email" gravatar-size="212"/>
+  </a>
+
+  <h1 class="vcard-names">
+    <span class="vcard-fullname">{{user.fullName}}</span>
+    <!--<span class="vcard-username">{{user.username}}</span>-->
+  </h1>
+
+  <!--
+  <ul class="vcard-details list-unstyled">
+    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:{{user.email}}">{{user.email}}</a>
+    </li>
+  </ul>
+  -->
+
+  <div class="vcard-memberships" data-ng-show="user.memberships.length">
+    <div class="panel panel-default">
+      <div class="panel-heading">Organisationen</div>
+      <table class="table">
+        <tr data-ng-repeat="membership in user.memberships">
+          <td><a href="/{{membership.organizationFriendlyPath}}">
+            {{membership.organizationName}}</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

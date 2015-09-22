@@ -1,44 +1,33 @@
 'use strict';
 
-angular.module('phundusApp')
-  .directive('phDate', [function() {
-    return {
-      restrict: 'E',
-      replace: 'true',
-      scope: {
-        value: '=value'
-      },
-      template: '<span title="{{value | date:\'medium\'}}">{{value | date:\'shortDate\'}}</span>'
-    }
-  }]);
 
 angular.module('phundusApp')
-  .directive('accessLevel', ['Auth', function(Auth) {
+  .directive('accessLevel', ['Auth', function (Auth) {
     return {
       restrict: 'A',
-      link: function($scope, element, attrs) {
+      link: function ($scope, element, attrs) {
         var prevDisp = element.css('display')
           , userRole
           , accessLevel;
 
         $scope.user = Auth.user;
-        $scope.$watch('user', function(user) {
-          if(user.role) {
+        $scope.$watch('user', function (user) {
+          if (user.role) {
             userRole = user.role;
           }
           updateCSS();
         }, true);
 
-        attrs.$observe('accessLevel', function(al) {
-          if(al) {
+        attrs.$observe('accessLevel', function (al) {
+          if (al) {
             accessLevel = $scope.$eval(al);
           }
           updateCSS();
         });
 
         function updateCSS() {
-          if(userRole && accessLevel) {
-            if(!Auth.authorize(accessLevel, userRole)) {
+          if (userRole && accessLevel) {
+            if (!Auth.authorize(accessLevel, userRole)) {
               element.css('display', 'none');
             }
             else {
@@ -50,10 +39,10 @@ angular.module('phundusApp')
     };
   }]);
 
-angular.module('phundusApp').directive('activeNav', ['$location', function($location) {
+angular.module('phundusApp').directive('activeNav', ['$location', function ($location) {
 
   function normalizeUrl(url) {
-    if(url[url.length - 1] !== '/') {
+    if (url[url.length - 1] !== '/') {
       url = url + '/';
     }
     return url;
@@ -61,19 +50,19 @@ angular.module('phundusApp').directive('activeNav', ['$location', function($loca
 
   return {
     restrict: 'A',
-    link: function(scope, element, attrs) {
+    link: function (scope, element, attrs) {
       var anchor = element[0];
-      if(element[0].tagName.toUpperCase() !== 'A') {
+      if (element[0].tagName.toUpperCase() !== 'A') {
         anchor = element.find('a')[0];
       }
       var path = anchor.href;
 
       scope.location = $location;
-      scope.$watch('location.absUrl()', function(newPath) {
+      scope.$watch('location.absUrl()', function (newPath) {
         path = normalizeUrl(path);
         newPath = normalizeUrl(newPath);
 
-        if(path === newPath ||
+        if (path === newPath ||
           (attrs.activeNav === 'nestedTop' && newPath.indexOf(path) === 0)) {
           element.addClass('active');
         } else {

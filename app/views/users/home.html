@@ -1,55 +1,14 @@
 <div class="row" data-ng-show="loaded">
-  <div class="col-md-4 vcard">
-    <a class="vcard-avatar">
-      <img class="avatar" gravatar-src-once="user.email" gravatar-size="212"/>
-    </a>
+  <ph-user-vcard class="col-md-4" data-user="user"></ph-user-vcard>
 
-    <h1 class="vcard-names">
-      <span class="vcard-fullname">{{user.fullName}}</span>
-      <!--<span class="vcard-username">{{user.username}}</span>-->
-    </h1>
-
-    <!--
-    <ul class="vcard-details list-unstyled">
-      <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:{{user.email}}">{{user.email}}</a>
-      </li>
-    </ul>
-    -->
-
-    <div class="vcard-memberships" data-ng-show="user.memberships.length">
-      <div class="panel panel-default">
-        <div class="panel-heading">Organisationen</div>
-        <table class="table">
-          <tr data-ng-repeat="membership in user.memberships">
-            <td><a href="/{{membership.organizationFriendlyPath}}">
-              {{membership.organizationName}}</a>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-md-8">
-    <div class="jumbotron" data-ng-show="isHome" data-ng-hide="store">
+  <div class="col-md-8" data-ng-hide="store">
+    <div class="jumbotron" data-ng-show="isHome">
       <button class="btn btn-default" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
     </div>
-    <div class="jumbotron" data-ng-hide="isHome" data-ng-hide="store">
+    <div class="jumbotron" data-ng-hide="isHome">
       <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
     </div>
-
-    <p data-ng-show="store">Materialstelle vorhanden: {{store}}</p>
-
-    <div class="alert alert-info" role="alert">
-      <p><strong>Notiz</strong></p>
-
-      <p>Wenn eine Materialstelle eröffnet wurde, so soll im oberen Bereich die Info betreffend Ort und Öffnungszeiten
-        angezeigt werden.</p>
-
-      <p>Im unteren Bereich eine Auswahl der beliebtesten Artikel. Mit einem Link "alle Artikel im Shop anzeigen.". Oder
-        so.</p>
-
-      <p>Was meinst du @lukasmuellerme dazu?</p>
-    </div>
   </div>
+
+  <ph-user-store class="col-md-8" data-store="store"></ph-user-store>
 </div>
