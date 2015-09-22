@@ -38,16 +38,21 @@ angular.module('phundusApp')
         }
         Stores.get($scope.user.storeId, function (res) {
           $scope.store = res;
-        }, function (error) {
-          Alerts.showError('Failed to fetch users store: ' + error)
+        }, function (err) {
+          Alerts.showError('Failed to fetch users store: ' + err)
         });
 
-      }, function (error) {
-        Alerts.showError('Failed to fetch user: ' + error);
+      }, function (err) {
+        Alerts.showError('Failed to fetch user: ' + err);
       });
 
       $scope.openStore = function () {
-        Alerts.showError('Failed to open your store: ' + 'Not implemented');
+        Stores.post($scope.user.userId, function(res) {
+          $scope.store = res;
+          Alerts.showSuccess('Successfully opened your store!');
+        }, function(err) {
+          Alerts.showError('Failed to open your store: ' + err);
+        });
       }
     }
   ]);
