@@ -23,8 +23,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Stores', 'Auth', 'Alerts',
-    function ($scope, $stateParams, Users, Stores, Auth, Alerts) {
+  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Stores', 'Auth', 'Alert',
+    function ($scope, $stateParams, Users, Stores, Auth, Alert) {
       $scope.loaded = false;
       $scope.isHome = false;
 
@@ -39,19 +39,19 @@ angular.module('phundusApp')
         Stores.get($scope.user.storeId, function (res) {
           $scope.store = res;
         }, function (err) {
-          Alerts.showError('Failed to fetch users store: ' + err)
+          Alert.error('Failed to fetch users store: ' + err)
         });
 
       }, function (err) {
-        Alerts.showError('Failed to fetch user: ' + err);
+        Alert.error('Failed to fetch user: ' + err);
       });
 
       $scope.openStore = function () {
         Stores.post($scope.user.userId, function(res) {
           $scope.store = res;
-          Alerts.showSuccess('Successfully opened your store!');
+          Alert.success('Successfully opened your store!');
         }, function(err) {
-          Alerts.showError('Failed to open your store: ' + err);
+          Alert.error('Failed to open your store: ' + err);
         });
       }
     }
@@ -82,7 +82,7 @@ angular.module('phundusApp')
       Orders.getAll(function (res) {
         $scope.orders = res;
       }, function (err) {
-        $rootScope.showError(err);
+        $rootScope.error(err);
       });
 
     }

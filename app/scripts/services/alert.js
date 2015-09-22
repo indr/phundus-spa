@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phundusApp')
-  .factory('Alerts', ['$timeout', 'uuid4', function ($timeout, uuid4) {
+  .factory('Alert', ['$timeout', 'uuid4', function ($timeout, uuid4) {
     var alerts = {};
 
     var dismissAlert = function (type, id) {
@@ -21,16 +21,16 @@ angular.module('phundusApp')
       dismiss: function (type, id) {
         dismissAlert(type, id);
       },
-      showDanger: function (msg) {
+      danger: function (msg) {
         showAlert('danger', msg);
       },
-      showError: function (msg) {
+      error: function (msg) {
         showAlert('danger', msg);
       },
-      showWarning: function (msg) {
+      warning: function (msg) {
         showAlert('warning', msg);
       },
-      showSuccess: function (msg) {
+      success: function (msg) {
         showAlert('success', msg);
       }
     };

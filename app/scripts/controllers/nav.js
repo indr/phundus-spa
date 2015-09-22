@@ -8,13 +8,13 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', '$timeout', 'Auth', 'Alerts',
-    function ($rootScope, $scope, $location, $window, $timeout, Auth, Alerts) {
+  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', '$timeout', 'Auth', 'Alert',
+    function ($rootScope, $scope, $location, $window, $timeout, Auth, Alert) {
 
-      $rootScope.alerts = Alerts.alerts;
+      $rootScope.alerts = Alert.alerts;
 
       $rootScope.dismissAlert = function(type, id) {
-        Alerts.dismiss(type, id);
+        Alert.dismiss(type, id);
       };
 
       $scope.user = Auth.user;
@@ -31,7 +31,7 @@ angular.module('phundusApp')
             $location.path('/goodbye');
           },
           function (err) {
-            Alerts.showError(err);
+            Alert.error(err);
           });
       };
     }]);

@@ -8,7 +8,7 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('DebugCtrl', ['$scope', '$http', '$cookies', 'Alerts', function ($scope, $http, $cookies, Alerts) {
+  .controller('DebugCtrl', ['$scope', '$http', '$cookies', 'Alert', function ($scope, $http, $cookies, Alert) {
     $scope.status = {};
 
     $http.get('/api/v1/status').success(function (data) {
@@ -19,16 +19,20 @@ angular.module('phundusApp')
 
     $scope.alertMsg = 'Alert message';
 
+    $scope.addError = function() {
+      Alert.error($scope.alertMsg);
+    };
+
     $scope.addDanger = function() {
-      Alerts.showDanger($scope.alertMsg);
+      Alert.danger($scope.alertMsg);
     };
 
     $scope.addWarning = function() {
-      Alerts.showWarning($scope.alertMsg);
+      Alert.warning($scope.alertMsg);
     };
 
     $scope.addSuccess = function() {
-      Alerts.showSuccess($scope.alertMsg);
+      Alert.success($scope.alertMsg);
     };
 
   }]);
