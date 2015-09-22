@@ -27,11 +27,14 @@ angular.module('phundusApp')
       error: function (msg) {
         showAlert('danger', msg);
       },
-      warning: function (msg) {
-        showAlert('warning', msg);
+      info: function (msg) {
+        showAlert('info', msg);
       },
       success: function (msg) {
         showAlert('success', msg);
+      },
+      warning: function (msg) {
+        showAlert('warning', msg);
       }
     };
   }]);
