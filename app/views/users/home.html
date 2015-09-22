@@ -31,12 +31,14 @@
 
   </div>
   <div class="col-md-8">
-    <div class="jumbotron" data-ng-show="isHome">
+    <div class="jumbotron" data-ng-show="isHome" data-ng-hide="store">
       <button class="btn btn-default" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
     </div>
-    <div class="jumbotron" data-ng-hide="isHome">
+    <div class="jumbotron" data-ng-hide="isHome" data-ng-hide="store">
       <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
     </div>
+
+    <p data-ng-show="store">Materialstelle vorhanden: {{store}}</p>
 
     <div class="alert alert-info" role="alert">
       <p><strong>Notiz</strong></p>

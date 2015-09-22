@@ -27,6 +27,8 @@ angular.module('phundusApp')
     function ($scope, $stateParams, Users, Stores, Auth, Alert) {
       $scope.loaded = false;
       $scope.isHome = false;
+      $scope.user = null;
+      $scope.store = null;
 
       Users.get($stateParams.userId, function (res) {
         $scope.user = res;
