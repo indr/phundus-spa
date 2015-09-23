@@ -43,7 +43,6 @@ angular.module('phundusApp')
       $scope.openStore = function () {
         Stores.post($scope.user.userId, function(res) {
           $scope.store = res;
-          $scope.store.address = 'Hans Müller';
           Alert.success('Successfully opened your store!');
         }, function(err) {
           Alert.error('Failed to open your store: ' + err);
