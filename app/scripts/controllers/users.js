@@ -32,19 +32,10 @@ angular.module('phundusApp')
 
       Users.get($stateParams.userId, function (res) {
         $scope.user = res;
+        $scope.store = $scope.user.store;
+
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
-
-        if (!$scope.user.storeId) {
-          return;
-        }
-        Stores.get($scope.user.storeId, function (res) {
-          $scope.store = res;
-          $scope.store.address = 'Hans Müller';
-        }, function (err) {
-          Alert.error('Failed to fetch users store: ' + err)
-        });
-
       }, function (err) {
         Alert.error('Failed to fetch user: ' + err);
       });
