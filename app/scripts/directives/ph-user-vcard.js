@@ -12,8 +12,8 @@ angular.module('phundusApp')
       restrict: 'E',
       replace: 'true',
       scope: {
-        user: '=user',
-        isEditable: '=isEditable'
+        user: '=',
+        isEditable: '='
       },
       templateUrl: 'views/directives/ph-user-vcard.html'
     }
@@ -21,13 +21,29 @@ angular.module('phundusApp')
 
 
 angular.module('phundusApp')
-.directive('phUserStore', [function () {
+  .directive('phUserStore', ['Stores', 'Alert', function (Stores, Alert) {
     return {
       restrict: 'E',
       replace: 'true',
       scope: {
-        store: '=store',
-        isEditable: '=isEditable'
+        store: '=',
+        isEditable: '='
+      },
+      link: function (scope) {
+        scope.updateAddress = function (data) {
+          Stores.putAddress(scope.store.storeId, data, function () {
+            Alert.success('Address successfully saved.')
+          }, function (err) {
+            Alert.danger(err);
+          });
+        };
+        scope.updateOpeningHours = function (data) {
+          Stores.putOpeningHours(scope.store.storeId, data, function () {
+            Alert.success('Opening hours successfully saved.')
+          }, function (err) {
+            Alert.danger(err);
+          });
+        };
       },
       templateUrl: 'views/directives/ph-user-store.html'
     }

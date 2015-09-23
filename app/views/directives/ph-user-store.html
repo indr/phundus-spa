@@ -8,7 +8,7 @@
     <div class="col-sm-8">
       <p data-ng-hide="isEditable" style="white-space:pre">{{store.address}}</p>
 
-      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.address" data-e-rows="5">{{store.address}}</span>
+      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.address" data-e-rows="5" data-onbeforesave="updateAddress($data)">{{store.address}}</span>
       </p>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <div class="col-sm-8">
       <p data-ng-hide="isEditable" style="white-space:pre">{{store.openingHours}}</p>
 
-      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.openingHours">{{store.openingHours}}</span>
+      <p data-ng-show="isEditable"><span style="white-space:pre" data-editable-textarea="store.openingHours" data-onbeforesave="updateOpeningHours($data)">{{store.openingHours}}</span>
       </p>
     </div>
   </div>

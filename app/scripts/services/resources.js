@@ -27,6 +27,16 @@ angular.module('phundusApp')
         $http.post('/api/v1/stores', {
           userId: userId
         }).success(success).error(error);
+      },
+      putAddress: function (storeId, address, success, error) {
+        $http.put('/api/v1/stores/'+storeId + '/address', {
+          address: address
+        }).success(success).error(error);
+      },
+      putOpeningHours: function (storeId, openingHours, success, error) {
+        $http.put('/api/v1/stores/'+storeId + '/opening-hours', {
+          openingHours: openingHours
+        }).success(success).error(error);
       }
     }
   }])
