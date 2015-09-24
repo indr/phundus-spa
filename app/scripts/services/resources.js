@@ -29,13 +29,21 @@ angular.module('phundusApp')
         }).success(success).error(error);
       },
       putAddress: function (storeId, address, success, error) {
-        $http.put('/api/v1/stores/'+storeId + '/address', {
+        $http.put('/api/v1/stores/' + storeId + '/address', {
           address: address
         }).success(success).error(error);
       },
       putOpeningHours: function (storeId, openingHours, success, error) {
-        $http.put('/api/v1/stores/'+storeId + '/opening-hours', {
+        $http.put('/api/v1/stores/' + storeId + '/opening-hours', {
           openingHours: openingHours
+        }).success(success).error(error);
+      },
+      putCoordinate: function (storeId, coordinate, success, error) {
+        $http.put('/api/v1/stores/' + storeId + '/coordinate', {
+          coordinate: {
+            latitude: parseFloat(coordinate.latitude),
+            longitude: parseFloat(coordinate.longitude)
+          }
         }).success(success).error(error);
       }
     }

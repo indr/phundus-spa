@@ -10,7 +10,8 @@
  */
 var app = angular
   .module('phundusApp', [
-    'uuid',
+    'leaflet-directive',
+
     //'ngAnimate',
     'ngCookies',
     //'ngMessages',
@@ -20,7 +21,7 @@ var app = angular
     //'ngTouch',
     'ui.gravatar',
     'ui.router',
-    'uiGmapgoogle-maps',
+    'uuid',
     'xeditable'
   ])
 

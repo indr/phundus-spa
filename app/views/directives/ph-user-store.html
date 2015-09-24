@@ -3,13 +3,13 @@
 
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <label>Adresse</label>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <p data-ng-hide="isEditable" style="white-space:pre">{{store.address}}</p>
 
-      <form data-editable-form name="userStoreAddressForm" data-ng-show="isEditable" data-onaftersave="updateAddress($data)">
+      <form data-editable-form name="userStoreAddressForm" data-ng-show="isEditable" data-onbeforesave="updateAddress($data)">
         <div class="form-group">
           <button type="button" class="btn btn-default pull-right" data-ng-click="userStoreAddressForm.$show()"
                   data-ng-show="!userStoreAddressForm.$visible" title="Bearbeiten">
@@ -17,7 +17,7 @@
           </button>
           <p>
           <span style="white-space:pre" data-editable-textarea="store.address"
-                data-e-rows="5">{{store.address}}</span>
+                data-e-rows="5" data-e-name="address">{{store.address}}</span>
           </p>
         </div>
         <div class="form-group" data-ng-show="userStoreAddressForm.$visible">
@@ -34,13 +34,13 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <label>Öffnungszeiten</label>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <p data-ng-hide="isEditable" style="white-space:pre">{{store.openingHours}}</p>
 
-      <form data-editable-form name="userStoreOpeningHoursForm" data-ng-show="isEditable" data-onaftersave="updateOpeningHours()">
+      <form data-editable-form name="userStoreOpeningHoursForm" data-ng-show="isEditable" data-onbeforesave="updateOpeningHours($data)">
         <div class="form-group">
           <button type="button" class="btn btn-default pull-right" data-ng-click="userStoreOpeningHoursForm.$show()"
                   data-ng-show="!userStoreOpeningHoursForm.$visible" title="Bearbeiten">
@@ -48,7 +48,7 @@
           </button>
           <p>
           <span style="white-space:pre" data-editable-textarea="store.openingHours"
-                data-e-rows="5">{{store.openingHours}}</span>
+                data-e-rows="5" data-e-name="openingHours">{{store.openingHours}}</span>
           </p>
         </div>
         <div class="form-group" data-ng-show="userStoreOpeningHoursForm.$visible">
@@ -64,12 +64,12 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-4">
+  <div class="row" data-ng-show="isEditable">
+    <div class="col-sm-3">
       <label>Koordinaten</label>
       <p data-ng-show="userStoreCoordinateForm.$visible">Latitude / Longitude</p>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
 
 
       <p data-ng-hide="isEditable">{{store.coordinate.latitude}}</p>
@@ -78,14 +78,15 @@
               data-ng-show="!userStoreCoordinateForm.$visible" title="Bearbeiten">
         <span class="glyphicon glyphicon-edit"></span>
       </button>
-      <form data-editable-form name="userStoreCoordinateForm" data-ng-show="isEditable" data-onaftersave="updateCoordinate()">
+      <form data-editable-form name="userStoreCoordinateForm" data-ng-show="isEditable" data-onbeforesave="updateCoordinate($data)">
 
         <div class="form-group">
 
-          <p><span data-editable-text="store.coordinate.latitude">{{store.coordinate.latitude}}</span></p>
-          <p><span data-editable-text="store.coordinate.longitude">{{store.coordinate.longitude}}</span></p>
+          <p><span data-editable-text="store.coordinate.latitude" data-e-name="latitude">{{store.coordinate.latitude}}</span></p>
+          <p><span data-editable-text="store.coordinate.longitude" data-e-name="longitude">{{store.coordinate.longitude}}</span></p>
         </div>
         <div class="form-group" data-ng-show="userStoreCoordinateForm.$visible">
+          <button type="button" class="btn btn-default" data-ng-disabled="userStoreCoorindateForm.$waiting" data-ng-click="fromMap()" title="Koordinate von der Karte übertragen"><span class="glyphicon glyphicon-arrow-up"></span></button>
           <button type="submit" class="btn btn-primary" data-ng-disabled="userStoreCoordinateForm.$waiting">
             Speichern
           </button>
@@ -100,7 +101,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+      <leaflet width="100%" height="400px" style="margin-bottom:10px"></leaflet>
     </div>
   </div>
 </div>
