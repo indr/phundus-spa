@@ -18,7 +18,7 @@ angular.module('phundusApp')
       },
       link: function (scope) {
 
-        const flaechenschwerpunktDerSchweiz = {
+        var flaechenschwerpunktDerSchweiz = {
           lat: 46.80121,
           lng: 8.226692
         };
