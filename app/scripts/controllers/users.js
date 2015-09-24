@@ -34,6 +34,14 @@ angular.module('phundusApp')
         $scope.user = res;
         $scope.store = $scope.user.store;
 
+        $scope.map = {
+          center: {
+            latitude: 47.05998,
+            longitude: 8.309126
+          },
+          zoom: 12
+        };
+
         $scope.isHome = $scope.user.userId === Auth.user.userId;
         $scope.loaded = true;
       }, function (err) {

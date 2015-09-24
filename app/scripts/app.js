@@ -20,6 +20,7 @@ var app = angular
     //'ngTouch',
     'ui.gravatar',
     'ui.router',
+    'uiGmapgoogle-maps',
     'xeditable'
   ])
 
@@ -110,11 +111,11 @@ var app = angular
         templateUrl: 'views/users/orders.html',
         controller: 'UsersOrdersCtrl'
       });
-      //.state('users.contracts', {
-      //  url: '/orders',
-      //  templateUrl: 'views/users/contracts.html',
-      //  controller: 'UsersContractsCtrl'
-      //});
+    //.state('users.contracts', {
+    //  url: '/orders',
+    //  templateUrl: 'views/users/contracts.html',
+    //  controller: 'UsersContractsCtrl'
+    //});
 
     // Admin routes
     $stateProvider
@@ -148,7 +149,6 @@ var app = angular
     });
 
 
-
     $httpProvider.interceptors.push(function ($q, $location) {
       return {
         'responseError': function (response) {
@@ -162,8 +162,7 @@ var app = angular
     });
   });
 
-
-angular.module('phundusApp') .filter('orderStatusText', function () {
+angular.module('phundusApp').filter('orderStatusText', function () {
   return function (input) {
     return {
       "Pending": "Provisorisch", "Approved": "Bestätigt", "Rejected": "Abgelehnt", "Closed": "Abgeschlossen"
@@ -173,6 +172,6 @@ angular.module('phundusApp') .filter('orderStatusText', function () {
 });
 
 
-app.run(function(editableOptions) {
+app.run(function (editableOptions) {
   editableOptions.theme = 'bs3';
 });

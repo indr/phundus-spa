@@ -148,3 +148,7 @@ img.avatar {
   margin-left: 5px;
   cursor: pointer;
 }
+
+.angular-google-map-container {
+  height: 400px;
+}
