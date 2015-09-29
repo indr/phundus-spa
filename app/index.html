@@ -8,9 +8,9 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -45,7 +45,8 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Suchen und phinden!" data-ng-model="queryString">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-default" data-ng-click="search()"><span class="glyphicon glyphicon-search"></span></button>
+              <button type="submit" class="btn btn-default" data-ng-click="search()" title="phinden!"><span
+                class="glyphicon glyphicon-search"></span></button>
             </span>
           </div>
         </form>
@@ -113,10 +114,12 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li data-access-level="accessLevels.user" title="Warenkorb"><a href="/cart"><span
-            class="glyphicon glyphicon-shopping-cart"></span></a></li>
-          <li data-access-level="accessLevels.user" title="{{user.username}}"><a
-            ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span></a></li>
+          <li data-access-level="accessLevels.user" title="Warenkorb">
+            <a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
+          </li>
+          <li data-access-level="accessLevels.user" title="{{user.username}}">
+            <a ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline"> {{user.username}}</span></a>
+          </li>
           <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
@@ -132,99 +135,99 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
+    <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error: </span>{{msg}}
+  </div>
+
+  <div class="alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
+    <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <span class="sr-only">Warning: </span>{{msg}}
+  </div>
+
+  <div class="alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
+    <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    <span class="sr-only">Info: </span>{{msg}}
+  </div>
+
+  <div class="alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
+    <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    <span class="sr-only">Success: </span>{{msg}}
+  </div>
+
+  <div data-ui-view/>
+</div>
+
+<div class="footer">
   <div class="container">
-    <div class="alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
-      <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only">Error: </span>{{msg}}
-    </div>
-
-    <div class="alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
-      <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-      <span class="sr-only">Warning: </span>{{msg}}
-    </div>
-
-    <div class="alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
-      <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      <span class="sr-only">Info: </span>{{msg}}
-    </div>
-
-    <div class="alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
-      <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-      <span class="sr-only">Success: </span>{{msg}}
-    </div>
-
-    <div data-ui-view/>
+    <p><a href="feedback">Feedback</a> &middot; <a href="https://github.com/indr/phundus">GitHub</a> &middot; <span
+      class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
   </div>
-
-  <div class="footer">
-    <div class="container">
-      <p><a href="feedback">Feedback</a> &middot; <a href="https://github.com/indr/phundus">GitHub</a> &middot; <span
-        class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
-    </div>
-  </div>
+</div>
 
 
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-  <!--<script>
-    !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-    (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-    r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-    }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<!--<script>
+  !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+  (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+  r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+  }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>-->
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>-->
 
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
-  <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
-  <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
-  <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
-  <script src="bower_components/angular-messages/angular-messages.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-uuid/uuid.min.js"></script>
-  <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/lodash/lodash.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+<script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-uuid/uuid.min.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="scripts/routingConfig.js"></script>
-  <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/admin.js"></script>
-  <script src="scripts/controllers/debug.js"></script>
-  <script src="scripts/controllers/login.js"></script>
-  <script src="scripts/controllers/nav.js"></script>
-  <script src="scripts/controllers/register.js"></script>
-  <script src="scripts/controllers/shop.js"></script>
-  <script src="scripts/controllers/users.js"></script>
-  <script src="scripts/directives/ph-user-vcard.js"></script>
-  <script src="scripts/directives/ph-user-store.js"></script>
-  <script src="scripts/services/alert.js"></script>
-  <script src="scripts/services/auth.js"></script>
-  <script src="scripts/services/resources.js"></script>
-  <script src="scripts/directives.js"></script>
-  <!-- endbuild -->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/routingConfig.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/admin.js"></script>
+<script src="scripts/controllers/debug.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/nav.js"></script>
+<script src="scripts/controllers/register.js"></script>
+<script src="scripts/controllers/shop.js"></script>
+<script src="scripts/controllers/users.js"></script>
+<script src="scripts/directives/ph-user-vcard.js"></script>
+<script src="scripts/directives/ph-user-store.js"></script>
+<script src="scripts/services/alert.js"></script>
+<script src="scripts/services/auth.js"></script>
+<script src="scripts/services/resources.js"></script>
+<script src="scripts/directives.js"></script>
+<!-- endbuild -->
 </body>
 </html>

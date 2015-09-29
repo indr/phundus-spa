@@ -1,7 +1,7 @@
 <div class="row" data-ng-show="loaded">
-  <ph-user-vcard class="col-sm-4" data-user="user"></ph-user-vcard>
+  <ph-user-vcard class="col-sm-4 col-xs-12" data-user="user"></ph-user-vcard>
 
-  <div class="col-sm-8" data-ng-hide="store">
+  <div class="col-sm-8 col-xs-8" data-ng-hide="store">
     <div class="jumbotron" data-ng-show="isHome">
       <button class="btn btn-default" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
     </div>
@@ -10,5 +10,5 @@
     </div>
   </div>
 
-  <ph-user-store class="col-sm-8" data-store="store" data-map="map" data-is-editable="isHome"></ph-user-store>
+  <ph-user-store class="col-sm-8 col-xs-12" data-store="store" data-map="map" data-is-editable="isHome"></ph-user-store>
 </div>
