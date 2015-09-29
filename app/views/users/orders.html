@@ -1,16 +1,17 @@
-<table class="table">
+<table class="table" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th><a href="" data-ng-click="orderBy('orderId')">Nummer</a></th>
-    <th><a href="" data-ng-click="orderBy('organizationName')">Organisation</a></th>
-    <th><a href="" data-ng-click="orderBy('createdUtc')">Erstellt</a></th>
-    <th><a href="" data-ng-click="orderBy('status')">Status</a></th>
-    <th><a href="" data-ng-click="orderBy('modifiedUtc')">Bearbeitet</a></th>
+    <th data-st-sort-default="true" data-st-sort="id">Nummer</th>
+    <th data-st-sort="organizationName">Organisation</th>
+    <th data-st-sort="createdUtc">Erstellt</th>
+    <th data-st-sort="status">Status</th>
+    <th data-st-sort="modifiedUtc">Bearbeitet</th>
     <th></th>
   </tr>
+
   </thead>
   <tbody>
-  <tr data-ng-repeat="order in filtered = (orders | filter:search) | orderBy:order">
+  <tr data-ng-repeat="order in displayedCollection">
     <td>{{order.orderId}}</td>
     <td>{{order.organizationName}}</td>
     <td>

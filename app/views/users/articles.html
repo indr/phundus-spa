@@ -1,6 +1,15 @@
-<p>views/user/articles.html</p>
-<div class="alert alert-info" role="alert">
-  <p><strong>Notiz</strong></p>
-
-  <p>Hier kann der Benutzer sein eigenes Material verwalten.</p>
-</div>
+<button type="button" class="btn btn-default pull-right">Neues Material erfassen</button>
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th data-st-sort-default="true" data-st-sort="id">Id</th>
+    <th data-st-sort="caption">Bezeichnung</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="row in displayedCollection">
+    <td>{{row.id}}</td>
+    <td>{{row.caption}}</td>
+  </tr>
+  </tbody>
+</table>

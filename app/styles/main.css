@@ -92,6 +92,19 @@ body {
   color: #fff;
 }
 
+
+tr th {
+  cursor: pointer;
+}
+
+.st-sort-ascent:before {
+  content: '\25B2';
+}
+
+.st-sort-descent:before {
+  content: '\25BC';
+}
+
 /* vcard */
 img.avatar {
   border-radius: 6px;

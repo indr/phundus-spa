@@ -40,13 +40,30 @@ angular.module('phundusApp')
       });
 
       $scope.openStore = function () {
-        Stores.post($scope.user.userId, function(res) {
+        Stores.post($scope.user.userId, function (res) {
           $scope.store = res;
           Alert.success('Successfully opened your store!');
-        }, function(err) {
+        }, function (err) {
           Alert.error('Failed to open your store: ' + err);
         });
       }
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesCtrl
+ * @description
+ * # UsersArticlesCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesCtrl', ['$scope',
+    function ($scope) {
+
+      $scope.rowCollection = [{id: 1, caption: "hans"}, {id: 2, caption: "peter"}];
+      $scope.displayedCollection = [].concat($scope.rowCollection);
+
     }
   ]);
 
@@ -58,26 +75,14 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersOrdersCtrl', ['$rootScope', '$scope', 'Orders',
-    function ($rootScope, $scope, Orders) {
-
-      $scope.search = {status: ''};
-      $scope.order = '-createdUtc';
-      $scope.orderBy = function (by) {
-        if ($scope.order === by) {
-          $scope.order = '-' + by;
-        }
-        else {
-          $scope.order = by;
-        }
-      };
-
+  .controller('UsersOrdersCtrl', ['$scope', 'Orders', 'Alert',
+    function ($scope, Orders, Alert) {
       Orders.getAll(function (res) {
-        $scope.orders = res;
+        $scope.rowCollection = res;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function (err) {
-        $rootScope.error(err);
+        Alert.error(err);
       });
-
     }
   ]);
 
@@ -89,8 +94,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersContractsCtrl', ['$rootScope', '$scope',
-    function ($rootScope, $scope) {
+  .controller('UsersContractsCtrl', ['$scope',
+    function ($scope) {
 
       $scope.search = {status: ''};
       $scope.order = '-createdUtc';

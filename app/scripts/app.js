@@ -19,6 +19,7 @@ var app = angular
     //'ngRoute',
     //'ngSanitize',
     //'ngTouch',
+    'smart-table',
     'ui.gravatar',
     'ui.router',
     'uuid',
