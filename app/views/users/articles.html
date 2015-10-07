@@ -1,15 +1,17 @@
-<button type="button" class="btn btn-default pull-right">Neues Material erfassen</button>
+
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
     <th data-st-sort-default="true" data-st-sort="id">Id</th>
     <th data-st-sort="caption">Bezeichnung</th>
+    <th class="text-right"><!--<a href="">Neues Material</a>--></th>
   </tr>
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
     <td>{{row.id}}</td>
     <td>{{row.caption}}</td>
+    <td class="text-right"><a href="" ui-sref="users.articles.article.details({userId: userId, articleId: row.id })">Edit</a></td>
   </tr>
   </tbody>
 </table>

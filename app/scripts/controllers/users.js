@@ -8,8 +8,9 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersCtrl', ['$scope', '$stateParams', 'Auth',
-    function ($scope, $stateParams, Auth) {
+  .controller('UsersCtrl', ['$scope', '$state', '$stateParams', 'Auth',
+    function ($scope, $state, $stateParams, Auth) {
+      $scope.state = $state;
       $scope.userId = $stateParams.userId;
       $scope.isHome = $scope.userId + '' === Auth.user.userId + '';
     }
@@ -61,11 +62,68 @@ angular.module('phundusApp')
   .controller('UsersArticlesCtrl', ['$scope',
     function ($scope) {
 
-      $scope.rowCollection = [{id: 1, caption: "hans"}, {id: 2, caption: "peter"}];
+      $scope.rowCollection = [{id: '1', caption: "hans"}, {id: '2', caption: "peter"}];
       $scope.displayedCollection = [].concat($scope.rowCollection);
 
     }
   ]);
+
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesArticleCtrl
+ * @description
+ * # UsersArticlesArticleCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesArticleCtrl', ['$scope', 'userId', 'articleId',
+    function ($scope, userId, articleId) {
+
+      console.log('UsersArticlesArticleCtrl');
+      console.log('userId', userId);
+      console.log('articleId', articleId);
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+
+    }
+  ])
+
+
+  .controller('UsersArticlesArticleDetailsCtrl', ['$scope', 'userId', 'articleId',
+    function ($scope, userId, articleId) {
+
+      console.log('UsersArticlesArticleDetailsCtrl');
+      console.log('userId', userId);
+      console.log('articleId', articleId);
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+
+    }
+  ])
+  .controller('UsersArticlesArticleFilesCtrl', ['$scope', 'userId', 'articleId',
+    function ($scope, userId, articleId) {
+
+      console.log('UsersArticlesArticleFilesCtrl');
+      console.log('userId', userId);
+      console.log('articleId', articleId);
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+
+    }
+  ])
+  .controller('UsersArticlesArticleCategoriesCtrl', ['$scope', 'userId', 'articleId',
+    function ($scope, userId, articleId) {
+
+      console.log('UsersArticlesArticleCategoriesCtrl');
+      console.log('userId', userId);
+      console.log('articleId', articleId);
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+
+    }
+  ]);
+
 
 /**
  * @ngdoc function
