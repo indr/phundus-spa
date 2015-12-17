@@ -64,9 +64,9 @@ body {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
+  /*.container {
     max-width: 730px;
-  }
+  }*/
 
   /* Remove the padding we set earlier */
   .header,
@@ -160,4 +160,27 @@ img.avatar {
   line-height: 1;
   margin-left: 5px;
   cursor: pointer;
+}
+
+/* von fundus.css (Phundus.Web) */
+td.no-data, tr.no-data td
+{
+  text-align: center;
+  padding: 40px;
+}
+
+td input, td button, td .input-prepend, td .input-append
+{
+  margin-bottom: 0;
+}
+
+div.no-results p {
+  text-align: center;
+  padding: 20px;
+}
+
+.alert-no-results {
+  background-color: #eeeeee;
+  color: #888888;
+  border-color: #dddddd;
 }
