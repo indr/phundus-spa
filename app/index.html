@@ -114,6 +114,8 @@
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu">
+              <li data-ng-repeat="membership in user.memberships"><a href="/{{membership.organizationUrl}}">{{membership.organizationName}}</a></li>
+              <li data-ng-show="user.memberships" class="divider"></li>
               <li><a href="/account/profile">Einstellungen</a></li>
               <li><a href="" data-ng-click="logout()">Abmelden</a></li>
             </ul>
@@ -185,10 +187,10 @@
 <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-uuid/uuid.min.js"></script>
 <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular-uuid/uuid.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

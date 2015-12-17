@@ -11,9 +11,6 @@ angular.module('phundusApp')
   .controller('LoginCtrl', ['$scope', '$location', '$window', 'Auth', 'Alert',
     function ($scope, $location, $window, Auth, Alert) {
 
-
-
-
       $scope.rememberMe = true;
       $scope.login = function () {
 

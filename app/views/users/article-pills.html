@@ -1,9 +1,12 @@
 <div class="row">
   <div class="col-sm-3">
+    <p class="text-center">
+      <a class="btn btn-default" href="" ui-sref="users.articles.index({userId: userId})"><span class="glyphicon glyphicon-arrow-left"></span> Zurück</a>
+    </p>
     <ul class="nav nav-pills nav-stacked">
 
       <li role="presentation" ui-sref-active="active">
-        <a href="" ui-sref="users.articles.article.details({userId: {{userId}}, articleId: {{articleId}} })">Eigenschaften</a>
+        <a href="" ui-sref="users.articles.article.details({userId: userId, articleId: articleId})">Eigenschaften</a>
       </li>
       <li role="presentation" ui-sref-active="active">
         <a href="" ui-sref="users.articles.article.files({userId: userId, articleId: articleId})">Dateien</a>
