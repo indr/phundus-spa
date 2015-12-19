@@ -33,7 +33,7 @@ angular.module('phundusApp')
             }
           },
           function () {
-            Alert.error("Failed to login.");
+            Alert.error("Das angegebene Passwort ist nicht korrekt.");
           });
       };
     }]);
