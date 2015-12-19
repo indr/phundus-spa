@@ -86,17 +86,17 @@ module.exports = function (grunt) {
           rewrite: {
             '^/api/v1': ''
           }
+        },
+        {
+          context: ['/api/v0', '/Content', '/Scripts', '/shop', '/account'],
+          host: '192.168.1.249',
+          port: 80,
+          https: false,
+          xforward: false,
+          rewrite: {
+            '^/api/v0': '/api'
+          }
         }
-        //, {
-        //  context: '/api/v0',
-        //  host: 'localhost',
-        //  port: 9000,
-        //  https: false,
-        //  xforward: false,
-        //  rewrite: {
-        //    '`/api/v0': '/api'
-        //  }
-        //}
       ],
       livereload: {
         options: {

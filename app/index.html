@@ -115,7 +115,7 @@
                aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li data-ng-repeat="membership in user.memberships"><a href="/{{membership.organizationUrl}}">{{membership.organizationName}}</a></li>
-              <li data-ng-show="user.memberships" class="divider"></li>
+              <li data-ng-show="user.memberships.length > 0" class="divider"></li>
               <li><a href="/account/profile">Einstellungen</a></li>
               <li><a href="" data-ng-click="logout()">Abmelden</a></li>
             </ul>

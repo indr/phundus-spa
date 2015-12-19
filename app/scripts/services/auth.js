@@ -58,20 +58,17 @@ angular.module('phundusApp')
         }).error(error);
       },
       login: function (user, success, error) {
-        $http.post('/api/v1/login', user).success(function (data) {
-          $http.post('/account/logon', {
-            "email": user.username,
-            "password": user.password,
-            "rememberme": user.rememberme
-          }).success(function () {
-            changeUser(data);
-            success(data);
-          }).error(error);
+        $http.post('/api/v0/sessions', {
+          "username": user.username,
+          "password": user.password,
+          "rememberme": user.rememberme
+        }).success(function (data) {
+          changeUser(data);
+          success(data);
         }).error(error);
       },
       logout: function (success, error) {
-        $http.post('/api/v1/logout').success(function () {
-          $http.post('/account/logoff').success(function () {
+          $http.delete('/api/v0/sessions').success(function () {
             changeUser({
               memberships: undefined,
               username: '',
@@ -79,7 +76,6 @@ angular.module('phundusApp')
             });
             success();
           }).error(error);
-        }).error(error);
       },
       select: function (membership, success, error) {
         changeMembership(membership);

@@ -52,11 +52,11 @@ angular.module('phundusApp')
   .factory('Users', ['$http', function ($http) {
     return {
       getAll: function (success, error) {
-        $http.get('/api/v1/users').success(success).error(error);
+        $http.get('/api/v0/users').success(success).error(error);
       },
 
       get: function (userId, success, error) {
-        $http.get('/api/v1/users/' + userId).success(success).error(error);
+        $http.get('/api/v0/users/' + userId).success(success).error(error);
       }
     };
   }])
