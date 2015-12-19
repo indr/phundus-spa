@@ -1,5 +1,5 @@
 <h1>Anmelden</h1>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
       <form class="form-horizontal" ng-submit="login()" name="loginForm">
@@ -31,6 +31,10 @@
           <div class="col-sm-offset-3 col-sm-9">
             <!-- data-ng-disabled="loginForm.$invalid" -->
             <button class="btn btn-default" type="submit">Anmelden</button>
+            &middot;
+            <a href="/account/resetpassword">Password vergessen?</a>
+            &middot;
+            <a href="/account/signup">Registrieren</a>
           </div>
         </div>
       </form>
