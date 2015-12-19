@@ -63,6 +63,7 @@ angular.module('phundusApp')
           "password": user.password,
           "rememberme": user.rememberme
         }).success(function (data) {
+          $cookies.putObject('ph.user', data, {secure: false});
           changeUser(data);
           success(data);
         }).error(error);

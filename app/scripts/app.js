@@ -72,19 +72,24 @@ var app = angular
           access: access.anon
         }
       })
-      .state('anon.login', {
-        url: '/login',
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
       .state('anon.register', {
         url: '/register',
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
       })
+      .state('anon.login', {
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .state('anon.logout', {
+        url: '/logout',
+        templateUrl: 'views/logout.html',
+        controller: 'LogoutCtrl'
+      })
+      .state('anon.goodbye', {
         url: '/goodbye',
-        templateUrl: 'views/logout.html'
+        templateUrl: 'views/goodbye.html'
       });
 
     // User routes

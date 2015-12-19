@@ -11,7 +11,7 @@ angular.module('phundusApp')
   .controller('DebugCtrl', ['$scope', '$http', '$cookies', 'Alert', function ($scope, $http, $cookies, Alert) {
     $scope.status = {};
 
-    $http.get('/api/v1/status').success(function (data) {
+    $http.get('/api/v0/status').success(function (data) {
       $scope.status = data;
     });
 

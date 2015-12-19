@@ -25,7 +25,9 @@ angular.module('phundusApp')
               $window.location.href = returnUrl;
             }
             else {
-              var returnPath = $location.search().returnPath || '/users/' + data.userId;
+              //var returnPath = $location.search().returnPath || '/users/' + data.userId;
+              var returnPath = $location.search().returnPath || '/';
+
               delete $location.search().returnPath;
               $location.path(returnPath);
             }
