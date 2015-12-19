@@ -19,7 +19,7 @@ angular.module('phundusApp')
             password: $scope.password,
             rememberme: $scope.rememberMe
           },
-          function (data) {
+          function () {
             var returnUrl = $location.search().ReturnUrl;
             if (returnUrl) {
               $window.location.href = returnUrl;
