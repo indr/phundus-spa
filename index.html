@@ -1,0 +1,52 @@
+<!doctype html> <html> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <base href="/"/> <link rel="stylesheet" href="styles/vendor.872dbd1a.css"> <link rel="stylesheet" href="styles/main.0e5434a9.css"> </head> <body ng-app="phundusApp"> <!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]--> <!-- Add your site or application content here --> <div class="header"> <div class="navbar navbar-inverse" role="navigation" data-ng-controller="NavCtrl"> <div class="container"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#/" title="phundus">ph</a> </div> <div class="collapse navbar-collapse" id="js-navbar-collapse"> <form class="navbar-form navbar-left" role="search"> <div class="input-group"> <input type="text" class="form-control" placeholder="Suchen und phinden!" data-ng-model="queryString"> <span class="input-group-btn"> <button type="submit" class="btn btn-default" data-ng-click="search()"><span class="glyphicon glyphicon-search"></span></button> </span> </div> </form> <ul class="nav navbar-nav"> <!--
+          <li><a href="/shop">Shop</a></li>
+          --> <!--
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li data-ng-repeat="membership in user.memberships">
+                <a href="" data-ng-click="select(membership)"><span class="glyphicon glyphicon-check" data-ng-class="{'white': !membership.selected}"></span> {{membership.organizationName}}</a></li>
+              <li data-ng-show="user.memberships" class="divider"></li>
+              <li><a href="/organization#/search">Suchen</a></li>
+            </ul>
+          </li>
+          --> <!--
+          <li data-access-level="accessLevels.user" class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">Dokumente <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/documents#orders">Bestellungen</a></li>
+              <li><a href="/documents#contracts">Verträge</a></li>
+            </ul>
+          </li>
+          --> <!--
+          <li data-access-level="accessLevels.manager" class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">Verwaltung <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/management#/orders">Bestellungen</a></li>
+              <li><a href="/management#/contracts">Verträge</a></li>
+              <li class="divider"></li>
+              <li><a href="/article/create">Neues Material</a></li>
+              <li><a href="/article">Erfasstes Material</a></li>
+              <li class="divider"></li>
+              <li><a href="/management#/members">Mitglieder</a></li>
+              <li><a href="/management#/applications">Beitrittsanfragen</a></li>
+              <li class="divider"></li>
+              <li><a href="/management#/settings">Einstellungen</a></li>
+              <li><a href="/management#/files">Dateien</a></li>
+            </ul>
+          </li>
+          --> <li data-access-level="accessLevels.admin" class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a> <ul class="dropdown-menu"> <li><a href="/users">Benutzer</a></li> <li class="divider"></li> <li><a href="/admin#/eventlog">Ereignislog</a></li> <li><a href="/admin#/schemaupdate">Schema-Update</a></li> <li><a href="/elmah" target="_blank">ELMAH</a></li> </ul> </li> </ul> <ul class="nav navbar-nav navbar-right"> <li data-access-level="accessLevels.user" title="Warenkorb"><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li> <li data-access-level="accessLevels.user" title="{{user.username}}"><a ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span></a></li> <li data-access-level="accessLevels.user" class="dropdown"> <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a> <ul class="dropdown-menu"> <li><a href="/account/profile">Einstellungen</a></li> <li><a href="" data-ng-click="logout()">Abmelden</a></li> </ul> </li> <li data-access-level="accessLevels.anon"><a href="/account/signup">Registrieren</a></li> <li data-access-level="accessLevels.anon"><a ui-sref="anon.login">Anmelden</a></li> </ul> </div> </div> </div> </div> <div class="container"> <div class="alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']"> <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only">Error: </span>{{msg}} </div> <div class="alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']"> <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> <span class="sr-only">Warning: </span>{{msg}} </div> <div class="alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']"> <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <span class="sr-only">Info: </span>{{msg}} </div> <div class="alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']"> <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <span class="sr-only">Success: </span>{{msg}} </div> <div data-ui-view> </div> <div class="footer"> <div class="container"> <p><a href="feedback">Feedback</a> &middot; <a href="https://github.com/indr/phundus">GitHub</a> &middot; <span class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p> </div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <!--<script>
+    !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+    (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+    r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+    }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>--> <script src="scripts/vendor.bca0b564.js"></script> <script src="scripts/scripts.295e4232.js"></script> </body> </html>
