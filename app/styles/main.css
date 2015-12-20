@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  padding-top: 60px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
