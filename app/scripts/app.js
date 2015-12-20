@@ -34,6 +34,7 @@ var app = angular
   //  }
   //])
   .constant('_', window._)
+  .constant('$', window.$)
 
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 

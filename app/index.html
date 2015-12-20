@@ -25,7 +25,7 @@
 
 <!-- Add your site or application content here -->
 <div class="header">
-  <div class="navbar navbar-inverse" role="navigation" data-ng-controller="NavCtrl">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="NavCtrl">
     <div class="container">
       <div class="navbar-header">
 
@@ -105,7 +105,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li data-access-level="accessLevels.user" title="Warenkorb">
-            <a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
+            <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline">Warenkorb</span></a>
           </li>
           <li data-access-level="accessLevels.user" title="{{user.username}}">
             <a ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag">{{user.username}}</span></a>

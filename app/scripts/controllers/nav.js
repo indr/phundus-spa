@@ -8,8 +8,8 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', '$timeout', 'Auth', 'Alert',
-    function ($rootScope, $scope, $location, $window, $timeout, Auth, Alert) {
+  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', 'Auth', 'Alert',
+    function ($rootScope, $scope, $location, $window, Auth, Alert) {
 
       $rootScope.alerts = Alert.alerts;
 

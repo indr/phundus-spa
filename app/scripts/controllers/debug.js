@@ -8,12 +8,20 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('DebugCtrl', ['$scope', '$http', '$cookies', 'Alert', function ($scope, $http, $cookies, Alert) {
+  .controller('DebugCtrl', ['$', '$scope', '$http', '$cookies', '$timeout', 'Alert', function ($, $scope, $http, $cookies, $timeout, Alert) {
     $scope.status = {};
 
     $http.get('/api/v0/status').success(function (data) {
       $scope.status = data;
     });
+
+    $scope.toggleCartPopover = function() {
+      $('#popover-glyphicon-cart').popover('show');
+
+      $timeout(function() {
+        $('#popover-glyphicon-cart').popover('hide')
+      }, 4000, true);
+    };
 
     $scope.cookies = $cookies.getAll();
 
