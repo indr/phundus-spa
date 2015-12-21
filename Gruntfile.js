@@ -77,19 +77,19 @@ module.exports = function (grunt) {
         livereload: 35729
       },
       proxies: [
+        //{
+        //  context: '/api/v1',
+        //  host: 'localhost',
+        //  port: 9000,
+        //  https: false,
+        //  xforward: false,
+        //  rewrite: {
+        //    '^/api/v1': ''
+        //  }
+        //},
         {
-          context: '/api/v1',
-          host: 'localhost',
-          port: 9000,
-          https: false,
-          xforward: false,
-          rewrite: {
-            '^/api/v1': ''
-          }
-        },
-        {
-          context: ['/api/v0', '/Content', '/fonts', '/Scripts',
-            '/pfadi-lego', '/cevi-duplo', '/jubla-playmobil',
+          context: ['/api', '/api/v0', '/Content', '/fonts', '/Scripts',
+            '/pfadi-lego', '/cevi-dupplo', '/jubla-playmobil',
             '/cart', '/account', '/documents', '/organization', '/shop', '/users'],
           host: '192.168.1.249',
           port: 80,
