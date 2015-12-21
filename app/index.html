@@ -52,18 +52,18 @@
         </form>-->
 
         <ul class="nav navbar-nav">
-          <!--
+
           <li class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li data-ng-repeat="membership in user.memberships">
-                <a href="" data-ng-click="select(membership)"><span class="glyphicon glyphicon-check" data-ng-class="{'white': !membership.selected}"></span> {{membership.organizationName}}</a></li>
-              <li data-ng-show="user.memberships" class="divider"></li>
+                <a href="/{{membership.organizationUrl}}">{{membership.organizationName}}</a>
+              </li>
+              <li data-ng-show="user.memberships.length > 0" class="divider"></li>
               <li><a href="/organization#/search">Suchen</a></li>
             </ul>
           </li>
-          -->
 
           <li data-access-level="accessLevels.user">
             <a href="/documents#orders">Bestellungen</a></li>
@@ -105,17 +105,15 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li data-access-level="accessLevels.user" title="Warenkorb">
-            <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline">Warenkorb</span></a>
+            <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
           </li>
           <li data-access-level="accessLevels.user" title="{{user.username}}">
-            <a ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag">{{user.username}}</span></a>
+            <a ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
           </li>
           <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li data-ng-repeat="membership in user.memberships"><a href="/{{membership.organizationUrl}}">{{membership.organizationName}}</a></li>
-              <li data-ng-show="user.memberships.length > 0" class="divider"></li>
               <li><a href="/account/profile">Einstellungen</a></li>
               <li><a href="" data-ng-click="logout()">Abmelden</a></li>
             </ul>
