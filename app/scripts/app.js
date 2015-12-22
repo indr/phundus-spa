@@ -160,6 +160,26 @@ var app = angular
     //  controller: 'UsersContractsCtrl'
     //});
 
+    // Organization routes
+    $stateProvider
+      .state('manage', {
+        abstract: true,
+        template: "<ui-view/>",
+        data: {
+          access: access.user
+        }
+      })
+      .state('manage.articles', {
+        url: '/organizations/{organizationId}/articles',
+        templateUrl: 'views/manage/articles.html',
+        controller: 'ManageArticlesCtrl',
+        resolve: {
+          organizationId: ['$stateParams', function ($stateParams) {
+            return $stateParams.organizationId;
+          }]
+        }
+      });
+
     // Admin routes
     $stateProvider
       .state('admin', {

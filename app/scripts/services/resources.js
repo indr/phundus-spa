@@ -60,4 +60,16 @@ angular.module('phundusApp')
       }
     };
   }])
+
+  .factory('Articles', ['$http', function ($http) {
+    return {
+      getAll: function (organizationId, success, error) {
+        $http.get('/api/v0/organizations/' + organizationId + '/articles').success(success).error(error);
+      },
+
+      delete: function(organizationId, articleId, success, error) {
+        $http.delete('/api/v0/organizations/' + organizationId + '/articles/' + articleId).success(success).error(error);
+      }
+    }
+  }])
 ;
