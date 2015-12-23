@@ -10,7 +10,7 @@
       <h3>Mitgliedschaft</h3>
 
       <div data-ng-show="relationship.status == 'None'">
-        <p>Du kannst dieser Organisation <a ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
+        <p>Du kannst dieser Organisation <a data-ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
       </div>
       <div data-ng-show="relationship.status == 'Member'">
         <p>Du bist Mitglied seit {{relationship.timestamp | date: 'dd.MM.yyyy'}}.</p>
@@ -23,19 +23,17 @@
       <div data-ng-show="relationship.status == 'Rejected'">
         <p>Dein Antrag zur Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} abgelehnt.</p>
 
-        <p>Du kannst die Mitgliedschaft erneut <a ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
+        <p>Du kannst die Mitgliedschaft erneut <a data-ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
       </div>
     </div>
 
     <div data-ng-show="hasContactOptions()">
       <h3>Kontakt</h3>
-      <address data-ng-show="organization.address">
-        {{organization.address|replace:'\r|\n':'&lt;br&gt;'}}
-      </address>
+      <address data-ng-show="organization.address" data-ng-bind-html="organization.address|replace:'\r|\n':'&lt;br&gt;'"></address>
 
       <address data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
         <strong>E-Mail</strong><br>
-        {{organization.emailAddress}}<br>
+        {{organization.emailAddress|replace:'@.*$':''}} AT <span style="display:none;">null.</span><span>{{organization.emailAddress|replace:'^.*@':''}}</span>
       </address>
 
       <address data-ng-show="organization.website">

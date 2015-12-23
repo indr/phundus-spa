@@ -76,10 +76,18 @@ angular.module('phundusApp')
     }
   }])
 
-  .factory('Relationships', ['$http', function($http) {
+  .factory('Relationships', ['$http', function ($http) {
     return {
       get: function (organizationId, success, error) {
         $http.get('/api/v0/organizations/' + organizationId +'/relationships').success(success).error(error);
+      }
+    }
+  }])
+
+  .factory('Applications', ['$http', function ($http) {
+    return {
+      post: function (organizationId, content, success, error) {
+        $http.post('/api/v0/organizations/' + organizationId +'/applications', content).success(success).error(error);
       }
     }
   }])
