@@ -54,11 +54,23 @@ angular.module('phundusApp')
       getAll: function (success, error) {
         $http.get('/api/v0/users').success(success).error(error);
       },
-
       get: function (userId, success, error) {
         $http.get('/api/v0/users/' + userId).success(success).error(error);
       }
     };
+  }])
+
+  .factory('Organizations', ['$http', function ($http) {
+    return {
+      getAll: function (success, error) {
+        $http.get('/api/v0/organizations').success(success).error(error);
+      },
+      post: function (name, success, error) {
+        $http.post('/api/v0/organizations', {
+          name: name
+        }).success(success).error(error);
+      }
+    }
   }])
 
   .factory('Articles', ['$http', function ($http) {
@@ -66,7 +78,6 @@ angular.module('phundusApp')
       getAll: function (organizationId, success, error) {
         $http.get('/api/v0/organizations/' + organizationId + '/articles').success(success).error(error);
       },
-
       delete: function(organizationId, articleId, success, error) {
         $http.delete('/api/v0/organizations/' + organizationId + '/articles/' + articleId).success(success).error(error);
       }

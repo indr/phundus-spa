@@ -8,8 +8,8 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', 'Auth', 'Alert',
-    function ($rootScope, $scope, $location, $window, Auth, Alert) {
+  .controller('NavCtrl', ['$rootScope', '$scope', '$location', '$window', 'Auth', 'Alert', 'Organizations',
+    function ($rootScope, $scope, $location, $window, Auth, Alert, Organizations) {
 
       $rootScope.alerts = Alert.alerts;
 
@@ -34,4 +34,18 @@ angular.module('phundusApp')
             Alert.error(err);
           });
       };
+
+      $scope.establishOrganization = function () {
+        var name = $window.prompt("Name der neuen Organisation", "");
+        if (!name) {
+          return;
+        }
+
+        Organizations.post(name, function(res) {
+          Alert.success('Die Organisation wurde erfolgreich gegründet.');
+          $window.location.href = '/organization/id/' + res.id;
+        }, function () {
+          Alert.error('Fehler beim Gründen der Organisation.');
+        })
+      }
     }]);
