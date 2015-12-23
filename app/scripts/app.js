@@ -17,7 +17,7 @@ var app = angular
     //'ngMessages',
     //'ngResource',
     //'ngRoute',
-    //'ngSanitize',
+    'ngSanitize',
     //'ngTouch',
     'smart-table',
     'ui.gravatar',
@@ -58,6 +58,16 @@ var app = angular
         url: '/organizations',
         templateUrl: 'views/organizations.html',
         controller: 'OrganizationsCtrl'
+      })
+      .state('public.organization', {
+        url: '/organizations/:organizationId',
+        templateUrl: 'views/organization.html',
+        controller: 'OrganizationCtrl',
+        resolve: {
+          organizationId: ['$stateParams', function ($stateParams) {
+            return $stateParams.organizationId;
+          }]
+        }
       })
       .state('public.404', {
         url: '/404',

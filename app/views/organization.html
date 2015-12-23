@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <h2>{{organization.name}}</h2>
+    <div data-ng-bind-html="startpage"></div>
+
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div data-ng-show="relationship">
+      <h3>Mitgliedschaft</h3>
+
+      <div data-ng-show="relationship.status == 'None'">
+        <p>Du kannst dieser Organisation <a ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
+      </div>
+      <div data-ng-show="relationship.status == 'Member'">
+        <p>Du bist Mitglied seit {{relationship.timestamp | date: 'dd.MM.yyyy'}}.</p>
+
+        <!--<p>Sie können diese Organisation <a ng-click="leave()" class="btn btn-default btn-sm">verlassen</a>.</p>-->
+      </div>
+      <div data-ng-show="relationship.status == 'Application'">
+        <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} beantragt.</p>
+      </div>
+      <div data-ng-show="relationship.status == 'Rejected'">
+        <p>Dein Antrag zur Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} abgelehnt.</p>
+
+        <p>Du kannst die Mitgliedschaft erneut <a ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
+      </div>
+    </div>
+
+    <div data-ng-show="hasContactOptions()">
+      <h3>Kontakt</h3>
+      <address data-ng-show="organization.address">
+        {{organization.address|replace:'\r|\n':'&lt;br&gt;'}}
+      </address>
+
+      <address data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
+        <strong>E-Mail</strong><br>
+        {{organization.emailAddress}}<br>
+      </address>
+
+      <address data-ng-show="organization.website">
+        <strong>Webseite</strong><br>
+        <a href="{{organization.website}}">{{organization.website}}</a><br>
+      </address>
+    </div>
+  </div>
+
+</div>

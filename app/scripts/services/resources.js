@@ -65,10 +65,21 @@ angular.module('phundusApp')
       getAll: function (success, error) {
         $http.get('/api/v0/organizations').success(success).error(error);
       },
+      get: function (organizationId, success, error) {
+        $http.get('/api/v0/organizations/' + organizationId).success(success).error(error);
+      },
       post: function (name, success, error) {
         $http.post('/api/v0/organizations', {
           name: name
         }).success(success).error(error);
+      }
+    }
+  }])
+
+  .factory('Relationships', ['$http', function($http) {
+    return {
+      get: function (organizationId, success, error) {
+        $http.get('/api/v0/organizations/' + organizationId +'/relationships').success(success).error(error);
       }
     }
   }])

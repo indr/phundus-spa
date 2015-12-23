@@ -51,12 +51,6 @@ angular.module('phundusApp')
         }
         return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
       },
-      register: function (user, success, error) {
-        $http.post('/api/v1/register', user).success(function (res) {
-          changeUser(res);
-          success();
-        }).error(error);
-      },
       login: function (user, success, error) {
         $http.post('/api/v0/sessions', {
           "username": user.username,
@@ -69,14 +63,15 @@ angular.module('phundusApp')
         }).error(error);
       },
       logout: function (success, error) {
-          $http.delete('/api/v0/sessions').success(function () {
-            changeUser({
-              memberships: undefined,
-              username: '',
-              role: userRoles.public
-            });
-            success();
-          }).error(error);
+        $cookies.remove('ph.user');
+        $http.delete('/api/v0/sessions').success(function () {
+          changeUser({
+            memberships: undefined,
+            username: '',
+            role: userRoles.public
+          });
+          success();
+        }).error(error);
       },
       select: function (membership, success, error) {
         changeMembership(membership);
