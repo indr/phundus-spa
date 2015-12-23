@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <h2>Organisationen</h2>
+    <table class="table table-hover" data-st-table="displayedOrganizations" data-st-safe-src="organizations">
+      <thead>
+      <tr>
+        <th data-st-sort-default="true" data-st-sort="name">Name</th>
+        <th class="text-right" data-st-sort="address">Kontakt</th>
+      </tr>
+      <tr>
+        <th colspan="2"><input st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-ng-repeat="row in displayedOrganizations">
+        <td><a href="./{{row.url}}">{{row.name}}</a></td>
+        <td>{{row.address|replace:' *[\r\n]+ *':', '}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <div class="jumbotron">
+      <h2>Du möchtest deine eigene Organisation haben?</h2>
+      <p>Kontaktiere das phundus-Team über die Feedback-Funktion und wir kümmern uns drum!</p>
+      <p><a class="btn btn-primary btn-lg" href="/feedback" role="button">Zum Formular</a></p>
+    </div>
+  </div>
+</div>

@@ -54,6 +54,11 @@ var app = angular
         template: '<ui-view />',
         controller: 'ShopCtrl'
       })
+      .state('public.organizations', {
+        url: '/organizations',
+        templateUrl: 'views/organizations.html',
+        controller: 'OrganizationsCtrl'
+      })
       .state('public.404', {
         url: '/404',
         templateUrl: 'views/404.html'

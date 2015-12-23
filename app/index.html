@@ -61,7 +61,7 @@
                 <a href="/organization/id/{{membership.organizationId}}">{{membership.organizationName}}</a>
               </li>
               <li data-ng-show="user.memberships.length > 0" class="divider"></li>
-              <li><a href="/organization#/search">Suchen</a></li>
+              <li><a href="/#/organizations">Suchen</a></li>
             </ul>
           </li>
 
@@ -181,12 +181,14 @@
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/logout.js"></script>
 <script src="scripts/controllers/nav.js"></script>
+<script src="scripts/controllers/organizations.js"></script>
 <script src="scripts/controllers/register.js"></script>
 <script src="scripts/controllers/shop.js"></script>
 <script src="scripts/controllers/users.js"></script>
 <script src="scripts/controllers/manage/articles.js"></script>
 <script src="scripts/directives/ph-user-vcard.js"></script>
 <script src="scripts/directives/ph-user-store.js"></script>
+<script src="scripts/filters/replace.js"></script>
 <script src="scripts/services/alert.js"></script>
 <script src="scripts/services/auth.js"></script>
 <script src="scripts/services/resources.js"></script>
