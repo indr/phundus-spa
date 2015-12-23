@@ -107,7 +107,7 @@
   </div>
 </div>
 <div class="container">
-  <div class="alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
+  <div class="ng-cloak alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
     <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -115,7 +115,7 @@
     <span class="sr-only">Error: </span>{{msg}}
   </div>
 
-  <div class="alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
+  <div class="ng-cloak alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
     <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -123,7 +123,7 @@
     <span class="sr-only">Warning: </span>{{msg}}
   </div>
 
-  <div class="alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
+  <div class="ng-cloak alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
     <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -131,7 +131,7 @@
     <span class="sr-only">Info: </span>{{msg}}
   </div>
 
-  <div class="alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
+  <div class="ng-cloak alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
     <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
