@@ -1,24 +1,16 @@
-<ul class="nav nav-tabs" data-access-level="accessLevels.manager" data-organization-id="organizationId">
-  <li role="presentation"><a href="/#/organizations/{{organizationId}}">Home</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/orders">Bestellungen</a></li>
-  <li role="presentation" class="active"><a href="/#/organizations/{{organizationId}}/articles">Material</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/members">Mitglieder</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/applications">Beitrittsanfragen</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/settings">Einstellungen</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/files">Dateien</a></li>
-</ul>
+<ph-manage-navbar data-organization-id="organizationId"></ph-manage-navbar>
 
 <table class="table table-hover" data-st-table="displayedArticles" data-st-safe-src="articles">
   <thead>
+  <tr>
+    <th colspan="5"><input st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+  </tr>
   <tr>
     <th data-st-sort-default="true" data-st-sort="id">Id</th>
     <th data-st-sort="name">Name</th>
     <th class="text-right" data-st-sort="grossStock">Bestand</th>
     <th class="text-right" data-st-sort="price">Preis</th>
-    <th class="text-right"><a class="btn btn-primary btn-xs" href="/orgs/{{organizationId}}/article/create">Neues Material</a></th>
-  </tr>
-  <tr>
-    <th colspan="5"><input st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+    <th class="text-right"><a class="btn btn-primary btn-sm" href="/orgs/{{organizationId}}/article/create">Neues Material</a></th>
   </tr>
   </thead>
   <tbody>

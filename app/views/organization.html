@@ -1,38 +1,25 @@
-<ul class="nav nav-tabs" data-access-level="accessLevels.manager" data-organization-id="organizationId">
-  <li role="presentation" class="active"><a href="/#/organizations/{{organizationId}}">Home</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/orders">Bestellungen</a></li>
-  <li role="presentation"><a href="/#/organizations/{{organizationId}}/articles">Material</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/members">Mitglieder</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/applications">Beitrittsanfragen</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/settings">Einstellungen</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/files">Dateien</a></li>
-</ul>
+<ph-manage-navbar data-organization-id="organizationId"></ph-manage-navbar>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <h2>{{organization.name}}</h2>
     <div data-ng-bind-html="startpage"></div>
-
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <div data-ng-show="relationship">
       <h3>Mitgliedschaft</h3>
-
       <div data-ng-show="relationship.status == 'None'">
         <p>Du kannst dieser Organisation <a data-ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
       </div>
       <div data-ng-show="relationship.status == 'Member'">
         <p>Du bist Mitglied seit {{relationship.timestamp | date: 'dd.MM.yyyy'}}.</p>
-
-        <!--<p>Sie können diese Organisation <a ng-click="leave()" class="btn btn-default btn-sm">verlassen</a>.</p>-->
       </div>
       <div data-ng-show="relationship.status == 'Application'">
         <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} beantragt.</p>
       </div>
       <div data-ng-show="relationship.status == 'Rejected'">
         <p>Dein Antrag zur Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} abgelehnt.</p>
-
         <p>Du kannst die Mitgliedschaft erneut <a data-ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
       </div>
     </div>
@@ -40,7 +27,6 @@
     <div data-ng-show="hasContactOptions()">
       <h3>Kontakt</h3>
       <address data-ng-show="organization.address" data-ng-bind-html="organization.address|replace:'\r|\n':'&lt;br&gt;'"></address>
-
       <address>
         <div data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
         E-Mail:

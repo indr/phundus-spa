@@ -170,11 +170,11 @@ var app = angular
         controller: 'UsersOrdersCtrl'
       });
 
-    // Organization routes
+    // Management routes
     $stateProvider
       .state('manage', {
         abstract: true,
-        template: "<ui-view/>",
+        template: '<ui-view/>',
         data: {
           access: access.manager
         }
