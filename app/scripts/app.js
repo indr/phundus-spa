@@ -169,11 +169,6 @@ var app = angular
         templateUrl: 'views/users/orders.html',
         controller: 'UsersOrdersCtrl'
       });
-    //.state('users.contracts', {
-    //  url: '/orders',
-    //  templateUrl: 'views/users/contracts.html',
-    //  controller: 'UsersContractsCtrl'
-    //});
 
     // Organization routes
     $stateProvider
@@ -181,7 +176,7 @@ var app = angular
         abstract: true,
         template: "<ui-view/>",
         data: {
-          access: access.user
+          access: access.manager
         }
       })
       .state('manage.articles', {
@@ -249,10 +244,32 @@ angular.module('phundusApp').filter('orderStatusText', function () {
   };
 });
 
+app.run(['$rootScope', '$state', 'Auth', 'Alert', 'editableOptions',
+  function ($rootScope, $state, Auth, Alert, editableOptions) {
 
-app.run(['$rootScope', '$state', 'editableOptions', function ($rootScope, $state, editableOptions) {
+    $rootScope.$state = $state;
+    editableOptions.theme = 'bs3';
 
-  $rootScope.$state = $state;
+    $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
+      if(!('data' in toState) || !('access' in toState.data)){
+        //$rootScope.error = "Access undefined for this state";
+        Alert.error('Access undefined for this state.');
+        event.preventDefault();
+      }
+      else if (!Auth.authorize(toState.data.access, undefined, toParams.organizationId)) {
+        //$rootScope.error = "Seems like you tried accessing a route you don't have access to...";
+        Alert.error('Seems like you tried accessing a route you don\'t have access to...');
+        event.preventDefault();
 
-  editableOptions.theme = 'bs3';
-}]);
+        if (fromState.url === '^') {
+          if (Auth.isLoggedIn()) {
+            $state.go('user.home');
+          } else {
+            $rootScope.error = null;
+            $state.go('anon.login');
+          }
+        }
+      }
+    });
+  }
+]);

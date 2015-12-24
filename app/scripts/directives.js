@@ -8,7 +8,8 @@ angular.module('phundusApp')
       link: function ($scope, element, attrs) {
         var prevDisp = element.css('display')
           , userRole
-          , accessLevel;
+          , accessLevel
+          , organizationId;
 
         $scope.user = Auth.user;
         $scope.$watch('user', function (user) {
@@ -25,9 +26,16 @@ angular.module('phundusApp')
           updateCSS();
         });
 
+        attrs.$observe('organizationId', function (al) {
+          if (al) {
+            organizationId = $scope.$eval(al);
+          }
+          updateCSS();
+        });
+
         function updateCSS() {
           if (userRole && accessLevel) {
-            if (!Auth.authorize(accessLevel, userRole)) {
+            if (!Auth.authorize(accessLevel, userRole, organizationId)) {
               element.css('display', 'none');
             }
             else {

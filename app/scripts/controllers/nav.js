@@ -43,7 +43,7 @@ angular.module('phundusApp')
 
         Organizations.post(name, function(res) {
           Alert.success('Die Organisation wurde erfolgreich gegründet.');
-          $window.location.href = '/organization/id/' + res.organizationId;
+          $window.location.href = '/#/organizations/' + res.organizationId;
         }, function () {
           Alert.error('Fehler beim Gründen der Organisation.');
         })

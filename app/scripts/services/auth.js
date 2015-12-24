@@ -37,13 +37,24 @@ angular.module('phundusApp')
       }
     }
 
-    return {
-      authorize: function (accessLevel, role) {
-        if (role === undefined) {
-          role = currentUser.role;
-        }
+    function getMemberRole(organizationId) {
+      if (!organizationId) {
+        return 0;
+      }
+      var membership = _.find(currentUser.memberships, {organizationId: organizationId});
+      
+      if (membership && membership.isManager) {
+        return userRoles.manager.bitMask;
+      }
+      return 0;
+    }
 
-        return accessLevel.bitMask & role.bitMask;
+    return {
+      authorize: function (accessLevel, userRole, organizationId) {
+        if (userRole === undefined) {
+          userRole = currentUser.role;
+        }
+        return accessLevel.bitMask & (userRole.bitMask | getMemberRole(organizationId));
       },
       isLoggedIn: function (user) {
         if (user === undefined) {
