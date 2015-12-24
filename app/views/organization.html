@@ -1,3 +1,13 @@
+<ul class="nav nav-tabs" data-ng-show="false">
+  <li role="presentation" class="active"><a href="/organization/id/{{organizationId}}">Home</a></li>
+  <li role="presentation"><a href="/management/{{organizationId}}#/orders">Bestellungen</a></li>
+  <li role="presentation"><a href="/#/organizations/{{organizationId}}/articles">Material</a></li>
+  <li role="presentation"><a href="/management/{{organizationId}}#/members">Mitglieder</a></li>
+  <li role="presentation"><a href="/management/{{organizationId}}#/applications">Beitrittsanfragen</a></li>
+  <li role="presentation"><a href="/management/{{organizationId}}#/settings">Einstellungen</a></li>
+  <li role="presentation"><a href="/management/{{organizationId}}#/files">Dateien</a></li>
+</ul>
+
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <h2>{{organization.name}}</h2>
@@ -31,16 +41,17 @@
       <h3>Kontakt</h3>
       <address data-ng-show="organization.address" data-ng-bind-html="organization.address|replace:'\r|\n':'&lt;br&gt;'"></address>
 
-      <address data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
-        <strong>E-Mail</strong><br>
-        {{organization.emailAddress|replace:'@.*$':''}} AT <span style="display:none;">null.</span><span>{{organization.emailAddress|replace:'^.*@':''}}</span>
-      </address>
-
-      <address data-ng-show="organization.website">
-        <strong>Webseite</strong><br>
-        <a href="{{organization.website}}">{{organization.website}}</a><br>
+      <address>
+        <div data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
+        E-Mail:
+        {{organization.emailAddress|replace:'@.*$':''}} AT <span style="display:none;">null.</span><span>{{organization.emailAddress|replace:'^.*@':''}}</span></div>
+        <div data-ng-show="organization.website">Webseite:
+        <a href="{{organization.website}}">{{organization.website}}</a></div>
       </address>
     </div>
-  </div>
 
+    <h3>Karte</h3>
+    <div id="map-canvas" style="height: 350px; width: 570px;">TODO</div>
+    <p></p>
+  </div>
 </div>

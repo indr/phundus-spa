@@ -26,6 +26,7 @@ angular.module('phundusApp')
   .controller('OrganizationCtrl', ['organizationId', '$scope', '$sce', '$window', 'Alert', 'Auth', 'Organizations', 'Relationships', 'Applications',
     function (organizationId, $scope, $sce, $window, Alert, Auth, Organizations, Relationships, Applications) {
       $scope.loading = true;
+      $scope.organizationId = organizationId;
 
       $scope.hasContactOptions = function () {
         return $scope.organization && ($scope.organization.address || $scope.organization.emailAddress || $scope.organization.website);
