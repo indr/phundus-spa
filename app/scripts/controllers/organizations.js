@@ -38,6 +38,10 @@ angular.module('phundusApp')
         $scope.startpage = $sce.trustAsHtml(res.startpage);
 
         $timeout(function () {
+          if (!$scope.organization.coordinate) {
+            return;
+          }
+          
           leafletData.getMap().then(function (map) {
 
             var coordinate = $scope.organization.coordinate.split(',');
