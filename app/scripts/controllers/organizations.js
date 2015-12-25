@@ -23,8 +23,8 @@ angular.module('phundusApp')
     }
   ])
 
-  .controller('OrganizationCtrl', ['organizationId', '$scope', '$sce', '$window', 'Alert', 'Auth', 'Organizations', 'Relationships', 'Applications',
-    function (organizationId, $scope, $sce, $window, Alert, Auth, Organizations, Relationships, Applications) {
+  .controller('OrganizationCtrl', ['organizationId', '$scope', '$sce', '$window', 'Alert', 'Auth', 'Organizations', 'Relationships', 'Applications', 'leafletData', 'leafletMarkersHelpers', '$timeout',
+    function (organizationId, $scope, $sce, $window, Alert, Auth, Organizations, Relationships, Applications, leafletData, leafletMarkersHelpers, $timeout) {
       $scope.loading = true;
       $scope.accessLevels = Auth.accessLevels;
       $scope.organizationId = organizationId;
@@ -36,6 +36,28 @@ angular.module('phundusApp')
       Organizations.get(organizationId, function (res) {
         $scope.organization = res;
         $scope.startpage = $sce.trustAsHtml(res.startpage);
+
+        $timeout(function () {
+          leafletData.getMap().then(function (map) {
+
+            var coordinate = $scope.organization.coordinate.split(',');
+            var latLng = {
+              lat: parseFloat(coordinate[0]),
+              lng: parseFloat(coordinate[1])
+            };
+            map.setView(latLng, 14);
+
+            if (!$scope.marker) {
+              $scope.marker = leafletMarkersHelpers.createMarker(latLng);
+              $scope.marker.addTo(map);
+
+              //$scope.marker.bindPopup($scope.organization.name).openPopup();
+            }
+            else {
+              $scope.marker.setLatLng(latLng);
+            }
+          });
+        }, 0);
 
         if (Auth.isLoggedIn()) {
           Relationships.get(organizationId, function (res) {
