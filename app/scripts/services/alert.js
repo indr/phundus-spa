@@ -12,7 +12,7 @@ angular.module('phundusApp')
       var id = uuid4.generate();
       alerts[type] = alerts[type] || {};
       alerts[type][id] = msg;
-      $timeout(dismissAlert, 4000, true, type, id);
+      $timeout(dismissAlert, 10000, true, type, id);
     };
 
     return {

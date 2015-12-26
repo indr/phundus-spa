@@ -227,7 +227,10 @@ var app = angular
         'responseError': function (response) {
           if (response.status === 401 || response.status === 403) {
             $location.search('returnPath', encodeURI($location.path()));
-            $location.path('/login');
+            $location.path('/#/login');
+          }
+          else if (response.status === 404) {
+            $location.path('/#/404');
           }
           return $q.reject(response);
         }
@@ -263,9 +266,10 @@ app.run(['$rootScope', '$state', 'Auth', 'Alert', 'editableOptions',
 
         if (fromState.url === '^') {
           if (Auth.isLoggedIn()) {
-            $state.go('user.home');
+            //$state.go('user.home');
+            $state.go('anon.login')
           } else {
-            $rootScope.error = null;
+            //$rootScope.error = null;
             $state.go('anon.login');
           }
         }

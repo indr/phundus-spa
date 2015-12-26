@@ -27,6 +27,7 @@ angular.module('phundusApp')
     function (organizationId, $scope, $sce, $window, Alert, Auth, Organizations, Relationships, Applications, leafletData, leafletMarkersHelpers, $timeout) {
       $scope.loading = true;
       $scope.accessLevels = Auth.accessLevels;
+      $scope.organization = null;
       $scope.organizationId = organizationId;
 
       $scope.hasContactOptions = function () {
@@ -41,7 +42,7 @@ angular.module('phundusApp')
           if (!$scope.organization.coordinate) {
             return;
           }
-          
+
           leafletData.getMap().then(function (map) {
 
             var coordinate = $scope.organization.coordinate.split(',');
