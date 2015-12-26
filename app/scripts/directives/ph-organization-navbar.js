@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.directive:phManageNavbar
+ * @name phundusApp.directive:phOrganizationNavbar
  * @description
- * # phManageNavbar
+ * # phOrganizationNavbar
  */
 angular.module('phundusApp')
-  .directive('phManageNavbar', ['Auth', function (Auth) {
+  .directive('phOrganizationNavbar', ['Auth', function (Auth) {
     return {
       restrict: 'E',
       replace: 'true',
@@ -18,6 +18,6 @@ angular.module('phundusApp')
         $scope.accessLevels = Auth.accessLevels;
         $scope.userRoles = Auth.userRoles;
       },
-      templateUrl: 'views/directives/ph-manage-navbar.html'
+      templateUrl: 'views/directives/ph-organization-navbar.html'
     }
   }]);

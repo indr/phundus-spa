@@ -1,6 +1,6 @@
 <div class="vcard">
   <a class="vcard-avatar">
-    <img class="avatar" gravatar-src-once="user.email" gravatar-size="212"/>
+    <img class="avatar img-responsive" src="" data-gravatar-src-once="user.email" data-gravatar-size="262"/>
   </a>
 
   <h1 class="vcard-names">
@@ -17,10 +17,10 @@
 
   <div class="vcard-memberships" data-ng-show="user.memberships.length">
     <div class="panel panel-default">
-      <div class="panel-heading">Organisationen</div>
+      <div class="panel-heading">Mitgliedschaften</div>
       <table class="table">
         <tr data-ng-repeat="membership in user.memberships">
-          <td><a href="/{{membership.organizationFriendlyPath}}">
+          <td><a href="/{{membership.organizationUrl}}">
             {{membership.organizationName}}</a>
           </td>
         </tr>

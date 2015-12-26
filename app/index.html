@@ -89,7 +89,7 @@
             <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
           </li>
           <li data-access-level="accessLevels.user" title="{{user.username}}">
-            <a href="/account/profile"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
+            <a href="" data-ui-sref="users.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
           </li>
           <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -186,7 +186,8 @@
 <script src="scripts/controllers/shop.js"></script>
 <script src="scripts/controllers/users.js"></script>
 <script src="scripts/controllers/manage/articles.js"></script>
-<script src="scripts/directives/ph-manage-navbar.js"></script>
+<script src="scripts/directives/ph-organization-navbar.js"></script>
+<script src="scripts/directives/ph-user-navbar.js"></script>
 <script src="scripts/directives/ph-user-vcard.js"></script>
 <script src="scripts/directives/ph-user-store.js"></script>
 <script src="scripts/filters/replace.js"></script>

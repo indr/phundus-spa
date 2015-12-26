@@ -113,7 +113,7 @@ var app = angular
       .state('users', {
         abstract: true,
         url: '/users/:userId',
-        templateUrl: 'views/users.html',
+        template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/>',
         data: {
           access: access.user
         },
@@ -128,7 +128,8 @@ var app = angular
         url: '',
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
-      })
+      });
+      /*
       .state('users.articles', {
         abstract: true,
         template: '<ui-view></ui-view>'
@@ -169,6 +170,7 @@ var app = angular
         templateUrl: 'views/users/orders.html',
         controller: 'UsersOrdersCtrl'
       });
+      */
 
     // Management routes
     $stateProvider

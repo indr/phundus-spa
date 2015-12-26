@@ -8,10 +8,9 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersCtrl', ['$scope', '$state', '$stateParams', 'Auth',
-    function ($scope, $state, $stateParams, Auth) {
-      $scope.state = $state;
-      $scope.userId = $stateParams.userId;
+  .controller('UsersCtrl', ['$scope', 'userId', 'Auth',
+    function ($scope, userId, Auth) {
+      $scope.userId = userId;
       $scope.isHome = $scope.userId + '' === Auth.user.userId + '';
     }
   ]);
@@ -24,22 +23,19 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$scope', '$stateParams', 'Users', 'Stores', 'Auth', 'Alert',
-    function ($scope, $stateParams, Users, Stores, Auth, Alert) {
-      $scope.loaded = false;
-      $scope.isHome = false;
+  .controller('UsersHomeCtrl', ['$scope', 'userId', 'Users', 'Alert',
+    function ($scope, userId, Users, Alert) {
+      $scope.userId = userId;
       $scope.user = null;
-      $scope.store = null;
 
-      Users.get($stateParams.userId, function (res) {
+      Users.get(userId, function (res) {
         $scope.user = res;
-        $scope.store = $scope.user.store;
-        $scope.isHome = $scope.user.userId === Auth.user.userId;
-        $scope.loaded = true;
-      }, function (err) {
-        Alert.error('Failed to fetch user: ' + err);
+      }, function () {
+        Alert.error('Fehler beim Laden des Benutzers.');
       });
 
+      /*
+      //$scope.store = null;
       $scope.openStore = function () {
         Stores.post($scope.user.userId, function (res) {
           $scope.store = res;
@@ -48,6 +44,7 @@ angular.module('phundusApp')
           Alert.error('Failed to open your store: ' + err);
         });
       }
+      */
     }
   ]);
 

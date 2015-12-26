@@ -1,14 +1,23 @@
-<div class="row" data-ng-show="loaded">
-  <ph-user-vcard class="col-sm-4 col-xs-12" data-user="user"></ph-user-vcard>
+<div class="row">
 
-  <div class="col-sm-8 col-xs-8" data-ng-hide="store">
-    <div class="jumbotron" data-ng-show="isHome">
-      <button class="btn btn-default" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
+  <ph-user-vcard class="col-sm-4 col-md-3 col-lg-3 hidden-xs" data-user="user"></ph-user-vcard>
+
+  <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
+    <h1 class="vcard-names visible-xs">
+      <span class="vcard-fullname">{{user.fullName}}</span>
+      <!--<span class="vcard-username">{{user.username}}</span>-->
+    </h1>
+    <ph-user-store data-store="user.store" data-map="map" data-is-editable="isHome"></ph-user-store>
+
+
+    <div data-ng-hide="user.store">
+      <div class="jumbotron text-center" data-ng-show="isHome">
+        <button class="btn btn-default btn-lg" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
+      </div>
+      <div class="jumbotron" data-ng-hide="isHome">
+        <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
+      </div>
     </div>
-    <div class="jumbotron" data-ng-hide="isHome">
-      <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
-    </div>
+
   </div>
-
-  <ph-user-store class="col-sm-8 col-xs-12" data-store="store" data-map="map" data-is-editable="isHome"></ph-user-store>
 </div>
