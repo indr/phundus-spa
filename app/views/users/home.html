@@ -5,9 +5,9 @@
   <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
     <h1 class="vcard-names visible-xs" data-ng-show="user">
       <a class="vcard-avatar">
-        <img class="avatar" src="" data-gravatar-src-once="user.email" data-gravatar-size="24"/>
+        <img class="avatar" src="" data-gravatar-src-once="user.email" data-gravatar-size="32"/>
       </a>
-      <span class="vcard-fullname">{{user.fullName}}</span>
+      <span class="vcard-fullname" style="display: inline">{{user.fullName}}</span>
       <!--<span class="vcard-username">{{user.username}}</span>-->
     </h1>
     <ph-user-store data-store="user.store" data-map="map" data-is-editable="isHome"></ph-user-store>
