@@ -14,6 +14,7 @@ angular.module('phundusApp')
         restrict: 'E',
         replace: 'true',
         scope: {
+          loaded: '=',
           store: '=',
           isEditable: '='
         },
@@ -23,7 +24,7 @@ angular.module('phundusApp')
             lat: 46.80121,
             lng: 8.226692
           };
-          
+
           console.log(leafletData);
 
           $timeout(function () {
@@ -79,21 +80,21 @@ angular.module('phundusApp')
 
           scope.updateAddress = function ($data) {
             Stores.putAddress(scope.store.storeId, $data.address, function () {
-            }, function (err) {
-              Alert.danger(err);
+            }, function () {
+              Alert.error("Fehler beim Speichern der Adresse.");
             });
           };
           scope.updateOpeningHours = function ($data) {
             Stores.putOpeningHours(scope.store.storeId, $data.openingHours, function () {
-            }, function (err) {
-              Alert.danger(err);
+            }, function () {
+              Alert.error("Fehler beim Speichern der Öffnungszeiten.");
             });
           };
 
           scope.updateCoordinate = function ($data) {
             Stores.putCoordinate(scope.store.storeId, $data, function () {
-            }, function (err) {
-              Alert.danger(err);
+            }, function () {
+              Alert.error("Fehler beim Speichern der Koordinate.");
             });
           }
         },

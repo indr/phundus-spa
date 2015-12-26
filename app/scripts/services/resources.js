@@ -21,25 +21,25 @@ angular.module('phundusApp')
   .factory('Stores', ['$http', function ($http) {
     return {
       get: function (storeId, success, error) {
-        $http.get('/api/v1/stores/' + storeId).success(success).error(error);
+        $http.get('/api/v0/stores/' + storeId).success(success).error(error);
       },
       post: function (userId, success, error) {
-        $http.post('/api/v1/stores', {
+        $http.post('/api/v0/stores', {
           userId: userId
         }).success(success).error(error);
       },
       putAddress: function (storeId, address, success, error) {
-        $http.put('/api/v1/stores/' + storeId + '/address', {
+        $http.put('/api/v0/stores/' + storeId + '/address', {
           address: address
         }).success(success).error(error);
       },
       putOpeningHours: function (storeId, openingHours, success, error) {
-        $http.put('/api/v1/stores/' + storeId + '/opening-hours', {
+        $http.put('/api/v0/stores/' + storeId + '/opening-hours', {
           openingHours: openingHours
         }).success(success).error(error);
       },
       putCoordinate: function (storeId, coordinate, success, error) {
-        $http.put('/api/v1/stores/' + storeId + '/coordinate', {
+        $http.put('/api/v0/stores/' + storeId + '/coordinate', {
           coordinate: {
             latitude: parseFloat(coordinate.latitude),
             longitude: parseFloat(coordinate.longitude)

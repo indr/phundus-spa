@@ -23,10 +23,11 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$scope', 'userId', 'Users', 'Alert',
-    function ($scope, userId, Users, Alert) {
+  .controller('UsersHomeCtrl', ['$scope', 'userId', 'Users', 'Stores', 'Alert',
+    function ($scope, userId, Users, Stores, Alert) {
       $scope.userId = userId;
       $scope.user = null;
+
 
       Users.get(userId, function (res) {
         $scope.user = res;
@@ -34,17 +35,14 @@ angular.module('phundusApp')
         Alert.error('Fehler beim Laden des Benutzers.');
       });
 
-      /*
-      //$scope.store = null;
       $scope.openStore = function () {
         Stores.post($scope.user.userId, function (res) {
-          $scope.store = res;
-          Alert.success('Successfully opened your store!');
-        }, function (err) {
-          Alert.error('Failed to open your store: ' + err);
+          $scope.user.store = res;
+          Alert.success('Deine Materialstelle wurde erfolgreich eröffnet.');
+        }, function () {
+          Alert.error('Fehler beim Eröffnen deiner Materialstelle.');
         });
       }
-      */
     }
   ]);
 
