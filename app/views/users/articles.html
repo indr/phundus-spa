@@ -18,7 +18,7 @@
     <td class="text-right">{{row.grossStock}}</td>
     <td class="text-right">{{row.price | number:2}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-xs" href="/orgs/{{organizationId}}/article/Edit/{{row.id}}">Bearbeiten</a>
+      <a class="btn btn-default btn-xs" href="" data-ui-sref="users.articles.details({userId: userId, articleId: row.id})">Bearbeiten</a>
       <a class="btn btn-danger btn-xs" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
     </td>
   </tr>

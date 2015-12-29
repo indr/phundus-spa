@@ -91,13 +91,14 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesNewCtrl', ['$scope', 'userId', 'UserArticles', 'Alert',
-    function ($scope, userId, Articles, Alert) {
+  .controller('UsersArticlesNewCtrl', ['$scope', '$state', 'userId', 'UserArticles', 'Alert',
+    function ($scope, $state, userId, Articles, Alert) {
       $scope.userId = userId;
 
       $scope.submit = function () {
         Articles.post(userId, {name: $scope.name}, function (res) {
-          Alert.success('Das Material wurde erfolgreich erfasst: ' + res.articleId);
+          Alert.success('Das Material wurde erfolgreich erfasst.');
+          $state.go('users.articles.details', {userId: userId, articleId: res.articleId});
         }, function () {
           Alert.error('Fehler beim Speichern des Materials.')
         });

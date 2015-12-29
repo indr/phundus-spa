@@ -144,7 +144,12 @@ var app = angular
         url: '/new',
         templateUrl: 'views/manage/create-article.html',
         controller: 'UsersArticlesNewCtrl'
-      });
+      })
+      .state('users.articles.details', {
+        url: '/:articleId',
+        template: '<p>article details</p>'
+      })
+    ;
 
       /*
       .state('users.articles', {
