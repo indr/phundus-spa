@@ -130,7 +130,6 @@ var app = angular
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
       })
-
       .state('users.articles', {
         abstract: true,
         url: '/articles',
@@ -180,68 +179,42 @@ var app = angular
         url: '/files',
         templateUrl: 'views/manage/edit-article-files.html',
         controller: 'UsersArticlesFilesCtrl'
-      })
-    ;
-
-      /*
-      .state('users.articles', {
-        abstract: true,
-        template: '<ui-view></ui-view>'
       });
 
-
-      .state('users.articles.article', {
-        abstract: true,
-        url: '/articles/{articleId:[^/]+}',
-        templateUrl: 'views/users/article-pills.html',
-        controller: 'UsersArticlesArticleCtrl',
-        resolve: {
-          articleId: ['$stateParams', function ($stateParams) {
-            return $stateParams.articleId;
-          }]
-        }
-      })
-      .state('users.articles.article.details', {
-        url: '',
-        template: '<p>users.article.details</p>',
-        controller: 'UsersArticlesArticleDetailsCtrl'
-      })
-      .state('users.articles.article.files', {
-        url: '/files',
-        template: '<p>users.article.files</p>',
-        controller: 'UsersArticlesArticleFilesCtrl'
-      })
-      .state('users.articles.article.categories', {
-        url: '/categories',
-        template: '<p>users.article.categories</p>',
-        controller: 'UsersArticlesArticleCategoriesCtrl'
-      })
-      .state('users.orders', {
-        url: '/orders',
-        templateUrl: 'views/users/orders.html',
-        controller: 'UsersOrdersCtrl'
-      });
-      */
-
-    // Management routes
+    // Organization routes
     $stateProvider
-      .state('manage', {
+      .state('organizations', {
         abstract: true,
-        template: '<ui-view/>',
         data: {
           access: access.manager
-        }
-      })
-      .state('manage.articles', {
-        url: '/organizations/{organizationId}/articles',
-        templateUrl: 'views/manage/articles.html',
-        controller: 'ManageArticlesCtrl',
+        },
+        url: '/organizations/{organizationId}',
+        template: '<ph-organization-navbar data-ng-show="organization" data-organization-id="organizationId"></ph-organization-navbar><ui-view/>',
+        controller: ['$scope', 'organizationId', function($scope, organizationId) {
+          $scope.organizationId = organizationId
+        }],
         resolve: {
           organizationId: ['$stateParams', function ($stateParams) {
             return $stateParams.organizationId;
           }]
         }
-      });
+      })
+      .state('organizations.articles', {
+        abstract: true,
+        url: '/articles',
+        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view/>'
+      })
+      .state('organizations.articles.index', {
+        url: '/',
+        templateUrl: 'views/organizations/articles.html',
+        controller: 'OrganizationsArticlesCtrl'
+      })
+      .state('organizations.articles.new', {
+        url: '/new',
+        templateUrl: 'views/manage/create-article.html',
+        controller: 'OrganizationsArticlesNewCtrl'
+      })
+    ;
 
     // Admin routes
     $stateProvider

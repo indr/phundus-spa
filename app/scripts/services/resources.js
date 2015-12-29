@@ -92,13 +92,27 @@ angular.module('phundusApp')
     }
   }])
 
-  .factory('Articles', ['$http', function ($http) {
+  .factory('OrganizationArticles', ['$http', function ($http) {
+    var url = function (organizationId, articleId, field) {
+      var result = '/api/v0/organizations/' + organizationId + '/articles';
+      if (!articleId) {
+        return result;
+      }
+      result += '/' + articleId;
+      if (!field) {
+        return result;
+      }
+      return result += '/' + field;
+    };
     return {
       getAll: function (organizationId, success, error) {
-        $http.get('/api/v0/organizations/' + organizationId + '/articles').success(success).error(error);
+        $http.get(url(organizationId)).success(success).error(error);
+      },
+      post: function (organizationId, content, success, error) {
+        $http.post(url(organizationId), content).success(success).error(error);
       },
       delete: function(organizationId, articleId, success, error) {
-        $http.delete('/api/v0/organizations/' + organizationId + '/articles/' + articleId).success(success).error(error);
+        $http.delete(url(organizationId, articleId)).success(success).error(error);
       }
     }
   }])

@@ -21,8 +21,9 @@ angular.module('phundusApp')
         $scope.loading = false;
       });
     }
-  ])
+  ]);
 
+angular.module('phundusApp')
   .controller('OrganizationCtrl', ['organizationId', '$scope', '$sce', '$window', 'Alert', 'Auth', 'Organizations', 'Relationships', 'Applications', 'leafletData', 'leafletMarkersHelpers', '$timeout',
     function (organizationId, $scope, $sce, $window, Alert, Auth, Organizations, Relationships, Applications, leafletData, leafletMarkersHelpers, $timeout) {
       $scope.loading = true;
@@ -90,5 +91,60 @@ angular.module('phundusApp')
           Alert.error('Fehler beim Beantragen der Mitgliedschaft.');
         });
       };
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:ManageArticlesCtrl
+ * @description
+ * # ManageArticlesCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesCtrl', ['_', '$scope', '$window', 'OrganizationArticles', 'Auth', 'Alert', 'organizationId',
+    function (_, $scope, $window, Articles, Auth, Alert, organizationId) {
+
+      $scope.loading = true;
+      $scope.userRoles = Auth.userRoles;
+      $scope.organizationId = organizationId;
+
+      Articles.getAll(organizationId, function (res) {
+        $scope.articles = res;
+        $scope.displayedArticles = [].concat($scope.articles);
+        $scope.loading = false;
+      }, function () {
+        Alert.error("Fehler beim Laden der Artikel.");
+        $scope.loading = false;
+      });
+
+      $scope.delete = function(articleId, name) {
+        if (!$window.confirm('Möchtest du den Artikel "' + name + '" wirklich löschen?')) {
+          return;
+        }
+        Articles.delete(organizationId, articleId, function () {
+          Alert.success('Der Artikel "' + name + '" wurder erfolgreich gelöscht.');
+          _.remove($scope.displayedArticles, {id: articleId});
+          _.remove($scope.articles, {id: articleId});
+        }, function() {
+          Alert.error('Fehler beim Löschen des Artikels "' + name +'".');
+        });
+      }
+    }
+  ]);
+
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesNewCtrl', ['$scope', '$state', 'organizationId', 'OrganizationArticles', 'Alert',
+    function ($scope, $state, organizationId, Articles, Alert) {
+      $scope.organizationId = organizationId;
+
+      $scope.submit = function () {
+        Articles.post(organizationId, {name: $scope.name}, function (res) {
+          Alert.success('Das Material wurde erfolgreich erfasst.');
+          $state.go('organizations.articles.edit.details', {organizationId: organizationId, articleId: res.articleId});
+        }, function () {
+          Alert.error('Fehler beim Speichern des Materials.')
+        });
+      }
     }
   ]);

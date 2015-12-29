@@ -1,5 +1,3 @@
-<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar>
-
 <table class="table table-hover" data-st-table="displayedArticles" data-st-safe-src="articles">
   <thead>
   <tr>
@@ -10,7 +8,7 @@
     <th data-st-sort="name">Name</th>
     <th class="text-right" data-st-sort="grossStock">Bestand</th>
     <th class="text-right" data-st-sort="price">Preis</th>
-    <th class="text-right"><a class="btn btn-primary btn-sm" href="/orgs/{{organizationId}}/article/create">Neues Material</a></th>
+    <th class="text-right"><a class="btn btn-primary btn-sm" href="" data-ui-sref="organizations.articles.new({organizationId: organizationId})">Neues Material</a></th>
   </tr>
   </thead>
   <tbody>
