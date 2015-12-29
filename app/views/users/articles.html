@@ -1,17 +1,26 @@
-
-<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+<table class="table table-hover" data-st-table="displayedArticles" data-st-safe-src="articles">
   <thead>
   <tr>
+    <th colspan="5"><input data-st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+  </tr>
+  <tr>
     <th data-st-sort-default="true" data-st-sort="id">Id</th>
-    <th data-st-sort="caption">Bezeichnung</th>
-    <th class="text-right"><!--<a href="">Neues Material</a>--></th>
+    <th data-st-sort="name">Name</th>
+    <th class="text-right" data-st-sort="grossStock">Bestand</th>
+    <th class="text-right" data-st-sort="price">Preis</th>
+    <th class="text-right"><a class="btn btn-primary btn-sm" href="/orgs/{{organizationId}}/article/create">Neues Material</a></th>
   </tr>
   </thead>
   <tbody>
-  <tr data-ng-repeat="row in displayedCollection">
+  <tr data-ng-repeat="row in displayedArticles">
     <td>{{row.id}}</td>
-    <td>{{row.caption}}</td>
-    <td class="text-right"><a href="" ui-sref="users.articles.article.details({userId: userId, articleId: row.id })">Edit</a></td>
+    <td>{{row.name}}</td>
+    <td class="text-right">{{row.grossStock}}</td>
+    <td class="text-right">{{row.price | number:2}}</td>
+    <td class="text-right">
+      <a class="btn btn-default btn-xs" href="/orgs/{{organizationId}}/article/Edit/{{row.id}}">Bearbeiten</a>
+      <a class="btn btn-danger btn-xs" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
+    </td>
   </tr>
   </tbody>
 </table>

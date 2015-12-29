@@ -102,4 +102,15 @@ angular.module('phundusApp')
       }
     }
   }])
+
+  .factory('UserArticles', ['$http', function ($http) {
+    return {
+      getAll: function (userId, success, error) {
+        $http.get('/api/v0/users/' + userId + '/articles').success(success).error(error);
+      },
+      delete: function(userId, articleId, success, error) {
+        $http.delete('/api/v0/users/' + userId + '/articles/' + articleId).success(success).error(error);
+      }
+    }
+  }])
 ;

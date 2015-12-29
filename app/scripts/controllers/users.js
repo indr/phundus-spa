@@ -54,12 +54,32 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesCtrl', ['$scope',
-    function ($scope) {
+  .controller('UsersArticlesCtrl', ['_', '$scope', 'userId', '$window', 'UserArticles', 'Alert',
+    function (_, $scope, userId, $window, Articles, Alert) {
 
-      $scope.rowCollection = [{id: '1', caption: "hans"}, {id: '2', caption: "peter"}];
-      $scope.displayedCollection = [].concat($scope.rowCollection);
+      $scope.loading = true;
 
+      Articles.getAll(userId, function (res) {
+        $scope.articles = res;
+        $scope.displayedArticles = [].concat($scope.articles);
+        $scope.loading = false;
+      }, function () {
+        Alert.error("Fehler beim Laden der Artikel.");
+        $scope.loading = false;
+      });
+
+      $scope.delete = function(articleId, name) {
+        if (!$window.confirm('Möchtest du den Artikel "' + name + '" wirklich löschen?')) {
+          return;
+        }
+        Articles.delete(userId, articleId, function () {
+          Alert.success('Der Artikel "' + name + '" wurder erfolgreich gelöscht.');
+          _.remove($scope.displayedArticles, {id: articleId});
+          _.remove($scope.articles, {id: articleId});
+        }, function() {
+          Alert.error('Fehler beim Löschen des Artikels "' + name +'".');
+        });
+      }
     }
   ]);
 

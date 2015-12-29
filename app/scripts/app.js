@@ -128,17 +128,20 @@ var app = angular
         url: '',
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
+      })
+      .state('users.articles', {
+        url: '/articles',
+        templateUrl: 'views/users/articles.html',
+        controller: 'UsersArticlesCtrl'
       });
+
       /*
       .state('users.articles', {
         abstract: true,
         template: '<ui-view></ui-view>'
-      })
-      .state('users.articles.index', {
-        url: '/articles',
-        templateUrl: 'views/users/articles.html',
-        controller: 'UsersArticlesCtrl'
-      })
+      });
+
+
       .state('users.articles.article', {
         abstract: true,
         url: '/articles/{articleId:[^/]+}',
