@@ -174,6 +174,11 @@ var app = angular
         templateUrl: 'views/manage/edit-article-specification.html',
         controller: 'UsersArticlesSpecificationCtrl'
       })
+      .state('users.articles.edit.files', {
+        url: '/files',
+        templateUrl: 'views/manage/edit-article-files.html',
+        controller: 'UsersArticlesFilesCtrl'
+      })
     ;
 
       /*
