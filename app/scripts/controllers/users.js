@@ -98,9 +98,39 @@ angular.module('phundusApp')
       $scope.submit = function () {
         Articles.post(userId, {name: $scope.name}, function (res) {
           Alert.success('Das Material wurde erfolgreich erfasst.');
-          $state.go('users.articles.details', {userId: userId, articleId: res.articleId});
+          $state.go('users.articles.edit.details', {userId: userId, articleId: res.articleId});
         }, function () {
           Alert.error('Fehler beim Speichern des Materials.')
+        });
+      }
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesDetailsCtrl
+ * @description
+ * # UsersArticlesDetailsCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesDetailsCtrl', ['$scope', '$state', 'userId', 'articleId', 'UserArticles', 'Alert',
+    function ($scope, $state, userId, articleId, Articles, Alert) {
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+      $scope.article = null;
+
+      Articles.get(userId, articleId, function (res) {
+        $scope.article = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Artikels.');
+      });
+
+      $scope.submit = function () {
+        Articles.put(userId, articleId, $scope.article, function () {
+          Alert.success('Das Material wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern des Material.');
         });
       }
     }

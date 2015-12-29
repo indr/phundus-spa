@@ -145,9 +145,24 @@ var app = angular
         templateUrl: 'views/manage/create-article.html',
         controller: 'UsersArticlesNewCtrl'
       })
-      .state('users.articles.details', {
+      .state('users.articles.edit', {
+        abstract: true,
         url: '/:articleId',
-        template: '<p>article details</p>'
+        template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId"></ph-user-article-navbar><ui-view/>',
+        controller: ['$scope', 'userId', 'articleId', function ($scope, userId, articleId) {
+          $scope.userId = userId;
+          $scope.articleId = articleId;
+        }],
+        resolve: {
+          articleId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleId;
+          }]
+        }
+      })
+      .state('users.articles.edit.details', {
+        url: '/',
+        templateUrl: 'views/manage/edit-article-details.html',
+        controller: 'UsersArticlesDetailsCtrl'
       })
     ;
 

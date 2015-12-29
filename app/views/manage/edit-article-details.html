@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+    <form class="form-horizontal" data-ng-submit="submit()" name="editDetailsForm">
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Name</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" data-ng-model="article.name" placeholder="" id="name" required autofocus />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="brand">Marke</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" data-ng-model="article.brand" placeholder="" id="brand" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="price">Preis pro Woche</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" data-ng-model="article.price" placeholder="" id="price" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="grossStick">Bestand (Brutto)</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" data-ng-model="article.grossStock" placeholder="" id="grossStick" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="color">Farbe</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" data-ng-model="article.color" placeholder="" id="color" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button class="btn btn-primary" type="submit" data-ng-disabled="editDetailsForm.$invalid">Speichern</button>
+          <a class="btn btn-default" href="" data-ui-sref="users.articles.index({userId: userId})">Abbrechen</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
