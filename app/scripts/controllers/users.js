@@ -196,6 +196,29 @@ angular.module('phundusApp')
     }
   ]);
 
+angular.module('phundusApp')
+  .controller('UsersArticlesFilesCtrl', ['$scope', 'userId', 'articleId', '$http', '$filter', '$window',
+    function ($scope, userId, articleId, $http) {
+      var isOnGitHub = false;
+      var url = '/api/v0/users/' + userId + '/articles/' + articleId + '/files';
+      $scope.options = {
+        url: url
+      };
+      if (!isOnGitHub) {
+        $scope.loadingFiles = true;
+        $http.get(url)
+          .then(
+          function (response) {
+            $scope.loadingFiles = false;
+            $scope.queue = response.data.files || [];
+          },
+          function () {
+            $scope.loadingFiles = false;
+          }
+        );
+      }
+    }]);
+
 /**
  * @ngdoc function
  * @name phundusApp.controller:UsersArticlesArticleCtrl

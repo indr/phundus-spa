@@ -25,8 +25,6 @@ angular.module('phundusApp')
             lng: 8.226692
           };
 
-          console.log(leafletData);
-
           $timeout(function () {
             leafletData.getMap().then(function (map) {
               map.setView(flaechenschwerpunktDerSchweiz, 7);

@@ -12,12 +12,15 @@
   <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
+  <link rel="stylesheet" href="bower_components/blueimp-gallery/css/blueimp-gallery.css" />
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload.css" />
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css" />
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-app="phundusApp">
+<body data-ng-app="phundusApp">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
@@ -151,8 +154,9 @@
 </div>
 
 <!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jquery-ui/ui/widget.js"></script>
+<!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -171,6 +175,18 @@
 <script src="bower_components/lodash/lodash.js"></script>
 <script src="bower_components/angular-uuid/uuid.min.js"></script>
 <!-- endbower -->
+<script src="bower_components/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
+<script src="bower_components/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
+<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
