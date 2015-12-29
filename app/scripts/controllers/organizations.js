@@ -145,6 +145,126 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Speichern des Materials.')
         });
-      }
+      };
+
+      $scope.cancel = function () {
+        $state.go('organizations.articles.index', {organizationId: organizationId})
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesDetailsCtrl
+ * @description
+ * # OrganizationsArticlesDetailsCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesDetailsCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+    function ($scope, $state, organizationId, articleId, Articles, Alert) {
+      $scope.organizationId = organizationId;
+      $scope.articleId = articleId;
+      $scope.article = null;
+
+      Articles.get(organizationId, articleId, function (res) {
+        $scope.article = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Artikels.');
+      });
+
+      $scope.submit = function () {
+        Articles.put(organizationId, articleId, $scope.article, function () {
+          Alert.success('Das Material wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern des Material.');
+        });
+      };
+
+      $scope.cancel = function () {
+        $state.go('organizations.articles.index', {organizationId: organizationId})
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesDescriptionCtrl
+ * @description
+ * # OrganizationsArticlesDescriptionCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesDescriptionCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+    function ($scope, $state, organizationId, articleId, Articles, Alert) {
+      $scope.organizationId = organizationId;
+      $scope.articleId = articleId;
+      $scope.description = null;
+
+      Articles.getDescription(organizationId, articleId, function (res) {
+        $scope.description = res;
+      }, function () {
+        Alert.error('Fehler beim Laden der Beschreibung.');
+      });
+
+      $scope.submit = function () {
+        Articles.putDescription(organizationId, articleId, {data:$scope.description}, function () {
+          Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern der Beschreibung.');
+        });
+      };
+
+      $scope.cancel = function () {
+        $state.go('organizations.articles.index', {organizationId: organizationId})
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesSpecificationCtrl
+ * @description
+ * # OrganizationsArticlesSpecificationCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesSpecificationCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+    function ($scope, $state, organizationId, articleId, Articles, Alert) {
+      $scope.organizationId = organizationId;
+      $scope.articleId = articleId;
+      $scope.specification = null;
+
+      Articles.getSpecification(organizationId, articleId, function (res) {
+        $scope.specification = res;
+      }, function () {
+        Alert.error('Fehler beim Laden der Spezifikation.');
+      });
+
+      $scope.submit = function () {
+        Articles.putSpecification(organizationId, articleId, {data: $scope.specification}, function () {
+          Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern der Spezifikation.');
+        });
+      };
+
+      $scope.cancel = function () {
+        $state.go('organizations.articles.index', {organizationId: organizationId})
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesFilesCtrl
+ * @description
+ * # OrganizationsArticlesFilesCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesFilesCtrl', ['$scope', 'organizationId', 'articleId',
+    function ($scope, organizationId, articleId) {
+      $scope.url = '/api/v0/organizations/' + organizationId + '/articles/' + articleId + '/files';
     }
   ]);

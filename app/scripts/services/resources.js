@@ -111,8 +111,26 @@ angular.module('phundusApp')
       post: function (organizationId, content, success, error) {
         $http.post(url(organizationId), content).success(success).error(error);
       },
+      get: function (organizationId, articleId, success, error) {
+        $http.get(url(organizationId, articleId)).success(success).error(error);
+      },
+      put: function (organizationId, articleId, content, success, error) {
+        $http.put(url(organizationId, articleId), content).success(success).error(error);
+      },
       delete: function(organizationId, articleId, success, error) {
         $http.delete(url(organizationId, articleId)).success(success).error(error);
+      },
+      getDescription: function (organizationId, articleId, success, error) {
+        $http.get(url(organizationId, articleId, 'description')).success(success).error(error);
+      },
+      putDescription: function (organizationId, articleId, content, success, error) {
+        $http.put(url(organizationId, articleId, 'description'), content).success(success).error(error);
+      },
+      getSpecification: function (organizationId, articleId, success, error) {
+        $http.get(url(organizationId, articleId, 'specification')).success(success).error(error);
+      },
+      putSpecification: function (organizationId, articleId, content, success, error) {
+        $http.put(url(organizationId, articleId, 'specification'), content).success(success).error(error);
       }
     }
   }])

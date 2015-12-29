@@ -152,7 +152,6 @@ var app = angular
         controller: ['$scope', 'userId', 'articleId', function ($scope, userId, articleId) {
           $scope.userId = userId;
           $scope.articleId = articleId;
-          $scope.queue = [];
         }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
@@ -214,7 +213,40 @@ var app = angular
         templateUrl: 'views/manage/create-article.html',
         controller: 'OrganizationsArticlesNewCtrl'
       })
-    ;
+      .state('organizations.articles.edit', {
+        abstract: true,
+        url: '/:articleId',
+        template: '<ph-organization-article-navbar data-organization-id="organizationId" data-article-id="articleId"></ph-organization-article-navbar><ui-view/>',
+        controller: ['$scope', 'organizationId', 'articleId', function ($scope, organizationId, articleId) {
+          $scope.organizationId = organizationId;
+          $scope.articleId = articleId;
+        }],
+        resolve: {
+          articleId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleId;
+          }]
+        }
+      })
+      .state('organizations.articles.edit.details', {
+        url: '/',
+        templateUrl: 'views/manage/edit-article-details.html',
+        controller: 'OrganizationsArticlesDetailsCtrl'
+      })
+      .state('organizations.articles.edit.description', {
+        url: '/description',
+        templateUrl: 'views/manage/edit-article-description.html',
+        controller: 'OrganizationsArticlesDescriptionCtrl'
+      })
+      .state('organizations.articles.edit.specification', {
+        url: '/specification',
+        templateUrl: 'views/manage/edit-article-specification.html',
+        controller: 'OrganizationsArticlesSpecificationCtrl'
+      })
+      .state('organizations.articles.edit.files', {
+        url: '/files',
+        templateUrl: 'views/manage/edit-article-files.html',
+        controller: 'OrganizationsArticlesFilesCtrl'
+      });
 
     // Admin routes
     $stateProvider

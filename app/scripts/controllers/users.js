@@ -102,7 +102,11 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Speichern des Materials.')
         });
-      }
+      };
+
+      $scope.cancel = function () {
+        $state.go('users.articles.index', {userId: userId})
+      };
     }
   ]);
 
@@ -132,7 +136,11 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Speichern des Material.');
         });
-      }
+      };
+
+      $scope.cancel = function () {
+        $state.go('users.articles.index', {userId: userId})
+      };
     }
   ]);
 
@@ -162,7 +170,11 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Speichern der Beschreibung.');
         });
-      }
+      };
+
+      $scope.cancel = function () {
+        $state.go('users.articles.index', {userId: userId})
+      };
     }
   ]);
 
@@ -192,7 +204,11 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Speichern der Spezifikation.');
         });
-      }
+      };
+
+      $scope.cancel = function () {
+        $state.go('users.articles.index', {userId: userId})
+      };
     }
   ]);
 
