@@ -21,8 +21,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // bower:js
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/jquery-ui/ui/widget.js',
+      // bower:js
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-cookies/angular-cookies.js',
@@ -43,6 +44,18 @@ module.exports = function(config) {
       'bower_components/blueimp-file-upload/js/jquery.fileupload.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+      "bower_components/blueimp-load-image/js/load-image.all.min.js",
+      "bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js",
+      "bower_components/blueimp-gallery/js/jquery.blueimp-gallery.min.js",
+      "bower_components/blueimp-file-upload/js/jquery.iframe-transport.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-process.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-image.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-audio.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-video.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js",
+      "bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js",
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
@@ -81,7 +94,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
