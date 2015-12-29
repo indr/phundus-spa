@@ -153,6 +153,7 @@ var app = angular
         controller: ['$scope', 'userId', 'articleId', function ($scope, userId, articleId) {
           $scope.userId = userId;
           $scope.articleId = articleId;
+          $scope.queue = [];
         }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
@@ -290,6 +291,18 @@ var app = angular
     });
   });
 
+angular.module('phundusApp')
+  .config([
+    '$httpProvider', 'fileUploadProvider',
+    function ($httpProvider, fileUploadProvider) {
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+      fileUploadProvider.defaults.redirect = window.location.href.replace(
+        /\/[^\/]*$/,
+        '/cors/result.html?%s'
+      );
+    }
+  ]);
+
 angular.module('phundusApp').filter('orderStatusText', function () {
   return function (input) {
     return {
@@ -300,6 +313,26 @@ angular.module('phundusApp').filter('orderStatusText', function () {
 });
 
 angular.module('phundusApp')
+  .controller('MyFileUploadCtrl', [
+    '$scope', '$http', '$filter', '$window',
+    function ($scope, $http) {
+      var url = $scope.url;
+      $scope.options = {
+        url: url
+      };
+      $scope.loadingFiles = true;
+      $http.get(url)
+        .then(
+          function (response) {
+            $scope.loadingFiles = false;
+            $scope.queue = response.data.files || [];
+          },
+          function () {
+            $scope.loadingFiles = false;
+          }
+      );
+    }
+  ])
   .controller('FileDestroyController', ['$scope', '$http',
   function ($scope, $http) {
     var file = $scope.file,

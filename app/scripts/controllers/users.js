@@ -196,84 +196,19 @@ angular.module('phundusApp')
     }
   ]);
 
-angular.module('phundusApp')
-  .controller('UsersArticlesFilesCtrl', ['$scope', 'userId', 'articleId', '$http', '$filter', '$window',
-    function ($scope, userId, articleId, $http) {
-      var isOnGitHub = false;
-      var url = '/api/v0/users/' + userId + '/articles/' + articleId + '/files';
-      $scope.options = {
-        url: url
-      };
-      if (!isOnGitHub) {
-        $scope.loadingFiles = true;
-        $http.get(url)
-          .then(
-          function (response) {
-            $scope.loadingFiles = false;
-            $scope.queue = response.data.files || [];
-          },
-          function () {
-            $scope.loadingFiles = false;
-          }
-        );
-      }
-    }]);
-
 /**
  * @ngdoc function
- * @name phundusApp.controller:UsersArticlesArticleCtrl
+ * @name phundusApp.controller:UsersArticlesFilesCtrl
  * @description
- * # UsersArticlesArticleCtrl
+ * # UsersArticlesFilesCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesArticleCtrl', ['$scope', 'userId', 'articleId',
+  .controller('UsersArticlesFilesCtrl', ['$scope', 'userId', 'articleId',
     function ($scope, userId, articleId) {
-
-      console.log('UsersArticlesArticleCtrl');
-      console.log('userId', userId);
-      console.log('articleId', articleId);
-      $scope.userId = userId;
-      $scope.articleId = articleId;
-
-    }
-  ])
-
-
-  .controller('UsersArticlesArticleDetailsCtrl', ['$scope', 'userId', 'articleId',
-    function ($scope, userId, articleId) {
-
-      console.log('UsersArticlesArticleDetailsCtrl');
-      console.log('userId', userId);
-      console.log('articleId', articleId);
-      $scope.userId = userId;
-      $scope.articleId = articleId;
-
-    }
-  ])
-  .controller('UsersArticlesArticleFilesCtrl', ['$scope', 'userId', 'articleId',
-    function ($scope, userId, articleId) {
-
-      console.log('UsersArticlesArticleFilesCtrl');
-      console.log('userId', userId);
-      console.log('articleId', articleId);
-      $scope.userId = userId;
-      $scope.articleId = articleId;
-
-    }
-  ])
-  .controller('UsersArticlesArticleCategoriesCtrl', ['$scope', 'userId', 'articleId',
-    function ($scope, userId, articleId) {
-
-      console.log('UsersArticlesArticleCategoriesCtrl');
-      console.log('userId', userId);
-      console.log('articleId', articleId);
-      $scope.userId = userId;
-      $scope.articleId = articleId;
-
+      $scope.url = '/api/v0/users/' + userId + '/articles/' + articleId + '/files';
     }
   ]);
-
 
 /**
  * @ngdoc function

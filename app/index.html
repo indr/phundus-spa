@@ -142,7 +142,17 @@
     <span class="sr-only">Success: </span>{{msg}}
   </div>
 
-  <div data-ui-view/>
+  <div data-ui-view></div>
+
+  <div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+  </div>
 </div>
 
 <div class="footer">
@@ -155,9 +165,10 @@
 
 <!-- build:js(.) scripts/vendor.js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/jquery-ui/ui/widget.js"></script>
-<!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
+<!--<script src="bower_components/jquery-ui/ui/widget.js"></script>-->
+<script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<!-- bower:js -->
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
@@ -184,7 +195,6 @@
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-audio.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
-<script src="bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
 <!-- endbuild -->
