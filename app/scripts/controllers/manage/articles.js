@@ -8,7 +8,7 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageArticlesCtrl', ['_', '$scope', '$window', 'UserArticles', 'Auth', 'Alert', 'organizationId',
+  .controller('ManageArticlesCtrl', ['_', '$scope', '$window', 'Articles', 'Auth', 'Alert', 'organizationId',
     function (_, $scope, $window, Articles, Auth, Alert, organizationId) {
 
       $scope.loading = true;

@@ -48,13 +48,13 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:UsersArticlesCtrl
+ * @name phundusApp.controller:UsersArticlesIndexCtrl
  * @description
- * # UsersArticlesCtrl
+ * # UsersArticlesIndexCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesCtrl', ['_', '$scope', 'userId', '$window', 'UserArticles', 'Alert',
+  .controller('UsersArticlesIndexCtrl', ['_', '$scope', 'userId', '$window', 'UserArticles', 'Alert',
     function (_, $scope, userId, $window, Articles, Alert) {
 
       $scope.loading = true;
@@ -83,6 +83,27 @@ angular.module('phundusApp')
     }
   ]);
 
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesNewCtrl
+ * @description
+ * # UsersArticlesNewCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesNewCtrl', ['$scope', 'userId', 'UserArticles', 'Alert',
+    function ($scope, userId, Articles, Alert) {
+      $scope.userId = userId;
+
+      $scope.submit = function () {
+        Articles.post(userId, {name: $scope.name}, function (res) {
+          Alert.success('Das Material wurde erfolgreich erfasst: ' + res.articleId);
+        }, function () {
+          Alert.error('Fehler beim Speichern des Materials.')
+        });
+      }
+    }
+  ]);
 
 /**
  * @ngdoc function

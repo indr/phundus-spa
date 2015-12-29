@@ -108,6 +108,9 @@ angular.module('phundusApp')
       getAll: function (userId, success, error) {
         $http.get('/api/v0/users/' + userId + '/articles').success(success).error(error);
       },
+      post: function (userId, content, success, error) {
+        $http.post('/api/v0/users/' + userId + '/articles', content).success(success).error(error);
+      },
       delete: function(userId, articleId, success, error) {
         $http.delete('/api/v0/users/' + userId + '/articles/' + articleId).success(success).error(error);
       }

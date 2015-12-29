@@ -129,10 +129,21 @@ var app = angular
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
       })
+
       .state('users.articles', {
+        abstract: true,
         url: '/articles',
+        template: '<ui-view/>'
+      })
+      .state('users.articles.index', {
+        url: '/',
         templateUrl: 'views/users/articles.html',
-        controller: 'UsersArticlesCtrl'
+        controller: 'UsersArticlesIndexCtrl'
+      })
+      .state('users.articles.new', {
+        url: '/new',
+        templateUrl: 'views/manage/create-article.html',
+        controller: 'UsersArticlesNewCtrl'
       });
 
       /*

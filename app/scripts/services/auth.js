@@ -1,5 +1,7 @@
 'use strict';
 
+// http://www.frederiknakstad.com/2013/01/21/authentication-in-single-page-applications-with-angular-js/
+
 angular.module('phundusApp')
   .factory('Auth', ['$http', '$cookies', '_', function ($http, $cookies, _) {
 
@@ -42,7 +44,7 @@ angular.module('phundusApp')
         return 0;
       }
       var membership = _.find(currentUser.memberships, {organizationId: organizationId});
-      
+
       if (membership && membership.isManager) {
         return userRoles.manager.bitMask;
       }
