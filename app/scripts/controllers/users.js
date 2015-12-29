@@ -138,6 +138,66 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesDescriptionCtrl
+ * @description
+ * # UsersArticlesDescriptionCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesDescriptionCtrl', ['$scope', '$state', 'userId', 'articleId', 'UserArticles', 'Alert',
+    function ($scope, $state, userId, articleId, Articles, Alert) {
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+      $scope.description = null;
+
+      Articles.getDescription(userId, articleId, function (res) {
+        $scope.description = res;
+      }, function () {
+        Alert.error('Fehler beim Laden der Beschreibung.');
+      });
+
+      $scope.submit = function () {
+        Articles.putDescription(userId, articleId, {data:$scope.description}, function () {
+          Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern der Beschreibung.');
+        });
+      }
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesSpecificationCtrl
+ * @description
+ * # UsersArticlesSpecificationCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesSpecificationCtrl', ['$scope', '$state', 'userId', 'articleId', 'UserArticles', 'Alert',
+    function ($scope, $state, userId, articleId, Articles, Alert) {
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+      $scope.specification = null;
+
+      Articles.getSpecification(userId, articleId, function (res) {
+        $scope.specification = res;
+      }, function () {
+        Alert.error('Fehler beim Laden der Spezifikation.');
+      });
+
+      $scope.submit = function () {
+        Articles.putSpecification(userId, articleId, {data: $scope.specification}, function () {
+          Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
+        }, function () {
+          Alert.error('Fehler beim Speichern der Spezifikation.');
+        });
+      }
+    }
+  ]);
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:UsersArticlesArticleCtrl
  * @description
  * # UsersArticlesArticleCtrl

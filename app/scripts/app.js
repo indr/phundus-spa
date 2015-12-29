@@ -164,6 +164,16 @@ var app = angular
         templateUrl: 'views/manage/edit-article-details.html',
         controller: 'UsersArticlesDetailsCtrl'
       })
+      .state('users.articles.edit.description', {
+        url: '/description',
+        templateUrl: 'views/manage/edit-article-description.html',
+        controller: 'UsersArticlesDescriptionCtrl'
+      })
+      .state('users.articles.edit.specification', {
+        url: '/specification',
+        templateUrl: 'views/manage/edit-article-specification.html',
+        controller: 'UsersArticlesSpecificationCtrl'
+      })
     ;
 
       /*
