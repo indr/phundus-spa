@@ -228,6 +228,28 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:UsersArticlesStockCtrl
+ * @description
+ * # UsersArticlesStockCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('UsersArticlesStockCtrl', ['$scope', 'userId', 'articleId', 'UserArticles', 'Alert',
+    function ($scope, userId, articleId, Articles, Alert) {
+      $scope.userId = userId;
+      $scope.articleId = articleId;
+      $scope.stock = null;
+
+      Articles.getStock(userId, articleId, function (res) {
+        $scope.stock = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Bestandes.');
+      });
+    }
+  ]);
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:UsersOrdersCtrl
  * @description
  * # UsersOrdersCtrl

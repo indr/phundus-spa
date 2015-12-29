@@ -268,3 +268,25 @@ angular.module('phundusApp')
       $scope.url = '/api/v0/organizations/' + organizationId + '/articles/' + articleId + '/files';
     }
   ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesStockCtrl
+ * @description
+ * # OrganizationsArticlesStockCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsArticlesStockCtrl', ['$scope', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+    function ($scope, organizationId, articleId, Articles, Alert) {
+      $scope.organizationId = organizationId;
+      $scope.articleId = articleId;
+      $scope.stock = null;
+
+      Articles.getStock(organizationId, articleId, function (res) {
+        $scope.stock = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Bestandes.');
+      });
+    }
+  ]);

@@ -174,6 +174,11 @@ var app = angular
         templateUrl: 'views/manage/edit-article-specification.html',
         controller: 'UsersArticlesSpecificationCtrl'
       })
+      .state('users.articles.edit.stock', {
+        url: '/stock',
+        templateUrl: 'views/manage/edit-article-stock.html',
+        controller: 'UsersArticlesStockCtrl'
+      })
       .state('users.articles.edit.files', {
         url: '/files',
         templateUrl: 'views/manage/edit-article-files.html',
@@ -241,6 +246,11 @@ var app = angular
         url: '/specification',
         templateUrl: 'views/manage/edit-article-specification.html',
         controller: 'OrganizationsArticlesSpecificationCtrl'
+      })
+      .state('organizations.articles.edit.stock', {
+        url: '/stock',
+        templateUrl: 'views/manage/edit-article-stock.html',
+        controller: 'OrganizationsArticlesStockCtrl'
       })
       .state('organizations.articles.edit.files', {
         url: '/files',

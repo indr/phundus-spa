@@ -117,8 +117,11 @@ angular.module('phundusApp')
       put: function (organizationId, articleId, content, success, error) {
         $http.put(url(organizationId, articleId), content).success(success).error(error);
       },
-      delete: function(organizationId, articleId, success, error) {
+      delete: function (organizationId, articleId, success, error) {
         $http.delete(url(organizationId, articleId)).success(success).error(error);
+      },
+      getStock: function (organizationId, articleId, success, error) {
+        $http.get(url(organizationId, articleId, 'stock')).success(success).error(error);
       },
       getDescription: function (organizationId, articleId, success, error) {
         $http.get(url(organizationId, articleId, 'description')).success(success).error(error);
@@ -160,8 +163,11 @@ angular.module('phundusApp')
       put: function (userId, articleId, content, success, error) {
         $http.put(url(userId, articleId), content).success(success).error(error);
       },
-      delete: function(userId, articleId, success, error) {
+      delete: function (userId, articleId, success, error) {
         $http.delete(url(userId, articleId)).success(success).error(error);
+      },
+      getStock: function (userId, articleId, success, error) {
+        $http.get(url(userId, articleId, 'stock')).success(success).error(error);
       },
       getDescription: function (userId, articleId, success, error) {
         $http.get(url(userId, articleId, 'description')).success(success).error(error);
