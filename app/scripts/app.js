@@ -379,9 +379,9 @@ angular.module('phundusApp')
   }
 ]);
 
-app.run(['$rootScope', '$state', 'Auth', 'Alert', 'editableOptions',
-  function ($rootScope, $state, Auth, Alert, editableOptions) {
-
+app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions',
+  function ($rootScope, $state, $location, Auth, Alert, editableOptions) {
+    $rootScope.isTestEnv = /(^localhost)|(^acceptance)/.test($location.host());
     $rootScope.$state = $state;
     editableOptions.theme = 'bs3';
 

@@ -37,10 +37,6 @@ angular.module('phundusApp')
         );
       };
 
-      $scope.arePredefinedUserLoginsVisible = function () {
-        return $location.host().match('^localhost|^acceptance');
-      };
-
       $scope.autoLogin = function (username, password) {
         $scope.username = username;
         $scope.password = password || '1234';
