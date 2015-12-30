@@ -70,6 +70,11 @@ var app = angular
           }]
         }
       })
+      .state('public.logout', {
+        url: '/logout',
+        templateUrl: 'views/logout.html',
+        controller: 'LogoutCtrl'
+      })
       .state('public.404', {
         url: '/404',
         templateUrl: 'views/404.html'
@@ -98,11 +103,6 @@ var app = angular
         url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
-      })
-      .state('anon.logout', {
-        url: '/logout',
-        templateUrl: 'views/logout.html',
-        controller: 'LogoutCtrl'
       })
       .state('anon.goodbye', {
         url: '/goodbye',

@@ -11,9 +11,8 @@ angular.module('phundusApp')
   .controller('LoginCtrl', ['$scope', '$location', '$window', 'Auth', 'Alert',
     function ($scope, $location, $window, Auth, Alert) {
 
-      $scope.rememberMe = true;
+      $scope.rememberMe = false;
       $scope.login = function () {
-
         Auth.login({
             username: $scope.username,
             password: $scope.password,
@@ -34,6 +33,17 @@ angular.module('phundusApp')
           },
           function () {
             Alert.error("Das angegebene Passwort ist nicht korrekt.");
-          });
+          }
+        );
+      };
+
+      $scope.arePredefinedUserLoginsVisible = function () {
+        return $location.host().match('^localhost|^acceptance');
+      };
+
+      $scope.autoLogin = function (username, password) {
+        $scope.username = username;
+        $scope.password = password || '1234';
+        $scope.login();
       };
     }]);
