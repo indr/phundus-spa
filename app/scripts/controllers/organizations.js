@@ -40,16 +40,17 @@ angular.module('phundusApp')
         $scope.startpage = $sce.trustAsHtml(res.startpage);
 
         $timeout(function () {
-          if (!$scope.organization.coordinate) {
+          console.log($scope.organization.stores);
+          if (!$scope.organization.stores[0].coordinate) {
             return;
           }
 
           leafletData.getMap().then(function (map) {
 
-            var coordinate = $scope.organization.coordinate.split(',');
+            var coordinate = $scope.organization.stores[0].coordinate;
             var latLng = {
-              lat: parseFloat(coordinate[0]),
-              lng: parseFloat(coordinate[1])
+              lat: coordinate.latitude,
+              lng: coordinate.longitude
             };
             map.setView(latLng, 14);
 

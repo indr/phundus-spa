@@ -36,8 +36,9 @@
       </address>
     </div>
 
-    <div data-ng-show="organization.coordinate">
-      <h3>Karte</h3>
+    <div data-ng-show="organization.stores[0].coordinate">
+      <h3>Materialstelle</h3>
+      <address data-ng-show="organization.stores[0].address" data-ng-bind-html="organization.stores[0].address|replace:'\r|\n':'&lt;br&gt;'"></address>
       <leaflet width="100%" height="400px" style="margin-bottom:10px"></leaflet>
       <p></p>
     </div>
