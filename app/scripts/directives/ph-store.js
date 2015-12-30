@@ -3,12 +3,12 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.directive:phUserStore
+ * @name phundusApp.directive:phStore
  * @description
- * # phUserStore
+ * # phStore
  */
 angular.module('phundusApp')
-  .directive('phUserStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers',
+  .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers',
     function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers) {
       return {
         restrict: 'E',
@@ -96,7 +96,7 @@ angular.module('phundusApp')
             });
           }
         },
-        templateUrl: 'views/directives/ph-user-store.html'
+        templateUrl: 'views/directives/ph-store.html'
       }
     }])
 ;

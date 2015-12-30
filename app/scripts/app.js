@@ -210,7 +210,7 @@ var app = angular
       })
       .state('organizations.stores.index', {
         url: '/',
-        templateUrl: 'views/directives/ph-user-store.html',
+        template: '<ph-store store="store" data-is-editable="true" loaded="true"></ph-store>',
         controller: 'OrganizationsStoreCtrl'
       })
       .state('organizations.articles', {
