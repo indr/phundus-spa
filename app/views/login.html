@@ -40,15 +40,42 @@
   </div>
 </div>
 
-<div class="row" data-ng-hide="!isTestEnv">
+<div data-ng-visible="isTestEnv">
+<div class="row">
   <div class="col-xs-12">
     <h3>One-Click-Logins in der Test-Umgebung</h3>
-    <p>
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-1@test.phundus.ch')">chief-1@test.phundus.ch</button>
+    <p>Passwort ist "1234".</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-3">
+    <p data-ng-repeat="n in range(10011,10017)">
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin(n+'@test.phundus.ch')">{{n}}@test.phundus.ch</button>
     </p>
+  </div>
+  <div class="col-xs-3">
+    <p>
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin('user@test.phundus.ch')">user@test.phundus.ch</button>
+    </p>
+    <p data-ng-repeat="n in range(1,2)">
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-'+n+'@test.phundus.ch')">user-{{n}}@test.phundus.ch</button>
+    </p>
+  </div>
+  <div class="col-xs-3">
+    <p>
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief@test.phundus.ch')">chief@test.phundus.ch</button>
+    </p>
+    <p data-ng-repeat="n in range(1,2)">
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-'+n+'@test.phundus.ch')">chief-{{n}}@test.phundus.ch</button>
+    </p>
+  </div>
+  <div class="col-xs-3">
     <p>
       <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin@test.phundus.ch')">admin@test.phundus.ch</button>
     </p>
+    <p data-ng-repeat="n in range(1,2)">
+      <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-'+n+'@test.phundus.ch')">admin-{{n}}@test.phundus.ch</button>
+    </p>
   </div>
 </div>
-
+</div>
