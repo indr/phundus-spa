@@ -203,6 +203,16 @@ var app = angular
           }]
         }
       })
+      .state('organizations.stores', {
+        abstract: true,
+        url: '/stores',
+        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view/>'
+      })
+      .state('organizations.stores.index', {
+        url: '/',
+        templateUrl: 'views/directives/ph-user-store.html',
+        controller: 'OrganizationsStoreCtrl'
+      })
       .state('organizations.articles', {
         abstract: true,
         url: '/articles',
@@ -297,9 +307,9 @@ var app = angular
             $location.search('returnPath', encodeURI($location.path()));
             $location.path('/#/login');
           }
-          else if (response.status === 404) {
-            $location.path('/#/404');
-          }
+          //else if (response.status === 404) {
+          //  $location.path('/#/404');
+          //}
           return $q.reject(response);
         }
       };

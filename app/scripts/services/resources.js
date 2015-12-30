@@ -20,6 +20,9 @@ angular.module('phundusApp')
 
   .factory('Stores', ['$http', function ($http) {
     return {
+      getAll: function (queryString, success, error) {
+        $http.get('/api/v0/stores?' + queryString).success(success).error(error);
+      },
       get: function (storeId, success, error) {
         $http.get('/api/v0/stores/' + storeId).success(success).error(error);
       },

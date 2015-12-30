@@ -96,6 +96,30 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:OrganizationsStoreCtrl
+ * @description
+ * # OrganizationsStoreCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsStoreCtrl', ['$scope', 'organizationId', 'Stores', 'Alert',
+    function ($scope, organizationId, Stores, Alert) {
+      $scope.store = null;
+
+      Stores.getAll('ownerId=' + organizationId, function (res) {
+        $scope.store = res[0] || null;
+        if (!$scope.store) {
+          Alert.error('Die Materialstelle konnte nicht gefunden werden. Kontaktiere bitte das phundus-Team.');
+        }
+      }, function () {
+        Alert.error('Fehler beim Laden der Materialstelle.');
+      });
+    }
+  ]);
+
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:ManageArticlesCtrl
  * @description
  * # ManageArticlesCtrl
