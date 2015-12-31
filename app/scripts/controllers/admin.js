@@ -2,23 +2,41 @@
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:AdminCtrl
+ * @name phundusApp.controller:AdminMailsCtrl
  * @description
- * # AdminCtrl
+ * # AdminMailsCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('AdminCtrl', ['$scope', 'Users', 'Auth', 'Alert',
-    function ($scope, Users, Auth, Alert) {
+  .controller('AdminMailsCtrl', ['$scope', 'Mails', 'Auth', 'Alert',
+    function ($scope, Mails, Auth, Alert) {
       $scope.loading = true;
       $scope.userRoles = Auth.userRoles;
 
-      Users.getAll(function (res) {
-        $scope.users = res;
+      Mails.query(function (res) {
+        $scope.mails = res;
+        $scope.displayedMail = [].concat($scope.mails);
         $scope.loading = false;
       }, function () {
-        Alert.error("Failed to fetch users.");
+        Alert.error('Fehler beim Laden der E-Mails.');
         $scope.loading = false;
       });
+
+      $scope.delete = function (id) {
+        if (id) {
+          Mails.delete({id: id});
+        }
+        else {
+          Mails.delete();
+        }
+      };
+
+      $scope.show = function (mail) {
+        $scope.mail = mail;
+      };
+
+      $scope.close = function () {
+        $scope.mail = null;
+      };
     }
   ]);

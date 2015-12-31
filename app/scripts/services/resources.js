@@ -52,6 +52,10 @@ angular.module('phundusApp')
     return $resource('/api/v0/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
 
+  .factory('Mails', ['$resource', function ($resource) {
+    return $resource('/api/v0/mails/:id', {id: '@id'},{query: {method:'GET', isArray: true}});
+  }])
+
   .factory('Relationships', ['$http', function ($http) {
     return {
       get: function (organizationId, success, error) {

@@ -120,9 +120,23 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:ManageArticlesCtrl
+ * @name phundusApp.controller:ManageOrganizationsSettingsCtrl
  * @description
- * # ManageArticlesCtrl
+ * # ManageOrganizationsSettingsCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('ManageOrganizationsSettingsCtrl', ['$scope', 'organizationId',
+    function ($scope, organizationId) {
+      $scope.organizationId = organizationId
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsArticlesCtrl
+ * @description
+ * # OrganizationsArticlesCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')

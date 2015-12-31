@@ -185,8 +185,43 @@ var app = angular
         controller: 'UsersArticlesFilesCtrl'
       });
 
+    // Management routes
+    $stateProvider
+      .state('manage', {
+        abstract: true,
+        data: {
+          access: access.user
+        },
+        url: '/manage',
+        template: '<ui-view></ui-view>'
+      })
+      .state('manage.organization', {
+        abstract: true,
+        data: {
+          access: access.manager
+        },
+        url: '/organizations/{organizationId}',
+        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view></ui-view>',
+        controller: ['$scope', 'organizationId', function($scope, organizationId) {
+          $scope.organizationId = organizationId
+        }],
+        resolve: {
+          organizationId: ['$stateParams', function ($stateParams) {
+            return $stateParams.organizationId;
+          }]
+        }
+      })
+      .state('manage.organization.settings', {
+        url: '/settings',
+        controller: 'ManageOrganizationsSettingsCtrl',
+        templateUrl: '/views/manage/organization-settings.html'
+      })
+    ;
+
     // Organization routes
     $stateProvider
+
+
       .state('organizations', {
         abstract: true,
         data: {
@@ -275,12 +310,13 @@ var app = angular
         template: "<ui-view/>",
         data: {
           access: access.admin
-        }
+        },
+        url: '/admin'
       })
-      .state('admin.admin', {
-        url: '/admin',
-        templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl'
+      .state('admin.mails', {
+        url: '/mails',
+        templateUrl: 'views/admin/mails.html',
+        controller: 'AdminMailsCtrl'
       });
 
     $urlRouterProvider.otherwise('/404');
