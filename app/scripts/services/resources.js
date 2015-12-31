@@ -1,11 +1,18 @@
 'use strict';
 
 angular.module('phundusApp')
-  
+
   .config(['$resourceProvider', function ($resourceProvider) {
     angular.extend($resourceProvider.defaults.actions, {
+      patch: {
+        method: 'PATCH'
+      },
       post: {
         method: 'POST'
+      },
+      'query': {
+        method:'GET',
+        isArray:false
       }
     });
   }])
@@ -26,38 +33,8 @@ angular.module('phundusApp')
     };
   }])
 
-  .factory('Stores', ['$http', function ($http) {
-    return {
-      getAll: function (queryString, success, error) {
-        $http.get('/api/v0/stores?' + queryString).success(success).error(error);
-      },
-      get: function (storeId, success, error) {
-        $http.get('/api/v0/stores/' + storeId).success(success).error(error);
-      },
-      post: function (userId, success, error) {
-        $http.post('/api/v0/stores', {
-          userId: userId
-        }).success(success).error(error);
-      },
-      putAddress: function (storeId, address, success, error) {
-        $http.put('/api/v0/stores/' + storeId + '/address', {
-          address: address
-        }).success(success).error(error);
-      },
-      putOpeningHours: function (storeId, openingHours, success, error) {
-        $http.put('/api/v0/stores/' + storeId + '/opening-hours', {
-          openingHours: openingHours
-        }).success(success).error(error);
-      },
-      putCoordinate: function (storeId, coordinate, success, error) {
-        $http.put('/api/v0/stores/' + storeId + '/coordinate', {
-          coordinate: {
-            latitude: parseFloat(coordinate.latitude),
-            longitude: parseFloat(coordinate.longitude)
-          }
-        }).success(success).error(error);
-      }
-    }
+  .factory('Stores', ['$resource', function ($resource) {
+    return $resource('/api/v0/stores/:storeId', {storeId: '@storeId'});
   }])
 
   .factory('Users', ['$http', function ($http) {

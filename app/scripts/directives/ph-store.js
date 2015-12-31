@@ -77,22 +77,19 @@ angular.module('phundusApp')
           });
 
           scope.updateAddress = function ($data) {
-            Stores.putAddress(scope.store.storeId, $data.address, function () {
-            }, function () {
+            Stores.patch({storeId: scope.store.storeId, address: $data.address}, function () {}, function () {
               Alert.error("Fehler beim Speichern der Adresse.");
             });
           };
           scope.updateOpeningHours = function ($data) {
-            Stores.putOpeningHours(scope.store.storeId, $data.openingHours, function () {
-            }, function () {
-              Alert.error("Fehler beim Speichern der Öffnungszeiten.");
+            Stores.patch({storeId: scope.store.storeId, openingHours: $data.openingHours}, function () {}, function () {
+              Alert.error("Fehler beim Speichern der Adresse.");
             });
           };
 
           scope.updateCoordinate = function ($data) {
-            Stores.putCoordinate(scope.store.storeId, $data, function () {
-            }, function () {
-              Alert.error("Fehler beim Speichern der Koordinate.");
+            Stores.patch({storeId: scope.store.storeId, coordinate: $data}, function () {}, function () {
+              Alert.error("Fehler beim Speichern der Adresse.");
             });
           }
         },

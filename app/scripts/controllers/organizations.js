@@ -106,7 +106,7 @@ angular.module('phundusApp')
     function ($scope, organizationId, Stores, Alert) {
       $scope.store = null;
 
-      Stores.getAll('ownerId=' + organizationId, function (res) {
+      Stores.query({ownerId: organizationId}, function (res) {
         $scope.store = res.stores[0] || null;
         if (!$scope.store) {
           Alert.error('Die Materialstelle konnte nicht gefunden werden. Kontaktiere bitte das phundus-Team.');
