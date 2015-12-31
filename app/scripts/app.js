@@ -213,7 +213,8 @@ var app = angular
       })
       .state('manage.organization.orders', {
         url: '/orders',
-        template: '<p>manage.organization.orders</p>'
+        templateUrl: '/views/organizations/orders.html',
+        controller: 'ManageOrganizationOrdersCtrl'
       })
       .state('manage.organization.settings', {
         url: '/settings',
@@ -239,7 +240,8 @@ var app = angular
       })
       .state('manage.user.orders', {
         url: '/orders',
-        template: '<p>manage.user.orders</p>'
+        templateUrl: '/views/users/orders.html',
+        controller: 'ManageUserOrdersCtrl'
       })
     ;
 

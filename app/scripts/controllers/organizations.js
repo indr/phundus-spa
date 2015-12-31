@@ -156,7 +156,7 @@ angular.module('phundusApp')
         $scope.loading = false;
       });
 
-      $scope.delete = function(articleId, name) {
+      $scope.delete = function (articleId, name) {
         if (!$window.confirm('Möchtest du den Artikel "' + name + '" wirklich löschen?')) {
           return;
         }
@@ -164,8 +164,8 @@ angular.module('phundusApp')
           Alert.success('Der Artikel "' + name + '" wurder erfolgreich gelöscht.');
           _.remove($scope.displayedArticles, {id: articleId});
           _.remove($scope.articles, {id: articleId});
-        }, function() {
-          Alert.error('Fehler beim Löschen des Artikels "' + name +'".');
+        }, function () {
+          Alert.error('Fehler beim Löschen des Artikels "' + name + '".');
         });
       }
     }
@@ -246,7 +246,7 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
-        Articles.putDescription(organizationId, articleId, {data:$scope.description}, function () {
+        Articles.putDescription(organizationId, articleId, {data: $scope.description}, function () {
           Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern der Beschreibung.');
@@ -325,6 +325,25 @@ angular.module('phundusApp')
         $scope.stock = res;
       }, function () {
         Alert.error('Fehler beim Laden des Bestandes.');
+      });
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:ManageOrganizationOrdersCtrl
+ * @description
+ * # ManageOrganizationOrdersCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('ManageOrganizationOrdersCtrl', ['$scope', 'organizationId', 'Orders', 'Alert',
+    function ($scope, organizationId, Orders, Alert) {
+      Orders.query({organizationId: organizationId}, function (res) {
+        $scope.rowCollection = res.orders;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
+      }, function () {
+        Alert.error('Fehler beim Laden der Bestellungen.');
       });
     }
   ]);

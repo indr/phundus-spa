@@ -68,7 +68,7 @@ angular.module('phundusApp')
         $scope.loading = false;
       });
 
-      $scope.delete = function(articleId, name) {
+      $scope.delete = function (articleId, name) {
         if (!$window.confirm('Möchtest du den Artikel "' + name + '" wirklich löschen?')) {
           return;
         }
@@ -76,8 +76,8 @@ angular.module('phundusApp')
           Alert.success('Der Artikel "' + name + '" wurder erfolgreich gelöscht.');
           _.remove($scope.displayedArticles, {id: articleId});
           _.remove($scope.articles, {id: articleId});
-        }, function() {
-          Alert.error('Fehler beim Löschen des Artikels "' + name +'".');
+        }, function () {
+          Alert.error('Fehler beim Löschen des Artikels "' + name + '".');
         });
       }
     }
@@ -165,7 +165,7 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
-        Articles.putDescription(userId, articleId, {data:$scope.description}, function () {
+        Articles.putDescription(userId, articleId, {data: $scope.description}, function () {
           Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern der Beschreibung.');
@@ -250,50 +250,19 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:UsersOrdersCtrl
+ * @name phundusApp.controller:ManageUserOrdersCtrl
  * @description
- * # UsersOrdersCtrl
+ * # ManageUserOrdersCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersOrdersCtrl', ['$scope', 'Orders', 'Alert',
-    function ($scope, Orders, Alert) {
-      Orders.getAll(function (res) {
-        $scope.rowCollection = res;
+  .controller('ManageUserOrdersCtrl', ['$scope', 'userId', 'Orders', 'Alert',
+    function ($scope, userId, Orders, Alert) {
+      Orders.query({userId: userId}, function (res) {
+        $scope.rowCollection = res.orders;
         $scope.displayedCollection = [].concat($scope.rowCollection);
-      }, function (err) {
-        Alert.error(err);
+      }, function () {
+        Alert.error('Fehler beim Laden der Bestellungen.');
       });
-    }
-  ]);
-
-/**
- * @ngdoc function
- * @name phundusApp.controller:UsersContractsCtrl
- * @description
- * # UsersContractsCtrl
- * Controller of the phundusApp
- */
-angular.module('phundusApp')
-  .controller('UsersContractsCtrl', ['$scope',
-    function ($scope) {
-
-      $scope.search = {status: ''};
-      $scope.order = '-createdUtc';
-      $scope.orderBy = function (by) {
-        if ($scope.order === by) {
-          $scope.order = '-' + by;
-        }
-        else {
-          $scope.order = by;
-        }
-      };
-
-      //Contracts.getAll(function (res) {
-      //  $scope.contracts = res;
-      //}, function(err) {
-      //  $rootScope.error = err;
-      //});
-
     }
   ]);
