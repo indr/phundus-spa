@@ -36,7 +36,7 @@ angular.module('phundusApp')
       });
 
       $scope.openStore = function () {
-        Stores.post($scope.user.userId, function (res) {
+        Stores.post({userId: $scope.user.userId}, function (res) {
           $scope.user.store = res;
           Alert.success('Deine Materialstelle wurde erfolgreich eröffnet.');
         }, function () {
