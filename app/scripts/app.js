@@ -15,7 +15,7 @@ var app = angular
     //'ngAnimate',
     'ngCookies',
     //'ngMessages',
-    //'ngResource',
+    'ngResource',
     //'ngRoute',
     'ngSanitize',
     //'ngTouch',
@@ -317,8 +317,7 @@ var app = angular
   });
 
 angular.module('phundusApp')
-  .config([
-    '$httpProvider', 'fileUploadProvider',
+  .config(['$httpProvider', 'fileUploadProvider',
     function ($httpProvider, fileUploadProvider) {
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
       fileUploadProvider.defaults.redirect = window.location.href.replace(
@@ -328,14 +327,15 @@ angular.module('phundusApp')
     }
   ]);
 
-angular.module('phundusApp').filter('orderStatusText', function () {
-  return function (input) {
-    return {
-      "Pending": "Provisorisch", "Approved": "Bestätigt", "Rejected": "Abgelehnt", "Closed": "Abgeschlossen"
-    }
-      [input];
-  };
-});
+angular.module('phundusApp')
+  .filter('orderStatusText', function () {
+    return function (input) {
+      return {
+        "Pending": "Provisorisch", "Approved": "Bestätigt", "Rejected": "Abgelehnt", "Closed": "Abgeschlossen"
+      }
+        [input];
+    };
+  });
 
 angular.module('phundusApp')
   .controller('MyFileUploadCtrl', [

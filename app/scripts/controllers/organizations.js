@@ -12,7 +12,7 @@ angular.module('phundusApp')
     function ($scope, Organizations, Alert) {
       $scope.loading = true;
 
-      Organizations.getAll(function (res) {
+      Organizations.query(function (res) {
         $scope.organizations = res;
         $scope.displayedOrganizations = [].concat($scope.organizations);
         $scope.loading = false;
@@ -35,13 +35,12 @@ angular.module('phundusApp')
         return $scope.organization && ($scope.organization.address || $scope.organization.emailAddress || $scope.organization.website);
       };
 
-      Organizations.get(organizationId, function (res) {
+      Organizations.get({organizationId: organizationId}, function (res) {
         $scope.organization = res;
         $scope.startpage = $sce.trustAsHtml(res.startpage);
 
         $timeout(function () {
-          console.log($scope.organization.stores);
-          if (!$scope.organization.stores[0].coordinate) {
+          if (!$scope.organization.stores[0] || !$scope.organization.stores[0].coordinate) {
             return;
           }
 

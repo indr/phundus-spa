@@ -41,7 +41,7 @@ angular.module('phundusApp')
           return;
         }
 
-        Organizations.post(name, function(res) {
+        Organizations.post({name: name}, function(res) {
           Alert.success('Die Organisation wurde erfolgreich gegründet.');
           $state.go('public.organization', {organizationId: res.organizationId});
         }, function () {

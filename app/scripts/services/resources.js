@@ -1,6 +1,14 @@
 'use strict';
 
 angular.module('phundusApp')
+  
+  .config(['$resourceProvider', function ($resourceProvider) {
+    angular.extend($resourceProvider.defaults.actions, {
+      post: {
+        method: 'POST'
+      }
+    });
+  }])
 
   .factory('Contracts', ['$http', function ($http) {
     return {
@@ -63,20 +71,8 @@ angular.module('phundusApp')
     };
   }])
 
-  .factory('Organizations', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/v0/organizations').success(success).error(error);
-      },
-      get: function (organizationId, success, error) {
-        $http.get('/api/v0/organizations/' + organizationId).success(success).error(error);
-      },
-      post: function (name, success, error) {
-        $http.post('/api/v0/organizations', {
-          name: name
-        }).success(success).error(error);
-      }
-    }
+  .factory('Organizations', ['$resource', function ($resource) {
+    return $resource('/api/v0/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
 
   .factory('Relationships', ['$http', function ($http) {
