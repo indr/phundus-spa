@@ -10,33 +10,34 @@ angular.module('phundusApp')
       post: {
         method: 'POST'
       },
-      'query': {
-        method:'GET',
-        isArray:false
+      query: {
+        method: 'GET',
+        isArray: false
       }
     });
   }])
 
-  .factory('Contracts', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/contracts').success(success).error(error);
-      }
-    };
+  .factory('Contracts', ['$resource', function ($resource) {
+    return $resource('/api/v0/contracts/:contractId', {contractId: '@contractId'});
   }])
-
-  .factory('Orders', ['$http', function ($http) {
-    return {
-      getAll: function (success, error) {
-        $http.get('/api/orders').success(success).error(error);
-      }
-    };
+  .factory('ContractItems', ['$resource', function ($resource) {
+    return $resource('/api/v0/contracts/:contractId/items/:contractItemId', {
+      contractId: '@contractId',
+      contractItemId: '@contractItemId'
+    });
   }])
-
+  .factory('Mails', ['$resource', function ($resource) {
+    return $resource('/api/v0/mails/:id', {id: '@id'}, {query: {method: 'GET', isArray: true}});
+  }])
+  .factory('Orders', ['$resource', function ($resource) {
+    return $resource('/api/v0/orders/:orderId', {orderId: '@orderId'});
+  }])
+  .factory('OrderItems', ['$resource', function ($resource) {
+    return $resource('/api/v0/orders/:orderId/items/:orderItemId', {orderId: '@orderId', orderItemId: '@orderItemId'});
+  }])
   .factory('Stores', ['$resource', function ($resource) {
     return $resource('/api/v0/stores/:storeId', {storeId: '@storeId'});
   }])
-
   .factory('Users', ['$http', function ($http) {
     return {
       getAll: function (success, error) {
@@ -52,14 +53,11 @@ angular.module('phundusApp')
     return $resource('/api/v0/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
 
-  .factory('Mails', ['$resource', function ($resource) {
-    return $resource('/api/v0/mails/:id', {id: '@id'},{query: {method:'GET', isArray: true}});
-  }])
 
   .factory('Relationships', ['$http', function ($http) {
     return {
       get: function (organizationId, success, error) {
-        $http.get('/api/v0/organizations/' + organizationId +'/relationships').success(success).error(error);
+        $http.get('/api/v0/organizations/' + organizationId + '/relationships').success(success).error(error);
       }
     }
   }])
@@ -67,7 +65,7 @@ angular.module('phundusApp')
   .factory('Applications', ['$http', function ($http) {
     return {
       post: function (organizationId, content, success, error) {
-        $http.post('/api/v0/organizations/' + organizationId +'/applications', content).success(success).error(error);
+        $http.post('/api/v0/organizations/' + organizationId + '/applications', content).success(success).error(error);
       }
     }
   }])

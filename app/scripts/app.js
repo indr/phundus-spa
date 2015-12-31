@@ -202,7 +202,7 @@ var app = angular
         },
         url: '/organizations/{organizationId}',
         template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view></ui-view>',
-        controller: ['$scope', 'organizationId', function($scope, organizationId) {
+        controller: ['$scope', 'organizationId', function ($scope, organizationId) {
           $scope.organizationId = organizationId
         }],
         resolve: {
@@ -211,10 +211,35 @@ var app = angular
           }]
         }
       })
+      .state('manage.organization.orders', {
+        url: '/orders',
+        template: '<p>manage.organization.orders</p>'
+      })
       .state('manage.organization.settings', {
         url: '/settings',
         controller: 'ManageOrganizationsSettingsCtrl',
         templateUrl: '/views/manage/organization-settings.html'
+      })
+
+      .state('manage.user', {
+        abstract: true,
+        data: {
+          access: access.user
+        },
+        url: '/users/{userId}',
+        template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/></ui-view>',
+        controller: ['$scope', 'userId', function ($scope, userId) {
+          $scope.userId = userId
+        }],
+        resolve: {
+          userId: ['$stateParams', function ($stateParams) {
+            return $stateParams.userId;
+          }]
+        }
+      })
+      .state('manage.user.orders', {
+        url: '/orders',
+        template: '<p>manage.user.orders</p>'
       })
     ;
 
@@ -229,7 +254,7 @@ var app = angular
         },
         url: '/organizations/{organizationId}',
         template: '<ph-organization-navbar data-ng-show="organization" data-organization-id="organizationId"></ph-organization-navbar><ui-view/>',
-        controller: ['$scope', 'organizationId', function($scope, organizationId) {
+        controller: ['$scope', 'organizationId', function ($scope, organizationId) {
           $scope.organizationId = organizationId
         }],
         resolve: {
@@ -384,46 +409,46 @@ angular.module('phundusApp')
       $scope.loadingFiles = true;
       $http.get(url)
         .then(
-          function (response) {
-            $scope.loadingFiles = false;
-            $scope.queue = response.data.files || [];
-          },
-          function () {
-            $scope.loadingFiles = false;
-          }
+        function (response) {
+          $scope.loadingFiles = false;
+          $scope.queue = response.data.files || [];
+        },
+        function () {
+          $scope.loadingFiles = false;
+        }
       );
     }
   ])
   .controller('FileDestroyController', ['$scope', '$http',
-  function ($scope, $http) {
-    var file = $scope.file,
-      state;
-    if (file.url) {
-      file.$state = function () {
-        return state;
-      };
-      file.$destroy = function () {
-        state = 'pending';
-        return $http({
-          url: file.deleteUrl,
-          method: file.deleteType
-        }).then(
-          function () {
-            state = 'resolved';
-            $scope.clear(file);
-          },
-          function () {
-            state = 'rejected';
-          }
-        );
-      };
-    } else if (!file.$cancel && !file._index) {
-      file.$cancel = function () {
-        $scope.clear(file);
-      };
+    function ($scope, $http) {
+      var file = $scope.file,
+        state;
+      if (file.url) {
+        file.$state = function () {
+          return state;
+        };
+        file.$destroy = function () {
+          state = 'pending';
+          return $http({
+            url: file.deleteUrl,
+            method: file.deleteType
+          }).then(
+            function () {
+              state = 'resolved';
+              $scope.clear(file);
+            },
+            function () {
+              state = 'rejected';
+            }
+          );
+        };
+      } else if (!file.$cancel && !file._index) {
+        file.$cancel = function () {
+          $scope.clear(file);
+        };
+      }
     }
-  }
-]);
+  ]);
 
 app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions',
   function ($rootScope, $state, $location, Auth, Alert, editableOptions) {
@@ -432,7 +457,7 @@ app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions'
     editableOptions.theme = 'bs3';
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
-      if(!('data' in toState) || !('access' in toState.data)){
+      if (!('data' in toState) || !('access' in toState.data)) {
         //$rootScope.error = "Access undefined for this state";
         Alert.error('Access undefined for this state.');
         event.preventDefault();
