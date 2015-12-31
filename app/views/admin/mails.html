@@ -2,10 +2,10 @@
 <div data-ng-show="mail">
   <h2>{{mail.subject}}</h2>
   <div data-ng-show="mail.textBody">
-    <p class="well" style="white-space:pre">{{mail.textBody}}</p>
+    <p class="well" style="white-space:pre-wrap">{{mail.textBody}}</p>
   </div>
   <div data-ng-show="mail.htmlBody">
-    <p class="well">{{mail.htmlBody}}</p>
+    <p class="well" style="white-space:pre-wrap">{{mail.htmlBody}}</p>
   </div>
   <p>
     <a class="btn btn-primary" data-ng-click="close()">Schliessen</a>
