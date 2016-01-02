@@ -4,17 +4,13 @@
   <div class="col-lg-4">
     <p>Status: {{order.status | orderStatusText}}</p>
 
-    <p>Erstellt: {{order.createdUtc | date:'medium'}}</p>
+    <p>Erstellt: {{order.createdAtUtc | date:'medium'}}</p>
 
-    <p>Bearbeitet: {{order.modifiedUtc | date:'medium'}}</p>
+    <p>Bearbeitet: {{order.modifiedAtUtc | date:'medium'}}</p>
   </div>
   <div class="col-lg-4">
     <p>Vermieter: {{order.lessorName}}</p>
-  </div>
-  <div class="col-lg-4">
-    <p>Ausleiher: {{order.borrowerFirstName}} {{order.borrowerLastName}}</p>
-
-    <p>J+S/Info Card: {{order.borrowerMemberNumber}}</p>
+    <p>Ausleiher: {{order.lesseeName}}</p>
   </div>
 </div>
 
