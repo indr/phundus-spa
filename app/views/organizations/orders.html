@@ -3,7 +3,6 @@
   <tr>
     <th data-st-sort-default="true" data-st-sort="orderId">Nummer</th>
     <th data-st-sort="createdAtUtc">Erstellt</th>
-    <th data-st-sort="lessorName">Vermieter</th>
     <th data-st-sort="lesseeName">Mieter</th>
     <th data-st-sort="status">Status</th>
     <th></th>
@@ -15,11 +14,10 @@
     <td>
       <ph-date value="order.createdAtUtc"></ph-date>
     </td>
-    <td>{{order.lessorName}}</td>
     <td>{{order.lesseeName}}</td>
     <td>{{order.status | orderStatusText}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.organization.orders({organizationId: organizationId, orderId: orderId})">Öffnen</a>
+      <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.organization.order({organizationId: organizationId, orderId: order.orderId})">Öffnen</a>
       <a class="btn btn-default btn-sm" href="/api/v0/orders/{{order.orderId}}.pdf">PDF</a>
     </td>
   </tr>

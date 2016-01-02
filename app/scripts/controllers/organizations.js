@@ -347,3 +347,25 @@ angular.module('phundusApp')
       });
     }
   ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:ManageOrganizationOrderCtrl
+ * @description
+ * # ManageOrganizationOrderCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('ManageOrganizationOrderCtrl', ['$scope', 'organizationId', 'orderId', 'Orders', 'Alert',
+    function ($scope, organizationId, orderId, Orders, Alert) {
+      $scope.organizationId = organizationId;
+      $scope.orderId = orderId;
+      $scope.order = null;
+
+      Orders.get({orderId: orderId}, function (res) {
+        $scope.order = res;
+      }, function () {
+        Alert.error('Fehler beim Laden der Bestellung.');
+      });
+    }
+  ]);

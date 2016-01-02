@@ -19,7 +19,7 @@
     <td>{{order.lesseeName}}</td>
     <td>{{order.status | orderStatusText}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.user.orders({userId: userId, orderId: orderId})">Öffnen</a>
+      <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.user.order({userId: userId, orderId: order.orderId})">Öffnen</a>
       <a class="btn btn-default btn-sm" href="/api/v0/orders/{{order.orderId}}.pdf">PDF</a>
     </td>
   </tr>

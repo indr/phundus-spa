@@ -221,9 +221,19 @@ var app = angular
         ]
       })
       .state('manage.organization.orders', {
-        url: '/orders',
+        url: '/orders/',
         templateUrl: 'views/organizations/orders.html',
         controller: 'ManageOrganizationOrdersCtrl'
+      })
+      .state('manage.organization.order', {
+        url: '/orders/{orderId}',
+        template: '<p>Bestellung {{orderId}}</p>',
+        controller: 'ManageOrganizationOrderCtrl',
+        resolve: {
+          orderId: ['$stateParams', function ($stateParams){
+            return $stateParams.orderId;
+          }]
+        }
       })
       .state('manage.organization.settings', {
         url: '/settings',
@@ -248,9 +258,19 @@ var app = angular
         }
       })
       .state('manage.user.orders', {
-        url: '/orders',
+        url: '/orders/',
         templateUrl: 'views/users/orders.html',
         controller: 'ManageUserOrdersCtrl'
+      })
+      .state('manage.user.order', {
+        url: '/orders/{orderId}',
+        template: '<p>Bestellung {{orderId}}</p>',
+        controller: 'ManageUserOrderCtrl',
+        resolve: {
+          orderId: ['$stateParams', function ($stateParams){
+            return $stateParams.orderId;
+          }]
+        }
       })
     ;
 
