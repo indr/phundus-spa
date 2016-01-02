@@ -227,7 +227,7 @@ var app = angular
       })
       .state('manage.organization.order', {
         url: '/orders/{orderId}',
-        template: '<p>Bestellung {{orderId}}</p>',
+        templateUrl: 'views/organizations/order.html',
         controller: 'ManageOrganizationOrderCtrl',
         resolve: {
           orderId: ['$stateParams', function ($stateParams){
@@ -264,7 +264,7 @@ var app = angular
       })
       .state('manage.user.order', {
         url: '/orders/{orderId}',
-        template: '<p>Bestellung {{orderId}}</p>',
+        templateUrl: 'views/users/order.html',
         controller: 'ManageUserOrderCtrl',
         resolve: {
           orderId: ['$stateParams', function ($stateParams){
