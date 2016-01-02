@@ -368,6 +368,22 @@ angular.module('phundusApp')
         Alert.error('Fehler beim Laden der Bestellung.');
       });
 
+      $scope.canEdit = function () {
+        return $scope.order && $scope.order.status === 'Pending';
+      };
+
+      $scope.canConfirm = function () {
+        return $scope.canEdit();
+      };
+
+      $scope.canReject = function () {
+        return $scope.canEdit();
+      };
+
+      $scope.canClose = function () {
+        return $scope.order && $scope.order.status === 'Approved'
+      };
+
       $scope.getTotal = function () {
         if (!$scope.order || !$scope.order.items) {
           return 0;

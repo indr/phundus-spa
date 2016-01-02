@@ -28,7 +28,7 @@
     <th>Menge</th>
     <th>Stückpreis</th>
     <th>Total</th>
-    <th></th>
+    <th data-ng-show="canEdit()"></th>
   </tr>
   </thead>
   <tbody>
@@ -53,10 +53,10 @@
           class="glyphicon glyphicon-refresh"></span></button>
       </div>
     </td>
-    <td data-ng-show="!item.editing">
-      <a data-ng-show="order.status == 'Pending'" class="btn btn-default" href="" data-ng-click="editItem(item)"
+    <td data-ng-show="canEdit() && !item.editing">
+      <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="editItem(item)"
          title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
-      <a data-ng-show="order.status == 'Pending'" class="btn btn-default" href="" data-ng-click="removeItem(item)"
+      <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="removeItem(item)"
          title="Entfernen"><span class="glyphicon glyphicon-remove"></span></a>
     </td>
     <td data-ng-show="item.editing">
@@ -70,7 +70,7 @@
   <tr style="font-weight:bold">
     <td colspan="6" style="text-align:right;">Total</td>
     <td>{{getTotal() | number:2}}</td>
-    <td></td>
+    <td data-ng-show="canEdit()"></td>
   </tr>
   </tbody>
 </table>
@@ -81,12 +81,11 @@
     <a data-ng-show="order" class="btn btn-default" href="/api/orders/{{order.orderId}}.pdf">PDF</a>
   </div>
   <div ng-show="order" class="col-sm-6" style="text-align:right">
-    <a class="btn btn-default" ng-show="(order.status == 'Pending')" href="" ng-click="showAddItem(order)">Artikel
+    <a class="btn btn-default" data-ng-show="canEdit()" href="" data-ng-click="showAddItem(order)">Artikel
       hinzufügen</a>
-    <a class="btn btn-primary" ng-show="order.status == 'Pending'" href="" ng-click="confirmOrder(order)">Bestätigen</a>
-    <a class="btn btn-danger" ng-show="order.status == 'Pending'" href="" ng-click="rejectOrder(order)">Ablehnen</a>
-    <a class="btn btn-primary" ng-show="order.status == 'Approved'" href=""
-       ng-click="closeOrder(order)">Abschliessen</a>
+    <a class="btn btn-primary" data-ng-show="canConfirm()" href="" data-ng-click="confirmOrder(order)">Bestätigen</a>
+    <a class="btn btn-danger" data-ng-show="canReject()" href="" data-ng-click="rejectOrder(order)">Ablehnen</a>
+    <a class="btn btn-primary" data-ng-show="canClose()" href="" data-ng-click="closeOrder(order)">Abschliessen</a>
   </div>
 </div>
 

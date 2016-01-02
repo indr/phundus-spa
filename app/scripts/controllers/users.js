@@ -275,17 +275,37 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageUserOrderCtrl', ['$', '$scope', 'userId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window',
-    function ($, $scope, userId, orderId, Orders, OrderItems, Alert, $window) {
+  .controller('ManageUserOrderCtrl', ['$', '$scope', 'userId', 'orderId', 'Orders', 'OrderItems', 'Auth', 'Alert', '$window',
+    function ($, $scope, userId, orderId, Orders, OrderItems, Auth, Alert, $window) {
       $scope.userId = userId;
       $scope.orderId = orderId;
       $scope.order = null;
+
+      $scope.isLessor = function () {
+        return $scope.order && $scope.order.lessorId === Auth.user.userGuid;
+      };
 
       Orders.get({orderId: orderId}, function (res) {
         $scope.order = res;
       }, function () {
         Alert.error('Fehler beim Laden der Bestellung.');
       });
+
+      $scope.canEdit = function () {
+        return $scope.isLessor() && $scope.order && $scope.order.status === 'Pending';
+      };
+
+      $scope.canConfirm = function () {
+        return $scope.isLessor() && $scope.canEdit();
+      };
+
+      $scope.canReject = function () {
+        return $scope.isLessor() && $scope.canEdit();
+      };
+
+      $scope.canClose = function () {
+        return $scope.isLessor() && $scope.order && $scope.order.status === 'Approved'
+      };
 
       $scope.getTotal = function () {
         if (!$scope.order || !$scope.order.items) {
