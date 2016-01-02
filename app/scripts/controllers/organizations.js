@@ -13,7 +13,7 @@ angular.module('phundusApp')
       $scope.loading = true;
 
       Organizations.query(function (res) {
-        $scope.organizations = res;
+        $scope.organizations = res.organizations;
         $scope.displayedOrganizations = [].concat($scope.organizations);
         $scope.loading = false;
       }, function () {

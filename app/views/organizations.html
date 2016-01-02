@@ -13,7 +13,7 @@
       </thead>
       <tbody>
       <tr data-ng-repeat="row in displayedOrganizations">
-        <td><a href="./{{row.url}}">{{row.name}}</a></td>
+        <td><a href="/{{row.url}}">{{row.name}}</a></td>
         <td>{{row.address|replace:' *[\r\n]+ *':', '}}</td>
       </tr>
       </tbody>
