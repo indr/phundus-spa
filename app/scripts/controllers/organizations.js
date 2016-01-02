@@ -337,14 +337,30 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageOrganizationOrdersCtrl', ['$scope', 'organizationId', 'Orders', 'Alert',
-    function ($scope, organizationId, Orders, Alert) {
+  .controller('ManageOrganizationOrdersCtrl', ['$', '$scope', 'organizationId', 'Orders', 'Alert', '$state',
+    function ($, $scope, organizationId, Orders, Alert, $state) {
+      $scope.organizationId = organizationId;
+
       Orders.query({organizationId: organizationId}, function (res) {
         $scope.rowCollection = res.orders;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function () {
         Alert.error('Fehler beim Laden der Bestellungen.');
       });
+
+      $scope.createOrder = function () {
+        $scope.newOrder = {userId: '', ownerId: $scope.organizationId};
+        $('#modal-createOrder').modal('show');
+      };
+
+      $scope.createOrderOk = function (newOrder) {
+        Orders.post(newOrder, function (data) {
+          $('#modal-createOrder').modal('hide');
+          $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
+        }, function () {
+          $('#modal-createOrder').modal('show');
+        });
+      };
     }
   ]);
 
@@ -410,10 +426,10 @@ angular.module('phundusApp')
 
       $scope.addItem = function (item) {
 
-        OrderItems.post(item, function(data) {
+        OrderItems.post(item, function (data) {
           $('#modal-add-item').modal('hide');
           $scope.order.items.push(data);
-        }, function() {
+        }, function () {
           $('#modal-add-item').modal('show');
         });
       };
@@ -488,7 +504,8 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Approved';
-        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
+        Orders.patch({orderId: order.orderId, status: order.status}, function () {
+        }, function () {
           order.status = status;
         });
       };
@@ -500,7 +517,8 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Rejected';
-        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
+        Orders.patch({orderId: order.orderId, status: order.status}, function () {
+        }, function () {
           order.status = status;
         });
       };
@@ -512,7 +530,8 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Closed';
-        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
+        Orders.patch({orderId: order.orderId, status: order.status}, function () {
+        }, function () {
           order.status = status;
         });
       };
