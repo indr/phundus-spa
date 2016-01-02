@@ -472,7 +472,7 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Approved';
-        order.$update(function() {}, function() {
+        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
           order.status = status;
         });
       };
@@ -484,7 +484,7 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Rejected';
-        order.$update(function () { }, function () {
+        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
           order.status = status;
         });
       };
@@ -496,7 +496,7 @@ angular.module('phundusApp')
 
         var status = order.status;
         order.status = 'Closed';
-        order.$update(function () { }, function () {
+        Orders.patch({orderId: order.orderId, status: order.status}, function() {}, function() {
           order.status = status;
         });
       };
