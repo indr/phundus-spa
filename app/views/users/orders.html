@@ -1,9 +1,16 @@
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th colspan="6">
+    <th colspan="4">
       <input data-st-search class="form-control" type="search" placeholder="Suchen..." />
     </th>
+    <th>
+      <select data-st-search="status" class="form-control">
+        <option value="">Alle</option>
+        <option data-ng-repeat="row in rowCollection | unique:'status'" value="{{row.status}}">{{row.status | orderStatusText}}</option>
+      </select>
+    </th>
+    <th></th>
   </tr>
   <tr>
     <th data-st-sort-default="true" data-st-sort="orderId">Nummer</th>
