@@ -14,5 +14,7 @@
   <li role="presentation"><a href="/management/{{organizationId}}#/members">Mitglieder</a></li>
   <li role="presentation"><a href="/management/{{organizationId}}#/applications">Beitrittsanfragen</a></li>
   <li role="presentation"><a href="/management/{{organizationId}}#/settings">Einstellungen</a></li>
-  <li role="presentation"><a href="/management/{{organizationId}}#/files">Dateien</a></li>
+  <li role="presentation" data-ui-sref-active="active">
+    <a href="" data-ui-sref="manage.organization.files({organizationId: organizationId})">Dateien</a>
+  </li>
 </ul>

@@ -211,6 +211,15 @@ var app = angular
           }]
         }
       })
+      .state('manage.organization.files', {
+        url: '/files/',
+        templateUrl: 'views/organizations/files.html',
+        controller: ['$scope', 'organizationId',
+          function ($scope, organizationId) {
+            $scope.url = '/api/v0/organizations/' + organizationId + '/files';
+          }
+        ]
+      })
       .state('manage.organization.orders', {
         url: '/orders',
         templateUrl: 'views/organizations/orders.html',
