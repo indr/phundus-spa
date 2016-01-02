@@ -1,15 +1,20 @@
 <h2>Bestellung {{order.orderId}}</h2>
 
 <div data-ng-show="order" class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-4">
     <p>Status: {{order.status | orderStatusText}}</p>
 
     <p>Erstellt: {{order.createdUtc | date:'medium'}}</p>
 
     <p>Bearbeitet: {{order.modifiedUtc | date:'medium'}}</p>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-4">
     <p>Vermieter: {{order.lessorName}}</p>
+  </div>
+  <div class="col-lg-4">
+    <p>Ausleiher: {{order.borrowerFirstName}} {{order.borrowerLastName}}</p>
+
+    <p>J+S/Info Card: {{order.borrowerMemberNumber}}</p>
   </div>
 </div>
 
@@ -23,6 +28,7 @@
     <th>Menge</th>
     <th>Stückpreis</th>
     <th>Total</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -30,25 +36,105 @@
     <td>{{item.text}}</td>
     <td data-ng-show="item.isAvailable"><span class="glyphicon glyphicon-ok"></span></td>
     <td data-ng-show="!item.isAvailable"><span class="glyphicon glyphicon-remove"></span></td>
-    <td>{{item.fromUtc | date:'mediumDate'}}</td>
-    <td>{{item.toUtc | date:'mediumDate'}}</td>
-    <td>{{item.amount}}</td>
-    <td>{{item.unitPrice | currency}}</td>
-    <td>{{item.itemTotal | currency}}</td>
+    <td data-ng-show="!item.editing">{{item.fromUtc | date:'mediumDate'}}</td>
+    <td data-ng-show="!item.editing">{{item.toUtc | date:'mediumDate'}}</td>
+    <td data-ng-show="!item.editing">{{item.amount}}</td>
+    <td data-ng-show="item.editing"><input class="form-control" style="width:100px" type="text" data-ng-model="item.fromUtc"
+                                      ph-datefield/></td>
+    <td data-ng-show="item.editing"><input class="form-control" style="width:100px" type="text" data-ng-model="item.toUtc"
+                                      ph-datefield/></td>
+    <td data-ng-show="item.editing"><input class="form-control" style="width:60px" type="text" data-ng-model="item.amount"/></td>
+    <td>{{item.unitPrice | number:2}}</td>
+    <td data-ng-show="!item.editing">{{item.itemTotal | number:2}}</td>
+    <td data-ng-show="item.editing">
+      <div class="input-append">
+        <input class="form-control" style="width:60px" type="text" data-ng-model="item.itemTotal"/>
+        <button class="btn btn-default" data-ng-click="calculateItemTotal(item)" title="Preis berechnen"><span
+          class="glyphicon glyphicon-refresh"></span></button>
+      </div>
+    </td>
+    <td data-ng-show="!item.editing">
+      <a data-ng-show="order.status == 'Pending'" class="btn btn-default" href="" data-ng-click="editItem(item)"
+         title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+      <a data-ng-show="order.status == 'Pending'" class="btn btn-default" href="" data-ng-click="removeItem(item)"
+         title="Entfernen"><span class="glyphicon glyphicon-remove"></span></a>
+    </td>
+    <td data-ng-show="item.editing">
+      <a class="btn btn-default" href="" data-ng-click="saveEditedItem(item)" title="Speichern"><span
+        class="glyphicon glyphicon-ok"></span></a>
+      <a class="btn btn-default" href="" data-ng-click="cancelEditing(item)" title="Verwerfen"><span
+        class="glyphicon glyphicon-asterisk"></span></a>
+    </td>
   </tr>
 
   <tr style="font-weight:bold">
     <td colspan="6" style="text-align:right;">Total</td>
-    <td>{{order.totalPrice | currency}}</td>
+    <td>{{getTotal() | number:2}}</td>
+    <td></td>
   </tr>
   </tbody>
 </table>
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-sm-6">
     <a class="btn btn-default" href="" ph-history-back>Zurück</a>
     <a data-ng-show="order" class="btn btn-default" href="/api/orders/{{order.orderId}}.pdf">PDF</a>
   </div>
-  <div data-ng-show="order" class="col-lg-6" style="text-align:right">
+  <div ng-show="order" class="col-sm-6" style="text-align:right">
+    <a class="btn btn-default" ng-show="(order.status == 'Pending')" href="" ng-click="showAddItem(order)">Artikel
+      hinzufügen</a>
+    <a class="btn btn-primary" ng-show="order.status == 'Pending'" href="" ng-click="confirmOrder(order)">Bestätigen</a>
+    <a class="btn btn-danger" ng-show="order.status == 'Pending'" href="" ng-click="rejectOrder(order)">Ablehnen</a>
+    <a class="btn btn-primary" ng-show="order.status == 'Approved'" href=""
+       ng-click="closeOrder(order)">Abschliessen</a>
+  </div>
+</div>
+
+<div class="modal" id="modal-add-item">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4>Artikel hinzufügen</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputArticleId">Artikel-Id</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputArticleId" placeholder="" ng-model="newItem.articleId">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputFrom">Von</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputFrom" placeholder="" ng-model="newItem.fromUtc"
+                     ph-datefield>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputTo">Bis</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputTo" placeholder="" ng-model="newItem.toUtc" ph-datefield>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputAmount">Menge</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputAmount" placeholder="" ng-model="newItem.amount">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" ng-click="addItem(newItem)" data-dismiss="modal">Hinzufügen</a>
+        <a href="#" class="btn btn-default" data-dismiss="modal">Abbrechen</a>
+      </div>
+    </div>
   </div>
 </div>

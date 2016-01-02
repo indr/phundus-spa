@@ -275,8 +275,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageUserOrderCtrl', ['$scope', 'userId', 'orderId', 'Orders', 'Alert',
-    function ($scope, userId, orderId, Orders, Alert) {
+  .controller('ManageUserOrderCtrl', ['$', '$scope', 'userId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window',
+    function ($, $scope, userId, orderId, Orders, OrderItems, Alert, $window) {
       $scope.userId = userId;
       $scope.orderId = orderId;
       $scope.order = null;
@@ -286,5 +286,138 @@ angular.module('phundusApp')
       }, function () {
         Alert.error('Fehler beim Laden der Bestellung.');
       });
+
+      $scope.getTotal = function () {
+        if (!$scope.order || !$scope.order.items) {
+          return 0;
+        }
+
+        var total = 0;
+
+        for (var i = 0; i < $scope.order.items.length; i++) {
+          total += parseFloat($scope.order.items[i].itemTotal);
+        }
+        return total;
+      };
+
+      $scope.newItem = {
+        articleId: '', amount: 1, fromUtc: new Date(), toUtc: new Date(), orderId: orderId
+      };
+
+      $scope.showAddItem = function (order) {
+        $scope.newItem.orderId = order.orderId;
+        $scope.newItem.articleId = '';
+        $scope.newItem.amount = 1;
+        $('#modal-add-item').modal('show');
+      };
+
+      $scope.addItem = function (item) {
+
+        OrderItems.post(item, function(data) {
+          $('#modal-add-item').modal('hide');
+          $scope.order.items.push(data);
+        }, function() {
+          $('#modal-add-item').modal('show');
+        });
+      };
+
+      $scope.editItem = function (item) {
+        $scope.saveValues = {
+          amount: item.amount,
+          fromUtc: item.fromUtc,
+          toUtc: item.toUtc,
+          itemTotal: item.itemTotal
+        };
+
+        item.editing = true;
+      };
+
+      $scope.saveEditedItem = function (item) {
+        item.editing = false;
+        OrderItems.patch({orderId: $scope.order.orderId}, item,
+          function (data) {
+            item.amount = data.amount;
+            item.fromUtc = data.fromUtc;
+            item.toUtc = data.toUtc;
+            item.isAvailable = data.isAvailable;
+            item.unitPrice = data.unitPrice;
+            item.itemTotal = data.itemTotal;
+          });
+      };
+
+      $scope.cancelEditing = function (item) {
+        item.editing = false;
+        item.amount = $scope.saveValues.amount;
+        item.fromUtc = $scope.saveValues.fromUtc;
+        item.toUtc = $scope.saveValues.toUtc;
+        item.itemTotal = $scope.saveValues.itemTotal;
+      };
+
+      $scope.calculateItemTotal = function (item) {
+        var days = Math.max(1, Math.ceil((new Date(item.toUtc) - new Date(item.fromUtc)) / (1000 * 60 * 60 * 24)));
+
+        item.itemTotal = Math.round(100 * item.unitPrice / 7 * days * item.amount) / 100;
+      };
+
+      $scope.removeItem = function (item) {
+        if (!$window.confirm('Möchten Sie die Position "' + item.text + '" wirklich löschen?')) {
+          return;
+        }
+
+        OrderItems.delete({orderId: $scope.order.orderId, orderItemId: item.orderItemId}, function () {
+          var idx = $scope.order.items.indexOf(item);
+          $scope.order.items.splice(idx, 1);
+        });
+      };
+
+      $scope.confirmOrder = function (order) {
+        var notAvailableCount = 0;
+        for (var i = 0; i < $scope.order.items.length; i++) {
+          if (!$scope.order.items[i].isAvailable) {
+            notAvailableCount++;
+          }
+        }
+
+        var msg = 'Möchten Sie die Bestellung wirklich bestätigen?';
+        if (notAvailableCount === 1) {
+          msg = '1 Position ist zur Zeit nicht verfügbar.\n\n' + msg;
+        }
+        else if (notAvailableCount > 1) {
+          msg = notAvailableCount + ' Positionen sind zur Zeit nicht verfügbar.\n\n' + msg;
+        }
+        if (!$window.confirm(msg)) {
+          return;
+        }
+
+        var status = order.status;
+        order.status = 'Approved';
+        order.$update(function() {}, function() {
+          order.status = status;
+        });
+      };
+
+      $scope.rejectOrder = function (order) {
+        if (!$window.confirm('Möchten Sie die Bestellung wirklich ablehnen?')) {
+          return;
+        }
+
+        var status = order.status;
+        order.status = 'Rejected';
+        order.$update(function () { }, function () {
+          order.status = status;
+        });
+      };
+
+      $scope.closeOrder = function (order) {
+        if (!$window.confirm('Möchten Sie die Bestellung wirklich abschliessen?\n\nAusstehendes Material wird dann nicht mehr reserviert sein.')) {
+          return;
+        }
+
+        var status = order.status;
+        order.status = 'Closed';
+        order.$update(function () { }, function () {
+          order.status = status;
+        });
+      };
     }
   ]);
