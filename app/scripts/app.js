@@ -213,13 +213,13 @@ var app = angular
       })
       .state('manage.organization.orders', {
         url: '/orders',
-        templateUrl: '/views/organizations/orders.html',
+        templateUrl: 'views/organizations/orders.html',
         controller: 'ManageOrganizationOrdersCtrl'
       })
       .state('manage.organization.settings', {
         url: '/settings',
         controller: 'ManageOrganizationsSettingsCtrl',
-        templateUrl: '/views/manage/organization-settings.html'
+        templateUrl: 'views/manage/organization-settings.html'
       })
 
       .state('manage.user', {
@@ -240,7 +240,7 @@ var app = angular
       })
       .state('manage.user.orders', {
         url: '/orders',
-        templateUrl: '/views/users/orders.html',
+        templateUrl: 'views/users/orders.html',
         controller: 'ManageUserOrdersCtrl'
       })
     ;
