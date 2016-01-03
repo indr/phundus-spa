@@ -58,7 +58,7 @@ var app = angular
       })
       .state('public.organization', {
         url: '/organizations/:organizationId',
-        templateUrl: 'views/organization.html',
+        templateUrl: 'views/organizations/home.html',
         controller: 'OrganizationCtrl',
         resolve: {
           organizationId: ['$stateParams', function ($stateParams) {

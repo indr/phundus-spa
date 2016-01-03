@@ -1,16 +1,19 @@
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th colspan="4">
-      <input data-st-search class="form-control" type="search" placeholder="Suchen..." />
+    <th colspan="6">
+      <div class="col-md-3">
+        <select data-st-search="status" class="form-control">
+          <option value="">Alle</option>
+          <option data-ng-repeat="row in rowCollection | unique:'status'" value="{{row.status}}">{{row.status |
+            orderStatusText}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-9">
+        <input data-st-search class="form-control" type="search" placeholder="Suchen..."/>
+      </div>
     </th>
-    <th>
-      <select data-st-search="status" class="form-control">
-        <option value="">Alle</option>
-        <option data-ng-repeat="row in rowCollection | unique:'status'" value="{{row.status}}">{{row.status | orderStatusText}}</option>
-      </select>
-    </th>
-    <th></th>
   </tr>
   <tr>
     <th data-st-sort-default="true" data-st-sort="orderId">Nummer</th>
@@ -31,9 +34,20 @@
     <td>{{order.lessee.name}}</td>
     <td>{{order.status | orderStatusText}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.user.order({userId: userId, orderId: order.orderId})">Öffnen</a>
+      <a class="btn btn-default btn-sm" href=""
+         data-ui-sref="manage.user.order({userId: userId, orderId: order.orderId})">Öffnen</a>
       <a class="btn btn-default btn-sm" href="/api/v0/orders/{{order.orderId}}.pdf">PDF</a>
     </td>
   </tr>
   </tbody>
 </table>
+
+<div class="alert alert-info" data-ng-show="rowCollection.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Bestellungen vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="displayedCollection.length == 0 && rowCollection.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>

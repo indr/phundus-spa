@@ -1,14 +1,19 @@
 <table class="table table-hover" data-st-table="displayedArticles" data-st-safe-src="articles">
   <thead>
   <tr>
-    <th colspan="5"><input data-st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+    <th colspan="5">
+      <input data-st-search class="form-control" type="search" placeholder="Suchen..."/>
+    </th>
   </tr>
   <tr>
     <th data-st-sort-default="true" data-st-sort="id">Id</th>
     <th data-st-sort="name">Name</th>
     <th class="text-right" data-st-sort="grossStock">Bestand</th>
     <th class="text-right" data-st-sort="price">Preis</th>
-    <th class="text-right"><a class="btn btn-primary btn-sm" href="" data-ui-sref="users.articles.new({userId: userId})">Neues Material</a></th>
+    <th class="text-right">
+      <a class="btn btn-primary btn-sm" href=""
+         data-ui-sref="users.articles.new({userId: userId})">Neues Material</a>
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -18,9 +23,20 @@
     <td class="text-right">{{row.grossStock}}</td>
     <td class="text-right">{{row.price | number:2}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-xs" href="" data-ui-sref="users.articles.edit.details({userId: userId, articleId: row.id})">Bearbeiten</a>
+      <a class="btn btn-default btn-xs" href=""
+         data-ui-sref="users.articles.edit.details({userId: userId, articleId: row.id})">Bearbeiten</a>
       <a class="btn btn-danger btn-xs" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
     </td>
   </tr>
   </tbody>
 </table>
+
+<div class="alert alert-info" data-ng-show="articles.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Artikel vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="displayedArticles.length == 0 && articles.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>
