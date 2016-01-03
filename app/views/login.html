@@ -1,37 +1,30 @@
 <h2>Anmelden</h2>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-    <form class="form-horizontal" ng-submit="login()" name="loginForm">
+    <form class="form-horizontal" name="loginForm" novalidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="username">E-Mail-Adresse</label>
-        <div class="col-sm-9">
-          <input class="form-control" type="text" data-ng-model="username" placeholder="E-Mail-Adresse" id="username" required autofocus />
+
+        <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.username.$valid && loginForm.username.$touched}">
+          <input class="form-control" type="text" data-ng-model="username" placeholder="E-Mail-Adresse" id="username"
+                 name="username" required autofocus/>
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-3" for="password">Passwort</label>
-        <div class="col-sm-9">
-          <input class="form-control" type="password" data-ng-model="password" placeholder="Passwort" id="password" required />
-        </div>
-      </div>
 
-      <!--
-      <div class="form-group">
-        <div class="checkbox col-sm-offset-3 col-sm-9">
-          <label>
-            <input type="checkbox" data-ng-model="rememberMe" /> Angemeldet bleiben
-          </label>
+        <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.password.$valid && loginForm.password.$touched}">
+          <input class="form-control" type="password" data-ng-model="password" placeholder="Passwort" id="password"
+                 name="password" required/>
         </div>
       </div>
-      -->
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <!-- data-ng-disabled="loginForm.$invalid" -->
-          <button class="btn btn-primary" type="submit">Anmelden</button>
+          <input type="submit" class="btn btn-primary" data-ng-click="login()" data-ng-disabled="loginForm.$invalid" value="Anmelden">
           &middot;
-          <a href="/account/resetpassword">Password vergessen?</a>
+          <a href="/account/resetpassword">Neues Passwort</a>
           &middot;
           <a href="/account/signup">Registrieren</a>
         </div>
@@ -41,41 +34,52 @@
 </div>
 
 <div data-ng-show="isTestEnv">
-<div class="row">
-  <div class="col-xs-12">
-    <h3>One-Click-Logins in der Test-Umgebung</h3>
-    <p>Passwort ist "1234".</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>One-Click-Logins in der Test-Umgebung</h3>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-3">
-    <p data-ng-repeat="n in range(10011,10017)">
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin(n+'@test.phundus.ch')">{{n}}@test.phundus.ch</button>
-    </p>
+  <div class="row">
+    <!--<div class="col-xs-3">
+      <p data-ng-repeat="n in range(10011,10017)">
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin(n+'@test.phundus.ch')">{{n}}@test.phundus.ch</button>
+      </p>
+    </div>-->
+    <div class="col-xs-3">
+      <p>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user@test.phundus.ch')">
+          user@test.phundus.ch
+        </button>
+      </p>
+      <p data-ng-repeat="n in range(1,2)">
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-'+n+'@test.phundus.ch')">
+          user-{{n}}@test.phundus.ch
+        </button>
+      </p>
+    </div>
+    <div class="col-xs-3">
+      <p>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief@test.phundus.ch')">
+          chief@test.phundus.ch
+        </button>
+      </p>
+      <p data-ng-repeat="n in range(1,2)">
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-'+n+'@test.phundus.ch')">
+          chief-{{n}}@test.phundus.ch
+        </button>
+      </p>
+    </div>
+    <div class="col-xs-3">
+      <p>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin@test.phundus.ch')">
+          admin@test.phundus.ch
+        </button>
+      </p>
+      <p data-ng-repeat="n in range(1,2)">
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-'+n+'@test.phundus.ch')">
+          admin-{{n}}@test.phundus.ch
+        </button>
+      </p>
+    </div>
   </div>
-  <div class="col-xs-3">
-    <p>
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('user@test.phundus.ch')">user@test.phundus.ch</button>
-    </p>
-    <p data-ng-repeat="n in range(1,2)">
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-'+n+'@test.phundus.ch')">user-{{n}}@test.phundus.ch</button>
-    </p>
-  </div>
-  <div class="col-xs-3">
-    <p>
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief@test.phundus.ch')">chief@test.phundus.ch</button>
-    </p>
-    <p data-ng-repeat="n in range(1,2)">
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-'+n+'@test.phundus.ch')">chief-{{n}}@test.phundus.ch</button>
-    </p>
-  </div>
-  <div class="col-xs-3">
-    <p>
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin@test.phundus.ch')">admin@test.phundus.ch</button>
-    </p>
-    <p data-ng-repeat="n in range(1,2)">
-      <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-'+n+'@test.phundus.ch')">admin-{{n}}@test.phundus.ch</button>
-    </p>
-  </div>
-</div>
 </div>
