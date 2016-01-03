@@ -28,7 +28,7 @@
     <td>
       <ph-date value="order.createdAtUtc"></ph-date>
     </td>
-    <td>{{order.lesseeName}}</td>
+    <td>{{order.lessee.name}}</td>
     <td>{{order.status | orderStatusText}}</td>
     <td class="text-right">
       <a class="btn btn-default btn-sm" href="" data-ui-sref="manage.organization.order({organizationId: organizationId, orderId: order.orderId})">Öffnen</a>

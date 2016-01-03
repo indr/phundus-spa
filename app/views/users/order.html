@@ -4,13 +4,20 @@
   <div class="col-lg-4">
     <p>Status: {{order.status | orderStatusText}}</p>
 
+    <p>Vermieter: {{order.lessorName}}</p>
+
     <p>Erstellt: {{order.createdAtUtc | date:'medium'}}</p>
 
     <p>Bearbeitet: {{order.modifiedAtUtc | date:'medium'}}</p>
   </div>
   <div class="col-lg-4">
-    <p>Vermieter: {{order.lessorName}}</p>
-    <p>Ausleiher: {{order.lesseeName}}</p>
+    <p>{{order.lessee.name}}</p>
+
+    <p>{{order.lessee.street}}</p>
+
+    <p>{{order.lessee.postcode}} {{order.lessee.city}}</p>
+
+    <p>{{order.lessee.memberNumber}}</p>
   </div>
 </div>
 
