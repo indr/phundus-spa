@@ -11,7 +11,7 @@ angular.module('phundusApp')
         if (!$scope.form.$valid) {
           return;
         }
-        $uibModalInstance.close({ownerId: ownerId, name: $scope.name, amount: $scope.amonut});
+        $uibModalInstance.close({ownerId: ownerId, name: $scope.name, amount: $scope.amount});
       };
 
       $scope.cancel = function () {
