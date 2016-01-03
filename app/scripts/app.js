@@ -136,11 +136,6 @@ var app = angular
         templateUrl: 'views/users/articles.html',
         controller: 'UsersArticlesIndexCtrl'
       })
-      .state('users.articles.new', {
-        url: '/new',
-        templateUrl: 'views/manage/create-article.html',
-        controller: 'UsersArticlesNewCtrl'
-      })
       .state('users.articles.edit', {
         abstract: true,
         url: '/:articleId',
@@ -309,11 +304,6 @@ var app = angular
         url: '/',
         templateUrl: 'views/organizations/articles.html',
         controller: 'OrganizationsArticlesCtrl'
-      })
-      .state('organizations.articles.new', {
-        url: '/new',
-        templateUrl: 'views/manage/create-article.html',
-        controller: 'OrganizationsArticlesNewCtrl'
       })
       .state('organizations.articles.edit', {
         abstract: true,

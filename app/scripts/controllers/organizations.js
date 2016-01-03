@@ -140,8 +140,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesCtrl', ['_', '$scope', '$window', 'OrganizationArticles', 'Auth', 'Alert', 'organizationId',
-    function (_, $scope, $window, Articles, Auth, Alert, organizationId) {
+  .controller('OrganizationsArticlesCtrl', ['_', '$scope', '$window', 'OrganizationArticles', 'Auth', 'Alert', 'organizationId', '$uibModal', '$state',
+    function (_, $scope, $window, Articles, Auth, Alert, organizationId, $uibModal, $state) {
 
       $scope.loading = true;
       $scope.userRoles = Auth.userRoles;
@@ -167,26 +167,27 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Löschen des Artikels "' + name + '".');
         });
-      }
-    }
-  ]);
-
-angular.module('phundusApp')
-  .controller('OrganizationsArticlesNewCtrl', ['$scope', '$state', 'organizationId', 'OrganizationArticles', 'Alert',
-    function ($scope, $state, organizationId, Articles, Alert) {
-      $scope.organizationId = organizationId;
-
-      $scope.submit = function () {
-        Articles.post(organizationId, {name: $scope.name}, function (res) {
-          Alert.success('Das Material wurde erfolgreich erfasst.');
-          $state.go('organizations.articles.edit.details', {organizationId: organizationId, articleId: res.articleId});
-        }, function () {
-          Alert.error('Fehler beim Speichern des Materials.')
-        });
       };
 
-      $scope.cancel = function () {
-        $state.go('organizations.articles.index', {organizationId: organizationId})
+      $scope.createArticle = function () {
+
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/create-article.html',
+          controller: 'CreateArticleModalInstCtrl',
+          resolve: {
+            ownerId: function () {
+              return $scope.organizationId;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (article) {
+          Articles.post(organizationId, article, function (res) {
+            $state.go('organizations.articles.edit.details', {organizationId: organizationId, articleId: res.articleId});
+          }, function () {
+            Alert.error('Fehler beim Erstellen des Materials.');
+          });
+        });
       };
     }
   ]);
@@ -441,7 +442,6 @@ angular.module('phundusApp')
 
         $scope.addItemForm.$setSubmitted();
         if (!$scope.addItemForm.$valid) {
-          console.log($scope.addItemForm);
           return;
         }
 

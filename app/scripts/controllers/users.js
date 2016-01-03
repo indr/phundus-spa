@@ -54,8 +54,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesIndexCtrl', ['_', '$scope', 'userId', '$window', 'UserArticles', 'Alert',
-    function (_, $scope, userId, $window, Articles, Alert) {
+  .controller('UsersArticlesIndexCtrl', ['_', '$scope', 'userId', '$window', 'UserArticles', 'Alert', '$uibModal', '$state',
+    function (_, $scope, userId, $window, Articles, Alert, $uibModal, $state) {
 
       $scope.loading = true;
 
@@ -79,33 +79,27 @@ angular.module('phundusApp')
         }, function () {
           Alert.error('Fehler beim Löschen des Artikels "' + name + '".');
         });
-      }
-    }
-  ]);
-
-/**
- * @ngdoc function
- * @name phundusApp.controller:UsersArticlesNewCtrl
- * @description
- * # UsersArticlesNewCtrl
- * Controller of the phundusApp
- */
-angular.module('phundusApp')
-  .controller('UsersArticlesNewCtrl', ['$scope', '$state', 'userId', 'UserArticles', 'Alert',
-    function ($scope, $state, userId, Articles, Alert) {
-      $scope.userId = userId;
-
-      $scope.submit = function () {
-        Articles.post(userId, {name: $scope.name}, function (res) {
-          Alert.success('Das Material wurde erfolgreich erfasst.');
-          $state.go('users.articles.edit.details', {userId: userId, articleId: res.articleId});
-        }, function () {
-          Alert.error('Fehler beim Speichern des Materials.')
-        });
       };
 
-      $scope.cancel = function () {
-        $state.go('users.articles.index', {userId: userId})
+      $scope.createArticle = function () {
+
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/create-article.html',
+          controller: 'CreateArticleModalInstCtrl',
+          resolve: {
+            ownerId: function () {
+              return userId;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (article) {
+          Articles.post(userId, article, function (res) {
+            $state.go('users.articles.edit.details', {userId: userId, articleId: res.articleId});
+          }, function () {
+            Alert.error('Fehler beim Erstellen des Materials.');
+          });
+        });
       };
     }
   ]);
