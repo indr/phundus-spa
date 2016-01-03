@@ -10,21 +10,17 @@
  */
 var app = angular
   .module('phundusApp', [
+    'blueimp.fileupload',
     'leaflet-directive',
-
-    //'ngAnimate',
     'ngCookies',
-    //'ngMessages',
     'ngResource',
-    //'ngRoute',
     'ngSanitize',
-    //'ngTouch',
     'smart-table',
+    'ui.bootstrap',
     'ui.gravatar',
     'ui.router',
     'uuid',
-    'xeditable',
-    'blueimp.fileupload'
+    'xeditable'
   ])
 
   // http://snippetrepo.com/snippets/lodash-in-angularjs
@@ -417,6 +413,15 @@ var app = angular
       };
     });
   });
+
+angular.module('phundusApp')
+  .config(['uibDatepickerPopupConfig',
+    function (uibDatepickerPopupConfig) {
+      uibDatepickerPopupConfig.clearText = 'Leeren';
+      uibDatepickerPopupConfig.currentText = 'Heute';
+      uibDatepickerPopupConfig.closeText = 'Schliessen';
+    }
+  ]);
 
 angular.module('phundusApp')
   .config(['$httpProvider', 'fileUploadProvider',
