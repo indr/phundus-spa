@@ -1,6 +1,6 @@
-
 <div data-ng-show="mail">
   <h2>{{mail.subject}}</h2>
+
   <div data-ng-show="mail.textBody">
     <p class="well" style="white-space:pre-wrap">{{mail.textBody}}</p>
   </div>
@@ -15,7 +15,7 @@
 <table class="table table-hover" data-st-table="displayedMails" data-st-safe-src="mails">
   <thead>
   <tr>
-    <th colspan="4"><input data-st-search class="form-control" type="search" placeholder="Suchen..." /></th>
+    <th colspan="4"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
   </tr>
   <tr>
     <th data-st-sort="date">Datum</th>
@@ -28,8 +28,9 @@
   <tr data-ng-repeat="row in displayedMails">
     <td>{{row.date|date:'dd.MM.yyyy HH:mm:ss'}}</td>
     <td>{{row.subject}}</td>
-    <td><span data-ng-repeat="to in row.to">{{to}}</span> </td>
-    <td class="text-right"><a class="btn btn-primary btn-xs" data-ng-click="show(row)">Anzeigen</a> <a class="btn btn-danger btn-xs" data-ng-click="delete(row.id)">Löschen</a></td>
+    <td><span data-ng-repeat="to in row.to">{{to}}</span></td>
+    <td class="text-right"><a class="btn btn-primary btn-xs" data-ng-click="show(row)">Anzeigen</a> <a
+      class="btn btn-danger btn-xs" data-ng-click="delete(row.id)">Löschen</a></td>
   </tr>
   </tbody>
 </table>

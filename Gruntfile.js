@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         {
           context: ['/api', '/api/v0', '/Content', '/elmah', '/fonts', '/Scripts',
             '/pfadi-lego', '/cevi-dupplo', '/jubla-playmobil',
-            '/admin', '/account', '/cart', '/feedback', '/documents', '/management', '/organization', '/orgs', '/shop', '/users'],
+             '/account', '/cart', '/feedback',  '/management', '/organization', '/shop', '/users'],
           host: '192.168.1.249',
           port: 80,
           https: false,

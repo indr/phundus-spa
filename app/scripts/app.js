@@ -369,10 +369,20 @@ var app = angular
         },
         url: '/admin'
       })
+      .state('admin.eventLog', {
+        url: '/event-log',
+        templateUrl: 'views/admin/eventlog.html',
+        controller: 'AdminEventLogCtrl'
+      })
       .state('admin.mails', {
         url: '/mails',
         templateUrl: 'views/admin/mails.html',
         controller: 'AdminMailsCtrl'
+      })
+      .state('admin.schemaUpdate', {
+        url: '/schema-update',
+        template: '<pre>{{schemaUpdate}}</pre>',
+        controller: 'AdminSchemaUpdateCtrl'
       });
 
     $urlRouterProvider.otherwise('/404');

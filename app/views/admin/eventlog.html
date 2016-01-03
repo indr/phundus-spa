@@ -1,0 +1,17 @@
+<p>Die letzten 20 Ereignisse.</p>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Datum</th>
+    <th>Typ</th>
+    <th>Text</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="event in eventLog">
+    <td>{{event.occuredOnUtc | date: 'medium'}}</td>
+    <td>{{event.name}}</td>
+    <td>{{event.text}}</td>
+  </tr>
+  </tbody>
+</table>

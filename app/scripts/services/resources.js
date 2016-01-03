@@ -26,6 +26,9 @@ angular.module('phundusApp')
       contractItemId: '@contractItemId'
     });
   }])
+  .factory('EventLog', ['$resource', function ($resource) {
+    return $resource('/api/diagnostics/eventlog', {}, {query: {method: 'GET', isArray: true}});
+  }])
   .factory('Mails', ['$resource', function ($resource) {
     return $resource('/api/v0/mails/:id', {id: '@id'}, {query: {method: 'GET', isArray: true}});
   }])
@@ -60,6 +63,9 @@ angular.module('phundusApp')
         $http.get('/api/v0/organizations/' + organizationId + '/relationships').success(success).error(error);
       }
     }
+  }])
+  .factory('SchemaUpdate', ['$resource', function ($resource) {
+    return $resource('/api/diagnostics/schema-update');
   }])
 
   .factory('Applications', ['$http', function ($http) {

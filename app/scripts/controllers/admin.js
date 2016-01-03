@@ -2,6 +2,42 @@
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:AdminEventLogCtrl
+ * @description
+ * # AdminEventLogCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('AdminEventLogCtrl', ['$scope', 'EventLog', 'Alert',
+    function ($scope, EventLog, Alert) {
+      EventLog.query(function (res) {
+       $scope.eventLog = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Eventlogs.');
+      });
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:AdminSchemaUpdateCtrl
+ * @description
+ * # AdminSchemaUpdateCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('AdminSchemaUpdateCtrl', ['$scope', 'SchemaUpdate', 'Alert',
+    function ($scope, SchemaUpdate, Alert) {
+      SchemaUpdate.query(function (content) {
+        $scope.schemaUpdate = content.script;
+      }, function () {
+        Alert.error('Fehler beim Laden des Schema-Updates.');
+      });
+    }
+  ]);
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:AdminMailsCtrl
  * @description
  * # AdminMailsCtrl
