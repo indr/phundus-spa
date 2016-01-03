@@ -337,8 +337,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageOrganizationOrdersCtrl', ['$', '$scope', 'organizationId', 'Orders', 'Alert', '$state',
-    function ($, $scope, organizationId, Orders, Alert, $state) {
+  .controller('ManageOrganizationOrdersCtrl', ['$scope', 'organizationId', 'Orders', 'Alert', '$state', '$uibModal',
+    function ($scope, organizationId, Orders, Alert, $state, $uibModal) {
       $scope.organizationId = organizationId;
 
       Orders.query({organizationId: organizationId}, function (res) {
@@ -349,16 +349,25 @@ angular.module('phundusApp')
       });
 
       $scope.createOrder = function () {
-        $scope.newOrder = {userId: '', ownerId: $scope.organizationId};
-        $('#modal-createOrder').modal('show');
-      };
 
-      $scope.createOrderOk = function (newOrder) {
-        Orders.post(newOrder, function (data) {
-          $('#modal-createOrder').modal('hide');
-          $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/create-order.html',
+          controller: 'CreateOrderModalInstCtrl',
+          resolve: {
+            ownerId: function () {
+              return $scope.organizationId;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (username) {
+          Orders.post({ownerId: $scope.organizationId, username: username}, function (data) {
+            $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
+          }, function () {
+            Alert.error('Fehler beim Erstellen der Bestellung.');
+          });
         }, function () {
-          $('#modal-createOrder').modal('show');
+
         });
       };
     }
@@ -423,6 +432,7 @@ angular.module('phundusApp')
       };
 
       $scope.showAddItem = function (order) {
+
         $scope.newItem.orderId = order.orderId;
         $scope.newItem.articleId = '';
         $scope.newItem.amount = 1;
