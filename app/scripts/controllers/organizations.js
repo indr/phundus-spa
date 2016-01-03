@@ -360,14 +360,12 @@ angular.module('phundusApp')
           }
         });
 
-        modalInstance.result.then(function (username) {
-          Orders.post({ownerId: $scope.organizationId, username: username}, function (data) {
+        modalInstance.result.then(function (member) {
+          Orders.post({ownerId: $scope.organizationId, lesseeId: member.id}, function (data) {
             $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
           }, function () {
             Alert.error('Fehler beim Erstellen der Bestellung.');
           });
-        }, function () {
-
         });
       };
     }
