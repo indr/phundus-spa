@@ -378,6 +378,11 @@ angular.module('phundusApp')
       $scope.orderId = orderId;
       $scope.order = null;
 
+      $scope.newItem = {
+        fromUtc: new Date(),
+        toUtc: new Date()
+      };
+
       Orders.get({orderId: orderId}, function (res) {
         $scope.order = res;
       }, function () {
@@ -425,6 +430,12 @@ angular.module('phundusApp')
       };
 
       $scope.addItem = function (item) {
+
+        $scope.addItemForm.$setSubmitted();
+        if (!$scope.addItemForm.$valid) {
+          console.log($scope.addItemForm);
+          return;
+        }
 
         OrderItems.post(item, function (data) {
           $('#modal-add-item').modal('hide');
