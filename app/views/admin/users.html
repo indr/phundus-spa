@@ -1,0 +1,43 @@
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th colspan="7"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
+  </tr>
+  <tr>
+    <th data-st-sort="userId">Id</th>
+    <th data-st-sort="firstName">Vorname</th>
+    <th data-st-sort="lastName">Nachname</th>
+    <th data-st-sort="emailAddress">E-Mail-Adresse</th>
+    <th data-st-sort="isApproved">Bestätigt</th>
+    <th data-st-sort="isLocked">Gesperrt</th>
+    <th data-st-sort="isAdmin">Admin</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="row in displayedCollection">
+    <td>{{row.userId}}</td>
+    <td>{{row.firstName}}</td>
+    <td>{{row.lastName}}</td>
+    <td>{{row.emailAddress}}</td>
+    <td>
+      <input type="checkbox" data-ng-model="row.isApproved" data-ng-disabled="row.isApproved" data-ng-change="toggleIsApproved(row)" />
+    </td>
+    <td>
+      <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
+    </td>
+    <td>
+      <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" />
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info" data-ng-show="rowCollection.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Benutzer vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="displayedCollection.length == 0 && rowCollection.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>

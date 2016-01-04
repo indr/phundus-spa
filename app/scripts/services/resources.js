@@ -17,6 +17,9 @@ angular.module('phundusApp')
     });
   }])
 
+  .factory('AdminUsers', ['$resource', function ($resource) {
+    return $resource('/api/v0/admin/users/:userId', {userId: '@userId'});
+  }])
   .factory('Articles', ['$resource', function ($resource) {
     return $resource('/api/v0/articles/:articleId', {articleId: '@articleId'});
   }])
