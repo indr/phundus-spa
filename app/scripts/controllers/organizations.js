@@ -140,15 +140,15 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesCtrl', ['_', '$scope', '$window', 'OrganizationArticles', 'Auth', 'Alert', 'organizationId', '$uibModal', '$state',
+  .controller('OrganizationsArticlesCtrl', ['_', '$scope', '$window', 'Articles', 'Auth', 'Alert', 'organizationId', '$uibModal', '$state',
     function (_, $scope, $window, Articles, Auth, Alert, organizationId, $uibModal, $state) {
 
       $scope.loading = true;
       $scope.userRoles = Auth.userRoles;
       $scope.organizationId = organizationId;
 
-      Articles.getAll(organizationId, function (res) {
-        $scope.articles = res;
+      Articles.query({ownerId: organizationId}, function (res) {
+        $scope.articles = res.results;
         $scope.displayedArticles = [].concat($scope.articles);
         $scope.loading = false;
       }, function () {
@@ -160,7 +160,7 @@ angular.module('phundusApp')
         if (!$window.confirm('Möchtest du den Artikel "' + name + '" wirklich löschen?')) {
           return;
         }
-        Articles.delete(organizationId, articleId, function () {
+        Articles.delete({articleId: articleId}, function () {
           Alert.success('Der Artikel "' + name + '" wurder erfolgreich gelöscht.');
           _.remove($scope.displayedArticles, {id: articleId});
           _.remove($scope.articles, {id: articleId});
@@ -176,14 +176,17 @@ angular.module('phundusApp')
           controller: 'CreateArticleModalInstCtrl',
           resolve: {
             ownerId: function () {
-              return $scope.organizationId;
+              return organizationId;
             }
           }
         });
 
         modalInstance.result.then(function (article) {
-          Articles.post(organizationId, article, function (res) {
-            $state.go('organizations.articles.edit.details', {organizationId: organizationId, articleId: res.articleId});
+          Articles.post(article, function (res) {
+            $state.go('organizations.articles.edit.details', {
+              organizationId: organizationId,
+              articleId: res.articleId
+            });
           }, function () {
             Alert.error('Fehler beim Erstellen des Materials.');
           });
@@ -200,20 +203,23 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesDetailsCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+  .controller('OrganizationsArticlesDetailsCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
     function ($scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
       $scope.article = null;
 
-      Articles.get(organizationId, articleId, function (res) {
+      Articles.get({ownerId: organizationId, articleId: articleId}, function (res) {
         $scope.article = res;
       }, function () {
         Alert.error('Fehler beim Laden des Artikels.');
       });
 
       $scope.submit = function () {
-        Articles.put(organizationId, articleId, $scope.article, function () {
+        Articles.patch({
+          ownerId: organizationId, articleId: articleId, name: $scope.article.name, brand: $scope.article.brand,
+          price: $scope.article.price, grossStock: $scope.article.grossStock, color: $scope.article.color
+        }, function () {
           Alert.success('Das Material wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern des Material.');
@@ -234,20 +240,20 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesDescriptionCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+  .controller('OrganizationsArticlesDescriptionCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
     function ($scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
       $scope.description = null;
 
-      Articles.getDescription(organizationId, articleId, function (res) {
-        $scope.description = res;
+      Articles.get({ownerId: organizationId, articleId: articleId}, function (res) {
+        $scope.description = res.description;
       }, function () {
         Alert.error('Fehler beim Laden der Beschreibung.');
       });
 
       $scope.submit = function () {
-        Articles.putDescription(organizationId, articleId, {data: $scope.description}, function () {
+        Articles.patch({ownerId: organizationId, articleId: articleId, description: $scope.description}, function () {
           Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern der Beschreibung.');
@@ -268,20 +274,20 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesSpecificationCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
+  .controller('OrganizationsArticlesSpecificationCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
     function ($scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
       $scope.specification = null;
 
-      Articles.getSpecification(organizationId, articleId, function (res) {
-        $scope.specification = res;
+      Articles.get({ownerId: organizationId, articleId: articleId}, function (res) {
+        $scope.specification = res.specification;
       }, function () {
         Alert.error('Fehler beim Laden der Spezifikation.');
       });
 
       $scope.submit = function () {
-        Articles.putSpecification(organizationId, articleId, {data: $scope.specification}, function () {
+        Articles.patch({ownerId: organizationId, articleId: articleId, specification: $scope.specification}, function () {
           Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern der Spezifikation.');
@@ -316,13 +322,13 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesStockCtrl', ['$scope', 'organizationId', 'articleId', 'OrganizationArticles', 'Alert',
-    function ($scope, organizationId, articleId, Articles, Alert) {
+  .controller('OrganizationsArticlesStockCtrl', ['$scope', 'organizationId', 'articleId', 'ArticlesStock', 'Alert',
+    function ($scope, organizationId, articleId, ArticlesStock, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
       $scope.stock = null;
 
-      Articles.getStock(organizationId, articleId, function (res) {
+      ArticlesStock.get({ownerId: organizationId, articleId: articleId}, function (res) {
         $scope.stock = res;
       }, function () {
         Alert.error('Fehler beim Laden des Bestandes.');
