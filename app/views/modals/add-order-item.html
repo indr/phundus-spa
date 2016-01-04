@@ -7,14 +7,23 @@
   <form class="form-horizontal" name="addItemForm" novalidate>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="inputArticleId">Artikel-Id</label>
+      <label class="col-sm-3 control-label" for="inputArticle">Artikel</label>
 
-      <div class="col-sm-9"
-           data-ng-class="{'has-error':!addItemForm.inputArticleId.$valid && addItemForm.inputArticleId.$touched}">
-        <input type="text" class="form-control" id="inputArticleId" name="inputArticleId"
-               data-ng-model="articleId" required>
-              <span class="help-block"
-                    data-ng-show="addItemForm.inputArticleId.$error.required && addItemForm.inputArticleId.$touched">Erforderlich!</span>
+      <div class="col-sm-9" data-ng-class="{'has-error':!addItemForm.inputArticleId.$valid && addItemForm.inputArticleId.$touched}">
+        <input type="text" data-ng-model="selected" class="form-control" id="inputArticleId" name="inputArticleId"
+               data-uib-typeahead="article as article.name for article in getArticles($viewValue)"
+               data-typeahead-loading="loadingLocations" data-typeahead-no-results="noResults"
+               id="inputArticle" required>
+        <!--<span class="help-block">Benutzer-Id oder E-Mail-Adresse</span>-->
+        <span class="help-block"
+              data-ng-show="addItemForm.inputArticleId.$error.required && addItemForm.inputArticleId.$touched">Erforderlich!</span>
+        <span class="help-block">
+          <span data-ng-hide="loadingLocations || noResults">&nbsp;</span>
+          <span data-ng-show="loadingLocations"><span class="glyphicon glyphicon-refresh"></span> Bitte warten...</span>
+          <span data-ng-show="noResults"><span class="glyphicon glyphicon-remove"></span> Kein Material gefunden</span>
+        </span>
+
+        <!--<pre>Model: {{selected | json}}</pre>-->
       </div>
     </div>
 

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('phundusApp')
-  .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item',
-    function ($scope, $uibModalInstance, lessorId, orderId, item) {
+  .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', '$http',
+    function ($scope, $uibModalInstance, lessorId, orderId, item, $http) {
 
       if (item) {
         $scope.fromUtc = item.fromUtc;
@@ -15,12 +15,24 @@ angular.module('phundusApp')
         $scope.amount = 1;
       }
 
+      $scope.getArticles = function (val) {
+        return $http.get('/api/v0/articles', {
+          params: {
+            ownerId: lessorId,
+            q: val
+          }
+        }).then(function (response) {
+
+          return response.data.results;
+        });
+      };
+
       $scope.ok = function () {
         if (!$scope.addItemForm.$valid) {
           return;
         }
         $uibModalInstance.close({
-          lessorId: lessorId, orderId: orderId, articleId: $scope.articleId,
+          lessorId: lessorId, orderId: orderId, articleId: $scope.selected.id,
           fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, amount: $scope.amount
         });
       };
@@ -56,8 +68,6 @@ angular.module('phundusApp')
     function ($scope, $uibModalInstance, ownerId, $http) {
 
       $scope.getMembers = function (val) {
-
-
         return $http.get('/api/v0/organizations/' + ownerId + '/members', {
           params: {
             username: val
