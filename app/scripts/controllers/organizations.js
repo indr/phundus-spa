@@ -386,8 +386,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageOrganizationOrderCtrl', ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window',
-    function ($, $scope, organizationId, orderId, Orders, OrderItems, Alert, $window) {
+  .controller('ManageOrganizationOrderCtrl', ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window', '$uibModal',
+    function ($, $scope, organizationId, orderId, Orders, OrderItems, Alert, $window, $uibModal) {
       $scope.organizationId = organizationId;
       $scope.orderId = orderId;
       $scope.order = null;
@@ -436,26 +436,35 @@ angular.module('phundusApp')
         articleId: '', amount: 1, fromUtc: new Date(), toUtc: new Date(), orderId: orderId
       };
 
-      $scope.showAddItem = function (order) {
+      $scope.showAddItem = function () {
 
-        $scope.newItem.orderId = order.orderId;
-        $scope.newItem.articleId = '';
-        $scope.newItem.amount = 1;
-        $('#modal-add-item').modal('show');
-      };
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/add-order-item.html',
+          controller: 'AddOrderItemModalInstCtrl',
+          resolve: {
+            lessorId: function () {
+              return $scope.order.lessorId;
+            },
+            orderId: function () {
+              return orderId;
+            },
+            item: function () {
+              return $scope.newItem;
+            }
+          }
+        });
 
-      $scope.addItem = function (item) {
+        modalInstance.result.then(function (item) {
+          $scope.newItem.fromUtc = item.fromUtc;
+          $scope.newItem.toUtc = item.toUtc;
+          $scope.newItem.amount = item.amount;
 
-        $scope.addItemForm.$setSubmitted();
-        if (!$scope.addItemForm.$valid) {
-          return;
-        }
+          OrderItems.post(item, function (data) {
 
-        OrderItems.post(item, function (data) {
-          $('#modal-add-item').modal('hide');
-          $scope.order.items.push(data);
-        }, function () {
-          $('#modal-add-item').modal('show');
+            $scope.order.items.push(data);
+          }, function () {
+            Alert.error('Fehler beim Hinzufügen des Materials.')
+          });
         });
       };
 
@@ -472,6 +481,9 @@ angular.module('phundusApp')
 
       $scope.saveEditedItem = function (item) {
         item.editing = false;
+        $scope.newItem.fromUtc = item.fromUtc;
+        $scope.newItem.toUtc = item.toUtc;
+        $scope.newItem.amount = item.amount;
         OrderItems.patch({orderId: $scope.order.orderId}, item,
           function (data) {
             item.amount = data.amount;

@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <button type="button" class="close" data-ng-click="cancel()" aria-label="Close"><span
+    aria-hidden="true">&times;</span></button>
+  <h4>Artikel hinzufügen</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal" name="addItemForm" novalidate>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="inputArticleId">Artikel-Id</label>
+
+      <div class="col-sm-9"
+           data-ng-class="{'has-error':!addItemForm.inputArticleId.$valid && addItemForm.inputArticleId.$touched}">
+        <input type="text" class="form-control" id="inputArticleId" name="inputArticleId"
+               data-ng-model="articleId" required>
+              <span class="help-block"
+                    data-ng-show="addItemForm.inputArticleId.$error.required && addItemForm.inputArticleId.$touched">Erforderlich!</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="fromUtc">Von</label>
+
+      <div class="col-sm-9"
+           data-ng-class="{'has-error':!addItemForm.fromUtc.$valid && addItemForm.fromUtc.$touched}">
+        <p class="input-group">
+          <input type="text" class="form-control" id="fromUtc" name="fromUtc"
+                 data-uib-datepicker-popup="mediumDate" data-ng-model="fromUtc"
+                 data-is-open="fromUtcIsOpen" required>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" data-ng-click="fromUtcIsOpen = true"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+        </p>
+        <span class="help-block" data-ng-show="addItemForm.fromUtc.$error.required && addItemForm.fromUtc.$touched">Erforderlich!</span>
+        <span class="help-block" data-ng-show="addItemForm.fromUtc.$error.date && addItemForm.fromUtc.$touched">Ungültiges Datum!</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="toUtc">Bis</label>
+
+      <div class="col-sm-9" data-ng-class="{'has-error':!addItemForm.toUtc.$valid && addItemForm.toUtc.$touched}">
+        <p class="input-group">
+          <input type="text" class="form-control" id="toUtc" name="toUtc"
+                 data-uib-datepicker-popup="mediumDate" data-ng-model="toUtc"
+                 data-is-open="toUtcIsOpen" required>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" data-ng-click="toUtcIsOpen = true"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+        </p>
+        <span class="help-block" data-ng-show="addItemForm.toUtc.$error.required && addItemForm.toUtc.$touched">Erforderlich!</span>
+        <span class="help-block" data-ng-show="addItemForm.toUtc.$error.date && addItemForm.toUtc.$touched">Ungültiges Datum!</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="amount">Menge</label>
+
+      <div class="col-sm-9"
+           data-ng-class="{'has-error':!addItemForm.amount.$valid && addItemForm.amount.$touched}">
+        <input type="number" class="form-control" id="amount" name="amount" data-ng-model="amount"
+               required min="0">
+        <span class="help-block" data-ng-show="addItemForm.amount.$error.required && addItemForm.amount.$touched">Erforderlich!</span>
+        <span class="help-block" data-ng-show="addItemForm.amount.$error.number">Keine gültige Zahl!</span>
+        <span class="help-block" data-ng-show="addItemForm.amount.$error.min || addItemForm.amount.$error.max">Die Menge muss grösser als 0 sein!</span>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" data-ng-click="ok()" data-ng-disabled="addItemForm.$invalid">Hinzufügen</button>
+  <button class="btn btn-default" type="button" data-ng-click="cancel()">Abbrechen</button>
+</div>
