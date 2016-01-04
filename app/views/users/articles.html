@@ -1,4 +1,9 @@
-<table class="table table-hover" data-st-table="displayedArticles" data-st-safe-src="articles">
+<div class="ng-cloak alert alert-info" data-ng-show="!store && !loading">
+  <strong>Keine Materialstelle!</strong>
+  Bevor du dein Material erfassen und verwalten kannst, musst du <a href="" data-ui-sref="users.home({userId: userId})" >deine Materialstelle</a> eröffnen.
+</div>
+
+<table class="table table-hover" data-ng-show="store && !loading" data-st-table="displayedArticles" data-st-safe-src="articles">
   <thead>
   <tr>
     <th colspan="5">
@@ -30,12 +35,12 @@
   </tbody>
 </table>
 
-<div class="alert alert-info" data-ng-show="articles.length == 0">
+<div class="alert alert-info" data-ng-show="store && !loading && articles.length == 0">
   <strong>Nichts gefunden!</strong>
   Es sind keine Artikel vorhanden.
 </div>
 
-<div class="alert alert-info" data-ng-show="displayedArticles.length == 0 && articles.length > 0">
+<div class="alert alert-info" data-ng-show="store && !loading && displayedArticles.length == 0 && articles.length > 0">
   <strong>Nichts gefunden!</strong>
   Deine Suche liefert keine Ergebnisse.
 </div>

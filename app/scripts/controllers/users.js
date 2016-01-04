@@ -8,10 +8,17 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersCtrl', ['$scope', 'userId', 'Auth',
-    function ($scope, userId, Auth) {
+  .controller('UsersCtrl', ['$scope', 'userId', 'Users', 'Auth', 'Alert',
+    function ($scope, userId, Users, Auth, Alert) {
       $scope.userId = userId;
-      $scope.isHome = $scope.userId + '' === Auth.user.userId + '';
+      $scope.isHome = userId + '' === Auth.user.userId + '';
+      $scope.user = null;
+
+      Users.get(userId, function (res) {
+        $scope.user = res;
+      }, function () {
+        Alert.error('Fehler beim Laden des Benutzers.');
+      });
     }
   ]);
 
@@ -23,17 +30,9 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersHomeCtrl', ['$scope', 'userId', 'Users', 'Stores', 'Alert',
-    function ($scope, userId, Users, Stores, Alert) {
+  .controller('UsersHomeCtrl', ['$scope', 'userId', 'Stores', 'Alert',
+    function ($scope, userId, Stores, Alert) {
       $scope.userId = userId;
-      $scope.user = null;
-
-
-      Users.get(userId, function (res) {
-        $scope.user = res;
-      }, function () {
-        Alert.error('Fehler beim Laden des Benutzers.');
-      });
 
       $scope.openStore = function () {
         Stores.post({userId: $scope.user.userId}, function (res) {
@@ -54,18 +53,30 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesIndexCtrl', ['_', '$scope', 'userId', '$window', 'Articles', 'Alert', '$uibModal', '$state',
-    function (_, $scope, userId, $window, Articles, Alert, $uibModal, $state) {
+  .controller('UsersArticlesIndexCtrl', ['_', '$scope', 'userId', '$window', 'Stores', 'Articles', 'Alert', '$uibModal', '$state', 'Auth',
+    function (_, $scope, userId, $window, Stores, Articles, Alert, $uibModal, $state, Auth) {
 
       $scope.loading = true;
+      $scope.store = null;
+      $scope.articles = null;
 
-      Articles.query({ownerId: userId}, function (res) {
-        $scope.articles = res.results;
-        $scope.displayedArticles = [].concat($scope.articles);
-        $scope.loading = false;
-      }, function () {
-        Alert.error("Fehler beim Laden der Artikel.");
-        $scope.loading = false;
+      Stores.query({ownerId: Auth.user.userGuid}, function (res) {
+
+        if (res.stores.length === 0) {
+          $scope.loading = false;
+          return;
+        }
+        $scope.store = res.stores[0];
+
+        Articles.query({ownerId: userId}, function (res) {
+          $scope.articles = res.results;
+          $scope.displayedArticles = [].concat($scope.articles);
+          $scope.loading = false;
+        }, function () {
+          Alert.error("Fehler beim Laden der Artikel.");
+          $scope.loading = false;
+        });
+
       });
 
       $scope.delete = function (articleId, name) {
