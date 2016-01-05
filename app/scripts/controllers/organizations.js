@@ -77,9 +77,6 @@ angular.module('phundusApp')
       });
 
       $scope.join = function () {
-        if (!$window.confirm('Möchtest du dieser Organisation wirklich beitreten?')) {
-          return;
-        }
         $scope.isJoining = true;
         Applications.post({organizationId: organizationId}, function () {
           $scope.isJoining = false;

@@ -43,6 +43,7 @@ module.exports = function(config) {
       'bower_components/angular-uuid/uuid.min.js',
       'bower_components/blueimp-file-upload/js/jquery.fileupload.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "bower_components/blueimp-load-image/js/load-image.all.min.js",

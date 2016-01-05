@@ -20,7 +20,8 @@ var app = angular
     'ui.gravatar',
     'ui.router',
     'uuid',
-    'xeditable'
+    'xeditable',
+    'mwl.confirm'
   ])
 
   // http://snippetrepo.com/snippets/lodash-in-angularjs
@@ -522,11 +523,13 @@ app.filter('unique', function () {
   };
 });
 
-app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions',
-  function ($rootScope, $state, $location, Auth, Alert, editableOptions) {
+app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions', 'confirmationPopoverDefaults',
+  function ($rootScope, $state, $location, Auth, Alert, editableOptions, confirmationPopoverDefaults) {
     $rootScope.isTestEnv = /(^localhost)|(^acceptance)/.test($location.host());
+    $rootScope.isLocalEnv = /(^localhost)/.test($location.host());
     $rootScope.$state = $state;
     editableOptions.theme = 'bs3';
+    confirmationPopoverDefaults.confirmButtonType = 'primary';
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
       if (!('data' in toState) || !('access' in toState.data)) {
