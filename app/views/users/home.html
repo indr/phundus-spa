@@ -15,8 +15,11 @@
 
     <div data-ng-show="user">
       <div data-ng-hide="user.store">
-        <div class="jumbotron text-center" data-ng-show="isHome">
-          <button class="btn btn-default btn-lg" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
+        <div class="jumbotron" data-ng-show="isHome">
+          <p>Im Fall. Mit phundus kannst du auch dein eigenes Material vermieten. Ideal ist es wenn das Material Outdoorerfahrung oder Jugendaktivitäten unterstützt. Klicke dazu auf diesen Button und erfasse Standort mit Ansichtsauswahl auf der Karte und im Textfeld mögliche Zeiten wann das Material am ehesten übergeben werden kann. Anschliessend kannst du beliebiges Material erfassen, mit Pic’s ergänzen und bei Bedarf jederzeit bearbeiten. Probiere es aus!</p>
+          <p class="text-right">
+            <button class="btn btn-primary btn-lg" data-ng-click="openStore()">Eigene Materialstelle eröffnen</button>
+          </p>
         </div>
         <div class="jumbotron" data-ng-hide="isHome">
           <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
