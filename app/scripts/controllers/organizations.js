@@ -154,14 +154,14 @@ angular.module('phundusApp')
           return;
         }
 
-        application.isSubmitting = true;
+        application.isApproving = true;
         Members.post({organizationId: organizationId, applicationId: application.id}, function () {
           application.isApproved = true;
-          application.isSubmitting = false;
+          application.isApproving = false;
           _.remove($scope.displayedCollection, {id: application.id});
           _.remove($scope.rowCollection, {id: application.id});
         }, function () {
-          application.isSubmitting = false;
+          application.isApproving = false;
           Alert.error('Fehler beim Bestätigen der Beitrittsanfrage.')
         });
       };
@@ -171,14 +171,14 @@ angular.module('phundusApp')
           return;
         }
 
-        application.isSubmitting = true;
+        application.isRejecting = true;
         Applications.delete({organizationId: organizationId, applicationId: application.id}, function () {
           application.isRejected = true;
-          application.isSubmitting = false;
+          application.isRejecting = false;
           _.remove($scope.displayedCollection, {id: application.id});
           _.remove($scope.rowCollection, {id: application.id});
         }, function () {
-          application.isSubmitting = false;
+          application.isRejecting = false;
           Alert.error('Fehler beim Ablehnen der Beitrittsanfrage.')
         });
       };
