@@ -13,7 +13,8 @@ angular.module('phundusApp')
       replace: 'true',
       scope: {
         user: '=',
-        isEditable: '='
+        isEditable: '=',
+        isHome: '='
       },
       templateUrl: 'views/directives/ph-user-vcard.html'
     }

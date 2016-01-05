@@ -15,10 +15,11 @@
   </ul>
   -->
 
-  <div class="vcard-memberships" data-ng-show="user.memberships.length">
+  <div class="vcard-memberships" data-ng-show="user.memberships.length > 0 || isHome">
     <div class="panel panel-default">
       <div class="panel-heading">Mitgliedschaften</div>
-      <table class="table">
+      <div class="panel-body" data-ng-hide="!isHome && user.memberships.length"><a href="" data-ui-sref="public.organizations">Suche</a> und beantrage bei Organisationen die Mitgliedschaft um weitere Artikel auszuleihen oder von günstigeren Preisen zu profitieren!</div>
+      <table class="table" data-ng-show="user.memberships.length">
         <tr data-ng-repeat="membership in user.memberships">
           <td><a href="/{{membership.organizationUrl}}">
             {{membership.organizationName}}</a>
