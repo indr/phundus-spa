@@ -269,12 +269,15 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
+        $scope.form.$submitting = true;
         Articles.patch({
           ownerId: organizationId, articleId: articleId, name: $scope.article.name, brand: $scope.article.brand,
           price: $scope.article.price, grossStock: $scope.article.grossStock, color: $scope.article.color
         }, function () {
+          $scope.form.$submitting = false;
           Alert.success('Das Material wurde erfolgreich gespeichert.');
         }, function () {
+          $scope.form.$submitting = false;
           Alert.error('Fehler beim Speichern des Material.');
         });
       };
@@ -306,9 +309,12 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
+        $scope.form.$submitting = true;
         Articles.patch({ownerId: organizationId, articleId: articleId, description: $scope.description}, function () {
+          $scope.form.$submitting = false;
           Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
         }, function () {
+          $scope.form.$submitting = false;
           Alert.error('Fehler beim Speichern der Beschreibung.');
         });
       };
@@ -340,13 +346,16 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
+        $scope.form.$submitting = true;
         Articles.patch({
           ownerId: organizationId,
           articleId: articleId,
           specification: $scope.specification
         }, function () {
+          $scope.form.$submitting = false;
           Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
         }, function () {
+          $scope.form.$submitting = false;
           Alert.error('Fehler beim Speichern der Spezifikation.');
         });
       };

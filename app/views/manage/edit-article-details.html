@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-    <form class="form-horizontal" data-ng-submit="submit()" name="editDetailsForm">
+    <form class="form-horizontal" name="form">
       <div class="form-group">
         <label class="control-label col-sm-3" for="name">Name</label>
         <div class="col-sm-9">
@@ -38,7 +38,8 @@
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <button class="btn btn-primary" type="submit" data-ng-disabled="editDetailsForm.$invalid">Speichern</button>
+          <ph-submit class="btn-primary" data-ng-click="submit()"
+                     data-form="form" data-text="Speichern" ></ph-submit>
           <a class="btn btn-default" href="" data-ng-click="cancel()">Abbrechen</a>
         </div>
       </div>

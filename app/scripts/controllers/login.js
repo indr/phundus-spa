@@ -30,8 +30,10 @@ angular.module('phundusApp')
               delete $location.search().returnPath;
               $location.path(returnPath);
             }
+            $scope.loginForm.$submitting = false;
           },
           function () {
+            $scope.loginForm.$submitting = false;
             Alert.error("Das angegebene Passwort ist nicht korrekt.");
           }
         );

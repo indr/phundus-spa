@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <form class=form-horizontal" data-ng-submit="submit()" name="editForm">
+    <form class=form-horizontal" name="form">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12">
           <textarea class="form-control" rows="10" data-ng-model="specification" id="specification" autofocus></textarea>
@@ -9,7 +9,8 @@
 
       <div class="form-group">
         <div class="col-xs-12 col-sm-12" style="margin-top: 15px; margin-bottom: 15px">
-          <button class="btn btn-primary" type="submit" data-ng-disabled="editForm.$invalid">Speichern</button>
+          <ph-submit class="btn-primary" data-ng-click="submit()"
+                      data-form="form" data-text="Speichern" ></ph-submit>
           <a class="btn btn-default" href="" data-ng-click="cancel()">Abbrechen</a>
         </div>
       </div>
