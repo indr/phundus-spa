@@ -10,7 +10,7 @@
     <div data-ng-show="relationship">
       <h3>Mitgliedschaft</h3>
       <div data-ng-show="relationship.status == 'None'">
-        <p>Du kannst dieser Organisation <a data-ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
+        <p>Du kannst dieser Organisation <button type="button" data-ng-click="join()" class="btn btn-default btn-sm" data-ng-disabled="isJoining"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isJoining"></span> beitreten</button>.</p>
       </div>
       <div data-ng-show="relationship.status == 'Member'">
         <p>Du bist Mitglied seit dem {{relationship.timestamp | date: 'mediumDate'}}.</p>
@@ -20,7 +20,7 @@
       </div>
       <div data-ng-show="relationship.status == 'Rejected'">
         <p>Dein Antrag zur Mitgliedschaft wurde am {{relationship.timestamp | date: 'mediumDate'}} abgelehnt.</p>
-        <p>Du kannst die Mitgliedschaft erneut <a data-ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
+        <p>Du kannst die Mitgliedschaft erneut <button type="button"  data-ng-click="join()" class="btn btn-default btn-sm"data-ng-disabled="isJoining"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isJoining"></span> beantragen</button>.</p>
       </div>
     </div>
 

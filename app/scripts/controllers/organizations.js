@@ -80,14 +80,16 @@ angular.module('phundusApp')
         if (!$window.confirm('Möchtest du dieser Organisation wirklich beitreten?')) {
           return;
         }
-
+        $scope.isJoining = true;
         Applications.post({organizationId: organizationId}, function () {
+          $scope.isJoining = false;
           Alert.info('Die Mitgliedschaft wurde beantragt. Du erhältst ein E-Mail wenn ein Administrator diese bestätigt oder ablehnt.');
           $scope.relationship = {
             status: 'Application',
             timestamp: new Date()
           };
         }, function () {
+          $scope.isJoining = false;
           Alert.error('Fehler beim Beantragen der Mitgliedschaft.');
         });
       };
