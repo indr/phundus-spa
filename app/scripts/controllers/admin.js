@@ -91,14 +91,10 @@ angular.module('phundusApp')
 angular.module('phundusApp')
   .controller('AdminUsersIndexCtrl', ['$scope', 'AdminUsers', 'Alert',
     function ($scope, AdminUsers, Alert) {
-      $scope.loading = false;
-
       AdminUsers.query({}, function (content) {
-        $scope.loading = false;
         $scope.rowCollection = content.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function () {
-        $scope.loading = false;
         Alert.error('Fehler beim Laden der Benutzer.')
       });
 

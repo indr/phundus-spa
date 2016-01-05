@@ -9,8 +9,8 @@
     <th data-st-sort="lastName">Nachname</th>
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
     <th data-st-sort="isApproved">Bestätigt</th>
-    <th data-st-sort="isLocked">Gesperrt</th>
     <th data-st-sort="isAdmin">Admin</th>
+    <th data-st-sort="isLocked">Gesperrt</th>
   </tr>
   </thead>
   <tbody>
@@ -27,18 +27,18 @@
       <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isApprovedSubmitting"></span>
     </td>
     <td>
-      <div class="checkbox checkbox-warning" data-ng-hide="row.isLockedSubmitting">
-        <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
-        <label></label>
-      </div>
-      <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isLockedSubmitting"></span>
-    </td>
-    <td>
       <div class="checkbox checkbox-danger" data-ng-hide="row.isAdminSubmitting">
         <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" />
         <label></label>
       </div>
       <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isAdminSubmitting"></span>
+    </td>
+    <td>
+      <div class="checkbox checkbox-warning" data-ng-hide="row.isLockedSubmitting">
+        <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
+        <label></label>
+      </div>
+      <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isLockedSubmitting"></span>
     </td>
   </tr>
   </tbody>

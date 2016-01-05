@@ -338,6 +338,47 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:ManageOrganizationOrderCtrl
+ * @description
+ * # ManageOrganizationOrderCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('ManageOrganizationMembersCtrl', ['$scope', 'organizationId', 'Members', 'Alert',
+    function ($scope, organizationId, Members, Alert) {
+      Members.query({organizationId: organizationId}, function (res) {
+        $scope.rowCollection = res;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
+      }, function () {
+        Alert.error('Fehler beim Laden der Mitglieder.');
+      });
+
+      $scope.toggleIsLocked = function (row) {
+        row.isLockedSubmitting = true;
+        Members.patch({organizationId: organizationId, id: row.id, guid: row.guid, isLocked: row.isLocked}, function () {
+          row.isLockedSubmitting = false;
+        }, function () {
+          row.isLocked = !row.isLocked;
+          row.isLockedSubmitting = false;
+          Alert.error('Fehler beim Sperren/Entsperren des Benutzers.');
+        });
+      };
+
+      $scope.toggleIsManager = function (row) {
+        row.isManagerSubmitting = true;
+        Members.patch({organizationId: organizationId, id: row.id, guid: row.guid, isManager: row.isManager}, function () {
+          row.isManagerSubmitting = false;
+        }, function () {
+          row.isManager = !row.isManager;
+          row.isManagerSubmitting = false;
+          Alert.error('Fehler beim Sperren/Entsperren des Benutzers.');
+        });
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:ManageOrganizationOrdersCtrl
  * @description
  * # ManageOrganizationOrdersCtrl

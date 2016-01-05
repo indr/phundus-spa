@@ -211,6 +211,11 @@ var app = angular
           }
         ]
       })
+      .state('manage.organization.members', {
+        url: '/members/',
+        templateUrl: 'views/organizations/members.html',
+        controller: 'ManageOrganizationMembersCtrl'
+      })
       .state('manage.organization.orders', {
         url: '/orders/',
         templateUrl: 'views/organizations/orders.html',

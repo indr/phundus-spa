@@ -1,0 +1,52 @@
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th colspan="7">
+      <input data-st-search class="form-control" type="search" placeholder="Suchen..."/>
+    </th>
+  </tr>
+  <tr>
+    <th data-st-sort="id">#</th>
+    <th data-st-sort="firstName">Vorname</th>
+    <th data-st-sort="lastName">Nachname</th>
+    <th data-st-sort="emailAddress">E-Mail-Adresse</th>
+    <th data-st-sort="jsNumber">J+S-Nummer</th>
+    <th data-st-sort="role">Verwaltung</th>
+    <th data-st-sort="isLocked">Gesperrt</th>
+    <!--<th></th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="member in displayedCollection">
+    <td>{{member.id}}</td>
+    <td>{{member.firstName}}</td>
+    <td>{{member.lastName}}</td>
+    <td>{{member.emailAddress}}</td>
+    <td>{{member.jsNumber}}</td>
+    <td>
+      <div class="checkbox checkbox-danger" data-ng-hide="member.isManagerSubmitting">
+        <input type="checkbox" data-ng-model="member.isManager" data-ng-change="toggleIsManager(member)" />
+        <label></label>
+      </div>
+      <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="member.isManagerSubmitting"></span>
+    </td>
+    <td>
+      <div class="checkbox checkbox-warning" data-ng-hide="member.isLockedSubmitting">
+        <input type="checkbox" data-ng-model="member.isLocked" data-ng-change="toggleIsLocked(member)" />
+        <label></label>
+      </div>
+      <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="member.isLockedSubmitting"></span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info" data-ng-show="rowCollection.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Mitglieder vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="displayedCollection.length == 0 && rowCollection.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>
