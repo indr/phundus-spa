@@ -20,13 +20,22 @@
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>
     <td>
-      <input type="checkbox" data-ng-model="row.isApproved" data-ng-disabled="row.isApproved" data-ng-change="toggleIsApproved(row)" data-ng-disabled="row.isApprovedSubmitting"  />
+      <div class="checkbox">
+        <input type="checkbox" data-ng-model="row.isApproved" data-ng-disabled="row.isApproved" data-ng-change="toggleIsApproved(row)" data-ng-disabled="row.isApprovedSubmitting"  />
+        <label></label>
+      </div>
     </td>
     <td>
-      <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" data-ng-disabled="row.isLockedSubmitting" />
+      <div class="checkbox">
+        <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" data-ng-disabled="row.isLockedSubmitting" />
+        <label></label>
+      </div>
     </td>
     <td>
-      <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" data-ng-disabled="row.isAdminSubmitting"  />
+      <div class="checkbox">
+        <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" data-ng-disabled="row.isAdminSubmitting"  />
+        <label></label>
+      </div>
     </td>
   </tr>
   </tbody>
