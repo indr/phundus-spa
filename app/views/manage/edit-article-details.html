@@ -22,7 +22,7 @@
         <label class="control-label col-sm-3" for="price">Preis pro Woche</label>
 
         <div class="col-sm-9" data-ng-class="{'has-error':!form.price.$valid && form.price.$touched}">
-          <input class="form-control" type="text" data-ng-model="article.price" id="price" name="price" required/>
+          <input class="form-control" type="number" data-ng-model="article.price" id="price" name="price" required/>
         </div>
       </div>
 
