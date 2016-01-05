@@ -81,7 +81,7 @@ angular.module('phundusApp')
           return;
         }
 
-        Applications.post(organizationId, {}, function () {
+        Applications.post({organizationId: organizationId}, function () {
           Alert.info('Die Mitgliedschaft wurde beantragt. Du erhältst ein E-Mail wenn ein Administrator diese bestätigt oder ablehnt.');
           $scope.relationship = {
             status: 'Application',
@@ -129,6 +129,59 @@ angular.module('phundusApp')
   .controller('ManageOrganizationsSettingsCtrl', ['$scope', 'organizationId',
     function ($scope, organizationId) {
       $scope.organizationId = organizationId
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:ManageOrganizationApplicationsCtrl
+ * @description
+ * # ManageOrganizationApplicationsCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('ManageOrganizationApplicationsCtrl', ['_', '$scope', 'organizationId', 'Applications', 'Members', 'Alert', '$window',
+    function (_, $scope, organizationId, Applications, Members, Alert, $window) {
+      Applications.query({organizationId: organizationId}, function (res) {
+        $scope.rowCollection = res;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
+      }, function () {
+        Alert.error('Fehler beim Laden der Beitrittsanfragen.');
+      });
+
+      $scope.approve = function (application) {
+        if (!$window.confirm('Möchten Sie "' + application.firstName + ' ' + application.lastName + '" wirklich bestätigen?')) {
+          return;
+        }
+
+        application.isSubmitting = true;
+        Members.post({organizationId: organizationId, applicationId: application.id}, function () {
+          application.isApproved = true;
+          application.isSubmitting = false;
+          _.remove($scope.displayedCollection, {id: application.id});
+          _.remove($scope.rowCollection, {id: application.id});
+        }, function () {
+          application.isSubmitting = false;
+          Alert.error('Fehler beim Bestätigen der Beitrittsanfrage.')
+        });
+      };
+
+      $scope.reject = function (application) {
+        if (!$window.confirm('Möchten Sie "' + application.firstName + ' ' + application.lastName + '" wirklich ablehnen?')) {
+          return;
+        }
+
+        application.isSubmitting = true;
+        Applications.delete({organizationId: organizationId, applicationId: application.id}, function () {
+          application.isRejected = true;
+          application.isSubmitting = false;
+          _.remove($scope.displayedCollection, {id: application.id});
+          _.remove($scope.rowCollection, {id: application.id});
+        }, function () {
+          application.isSubmitting = false;
+          Alert.error('Fehler beim Ablehnen der Beitrittsanfrage.')
+        });
+      };
     }
   ]);
 
@@ -287,7 +340,11 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function () {
-        Articles.patch({ownerId: organizationId, articleId: articleId, specification: $scope.specification}, function () {
+        Articles.patch({
+          ownerId: organizationId,
+          articleId: articleId,
+          specification: $scope.specification
+        }, function () {
           Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
         }, function () {
           Alert.error('Fehler beim Speichern der Spezifikation.');
@@ -355,7 +412,12 @@ angular.module('phundusApp')
 
       $scope.toggleIsLocked = function (row) {
         row.isLockedSubmitting = true;
-        Members.patch({organizationId: organizationId, id: row.id, guid: row.guid, isLocked: row.isLocked}, function () {
+        Members.patch({
+          organizationId: organizationId,
+          id: row.id,
+          guid: row.guid,
+          isLocked: row.isLocked
+        }, function () {
           row.isLockedSubmitting = false;
         }, function () {
           row.isLocked = !row.isLocked;
@@ -366,7 +428,12 @@ angular.module('phundusApp')
 
       $scope.toggleIsManager = function (row) {
         row.isManagerSubmitting = true;
-        Members.patch({organizationId: organizationId, id: row.id, guid: row.guid, isManager: row.isManager}, function () {
+        Members.patch({
+          organizationId: organizationId,
+          id: row.id,
+          guid: row.guid,
+          isManager: row.isManager
+        }, function () {
           row.isManagerSubmitting = false;
         }, function () {
           row.isManager = !row.isManager;

@@ -20,6 +20,19 @@ angular.module('phundusApp')
   .factory('AdminUsers', ['$resource', function ($resource) {
     return $resource('/api/v0/admin/users/:userId', {userId: '@userId'});
   }])
+  .factory('Applications', ['$resource', function ($resource) {
+    return $resource(
+      '/api/v0/organizations/:organizationId/applications/:applicationId', {
+        organizationId: '@organizationId',
+        applicationId: '@id'
+      }, {
+        query: {
+          method: 'GET',
+          isArray: true
+        }
+      }
+    );
+  }])
   .factory('Articles', ['$resource', function ($resource) {
     return $resource('/api/v0/articles/:articleId', {articleId: '@articleId'});
   }])
@@ -42,12 +55,16 @@ angular.module('phundusApp')
     return $resource('/api/v0/mails/:id', {id: '@id'}, {query: {method: 'GET', isArray: true}});
   }])
   .factory('Members', ['$resource', function ($resource) {
-    return $resource('/api/v0/organizations/:organizationId/members/:memberId', {organizationId: '@organizationId', memberId: '@id'}, {
-      query: {
-        method: 'GET',
-        isArray: true
+    return $resource('/api/v0/organizations/:organizationId/members/:memberId', {
+        organizationId: '@organizationId',
+        memberId: '@id'
+      }, {
+        query: {
+          method: 'GET',
+          isArray: true
+        }
       }
-    });
+    );
   }])
   .factory('Orders', ['$resource', function ($resource) {
     return $resource('/api/v0/orders/:orderId', {orderId: '@orderId'});
@@ -83,13 +100,5 @@ angular.module('phundusApp')
   }])
   .factory('SchemaUpdate', ['$resource', function ($resource) {
     return $resource('/api/diagnostics/schema-update');
-  }])
-
-  .factory('Applications', ['$http', function ($http) {
-    return {
-      post: function (organizationId, content, success, error) {
-        $http.post('/api/v0/organizations/' + organizationId + '/applications', content).success(success).error(error);
-      }
-    }
   }])
 ;

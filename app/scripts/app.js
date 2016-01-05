@@ -202,6 +202,11 @@ var app = angular
           }]
         }
       })
+      .state('manage.organization.applications', {
+        url: '/applications/',
+        templateUrl: 'views/organizations/applications.html',
+        controller: 'ManageOrganizationApplicationsCtrl'
+      })
       .state('manage.organization.files', {
         url: '/files/',
         templateUrl: 'views/organizations/files.html',

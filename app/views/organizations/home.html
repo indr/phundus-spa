@@ -13,13 +13,13 @@
         <p>Du kannst dieser Organisation <a data-ng-click="join()" class="btn btn-default btn-sm">beitreten</a>.</p>
       </div>
       <div data-ng-show="relationship.status == 'Member'">
-        <p>Du bist Mitglied seit {{relationship.timestamp | date: 'dd.MM.yyyy'}}.</p>
+        <p>Du bist Mitglied seit dem {{relationship.timestamp | date: 'mediumDate'}}.</p>
       </div>
       <div data-ng-show="relationship.status == 'Application'">
-        <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} beantragt.</p>
+        <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'mediumDate'}} beantragt.</p>
       </div>
       <div data-ng-show="relationship.status == 'Rejected'">
-        <p>Dein Antrag zur Mitgliedschaft am {{relationship.timestamp | date: 'dd.MM.yyyy'}} abgelehnt.</p>
+        <p>Dein Antrag zur Mitgliedschaft wurde am {{relationship.timestamp | date: 'mediumDate'}} abgelehnt.</p>
         <p>Du kannst die Mitgliedschaft erneut <a data-ng-click="join()" class="btn btn-default btn-sm">beantragen</a>.</p>
       </div>
     </div>
