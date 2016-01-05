@@ -20,9 +20,10 @@
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>
     <td>{{row.jsNumber}}</td>
-    <td>
-      <a class="btn btn-success btn-xs" href="" data-ng-click="approve(row)">Bestätigen</a>
-      <a class="btn btn-default btn-xs" href="" data-ng-click="reject(row)">Ablehnen</a>
+    <td class="text-right">
+      <span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isSubmitting"></span>
+      <a class="btn btn-success btn-sm" href="" data-ng-click="approve(row)" data-ng-disabled="row.isSubmitting">Bestätigen</a>
+      <a class="btn btn-default btn-sm" href="" data-ng-click="reject(row)" data-ng-disabled="row.isSubmitting">Ablehnen</a>
     </td>
   </tr>
   </tbody>

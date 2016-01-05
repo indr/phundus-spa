@@ -16,7 +16,7 @@
     <th class="text-right" data-st-sort="grossStock">Bestand</th>
     <th class="text-right" data-st-sort="price">Preis</th>
     <th class="text-right">
-      <a class="btn btn-primary btn-sm" href="" data-ng-click="createArticle()">Neues Material</a>
+      <a class="btn btn-primary" href="" data-ng-click="createArticle()">Neues Material</a>
     </th>
   </tr>
   </thead>
@@ -27,9 +27,9 @@
     <td class="text-right">{{row.grossStock}}</td>
     <td class="text-right">{{row.price | number:2}}</td>
     <td class="text-right">
-      <a class="btn btn-default btn-xs" href=""
+      <a class="btn btn-default btn-sm" href=""
          data-ui-sref="users.articles.edit.details({userId: userId, articleId: row.id})">Bearbeiten</a>
-      <a class="btn btn-danger btn-xs" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
+      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
     </td>
   </tr>
   </tbody>
