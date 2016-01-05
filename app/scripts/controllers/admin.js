@@ -103,26 +103,34 @@ angular.module('phundusApp')
       });
 
       $scope.toggleIsApproved = function (row) {
-        if (row.isApproved) {
-          return;
-        }
-
+        row.isApprovedSubmitting = true;
         AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isApproved: row.isApproved}, function () {
+          row.isApprovedSubmitting = true;
         }, function () {
+          row.isApproved = !row.isApproved;
+          row.isApprovedSubmitting = true;
           Alert.error('Fehler beim Bestätigen des Benutzers.');
         });
       };
 
       $scope.toggleIsLocked = function (row) {
+        row.isLockedSubmitting = true;
         AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isLocked: row.isLocked}, function () {
+          row.isLockedSubmitting = false;
         }, function () {
+          row.isLocked = !row.isLocked;
+          row.isLockedSubmitting = false;
           Alert.error('Fehler beim Sperren/Entsperren des Benutzers.');
         });
       };
 
       $scope.toggleIsAdmin = function (row) {
+        row.isAdminSubmitting = true;
         AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isAdmin: row.isAdmin}, function () {
+          row.isAdminSubmitting = false;
         }, function () {
+          row.isAdmin = !row.isAdmin;
+          row.isAdminSubmitting = false;
           Alert.error('Fehler beim Setzen der Rolle des Benutzers.');
         });
       };
