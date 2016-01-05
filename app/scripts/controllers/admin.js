@@ -105,10 +105,10 @@ angular.module('phundusApp')
       $scope.toggleIsApproved = function (row) {
         row.isApprovedSubmitting = true;
         AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isApproved: row.isApproved}, function () {
-          row.isApprovedSubmitting = true;
+          row.isApprovedSubmitting = false;
         }, function () {
           row.isApproved = !row.isApproved;
-          row.isApprovedSubmitting = true;
+          row.isApprovedSubmitting = false;
           Alert.error('Fehler beim Bestätigen des Benutzers.');
         });
       };

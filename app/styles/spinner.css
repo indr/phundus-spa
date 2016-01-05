@@ -1,113 +1,38 @@
 
 /*
-https://jsfiddle.net/AndrewDryga/GY6LC/
+http://chadkuehn.com/animated-font-spinners/
+
+Glyphicons
+To use the font-library built into Bootstrap you will need to reference the above CSS as well:
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+      type="text/css" rel="stylesheet" />
+
+<span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+
 */
 
-.spinner {
-  display: inline-block;
-  opacity: 0;
-  max-width: 0;
-
-  -webkit-transition: opacity 0.25s, max-width 0.45s;
-  -moz-transition: opacity 0.25s, max-width 0.45s;
-  -o-transition: opacity 0.25s, max-width 0.45s;
-  transition: opacity 0.25s, max-width 0.45s; /* Duration fixed since we animate additional hidden width */
+.fa-spin-custom, .glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
 }
-
-.has-spinner.active {
-  cursor:progress;
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
-
-.has-spinner.active .spinner {
-  opacity: 1;
-  max-width: 50px; /* More than it will ever come, notice that this affects on animation duration */
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
-
-/* JavaScript
-
-
-$(function(){
-    $('a, button').click(function() {
-        $(this).toggleClass('active');
-    });
-});
-
-
-/* HTML
-
-Unknown element (no animation here!):
-<p>
-  <button class="btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </button>
-</p>
-
-A and Button tags:
-<p>
-  <a class="btn btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <button class="btn btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </button>
-</p>
-
-Diffrent sizes:
-<p>
-  <a class="btn btn-mini btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <a class="btn btn-small btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <a class="btn btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <a class="btn btn-large btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-
-Left and right positions:
-<p>
-  <a class="btn btn-success has-spinner">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <a class="btn btn-success has-spinner">
-    Foo
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-  </a>
-</p>
-
-Left and right positions in fixed width .btn:
-<p>
-  <a class="btn btn-success has-spinner" style="width:50px">
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-    Foo
-  </a>
-</p>
-<p>
-  <a class="btn btn-success has-spinner" style="width:50px">
-    Foo
-    <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
-  </a>
-</p>
-*/
