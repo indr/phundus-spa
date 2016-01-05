@@ -10,7 +10,7 @@ angular.module('phundusApp')
   .directive('phDate', [function () {
     return {
       restrict: 'E',
-      replace: 'true',
+      replace: true,
       scope: {
         value: '=value'
       },

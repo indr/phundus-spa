@@ -15,6 +15,7 @@ To use the font-library built into Bootstrap you will need to reference the abov
 .fa-spin-custom, .glyphicon-spin {
   -webkit-animation: spin 1000ms infinite linear;
   animation: spin 1000ms infinite linear;
+  cursor: progress;
 }
 @-webkit-keyframes spin {
   0% {
