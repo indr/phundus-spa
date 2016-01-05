@@ -1,0 +1,31 @@
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th colspan="7"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
+  </tr>
+  <tr>
+    <th data-st-sort="organizationId">Id</th>
+    <th data-st-sort="name">Name</th>
+    <th data-st-sort="establishedAtUtc">Erstellt</th>
+    <th class="text-right"><button type="button" class="btn btn-primary" data-ng-click="establishOrganization()">Neue Organisation</button></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="row in displayedCollection">
+    <td><ph-guid data-value="row.organizationId"></ph-guid></td>
+    <td>{{row.name}}</td>
+    <td><ph-date data-value="row.establishedAtUtc"></ph-date></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info" data-ng-show="rowCollection.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Organisationen vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="displayedCollection.length == 0 && rowCollection.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>

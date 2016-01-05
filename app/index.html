@@ -80,7 +80,7 @@
                aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="" data-ui-sref="admin.users">Benutzer</a></li>
-              <li><a href="" data-ng-click="establishOrganization()">Organisation gründen</a></li>
+              <li><a href="" data-ui-sref="admin.organizations">Organisationen</a></li>
               <li class="divider"></li>
               <li data-ng-show="isTestEnv"><a href="" data-ui-sref="admin.mails">E-Mails</a></li>
               <li><a href="" data-ui-sref="admin.eventLog">Ereignislog</a></li>
@@ -216,8 +216,9 @@
 <script src="scripts/controllers/register.js"></script>
 <script src="scripts/controllers/shop.js"></script>
 <script src="scripts/controllers/users.js"></script>
-<script src="scripts/directives/ph-date.js"></script>
 <script src="scripts/directives/ph-checkbox.js"></script>
+<script src="scripts/directives/ph-date.js"></script>
+<script src="scripts/directives/ph-guid.js"></script>
 <script src="scripts/directives/ph-history-back.js"></script>
 <script src="scripts/directives/ph-organization-navbar.js"></script>
 <script src="scripts/directives/ph-organization-article-navbar.js"></script>
@@ -226,6 +227,7 @@
 <script src="scripts/directives/ph-user-article-navbar.js"></script>
 <script src="scripts/directives/ph-user-navbar.js"></script>
 <script src="scripts/directives/ph-user-vcard.js"></script>
+<script src="scripts/filters/guid.js"></script>
 <script src="scripts/filters/replace.js"></script>
 <script src="scripts/services/alert.js"></script>
 <script src="scripts/services/auth.js"></script>

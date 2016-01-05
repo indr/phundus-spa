@@ -375,6 +375,11 @@ var app = angular
         templateUrl: 'views/admin/mails.html',
         controller: 'AdminMailsIndexCtrl'
       })
+      .state('admin.organizations', {
+        url: '/organizations/',
+        templateUrl: 'views/admin/organizations.html',
+        controller: 'AdminOrganizationsIndexCtrl'
+      })
       .state('admin.schemaUpdate', {
         url: '/schema-update',
         template: '<pre>{{schemaUpdate}}</pre>',
