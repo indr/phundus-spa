@@ -69,7 +69,7 @@ var app = angular
       })
       .state('public.logout', {
         url: '/logout',
-        templateUrl: 'views/logout.html',
+        templateUrl: 'views/account/logout.html',
         controller: 'LogoutCtrl'
       })
       .state('public.404', {
@@ -91,19 +91,19 @@ var app = angular
           access: access.anon
         }
       })
-      .state('anon.register', {
-        url: '/register',
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl'
+      .state('anon.signup', {
+        url: '/signup',
+        templateUrl: 'views/account/signup.html',
+        controller: 'SignUp'
       })
       .state('anon.login', {
         url: '/login',
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/account/login.html',
         controller: 'LoginCtrl'
       })
       .state('anon.goodbye', {
         url: '/goodbye',
-        templateUrl: 'views/goodbye.html'
+        templateUrl: 'views/account/goodbye.html'
       });
 
     // User routes

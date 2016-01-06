@@ -15,6 +15,6 @@ angular.module('phundusApp')
         form: '=',
         text: '@'
       },
-      template: '<button class="btn" type="submit" data-ng-disabled="form.$invalid || form.$submitting"><span class="glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true" data-ng-show="form.$submitting"></span> {{text}}</button>'
+      template: '<button class="btn" type="submit" data-ng-disabledd="form.$invalid || form.$submitting"><span class="glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true" data-ng-show="form.$submitting"></span> {{text}}</button>'
     }
   });
