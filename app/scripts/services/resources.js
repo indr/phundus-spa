@@ -52,7 +52,7 @@ angular.module('phundusApp')
     });
   }])
   .factory('EventLog', ['$resource', function ($resource) {
-    return $resource('/api/diagnostics/eventlog', {}, {query: {method: 'GET', isArray: true}});
+    return $resource('/api/event-log', {}, {query: {method: 'GET', isArray: true}});
   }])
   .factory('Mails', ['$resource', function ($resource) {
     return $resource('/api/v0/mails/:id', {id: '@id'}, {query: {method: 'GET', isArray: true}});
@@ -102,6 +102,6 @@ angular.module('phundusApp')
     }
   }])
   .factory('SchemaUpdate', ['$resource', function ($resource) {
-    return $resource('/api/diagnostics/schema-update');
+    return $resource('/api/schema-update');
   }])
 ;
