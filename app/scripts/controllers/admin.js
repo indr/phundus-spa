@@ -40,12 +40,19 @@ angular.module('phundusApp')
         $scope.loading = false;
       });
 
-      $scope.delete = function (id) {
-        if (id) {
-          Mails.delete({id: id});
+      $scope.delete = function (row) {
+        if (row) {
+          Mails.delete({id: row.id}, function () {
+            var index = $scope.rowCollection.indexOf(row);
+            if (index !== -1) {
+              $scope.rowCollection.splice(index, 1);
+            }
+          });
         }
         else {
-          Mails.delete();
+          Mails.delete({}, function () {
+            $scope.rowCollection = [];
+          });
         }
       };
 

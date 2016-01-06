@@ -11,9 +11,10 @@ angular.module('phundusApp')
   .controller('SignUp', ['$scope', 'Users', 'Organizations', 'Alert',
     function ($scope, Users, Organizations, Alert) {
       $scope.user = {};
+      $scope.submitted = false;
 
       Organizations.query({}, function (res) {
-        $scope.organizations = res;
+        $scope.organizations = res.organizations;
       }, function () {
         Alert.error('Fehler beim Laden der Organisationen.')
       });
@@ -26,7 +27,7 @@ angular.module('phundusApp')
         $scope.form.$submitting = true;
         Users.post($scope.user, function () {
           $scope.form.$submitting = false;
-          Alert.success('Du hast dich erfolgreich registiert.');
+          $scope.submitted = true;
         }, function (res) {
           console.log(res);
           $scope.form.$submitting = false;

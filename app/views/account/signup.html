@@ -1,13 +1,30 @@
 <h2>Registrierung</h2>
-<p>Für die Anmeldung ist die Eingabe der persönlichen J+S Personen Nummer erforderlich. Die J+S Anerkennung muss nicht
-  gültig sein, die Nummer dient nur zur Erkennung ob eine Tätigkeit in einem Jugendverband der Nutzergruppe 3
-  (Lagersport und Trekking) vorhanden war. Die Nummer findest du auf deinem J+S Ausweis im Kreditkartenformat oder durch
-  Rückfrage bei deinem J+S Coach.</p>
-<p>Mit der Anmeldung bestätigst du Verantwortungsbewusst mit den Materialen umzugehen. Dir ist ersichtlich, dass du Teil
-  sehr grossen Interessensgemeinschaft bist und vermeidest Nachlässigkeiten. Bestätigte Buchungen können nicht
-  rückgängig gemacht werden. Der Mietbetrag ist beim Abholen des Material bar zu bezahlen. Bei Unsachgemässer Anwendung
-  kannst du jederzeit vom phundus ausgeschlossen werden.</p>
-<div class="row form-horizontal">
+<div class="row" data-ng-show="submitted">
+  <div class="col-xs-12">
+    <p>Um die Registrierung abzuschliessen, musst du deine E-Mail-Adresse bestätigen. Dazu wurde dir ein E-Mail
+      geschickt, in welchem sich einen Link befindet, um die Registrierung abzuschliessen.</p>
+
+    <p>Falls du eine Organisation ausgewählt hast, wird nun deine Mitgliedschaftsanfrage manuell überprüft. Gewisse
+      Materialien sowie die Vorzugspreise der Organisation stehen dir bis dahin noch nicht zur Verfügung. Du erhälst
+      eine Benachrichtigung per E-Mail sobald du für die Organisation freigegeben wurdest.</p>
+  </div>
+</div>
+<div class="row form-horizontal" data-ng-hide="submitted">
+  <div class="col-xs-12">
+    <p>Für die Anmeldung ist die Eingabe der persönlichen J+S Personen Nummer erforderlich. Die J+S Anerkennung muss
+      nicht
+      gültig sein, die Nummer dient nur zur Erkennung ob eine Tätigkeit in einem Jugendverband der Nutzergruppe 3
+      (Lagersport und Trekking) vorhanden war. Die Nummer findest du auf deinem J+S Ausweis im Kreditkartenformat oder
+      durch
+      Rückfrage bei deinem J+S Coach.</p>
+
+    <p>Mit der Anmeldung bestätigst du Verantwortungsbewusst mit den Materialen umzugehen. Dir ist ersichtlich, dass du
+      Teil
+      sehr grossen Interessensgemeinschaft bist und vermeidest Nachlässigkeiten. Bestätigte Buchungen können nicht
+      rückgängig gemacht werden. Der Mietbetrag ist beim Abholen des Material bar zu bezahlen. Bei Unsachgemässer
+      Anwendung
+      kannst du jederzeit vom phundus ausgeschlossen werden.</p>
+  </div>
   <div class="col-lg-6">
     <form name="form" novalidate>
       <fieldset>
@@ -142,14 +159,12 @@
       <fieldset>
         <legend>Mitgliedschaft</legend>
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="OrganizationId">Ich bin Mitglied folgender Organisation</label>
+          <label class="col-sm-4 control-label" for="organization">Ich bin Mitglied folgender Organisation</label>
 
           <div class="col-sm-8">
-            <select class="form-control" id="OrganizationId" name="OrganizationId">
+            <select class="form-control" id="organization" name="organizationId" data-ng-model="user.organizationId"
+                    data-ng-options="organization.organizationId as organization.name for organization in organizations">
               <option></option>
-              <option value="200d3e3a-a3ff-4e36-98fe-312f7b6b745e">JuBla Playmobil</option>
-              <option value="10ce0ec8-3781-436d-9290-54574474e8f8">Pfadi Lego</option>
-              <option value="30f0372d-763a-473a-a246-b39e1a2d7c7a">Cevi Dupplo</option>
             </select>
             <span class="help-block"><span class="glyphicon glyphicon-info-sign"></span> Weitere Mitgliedschaften kannst du nach der Registrierung über die jeweilige Organisationsseite beantragen.</span>
           </div>
