@@ -13,6 +13,7 @@ var app = angular
     'blueimp.fileupload',
     'leaflet-directive',
     'ngCookies',
+    'ngMessages',
     'ngResource',
     'ngSanitize',
     'smart-table',

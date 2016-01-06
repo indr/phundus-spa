@@ -19,10 +19,9 @@
             <input type="email" class="form-control" id="emailAddress" name="emailAddress"
                    data-ng-model="user.emailAddress" required/>
 
-            <div data-ng-show="form.$submitted || form.emailAddress.$touched">
-              <span class="help-block" data-ng-show="form.emailAddress.$error.required">Die E-Mail-Adresse ist erforderlich.</span>
-              <span class="help-block"
-                    data-ng-show="form.emailAddress.$error.email">Die E-Mail-Adresse ist ungültig.</span>
+            <div role="alert" data-ng-messages="form.emailAddress.$error"
+                 data-ng-show="form.emailAddress.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -33,9 +32,9 @@
             <input type="password" class="form-control" id="password" name="password" data-ng-model="user.password"
                    required/>
 
-            <div data-ng-show="form.$submitted || form.password.$touched">
-              <span class="help-block"
-                    data-ng-show="form.password.$error.required">Das Password ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.password.$error"
+                 data-ng-show="form.password.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -47,9 +46,12 @@
             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                    data-ng-model="user.confirmPassword" required data-compare-to="user.password"/>
 
-            <div data-ng-show="form.$submitted || form.confirmPassword.$touched">
-              <span class="help-block" data-ng-show="form.confirmPassword.$error.required">Die Passwort-Wiederholung ist erforderlich.</span>
-              <span class="help-block" data-ng-show="!form.confirmPassword.$error.required && form.confirmPassword.$error.compareTo">Die Passwort-Wiederholung stimmt nicht mit dem Passwort überein.</span>
+            <div role="alert" data-ng-messages="form.confirmPassword.$error"
+                 data-ng-show="form.confirmPassword.$touched || form.$submitted">
+              <div class="help-block" data-ng-message="compareTo">Die Passwort-Wiederholung stimmt nicht mit dem
+                Passwort überein.
+              </div>
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -63,9 +65,9 @@
             <input type="text" class="form-control" id="firstName" name="firstName" data-ng-model="user.firstName"
                    required/>
 
-            <div data-ng-show="form.$submitted || form.firstName.$touched">
-              <span class="help-block"
-                    data-ng-show="form.firstName.$error.required">Der Vorname ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.firstName.$error"
+                 data-ng-show="form.firstName.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -76,9 +78,9 @@
             <input type="text" class="form-control" id="lastName" name="lastName" data-ng-model="user.lastName"
                    required/>
 
-            <div data-ng-show="form.$submitted || form.lastName.$touched">
-              <span class="help-block"
-                    data-ng-show="form.lastName.$error.required">Der Nachname ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.lastName.$error"
+                 data-ng-show="form.lastName.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -88,8 +90,9 @@
           <div class="col-sm-8" data-has-error="form.street">
             <input type="text" class="form-control" id="street" name="street" data-ng-model="user.street" required/>
 
-            <div data-ng-show="form.$submitted || form.street.$touched">
-              <span class="help-block" data-ng-show="form.street.$error.required">Die Strasse ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.street.$error"
+                 data-ng-show="form.street.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -100,11 +103,11 @@
             <input type="number" class="form-control" id="postcode" name="postcode" data-ng-model="user.postcode"
                    required min="1000" max="9999"/>
 
-            <div data-ng-show="form.$submitted || form.postcode.$touched">
-              <span class="help-block"
-                    data-ng-show="form.postcode.$error.required">Die Postleitzahl ist erforderlich.</span>
-              <span class="help-block"
-                    data-ng-show="form.postcode.$error.number || form.postcode.$error.min || form.postcode.$error.max">Die Postleitzahl ist ungültig.</span>
+            <div role="alert" data-ng-messages="form.postcode.$error"
+                 data-ng-show="form.postcode.$touched || form.$submitted">
+              <span class="help-block" data-ng-message="number, min, max">Die Postleitzahl ist ungültig.</span>
+
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -114,8 +117,9 @@
           <div class="col-sm-8" data-has-error="form.city">
             <input type="text" class="form-control" id="city" name="city" data-ng-model="user.city" required/>
 
-            <div data-ng-show="form.$submitted || form.city.$touched">
-              <span class="help-block" data-ng-show="form.city.$error.required">Der Ort ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.city.$error"
+                 data-ng-show="form.city.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -126,8 +130,9 @@
             <input type="text" class="form-control" id="mobilePhone" name="mobilePhone" data-ng-model="user.mobilePhone"
                    required/>
 
-            <div data-ng-show="form.$submitted || form.mobilePhone.$touched">
-              <span class="help-block" data-ng-show="form.mobilePhone.$error.required">Die Mobiltelefonnummer ist erforderlich.</span>
+            <div role="alert" data-ng-messages="form.mobilePhone.$error"
+                 data-ng-show="form.mobilePhone.$touched || form.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
         </div>
