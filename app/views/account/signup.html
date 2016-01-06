@@ -17,10 +17,12 @@
 
           <div class="col-sm-8" data-has-error="form.emailAddress">
             <input type="email" class="form-control" id="emailAddress" name="emailAddress"
-                   data-ng-model="user.emailAddress" required/>
+                   data-ng-model="user.emailAddress" data-ng-model-options="{ debounce: 500 }" required is-unique/>
 
             <div role="alert" data-ng-messages="form.emailAddress.$error"
                  data-ng-show="form.emailAddress.$touched || form.$submitted">
+              <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
+
               <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
