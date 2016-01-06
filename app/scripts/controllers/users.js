@@ -14,7 +14,7 @@ angular.module('phundusApp')
       $scope.isHome = userId + '' === Auth.user.userId + '';
       $scope.user = null;
 
-      Users.get(userId, function (res) {
+      Users.get({userId: userId}, function (res) {
         $scope.user = res;
       }, function () {
         Alert.error('Fehler beim Laden des Benutzers.');
@@ -35,10 +35,13 @@ angular.module('phundusApp')
       $scope.userId = userId;
 
       $scope.openStore = function () {
+        $scope.isOpeningStore = true;
         Stores.post({userId: $scope.user.userId}, function (res) {
+          $scope.isOpeningStore = false;
           $scope.user.store = res;
           Alert.success('Deine Materialstelle wurde erfolgreich eröffnet.');
         }, function () {
+          $scope.isOpeningStore = false;
           Alert.error('Fehler beim Eröffnen deiner Materialstelle.');
         });
       }
