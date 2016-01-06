@@ -13,6 +13,7 @@ angular.module('phundusApp')
 
       $scope.rememberMe = false;
       $scope.login = function () {
+        $scope.loginForm.$submitting = true;
         Auth.login({
             username: $scope.username,
             password: $scope.password,

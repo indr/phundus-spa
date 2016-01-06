@@ -7,9 +7,8 @@
         <!--<label class="control-label col-sm-3" for="username">E-Mail-Adresse</label>-->
 
         <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.username.$valid && loginForm.username.$touched}">
-          <input class="form-control input-lg" type="text" data-ng-model="username" placeholder="E-Mail-Adresse"
-                 id="username"
-                 name="username" required autofocus/>
+          <input type="email" class="form-control input-lg" data-ng-model="username" placeholder="E-Mail-Adresse"
+                 id="username" name="username" required autofocus/>
         </div>
       </div>
 
@@ -17,7 +16,7 @@
         <!--<label class="control-label col-sm-3" for="password">Passwort</label>-->
 
         <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.password.$valid && loginForm.password.$touched}">
-          <input class="form-control input-lg" type="password" data-ng-model="password" placeholder="Passwort"
+          <input type="password" class="form-control input-lg" data-ng-model="password" placeholder="Passwort"
                  id="password" name="password" required/>
         </div>
       </div>
@@ -42,50 +41,31 @@
 </div>
 
 <div data-ng-show="isTestEnv">
-  <div class="row" style="margin-top: 50px">
-    <div class="col-xs-12">
-      <h3>One-Click-Logins in der Test-Umgebung</h3>
-    </div>
-  </div>
-  <div class="row">
-    <!--<div class="col-xs-3">
-      <p data-ng-repeat="n in range(10011,10017)">
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin(n+'@test.phundus.ch')">{{n}}@test.phundus.ch</button>
-      </p>
-    </div>-->
-    <div class="col-xs-3">
+  <div class="row" style="margin-top: 20px">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+      <h3>Test-Umgebung</h3>
+
+      <p>One-Click-Logins in der Test-Umgebung</p>
+
       <p>
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user@test.phundus.ch')">
-          user@test.phundus.ch
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user@test.phundus.ch')">user</button>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-1@test.phundus.ch')">user-1
+        </button>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-2@test.phundus.ch')">user-2
         </button>
       </p>
-      <p data-ng-repeat="n in range(1,2)">
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('user-'+n+'@test.phundus.ch')">
-          user-{{n}}@test.phundus.ch
-        </button>
-      </p>
-    </div>
-    <div class="col-xs-3">
       <p>
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief@test.phundus.ch')">
-          chief@test.phundus.ch
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief@test.phundus.ch')">chief</button>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-1@test.phundus.ch')">chief-1
+        </button>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-2@test.phundus.ch')">chief-2
         </button>
       </p>
-      <p data-ng-repeat="n in range(1,2)">
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('chief-'+n+'@test.phundus.ch')">
-          chief-{{n}}@test.phundus.ch
-        </button>
-      </p>
-    </div>
-    <div class="col-xs-3">
       <p>
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin@test.phundus.ch')">
-          admin@test.phundus.ch
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin@test.phundus.ch')">admin</button>
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-1@test.phundus.ch')">admin
         </button>
-      </p>
-      <p data-ng-repeat="n in range(1,2)">
-        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-'+n+'@test.phundus.ch')">
-          admin-{{n}}@test.phundus.ch
+        <button class="btn btn-default" type="button" data-ng-click="autoLogin('admin-2@test.phundus.ch')">admin
         </button>
       </p>
     </div>
