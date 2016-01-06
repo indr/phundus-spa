@@ -99,6 +99,9 @@ var app = angular
       })
       .state('anon.login', {
         url: '/login',
+        data: {
+          access: access.public
+        },
         templateUrl: 'views/account/login.html',
         controller: 'LoginCtrl'
       })
