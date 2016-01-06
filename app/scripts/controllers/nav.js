@@ -28,7 +28,7 @@ angular.module('phundusApp')
 
       $scope.logout = function () {
         Auth.logout(function () {
-            $location.path('/goodbye');
+            $location.path('/logged-out');
           },
           function (err) {
             Alert.error(err);

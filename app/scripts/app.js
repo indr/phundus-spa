@@ -102,9 +102,9 @@ var app = angular
         templateUrl: 'views/account/login.html',
         controller: 'LoginCtrl'
       })
-      .state('anon.goodbye', {
-        url: '/goodbye',
-        templateUrl: 'views/account/goodbye.html'
+      .state('anon.loggedout', {
+        url: '/logged-out',
+        templateUrl: 'views/account/logged-out.html'
       });
 
     // User routes

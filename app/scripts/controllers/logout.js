@@ -13,13 +13,13 @@ angular.module('phundusApp')
 
       if (Auth.isLoggedIn) {
         Auth.logout(function () {
-            $location.path('/goodbye');
+            $location.path('/logged-out');
           },
           function (err) {
             Alert.error(err);
           });
       }
       else {
-        $location.path('/goodbye');
+        $location.path('/logged-out');
       }
     }]);
