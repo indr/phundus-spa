@@ -11,9 +11,7 @@ angular.module('phundusApp')
     return {
       restrict: 'E',
       replace: 'true',
-      scope: {
-        userId: '=userId'
-      },
+      scope: false,
       link: function ($scope) {
         $scope.accessLevels = Auth.accessLevels;
         $scope.userRoles = Auth.userRoles;

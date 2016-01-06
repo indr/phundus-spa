@@ -1,31 +1,31 @@
 <div class="row">
 
-  <ph-user-vcard class="col-sm-4 col-md-3 col-lg-3 hidden-xs" data-user="user" data-ng-show="user" data-is-home="isHome"></ph-user-vcard>
+  <div class="col-sm-4 col-md-3 col-lg-3">
+    <ph-user-vcard data-user="user" data-ng-show="user" data-is-home="isHome"></ph-user-vcard>
+  </div>
 
   <div class="col-sm-8 col-md-9 col-lg-9 col-xs-12">
-    <h1 class="vcard-names visible-xs" data-ng-show="user">
-      <a class="vcard-avatar">
-        <img class="avatar" src="" data-gravatar-src-once="user.email" data-gravatar-size="32"/>
-      </a>
-      <span class="vcard-fullname" style="display: inline">{{user.fullName}}</span>
-      <!--<span class="vcard-username">{{user.username}}</span>-->
-    </h1>
     <ph-store data-store="user.store" data-map="map" data-is-editable="isHome"></ph-store>
 
+    <div data-ng-show="user && !user.store">
+      <div class="jumbotron" data-ng-show="isHome">
+        <p>Im Fall. Mit phundus kannst du auch dein eigenes Material vermieten. Ideal ist es wenn das Material
+          Outdoorerfahrung oder Jugendaktivitäten unterstützt. Klicke dazu auf diesen Button und erfasse Standort mit
+          Ansichtsauswahl auf der Karte und im Textfeld mögliche Zeiten wann das Material am ehesten übergeben werden
+          kann. Anschliessend kannst du beliebiges Material erfassen, mit Pic’s ergänzen und bei Bedarf jederzeit
+          bearbeiten. Probiere es aus!</p>
 
-    <div data-ng-show="user">
-      <div data-ng-hide="user.store">
-        <div class="jumbotron" data-ng-show="isHome">
-          <p>Im Fall. Mit phundus kannst du auch dein eigenes Material vermieten. Ideal ist es wenn das Material Outdoorerfahrung oder Jugendaktivitäten unterstützt. Klicke dazu auf diesen Button und erfasse Standort mit Ansichtsauswahl auf der Karte und im Textfeld mögliche Zeiten wann das Material am ehesten übergeben werden kann. Anschliessend kannst du beliebiges Material erfassen, mit Pic’s ergänzen und bei Bedarf jederzeit bearbeiten. Probiere es aus!</p>
-          <p class="text-right">
-            <button class="btn btn-primary btn-lg" data-ng-click="openStore()" data-ng-disabled="isOpeningStore"><span
-              class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isOpeningStore"></span> Eigene Materialstelle eröffnen</button>
-          </p>
-        </div>
-        <div class="jumbotron" data-ng-hide="isHome">
-          <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
-        </div>
+        <p class="text-right">
+          <button class="btn btn-primary btn-lg" data-ng-click="openStore()" data-ng-disabled="isOpeningStore"><span
+            class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isOpeningStore"></span> Eigene
+            Materialstelle eröffnen
+          </button>
+        </p>
+      </div>
+      <div class="jumbotron" data-ng-hide="isHome">
+        <p>Dieser Benutzer hat keine eigene Materialstelle eröffnet.</p>
       </div>
     </div>
   </div>
+</div>
 </div>

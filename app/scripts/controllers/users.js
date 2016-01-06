@@ -32,10 +32,7 @@ angular.module('phundusApp')
 angular.module('phundusApp')
   .controller('UsersHomeCtrl', ['$scope', 'userId', 'Stores', 'Alert',
     function ($scope, userId, Stores, Alert) {
-      $scope.userId = userId;
-
       $scope.openStore = function () {
-        $scope.isOpeningStore = true;
         Stores.post({userId: $scope.user.userId}, function (res) {
           $scope.isOpeningStore = false;
           $scope.user.store = res;
@@ -109,7 +106,7 @@ angular.module('phundusApp')
 
         modalInstance.result.then(function (article) {
           Articles.post(article, function (res) {
-            $state.go('users.articles.edit.details', {userId: userId, articleId: res.articleId});
+            $state.go('user.articles.article.details', {userId: userId, articleId: res.articleId});
           }, function () {
             Alert.error('Fehler beim Erstellen des Materials.');
           });
@@ -153,7 +150,7 @@ angular.module('phundusApp')
       };
 
       $scope.cancel = function () {
-        $state.go('users.articles.index', {userId: userId})
+        $state.go('user.articles.articles', {userId: userId})
       };
     }
   ]);
@@ -190,7 +187,7 @@ angular.module('phundusApp')
       };
 
       $scope.cancel = function () {
-        $state.go('users.articles.index', {userId: userId})
+        $state.go('user.articles.articles', {userId: userId})
       };
     }
   ]);
@@ -227,7 +224,7 @@ angular.module('phundusApp')
       };
 
       $scope.cancel = function () {
-        $state.go('users.articles.index', {userId: userId})
+        $state.go('user.articles.articles', {userId: userId})
       };
     }
   ]);

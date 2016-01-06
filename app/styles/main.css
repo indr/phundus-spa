@@ -135,10 +135,15 @@ img.avatar {
   color: #666;
 }
 
-.vcard-details, .vcard-memberships {
+.vcard-details {
   padding-top: 15px;
   padding-bottom: 15px;
-  border-top: solid #eee 1px;
+  border-bottom: solid #eee 1px;
+}
+
+.vcard-memberships {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .editable-empty {

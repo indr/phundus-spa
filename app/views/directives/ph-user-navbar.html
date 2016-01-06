@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs" style="margin-bottom:10px" data-ng-show="isHome">
   <li role="presentation" data-ui-sref-active="active">
-    <a href="" data-ui-sref="users.home({userId: userId})"><span class="glyphicon glyphicon-user"></span></a>
+    <a href="" data-ui-sref="user.home({userId: userId})"><span class="glyphicon glyphicon-user"></span></a>
+  </li>
+  <li role="presentation" data-ui-sref-active="active" active-nav="nestedTop" data-ng-show="user.store">
+    <a href="" data-ui-sref="user.articles.index({userId: userId})">Material</a>
   </li>
   <li role="presentation" data-ui-sref-active="active" active-nav="nestedTop">
-    <a href="" data-ui-sref="users.articles.index({userId: userId})">Material</a>
-  </li>
-  <li role="presentation" data-ui-sref-active="active" active-nav="nestedTop">
-    <a href="" data-ui-sref="manage.user.orders({userId: userId})">Bestellungen</a>
+    <a href="" data-ui-sref="user.orders.index({userId: userId})">Bestellungen</a>
   </li>
 </ul>

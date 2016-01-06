@@ -1,6 +1,6 @@
 <div class="ng-cloak alert alert-info" data-ng-show="!store && !loading">
   <strong>Keine Materialstelle!</strong>
-  Bevor du dein Material erfassen und verwalten kannst, musst du <a href="" data-ui-sref="users.home({userId: userId})" >deine Materialstelle</a> eröffnen.
+  Bevor du dein Material erfassen und verwalten kannst, musst du <a href="" data-ui-sref="user.home({userId: userId})" >deine Materialstelle</a> eröffnen.
 </div>
 
 <table class="table table-hover" data-ng-show="store && !loading" data-st-table="displayedArticles" data-st-safe-src="articles">
@@ -28,7 +28,7 @@
     <td class="text-right">{{row.price | number:2}}</td>
     <td class="text-right">
       <a class="btn btn-default btn-sm" href=""
-         data-ui-sref="users.articles.edit.details({userId: userId, articleId: row.id})">Bearbeiten</a>
+         data-ui-sref="user.articles.article.details({userId: userId, articleId: row.id})">Bearbeiten</a>
       <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
     </td>
   </tr>

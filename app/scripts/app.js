@@ -112,13 +112,13 @@ var app = angular
 
     // User routes
     $stateProvider
-      .state('users', {
+      .state('user', {
         abstract: true,
         url: '/users/:userId',
-        template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/>',
         data: {
           access: access.user
         },
+        template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/>',
         controller: 'UsersCtrl',
         resolve: {
           userId: ['$stateParams', function ($stateParams) {
@@ -126,24 +126,24 @@ var app = angular
           }]
         }
       })
-      .state('users.home', {
+      .state('user.home', {
         url: '',
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
       })
-      .state('users.articles', {
+      .state('user.articles', {
         abstract: true,
         url: '/articles',
         template: '<ui-view/>'
       })
-      .state('users.articles.index', {
+      .state('user.articles.index', {
         url: '/',
         templateUrl: 'views/users/articles.html',
         controller: 'UsersArticlesIndexCtrl'
       })
-      .state('users.articles.edit', {
+      .state('user.articles.article', {
         abstract: true,
-        url: '/:articleId',
+        url: '/articles/:articleId',
         template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId"></ph-user-article-navbar><ui-view/>',
         controller: ['$scope', 'userId', 'articleId', function ($scope, userId, articleId) {
           $scope.userId = userId;
@@ -155,31 +155,53 @@ var app = angular
           }]
         }
       })
-      .state('users.articles.edit.details', {
+      .state('user.articles.article.details', {
         url: '/',
         templateUrl: 'views/manage/edit-article-details.html',
         controller: 'UsersArticlesDetailsCtrl'
       })
-      .state('users.articles.edit.description', {
+      .state('user.articles.article.description', {
         url: '/description',
         templateUrl: 'views/manage/edit-article-description.html',
         controller: 'UsersArticlesDescriptionCtrl'
       })
-      .state('users.articles.edit.specification', {
+      .state('user.articles.article.specification', {
         url: '/specification',
         templateUrl: 'views/manage/edit-article-specification.html',
         controller: 'UsersArticlesSpecificationCtrl'
       })
-      .state('users.articles.edit.stock', {
+      .state('user.articles.article.stock', {
         url: '/stock',
         templateUrl: 'views/manage/edit-article-stock.html',
         controller: 'UsersArticlesStockCtrl'
       })
-      .state('users.articles.edit.files', {
+      .state('user.articles.article.files', {
         url: '/files',
         templateUrl: 'views/manage/edit-article-files.html',
         controller: 'UsersArticlesFilesCtrl'
-      });
+      })
+
+      .state('user.orders', {
+        abstract: true,
+        url: '/orders',
+        template: '<ui-view/>'
+      })
+      .state('user.orders.index', {
+        url: '/',
+        templateUrl: 'views/users/orders.html',
+        controller: 'ManageUserOrdersCtrl'
+      })
+      .state('user.orders.order', {
+        url: '/{orderId}',
+        templateUrl: 'views/users/order.html',
+        controller: 'ManageUserOrderCtrl',
+        resolve: {
+          orderId: ['$stateParams', function ($stateParams) {
+            return $stateParams.orderId;
+          }]
+        }
+      })
+    ;
 
     // Management routes
     $stateProvider
@@ -247,37 +269,7 @@ var app = angular
         templateUrl: 'views/manage/organization-settings.html'
       })
 
-      .state('manage.user', {
-        abstract: true,
-        data: {
-          access: access.user
-        },
-        url: '/users/{userId}',
-        template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/></ui-view>',
-        controller: ['$scope', 'userId', function ($scope, userId) {
-          $scope.userId = userId
-        }],
-        resolve: {
-          userId: ['$stateParams', function ($stateParams) {
-            return $stateParams.userId;
-          }]
-        }
-      })
-      .state('manage.user.orders', {
-        url: '/orders/',
-        templateUrl: 'views/users/orders.html',
-        controller: 'ManageUserOrdersCtrl'
-      })
-      .state('manage.user.order', {
-        url: '/orders/{orderId}',
-        templateUrl: 'views/users/order.html',
-        controller: 'ManageUserOrderCtrl',
-        resolve: {
-          orderId: ['$stateParams', function ($stateParams) {
-            return $stateParams.orderId;
-          }]
-        }
-      })
+
     ;
 
     // Organization routes
