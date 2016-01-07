@@ -32,7 +32,7 @@ angular.module('phundusApp')
       $scope.userRoles = Auth.userRoles;
 
       Mails.query(function (res) {
-        $scope.rowCollection = res;
+        $scope.rowCollection = res.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
         $scope.loading = false;
       }, function () {
@@ -42,7 +42,7 @@ angular.module('phundusApp')
 
       $scope.delete = function (row) {
         if (row) {
-          Mails.delete({id: row.id}, function () {
+          Mails.delete({mailId: row.mailId}, function () {
             var index = $scope.rowCollection.indexOf(row);
             if (index !== -1) {
               $scope.rowCollection.splice(index, 1);

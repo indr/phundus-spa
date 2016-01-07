@@ -55,7 +55,7 @@ angular.module('phundusApp')
     return $resource('/api/event-log', {}, {query: {method: 'GET', isArray: true}});
   }])
   .factory('Mails', ['$resource', function ($resource) {
-    return $resource('/api/v0/mails/:id', {id: '@id'}, {query: {method: 'GET', isArray: true}});
+    return $resource('/api/v0/mails/:mailId', {mailId: '@mailId'});
   }])
   .factory('Members', ['$resource', function ($resource) {
     return $resource('/api/v0/organizations/:organizationId/members/:memberId', {
