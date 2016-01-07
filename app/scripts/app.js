@@ -21,7 +21,6 @@ var app = angular
     'ui.gravatar',
     'ui.router',
     'uuid',
-    'xeditable',
     'mwl.confirm'
   ])
 
@@ -519,12 +518,11 @@ app.filter('unique', function () {
   };
 });
 
-app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'editableOptions', 'confirmationPopoverDefaults',
-  function ($rootScope, $state, $location, Auth, Alert, editableOptions, confirmationPopoverDefaults) {
+app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults',
+  function ($rootScope, $state, $location, Auth, Alert, confirmationPopoverDefaults) {
     $rootScope.isTestEnv = /(^localhost)|(^acceptance)/.test($location.host());
     $rootScope.isLocalEnv = /(^localhost)/.test($location.host());
     $rootScope.$state = $state;
-    editableOptions.theme = 'bs3';
     confirmationPopoverDefaults.confirmButtonType = 'primary';
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
