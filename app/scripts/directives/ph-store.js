@@ -32,7 +32,13 @@ angular.module('phundusApp')
           }, 0);
 
           var trySetViewToStore = function () {
+            if (scope.coordinateForm.$visible) {
+              return;
+            }
             if (scope.store && scope.store.coordinate) {
+              if (!angular.isNumber(scope.store.coordinate.latitude) || (!angular.isNumber(scope.store.coordinate.longitude))) {
+                return;
+              }
               $timeout(function () {
                 leafletData.getMap().then(function (map) {
                   var latLng = {
@@ -60,35 +66,46 @@ angular.module('phundusApp')
           scope.fromMap = function () {
             leafletData.getMap().then(function (map) {
               var center = map.getCenter();
-              scope.userStoreCoordinateForm.latitude.$setViewValue(center.lat);
-              scope.userStoreCoordinateForm.latitude.$render();
-              scope.userStoreCoordinateForm.longitude.$setViewValue(center.lng);
-              scope.userStoreCoordinateForm.longitude.$render();
+              scope.store.coordinate = {latitude: center.lat, longitude: center.lng};
             });
           };
 
           scope.$watch('store.coordinate.latitude', function () {
-            //console.log('watched: store.coordinate.latitude');
-            trySetViewToStore()
+            trySetViewToStore();
           });
           scope.$watch('store.coordinate.longitude', function () {
-            //console.log('watched: store.coordinate.longitude');
-            trySetViewToStore()
+            trySetViewToStore();
           });
 
-          scope.updateAddress = function ($data) {
-            Stores.patch({storeId: scope.store.storeId, address: $data.address}, function () {}, function () {
+          scope.updateAddress = function () {
+            scope.addressForm.$submitting = true;
+            Stores.patch({storeId: scope.store.storeId, address: scope.store.address}, function () {
+              scope.addressForm.$submitting = false;
+              scope.addressForm.$visible = false;
+            }, function () {
+              scope.addressForm.$submitting = false;
               Alert.error("Fehler beim Speichern der Adresse.");
             });
           };
-          scope.updateOpeningHours = function ($data) {
-            Stores.patch({storeId: scope.store.storeId, openingHours: $data.openingHours}, function () {}, function () {
+          scope.updateOpeningHours = function () {
+            scope.openingHoursForm.$submitting = true;
+            Stores.patch({storeId: scope.store.storeId, openingHours: scope.store.openingHours}, function () {
+              scope.openingHoursForm.$submitting = false;
+              scope.openingHoursForm.$visible = false;
+            }, function () {
+              scope.openingHoursForm.$submitting = false;
               Alert.error("Fehler beim Speichern der Adresse.");
             });
           };
 
-          scope.updateCoordinate = function ($data) {
-            Stores.patch({storeId: scope.store.storeId, coordinate: $data}, function () {}, function () {
+          scope.updateCoordinate = function () {
+            scope.coordinateForm.$submitting = true;
+            Stores.patch({storeId: scope.store.storeId, coordinate: scope.store.coordinate}, function () {
+              scope.coordinateForm.$submitting = false;
+              scope.coordinateForm.$visible = false;
+              trySetViewToStore();
+            }, function () {
+              scope.coordinateForm.$submitting = false;
               Alert.error("Fehler beim Speichern der Adresse.");
             });
           }

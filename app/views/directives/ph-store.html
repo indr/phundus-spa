@@ -1,100 +1,111 @@
 <div data-ng-show="store" class="store">
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <label>Adresse</label>
-    </div>
-    <div class="col-xs-12 col-sm-9">
-      <p data-ng-hide="isEditable" style="white-space:pre">{{store.address}}</p>
+  <form name="addressForm" ph-editable="store.address" class="form-horizontal" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3">Adresse
+        <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="addressForm.$show()"
+                data-ng-hide="addressForm.$visible">
+          <span class="glyphicon glyphicon-edit"></span>
+        </button>
+      </label>
 
-      <form data-editable-form name="userStoreAddressForm" data-ng-show="isEditable" data-onbeforesave="updateAddress($data)">
-        <div class="form-group">
-          <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="userStoreAddressForm.$show()"
-                  data-ng-show="!userStoreAddressForm.$visible" title="Bearbeiten">
-            <span class="glyphicon glyphicon-edit"></span>
-          </button>
-          <p>
-          <span style="white-space:pre" data-editable-textarea="store.address"
-                data-e-rows="5" data-e-name="address">{{store.address}}</span>
-          </p>
+      <div class="col-xs-12 col-sm-9" data-ng-hide="addressForm.$visible">
+        <p style="white-space:pre">{{store.address}}</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-9" data-has-error="addressForm.address">
+        <div data-ng-show="addressForm.$visible">
+            <textarea class="form-control" data-ng-model="store.address"
+                      rows="4" name="address" required>{{store.address}}</textarea>
         </div>
-        <div class="form-group" data-ng-show="userStoreAddressForm.$visible">
-          <button type="submit" class="btn btn-primary btn-sm" data-ng-disabled="userStoreAddressForm.$waiting">
-            Speichern
-          </button>
-          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="userStoreAddressForm.$waiting"
-                  data-ng-click="userStoreAddressForm.$cancel()">
-            Verwerfen
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <label>Öffnungszeiten</label>
+    <div class="form-group" data-ng-show="addressForm.$visible">
+      <div class="col-sm-offset-3 col-sm-9">
+        <ph-submit class="btn-primary" data-ng-click="updateAddress()"
+                   data-form="addressForm" data-text="Speichern"></ph-submit>
+        <button type="button" class="btn btn-default" data-ng-click="addressForm.$cancel()">
+          Abbrechen
+        </button>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-9">
-      <p data-ng-hide="isEditable" style="white-space:pre">{{store.openingHours}}</p>
+  </form>
 
-      <form data-editable-form name="userStoreOpeningHoursForm" data-ng-show="isEditable" data-onbeforesave="updateOpeningHours($data)">
-        <div class="form-group">
-          <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="userStoreOpeningHoursForm.$show()"
-                  data-ng-show="!userStoreOpeningHoursForm.$visible" title="Bearbeiten">
-            <span class="glyphicon glyphicon-edit"></span>
-          </button>
-          <p>
-          <span style="white-space:pre" data-editable-textarea="store.openingHours"
-                data-e-rows="5" data-e-name="openingHours">{{store.openingHours}}</span>
-          </p>
+  <form name="openingHoursForm" ph-editable="store.openingHours" class="form-horizontal" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3">Öffnungszeiten
+        <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="openingHoursForm.$show()"
+                data-ng-hide="openingHoursForm.$visible">
+          <span class="glyphicon glyphicon-edit"></span>
+        </button>
+      </label>
+
+      <div class="col-xs-12 col-sm-9" data-ng-hide="openingHoursForm.$visible">
+        <p style="white-space:pre">{{store.openingHours}}</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-9" data-has-error="openingHoursForm.openingHours">
+        <div data-ng-show="openingHoursForm.$visible">
+            <textarea class="form-control" data-ng-model="store.openingHours"
+                      rows="4" name="openingHours" required>{{store.openingHours}}</textarea>
         </div>
-        <div class="form-group" data-ng-show="userStoreOpeningHoursForm.$visible">
-          <button type="submit" class="btn btn-primary btn-sm" data-ng-disabled="userStoreOpeningHoursForm.$waiting">
-            Speichern
-          </button>
-          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="userStoreOpeningHoursForm.$waiting"
-                  data-ng-click="userStoreOpeningHoursForm.$cancel()">
-            Verwerfen
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-
-  <div class="row" data-ng-show="isEditable">
-    <div class="col-xs-12 col-sm-3">
-      <label>Koordinaten</label>
-      <p data-ng-show="userStoreCoordinateForm.$visible">Latitude / Longitude</p>
+    <div class="form-group" data-ng-show="openingHoursForm.$visible">
+      <div class="col-sm-offset-3 col-sm-9">
+        <ph-submit class="btn-primary" data-ng-click="updateOpeningHours()"
+                   data-form="openingHoursForm" data-text="Speichern"></ph-submit>
+        <button type="button" class="btn btn-default" data-ng-click="openingHoursForm.$cancel()">
+          Abbrechen
+        </button>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-9">
+  </form>
 
 
-      <p data-ng-hide="isEditable">{{store.coordinate.latitude}}</p>
-      <p data-ng-hide="isEditable">{{store.coordinate.longitude}}</p>
-      <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="userStoreCoordinateForm.$show()"
-              data-ng-show="!userStoreCoordinateForm.$visible" title="Bearbeiten">
-        <span class="glyphicon glyphicon-edit"></span>
-      </button>
-      <form data-editable-form name="userStoreCoordinateForm" data-ng-show="isEditable" data-onbeforesave="updateCoordinate($data)">
+  <form name="coordinateForm" ph-editable="store.coordinate" class="form-horizontal" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3">Koordinaten
+        <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="coordinateForm.$show()"
+                data-ng-hide="coordinateForm.$visible">
+          <span class="glyphicon glyphicon-edit"></span>
+        </button>
+      </label>
 
-        <div class="form-group">
+      <div class="col-xs-12 col-sm-9" data-ng-hide="coordinateForm.$visible">
+        <p>{{store.coordinate.latitude}}</p>
 
-          <p><span data-editable-text="store.coordinate.latitude" data-e-name="latitude">{{store.coordinate.latitude}}</span></p>
-          <p><span data-editable-text="store.coordinate.longitude" data-e-name="longitude">{{store.coordinate.longitude}}</span></p>
+        <p>{{store.coordinate.longitude}}</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-9" data-ng-show="coordinateForm.$visible" data-has-error="coordinateForm.latitude">
+        <div data-ng-show="coordinateForm.$visible">
+          <input type="number" class="form-control" id="latitude" name="latitude"
+                 data-ng-model="store.coordinate.latitude">
         </div>
-        <div class="form-group" data-ng-show="userStoreCoordinateForm.$visible">
-          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="userStoreCoorindateForm.$waiting" data-ng-click="fromMap()" title="Koordinate von der Karte übertragen"><span class="glyphicon glyphicon-arrow-up"></span></button>
-          <button type="submit" class="btn btn-primary btn-sm" data-ng-disabled="userStoreCoordinateForm.$waiting">
-            Speichern
-          </button>
-          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="userStoreCoordinateForm.$waiting"
-                  data-ng-click="userStoreCoordinateForm.$cancel()">
-            Verwerfen
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
+    <div class="form-group">
+      <div class="col-xs-12 col-sm-offset-3 col-sm-9" data-ng-show="coordinateForm.$visible"
+           data-has-error="coordinateForm.longitude">
+        <div data-ng-show="coordinateForm.$visible">
+          <input type="number" class="form-control" id="longitude" name="longitude"
+                 data-ng-model="store.coordinate.longitude">
+        </div>
+      </div>
+    </div>
+    <div class="form-group" data-ng-show="coordinateForm.$visible">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="button" class="btn btn-default btn-sm" data-ng-disabled="coordinateForm.$submitting"
+                data-ng-click="fromMap()" title="Koordinate von der Karte übertragen"><span
+          class="glyphicon glyphicon-arrow-up"></span></button>
+        <ph-submit class="btn-primary" data-ng-click="updateCoordinate()"
+                   data-form="coordinateForm" data-text="Speichern"></ph-submit>
+        <button type="button" class="btn btn-default" data-ng-click="coordinateForm.$cancel()">
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  </form>
 
   <div class="row">
     <div class="col-sm-12">
