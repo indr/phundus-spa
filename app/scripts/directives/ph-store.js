@@ -20,7 +20,7 @@ angular.module('phundusApp')
         },
         link: function (scope) {
 
-          scope.coordinate = {latitude: 12.34, longitude: 23.45};
+          scope.coordinate = {latitude: null, longitude: null};
           if (scope.store) {
             scope.coordinate = scope.store.coordinate || scope.coordinate;
           }
