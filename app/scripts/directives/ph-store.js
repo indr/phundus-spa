@@ -20,6 +20,13 @@ angular.module('phundusApp')
         },
         link: function (scope) {
 
+          scope.coordinate = {latitude: 12.34, longitude: 23.45};
+          if (scope.store) {
+            scope.coordinate = scope.store.coordinate || scope.coordinate;
+          }
+
+          console.log(scope.coordinate);
+
           var flaechenschwerpunktDerSchweiz = {
             lat: 46.80121,
             lng: 8.226692
@@ -35,15 +42,15 @@ angular.module('phundusApp')
             if (scope.coordinateForm.$visible) {
               return;
             }
-            if (scope.store && scope.store.coordinate) {
-              if (!angular.isNumber(scope.store.coordinate.latitude) || (!angular.isNumber(scope.store.coordinate.longitude))) {
+            if (scope.store && scope.coordinate) {
+              if (!angular.isNumber(scope.coordinate.latitude) || (!angular.isNumber(scope.coordinate.longitude))) {
                 return;
               }
               $timeout(function () {
                 leafletData.getMap().then(function (map) {
                   var latLng = {
-                    lat: scope.store.coordinate.latitude,
-                    lng: scope.store.coordinate.longitude
+                    lat: scope.coordinate.latitude,
+                    lng: scope.coordinate.longitude
                   };
                   map.setView(latLng, 16);
 
@@ -66,14 +73,14 @@ angular.module('phundusApp')
           scope.fromMap = function () {
             leafletData.getMap().then(function (map) {
               var center = map.getCenter();
-              scope.store.coordinate = {latitude: center.lat, longitude: center.lng};
+              scope.coordinate = {latitude: center.lat, longitude: center.lng};
             });
           };
 
-          scope.$watch('store.coordinate.latitude', function () {
+          scope.$watch('coordinate.latitude', function () {
             trySetViewToStore();
           });
-          scope.$watch('store.coordinate.longitude', function () {
+          scope.$watch('coordinate.longitude', function () {
             trySetViewToStore();
           });
 
@@ -100,7 +107,7 @@ angular.module('phundusApp')
 
           scope.updateCoordinate = function () {
             scope.coordinateForm.$submitting = true;
-            Stores.patch({storeId: scope.store.storeId, coordinate: scope.store.coordinate}, function () {
+            Stores.patch({storeId: scope.store.storeId, coordinate: scope.coordinate}, function () {
               scope.coordinateForm.$submitting = false;
               scope.coordinateForm.$visible = false;
               trySetViewToStore();

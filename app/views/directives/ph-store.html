@@ -62,7 +62,7 @@
   </form>
 
 
-  <form name="coordinateForm" ph-editable="store.coordinate" class="form-horizontal" novalidate>
+  <form name="coordinateForm" ph-editable="coordinate" class="form-horizontal" novalidate>
     <div class="form-group">
       <label class="col-sm-3">Koordinaten
         <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="coordinateForm.$show()"
@@ -72,15 +72,18 @@
       </label>
 
       <div class="col-xs-12 col-sm-9" data-ng-hide="coordinateForm.$visible">
-        <p>{{store.coordinate.latitude}}</p>
+        <p>{{coordinate.latitude}}</p>
 
-        <p>{{store.coordinate.longitude}}</p>
+        <p>{{coordinate.longitude}}</p>
       </div>
 
       <div class="col-xs-12 col-sm-9" data-ng-show="coordinateForm.$visible" data-has-error="coordinateForm.latitude">
         <div data-ng-show="coordinateForm.$visible">
           <input type="number" class="form-control" id="latitude" name="latitude"
-                 data-ng-model="store.coordinate.latitude">
+                 data-ng-model="coordinate.latitude" data-both-or-none="coordinate.longitude">
+          <div role="alert" data-ng-messages="coordinateForm.latitude.$error"
+               data-ng-show="coordinateForm.latitude.$touched || form.$submitted">
+          </div>
         </div>
       </div>
     </div>
@@ -89,7 +92,10 @@
            data-has-error="coordinateForm.longitude">
         <div data-ng-show="coordinateForm.$visible">
           <input type="number" class="form-control" id="longitude" name="longitude"
-                 data-ng-model="store.coordinate.longitude">
+                 data-ng-model="coordinate.longitude" data-both-or-none="coordinate.latitude">
+          <div role="alert" data-ng-messages="coordinateForm.longitude.$error"
+               data-ng-show="coordinateForm.longitude.$touched || form.$submitted">
+          </div>
         </div>
       </div>
     </div>
