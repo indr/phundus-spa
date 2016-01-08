@@ -112,7 +112,13 @@ var app = angular
       .state('anon.loggedout', {
         url: '/logged-out',
         templateUrl: 'views/account/logged-out.html'
-      });
+      })
+      .state('anon.reset-password', {
+        url: '/forgot',
+        templateUrl: 'views/account/reset-password.html',
+        controller: 'ResetPasswordCtrl'
+      })
+    ;
 
     // User routes
     $stateProvider

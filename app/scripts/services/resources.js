@@ -95,6 +95,9 @@ angular.module('phundusApp')
       }
     }
   }])
+  .factory('ResetPassword', ['$resource', function ($resource) {
+    return $resource('/api/account/reset-password');
+  }])
   .factory('SchemaUpdate', ['$resource', function ($resource) {
     return $resource('/api/schema-update');
   }])
