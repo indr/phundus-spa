@@ -1,42 +1,40 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
-    <h2>Anmelden</h2>
+    <div class="page-header">
+      <h1>Anmeldung</h1>
+    </div>
 
-    <form class="form-horizontal" name="loginForm" novalidate>
-      <div class="form-group">
-        <!--<label class="control-label col-sm-3" for="username">E-Mail-Adresse</label>-->
+    <form name="loginForm" novalidate>
+      <div class="form-group" data-has-error="loginForm.username">
+        <!--<label class="control-label" for="username">E-Mail-Adresse</label>-->
 
-        <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.username.$valid && loginForm.username.$touched}">
-          <input type="email" class="form-control input-lg" data-ng-model="username" placeholder="E-Mail-Adresse"
-                 id="username" name="username" required autofocus/>
-        </div>
+        <input type="email" class="form-control input-lg" data-ng-model="username" placeholder="E-Mail-Adresse"
+               id="username" name="username" required autofocus/>
+      </div>
+
+      <div class="form-group" data-has-error="loginForm.password">
+        <!--<label class="control-label" for="password">Passwort</label>-->
+
+        <input type="password" class="form-control input-lg" data-ng-model="password" placeholder="Passwort"
+               id="password" name="password" required/>
       </div>
 
       <div class="form-group">
-        <!--<label class="control-label col-sm-3" for="password">Passwort</label>-->
-
-        <div class="col-sm-9" data-ng-class="{'has-error':!loginForm.password.$valid && loginForm.password.$touched}">
-          <input type="password" class="form-control input-lg" data-ng-model="password" placeholder="Passwort"
-                 id="password" name="password" required/>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-9">
-          <p>
-            <ph-submit class="btn-primary btn-lg" data-ng-click="login()"
-                       data-form="loginForm" data-text="Anmelden"></ph-submit>
-          </p>
-          <p>
-            Passwort vergessen? Ein neues <a href="" data-ui-sref="anon.reset-password">anfordern</a>!
-          </p>
-
-          <p>
-            Noch nicht dabei? Jetzt kostenlos <a href="" data-ui-sref="anon.signup">registrieren</a>.
-          </p>
-        </div>
+        <p>
+          <ph-submit class="btn-primary btn-lg" data-ng-click="login()"
+                     data-form="loginForm" data-text="Anmelden"></ph-submit>
+        </p>
       </div>
     </form>
+    <div style="margin-top:40px">
+      <p>
+        Passwort vergessen? Ein neues <a href="" data-ui-sref="anon.reset-password">anfordern</a>!
+      </p>
+
+      <p>
+        Noch nicht dabei? Jetzt kostenlos <a href="" data-ui-sref="anon.signup">registrieren</a>.
+      </p>
+    </div>
   </div>
 </div>
 

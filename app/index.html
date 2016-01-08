@@ -8,14 +8,14 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <!-- endbower -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
-  <link rel="stylesheet" href="bower_components/blueimp-gallery/css/blueimp-gallery.css" />
-  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload.css" />
-  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+  <link rel="stylesheet" href="bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"/>
+  <link rel="stylesheet" href="bower_components/blueimp-gallery/css/blueimp-gallery.css"/>
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload.css"/>
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css"/>
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
@@ -91,10 +91,13 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li data-access-level="accessLevels.user" title="Warenkorb">
-            <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
+            <a href="/cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+               data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span
+              class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
           </li>
           <li data-access-level="accessLevels.user" title="{{user.username}}">
-            <a href="" data-ui-sref="user.home({userId: user.userId})"><span class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
+            <a href="" data-ui-sref="user.home({userId: user.userId})"><span
+              class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
           </li>
           <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -112,38 +115,41 @@
   </div>
 </div>
 <div class="container">
-  <div class="ng-cloak alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
-    <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error: </span>{{msg}}
-  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+      <div class="ng-cloak alert alert-danger" role="alert" data-ng-repeat="(id, msg) in alerts['danger']">
+        <button type="button" class="close" data-ng-click="dismissAlert('danger', id)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error: </span>{{msg}}
+      </div>
 
-  <div class="ng-cloak alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
-    <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <span class="sr-only">Warning: </span>{{msg}}
-  </div>
+      <div class="ng-cloak alert alert-warning" role="alert" data-ng-repeat="(id, msg) in alerts['warning']">
+        <button type="button" class="close" data-ng-click="dismissAlert('warning', id)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+        <span class="sr-only">Warning: </span>{{msg}}
+      </div>
 
-  <div class="ng-cloak alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
-    <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-    <span class="sr-only">Info: </span>{{msg}}
-  </div>
+      <div class="ng-cloak alert alert-info" role="alert" data-ng-repeat="(id, msg) in alerts['info']">
+        <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        <span class="sr-only">Info: </span>{{msg}}
+      </div>
 
-  <div class="ng-cloak alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
-    <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-    <span class="sr-only">Success: </span>{{msg}}
+      <div class="ng-cloak alert alert-success" role="alert" data-ng-repeat="(id, msg) in alerts['success']">
+        <button type="button" class="close" data-ng-click="dismissAlert('success', id)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Success: </span>{{msg}}
+      </div>
+    </div>
   </div>
-
   <div data-ui-view></div>
 
   <div id="blueimp-gallery" class="blueimp-gallery">
@@ -159,8 +165,10 @@
 
 <div class="footer">
   <div class="container">
-    <p><a href="" data-ui-sref="public.feedback">Feedback</a><!-- &middot; <a href="https://github.com/indr/phundus">GitHub</a>--> &middot; <span
-      class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
+    <p><a href="" data-ui-sref="public.feedback">Feedback</a><!-- &middot; <a href="https://github.com/indr/phundus">GitHub</a>--> &middot;
+      <span
+        class="glyphicon glyphicon-heart"></span> from the phundus.ch team</p>
+
     <p style="visibility: collapse"><span class="versionTag">0.0.0</span></p>
   </div>
 </div>
