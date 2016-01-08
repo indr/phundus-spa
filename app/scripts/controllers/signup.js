@@ -14,7 +14,7 @@ angular.module('phundusApp')
       $scope.submitted = false;
 
       Organizations.query({}, function (res) {
-        $scope.organizations = res.organizations;
+        $scope.organizations = res.results;
       }, function () {
         Alert.error('Fehler beim Laden der Organisationen.')
       });
