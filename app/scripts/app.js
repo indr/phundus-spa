@@ -47,6 +47,11 @@ var app = angular
           access: access.public
         }
       })
+      .state('public.feedback',{
+        url: '/feedback',
+        templateUrl: 'views/meta/feedback.html',
+        controller: 'MetaFeedbackCtrl'
+      })
       .state('public.shop', {
         url: '/',
         template: '<ui-view />',
