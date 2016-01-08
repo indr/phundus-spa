@@ -10,8 +10,12 @@ angular.module('phundusApp')
         $scope.submitChangeEmailAddressSubmitting = true;
         AccountChangeEmailAddress.post($scope.changeEmailAddress, function () {
           $scope.submitChangeEmailAddressSubmitting = false;
-          Alert.success('Das Bestätigungs-E-Mail wurde versendet.');
+          if ($scope.formChangeEmailAddress) {
+            $scope.formChangeEmailAddress.$setPristine();
+            $scope.formChangeEmailAddress.$setUntouched();
+          }
           $scope.changeEmailAddress = {};
+          Alert.success('Das Bestätigungs-E-Mail wurde versendet.');
         }, function () {
           $scope.submitChangeEmailAddressSubmitting = false;
           Alert.error('Fehler beim Ändern der E-Mail-Addresse.')
@@ -22,8 +26,12 @@ angular.module('phundusApp')
         $scope.submitChangePasswordSubmitting = true;
         AccountChangePassword.post($scope.changePassword, function () {
           $scope.submitChangePasswordSubmitting = false;
-          Alert.success('Das Passwort wurde geändert.');
+          if ($scope.formChangePassword) {
+            $scope.formChangePassword.$setPristine();
+            $scope.formChangePassword.$setUntouched();
+          }
           $scope.changePassword = {};
+          Alert.success('Das Passwort wurde geändert.');
         }, function () {
           $scope.submitChangePasswordSubmitting = false;
           Alert.error('Fehler beim Ändern des Passworts.')
