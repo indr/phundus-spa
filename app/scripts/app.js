@@ -122,6 +122,7 @@ var app = angular
 
     // User routes
     $stateProvider
+
       .state('user', {
         abstract: true,
         url: '/users/:userId',
@@ -140,6 +141,11 @@ var app = angular
         url: '',
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
+      })
+      .state('user.account', {
+        url: '/account',
+        templateUrl: 'views/users/account.html',
+        controller: 'UsersAccountCtrl'
       })
       .state('user.articles', {
         abstract: true,

@@ -1,6 +1,13 @@
 'use strict';
 
 angular.module('phundusApp')
+  .controller('UsersAccountCtrl', ['$scope', 'Alert',
+    function ($scope, Alert) {
+
+    }
+  ]);
+
+angular.module('phundusApp')
   .controller('ResetPasswordCtrl', ['$scope', 'Alert', 'ResetPassword',
     function ($scope, Alert, ResetPassword) {
       $scope.submitted = false;
