@@ -3,13 +3,11 @@
 angular.module('phundusApp')
   .controller('UsersAccountCtrl', ['$scope', 'Alert', 'AccountChangeEmailAddress', 'AccountChangePassword',
     function ($scope, Alert, AccountChangeEmailAddress, AccountChangePassword) {
-      $scope.submitChangeEmailAddressSubmitting = false;
-      $scope.submitChangePasswordSubmitting = false;
 
       $scope.submitChangeEmailAddress = function () {
-        $scope.submitChangeEmailAddressSubmitting = true;
+        $scope.formChangeEmailAddress.$submitting = true;
         AccountChangeEmailAddress.post($scope.changeEmailAddress, function () {
-          $scope.submitChangeEmailAddressSubmitting = false;
+          $scope.formChangeEmailAddress.$submitting = false;
           if ($scope.formChangeEmailAddress) {
             $scope.formChangeEmailAddress.$setPristine();
             $scope.formChangeEmailAddress.$setUntouched();
@@ -17,15 +15,15 @@ angular.module('phundusApp')
           $scope.changeEmailAddress = {};
           Alert.success('Das Bestätigungs-E-Mail wurde versendet.');
         }, function () {
-          $scope.submitChangeEmailAddressSubmitting = false;
+          $scope.formChangeEmailAddress.$submitting = false;
           Alert.error('Fehler beim Ändern der E-Mail-Addresse.')
         });
       };
 
       $scope.submitChangePassword = function () {
-        $scope.submitChangePasswordSubmitting = true;
+        $scope.formChangePassword.$submitting = true;
         AccountChangePassword.post($scope.changePassword, function () {
-          $scope.submitChangePasswordSubmitting = false;
+          $scope.formChangePassword.$submitting = false;
           if ($scope.formChangePassword) {
             $scope.formChangePassword.$setPristine();
             $scope.formChangePassword.$setUntouched();
@@ -33,7 +31,7 @@ angular.module('phundusApp')
           $scope.changePassword = {};
           Alert.success('Das Passwort wurde geändert.');
         }, function () {
-          $scope.submitChangePasswordSubmitting = false;
+          $scope.formChangePassword.$submitting = false;
           Alert.error('Fehler beim Ändern des Passworts.')
         });
       }
