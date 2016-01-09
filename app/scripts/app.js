@@ -49,7 +49,7 @@ var app = angular
       })
       .state('public.feedback',{
         url: '/feedback',
-        templateUrl: 'views/meta/feedback.html',
+        templateUrl: 'views/public/feedback.html',
         controller: 'MetaFeedbackCtrl'
       })
       .state('public.shop', {
@@ -85,7 +85,29 @@ var app = angular
         url: '/debug',
         templateUrl: 'views/debug.html',
         controller: 'DebugCtrl'
-      });
+      })
+      .state('public.validate-account', {
+        url: '/validate-account?key',
+        templateUrl: 'views/public/validate-account.html',
+        controller: 'MetaValidateCtrl',
+        resolve: {
+          key: ['$stateParams', function ($stateParams) {
+            console.log($stateParams);
+            return $stateParams.key;
+          }]
+        }
+      })
+      .state('public.validate-e-mail-address', {
+        url: '/validate-email-address?key',
+        templateUrl: 'views/public/validate-email-address.html',
+        controller: 'MetaValidateCtrl',
+        resolve: {
+          key: ['$stateParams', function ($stateParams) {
+            return $stateParams.key;
+          }]
+        }
+      })
+    ;
 
     // Anonymous routes
     $stateProvider

@@ -1,0 +1,43 @@
+<div class="row" data-ng-show="submitted">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <div class="page-header">
+      <h1>Validierung</h1>
+    </div>
+
+    <p>Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt <a href="" data-ui-sref="anon.login">anmelden</a> und mit dieser E-Mail-Adresse und deinem Passwort den phundus durchstöbern und interessante Artikel gleich reservieren.</p>
+
+    <p>Einige Organisation verleihen gewisses Material nur an ihre Mitglieder. Prüfe doch daher auch die verschiedenen Organisationen und beantrage eine Mitgliedschaft, wo du auch real dazugehörst.</p>
+
+    <p>Wir wünschen dir viel Spass dabei!</p>
+  </div>
+</div>
+
+<div class="row" data-ng-hide="submitted">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <div class="page-header">
+      <h1>Validierung</h1>
+    </div>
+
+    <p>Hier wird die Richtigkeit deiner E-Mail-Adresse kontrolliert. Gibt dazu den Validierungs-Code ein, welcher an deine eingegebe E-Mail-Adresse versendet wurde.</p>
+
+    <form name="form" novalidate>
+      <div class="form-group" data-has-error="form.key">
+        <label class="control-label" for="key">Code</label>
+
+        <input type="text" class="form-control input-lg" id="key" name="key"
+               data-ng-model="validate.key" required/>
+
+        <div role="alert" data-ng-messages="form.key.$error"
+             data-ng-show="form.key.$touched || form.$submitted">
+          <div data-ng-messages-include="views/messages.html"></div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <ph-submit class="btn-primary btn-lg" data-ng-click="submit()"
+                   data-form="form" data-text="Senden"></ph-submit>
+      </div>
+    </form>
+  </div>
+</div>

@@ -106,6 +106,9 @@ angular.module('phundusApp')
     }
   }])
   .factory('SchemaUpdate', ['$resource', function ($resource) {
-    return $resource('/api/schema-update');
+    return $resource('/api/v0/schema-update');
+  }])
+  .factory('Validate', ['$resource', function ($resource) {
+    return $resource('/api/v0/account/validate');
   }])
 ;
