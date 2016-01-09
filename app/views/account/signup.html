@@ -34,7 +34,7 @@
 
           <div class="col-sm-8" data-has-error="form.emailAddress">
             <input type="email" class="form-control" id="emailAddress" name="emailAddress"
-                   data-ng-model="user.emailAddress" data-ng-model-options="{ debounce: 500 }" required is-unique/>
+                   data-ng-model="user.emailAddress" data-ng-model-options="{ debounce: 500 }" required is-unique-email-address/>
 
             <div role="alert" data-ng-messages="form.emailAddress.$error"
                  data-ng-show="form.emailAddress.$touched || form.$submitted">

@@ -7,10 +7,11 @@
         <label class="control-label" for="newEmailAddress">Neue E-Mail-Adresse</label>
 
         <input type="email" class="form-control input" id="newEmailAddress" name="newEmailAddress"
-               data-ng-model="changeEmailAddress.newEmailAddress" required/>
+               data-ng-model="changeEmailAddress.newEmailAddress" required is-unique-email-address/>
 
         <div role="alert" data-ng-messages="formChangeEmailAddress.newEmailAddress.$error"
              data-ng-show="formChangeEmailAddress.newEmailAddress.$touched || formChangeEmailAddress.$submitted">
+          <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
           <div data-ng-messages-include="views/messages.html"></div>
         </div>
 
