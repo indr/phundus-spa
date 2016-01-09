@@ -87,7 +87,7 @@ var app = angular
         controller: 'DebugCtrl'
       })
       .state('public.validate-account', {
-        url: '/validate-account?key',
+        url: '/validate/account?key',
         templateUrl: 'views/public/validate-account.html',
         controller: 'MetaValidateCtrl',
         resolve: {
@@ -98,7 +98,7 @@ var app = angular
         }
       })
       .state('public.validate-e-mail-address', {
-        url: '/validate-email-address?key',
+        url: '/validate/email-address?key',
         templateUrl: 'views/public/validate-email-address.html',
         controller: 'MetaValidateCtrl',
         resolve: {
