@@ -31,7 +31,7 @@ angular.module('phundusApp')
     return $resource('/api/v0/admin/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
   .factory('AdminUsers', ['$resource', function ($resource) {
-    return $resource('/api/v0/admin/users/:userId', {userId: '@userId'});
+    return $resource('/api/v0/admin/users/:userGuid', {userGuid: '@userGuid'});
   }])
   .factory('Applications', ['$resource', function ($resource) {
     return $resource(
