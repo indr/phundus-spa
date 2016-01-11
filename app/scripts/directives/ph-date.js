@@ -12,8 +12,12 @@ angular.module('phundusApp')
       restrict: 'E',
       replace: true,
       scope: {
-        value: '=value'
+        value: '=',
+        format: '@'
       },
-      template: '<span title="{{value | date:\'medium\'}}">{{value | date:\'shortDate\'}}</span>'
+      link: function (scope) {
+        scope.format = scope.format || 'mediumDate';
+      },
+      template: '<span title="{{value | date:\'medium\'}}">{{value | date:format}}</span>'
     }
   }]);

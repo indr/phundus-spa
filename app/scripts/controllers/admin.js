@@ -182,7 +182,7 @@ angular.module('phundusApp')
       $resource('/api/v0/status').get({}, function (res) {
         $scope.data = res;
       }, function () {
-        Alert('Fehler beim Laden der Statusinformationen.');
+        Alert.error('Fehler beim Laden der Statusinformationen.');
       })
     }
   ]);
