@@ -20,7 +20,6 @@ var app = angular
     'ui.bootstrap',
     'ui.gravatar',
     'ui.router',
-    'uuid',
     'mwl.confirm'
   ])
 
