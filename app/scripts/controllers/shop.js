@@ -24,10 +24,10 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['$scope', 'userId', 'UsersCart', 'Alert',
-    function ($scope, userId, UsersCart, Alert) {
+  .controller('ShopCartCtrl', ['$scope', 'userGuid', 'UsersCart', 'Alert',
+    function ($scope, userGuid, UsersCart, Alert) {
 
-      UsersCart.get({userId: userId}, function (res) {
+      UsersCart.get({userGuid: userGuid}, function (res) {
         $scope.cart = res;
       }, function (res) {
         console.log(res);

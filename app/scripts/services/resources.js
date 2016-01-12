@@ -92,7 +92,7 @@ angular.module('phundusApp')
     return $resource('/api/v0/users/:userId', {userId: '@userId'});
   }])
   .factory('UsersCart', ['$resource', function ($resource) {
-    return $resource('/api/v0/users/:userId/cart', {userId: '@userId'});
+    return $resource('/api/v0/users/:userGuid/cart', {userGuid: '@userGuid'});
   }])
   .factory('Relationships', ['$http', function ($http) {
     return {
