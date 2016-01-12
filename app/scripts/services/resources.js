@@ -72,15 +72,9 @@ angular.module('phundusApp')
   }])
   .factory('Members', ['$resource', function ($resource) {
     return $resource('/api/v0/organizations/:organizationId/members/:memberId', {
-        organizationId: '@organizationId',
-        memberId: '@id'
-      }, {
-        query: {
-          method: 'GET',
-          isArray: true
-        }
-      }
-    );
+      organizationId: '@organizationId',
+      memberId: '@id'
+    });
   }])
   .factory('Orders', ['$resource', function ($resource) {
     return $resource('/api/v0/orders/:orderId', {orderId: '@orderId'});
