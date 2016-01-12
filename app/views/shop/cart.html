@@ -1,0 +1,94 @@
+<div class="page-header">
+  <h1>Warenkorb</h1>
+</div>
+
+<form name="cartForm" novalidate>
+  <table data-ng-show="cart.items.length > 0" class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Artikel</th>
+      <th>Verfügbar</th>
+      <th>Von</th>
+      <th>Bis</th>
+      <th>Menge</th>
+      <th>Stückpreis</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="item in cart.items">
+      <td>{{$index+1}}</td>
+      <td>{{item.text}}</td>
+      <td data-ng-show="item.isAvailable"><span class="glyphicon glyphicon-ok"></span></td>
+      <td data-ng-show="!item.isAvailable"><span class="glyphicon glyphicon-remove"></span></td>
+      <td data-ng-show="!item.editing">{{item.fromUtc | date:'mediumDate'}}</td>
+      <td data-ng-show="!item.editing">{{item.toUtc | date:'mediumDate'}}</td>
+      <td data-ng-show="!item.editing">{{item.amount}}</td>
+      <td data-ng-show="item.editing" class="col-sm-2"
+          data-ng-class="{'has-error':!cartForm.item_{{$index}}_fromUtc.$valid && cartForm.item_{{$index}}_fromUtc.$touched}">
+        <p class="input-group">
+          <input class="form-control" type="text" required data-ng-model="item.fromUtc" name="item_{{$index}}_fromUtc"
+                 data-uib-datepicker-popup="mediumDate" data-is-open="fromUtcIsOpen"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" data-ng-click="fromUtcIsOpen = true">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        </p>
+      </td>
+      <td data-ng-show="item.editing" class="col-sm-2"
+          data-ng-class="{'has-error':!cartForm.item_{{$index}}_toUtc.$valid && cartForm.item_{{$index}}_toUtc.$touched}">
+        <p class="input-group">
+          <input class="form-control" type="text" required data-ng-model="item.toUtc" name="item_{{$index}}_toUtc"
+                 data-uib-datepicker-popup="mediumDate" data-is-open="toUtcIsOpen"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" data-ng-click="toUtcIsOpen = true">
+            <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        </p>
+      </td>
+      <td data-ng-show="item.editing" class="col-sm-1"
+          data-ng-class="{'has-error':!cartForm.item_{{$index}}_amount.$valid && cartForm.item_{{$index}}_amount.$touched}">
+        <input class="form-control" type="number" required data-ng-model="item.amount" name="item_{{$index}}_amount"/>
+      </td>
+      <td>{{item.unitPrice | number:2}}</td>
+      <td data-ng-show="!item.editing">{{item.itemTotal | number:2}}</td>
+      <td data-ng-show="item.editing" class="col-sm-2"
+          data-ng-class="{'has-error':!cartForm.item_{{$index}}_itemTotal.$valid && cartForm.item_{{$index}}_itemTotal.$touched}">
+        <p class="input-group">
+          <input class="form-control" type="text" required data-ng-model="item.itemTotal"
+                 name="item_{{$index}}_itemTotal"/>
+        <span class="input-group-btn">
+          <button class="btn btn-default" data-ng-click="calculateItemTotal(item)" title="Preis berechnen">
+            <i class="glyphicon glyphicon-refresh"></i></button>
+        </span>
+        </p>
+      </td>
+      <td data-ng-show="canEdit() && !item.editing">
+        <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="editItem(item)"
+           title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+        <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="removeItem(item)"
+           title="Entfernen"><span class="glyphicon glyphicon-remove"></span></a>
+      </td>
+      <td data-ng-show="item.editing">
+        <a class="btn btn-default" href="" data-ng-click="saveEditedItem(item)" title="Speichern"><span
+          class="glyphicon glyphicon-ok"></span></a>
+        <a class="btn btn-default" href="" data-ng-click="cancelEditing(item)" title="Verwerfen"><span
+          class="glyphicon glyphicon-asterisk"></span></a>
+      </td>
+    </tr>
+
+    <tr style="font-weight:bold">
+      <td colspan="7" style="text-align:right;">Total</td>
+      <td>{{getTotal() | number:2}}</td>
+      <td data-ng-show="canEdit()"></td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+
+<div class="alert alert-info" data-ng-show="cart.items.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Dein Warenkorb ist leer.
+</div>

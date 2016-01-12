@@ -85,13 +85,15 @@ angular.module('phundusApp')
   .factory('Stores', ['$resource', function ($resource) {
     return $resource('/api/v0/stores/:storeId', {storeId: '@storeId'});
   }])
-  .factory('Users', ['$resource', function ($resource) {
-    return $resource('/api/v0/users/:userId', {userId: '@userId'});
-  }])
   .factory('Organizations', ['$resource', function ($resource) {
     return $resource('/api/v0/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
-
+  .factory('Users', ['$resource', function ($resource) {
+    return $resource('/api/v0/users/:userId', {userId: '@userId'});
+  }])
+  .factory('UsersCart', ['$resource', function ($resource) {
+    return $resource('/api/v0/users/:userId/cart', {userId: '@userId'});
+  }])
   .factory('Relationships', ['$http', function ($http) {
     return {
       get: function (organizationId, success, error) {

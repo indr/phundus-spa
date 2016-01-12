@@ -144,6 +144,22 @@ var app = angular
     // User routes
     $stateProvider
 
+      .state('cart', {
+        url: '/cart',
+        data: {
+          access: access.user
+        },
+        templateUrl: 'views/shop/cart.html',
+        controller: 'ShopCartCtrl',
+        resolve: {
+          userId: ['Auth', function (Auth) {
+            return Auth.user.userId;
+          }],
+          userGuid: ['Auth', function (Auth) {
+            return Auth.user.userGuid;
+          }]
+        }
+      })
       .state('user', {
         abstract: true,
         url: '/users/:userId',
