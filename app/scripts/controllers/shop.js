@@ -30,7 +30,6 @@ angular.module('phundusApp')
       UsersCart.get({userGuid: userGuid}, function (res) {
         $scope.cart = res;
       }, function (res) {
-        console.log(res);
         Alert.error('Fehler beim Laden des Warenkorbes: ' + res.data.message);
       });
 
