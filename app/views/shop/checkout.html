@@ -67,33 +67,41 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <label style="font-weight:normal">
-        <input type="checkbox" value="" data-ng-model="order.legals[0]">
-        Ich bin damit einverstanden, dass der Vermieter "{{order.lessor.name}}" und allfällige weitere mit dem Vermieter
-        in Beziehung stehenden Personen meine Kontaktinformationen wie Adresse, Telefonnummern und
-        E-Mail-Adressen einsiehen.
-      </label>
+      <div class="checkbox">
+        <input type="checkbox" value="" id="checkbox_{{$index}}_legal_0" data-ng-model="order.legals[0]">
+        <label style="font-weight:normal" for="checkbox_{{$index}}_legal_0">
+          Ich bin damit einverstanden, dass der Vermieter "{{order.lessor.name}}" und allfällige weitere mit dem
+          Vermieter in Beziehung stehenden Personen meine Kontaktinformationen wie Adresse, Telefonnummern und
+          E-Mail-Adressen einsiehen.
+        </label>
+      </div>
     </div>
     <div class="col-xs-12">
-      <label style="font-weight:normal">
-        <input type="checkbox" value="" data-ng-model="order.legals[1]">
-        Ich bin damit einverstanden, dass durch die Bestellung ein Vertrag nach OR Art. sowieso entsteht und ich für
-        Schäden an den Gegenständen haftbar bin. Ich bin mir bewusst, dass meine persönlich Haftpflichtversichung
-        sehr wahrscheinlich nicht für die Schäden aufkommt, da es sich um eine Ausleihe gegen Entgelt handelt.
-      </label>
+      <div class="checkbox">
+        <input type="checkbox" value="" id="checkbox_{{$index}}_legal_1" data-ng-model="order.legals[1]">
+        <label style="font-weight:normal" for="checkbox_{{$index}}_legal_1">
+          Ich bin damit einverstanden, dass durch die Bestellung ein Vertrag nach OR Art. sowieso entsteht und ich für
+          Schäden an den Gegenständen haftbar bin. Ich bin mir bewusst, dass meine persönliche Haftpflichtversichung
+          sehr wahrscheinlich nicht für die Schäden aufkommt, da es sich um eine Ausleihe gegen Entgelt handelt.
+        </label>
+      </div>
     </div>
     <div class="col-xs-12">
-      <label style="font-weight:normal">
-        <input type="checkbox" value="" data-ng-model="order.legals[2]">
-        Ich bin mir bewusst, dass ich phundus und/oder die dahinter stehenden Personen nur als Plattformbetreiber
-        auftreten und weder Einfluss auf die Abwicklung der Miete, noch für Schadenersatz oder Haftung belangt werden
-        kann.
-      </label>
+      <div class="checkbox">
+        <input type="checkbox" value="" id="checkbox_{{$index}}_legal_2" data-ng-model="order.legals[2]">
+        <label style="font-weight:normal" for="checkbox_{{$index}}_legal_2">
+          Ich bin mir bewusst, dass phundus und/oder die dahinter stehenden Personen nur als Plattformbetreiber
+          auftreten und weder Einfluss auf die Abwicklung der Miete, noch für Schadenersatz oder Haftung belangt werden
+          können.
+        </label>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 text-right">
-      <button type="button" class="btn btn-primary btn-lg" data-ng-click="placeOrder(order)" data-ng-disabled="!canPlaceOrder(order)">Bestellung ausführen</button>
+      <button type="button" class="btn btn-primary btn-lg" data-ng-click="placeOrder(order)"
+              data-ng-disabled="!canPlaceOrder(order)">Bestellung ausführen
+      </button>
     </div>
   </div>
 </div>
