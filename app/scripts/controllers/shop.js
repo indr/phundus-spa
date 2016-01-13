@@ -102,6 +102,7 @@ angular.module('phundusApp')
         UsersCartItems.delete({userGuid: userGuid, cartItemGuid: item.cartItemGuid}, function () {
           var idx = $scope.cart.items.indexOf(item);
           $scope.cart.items.splice(idx, 1);
+          $scope.cartCleared = $scope.cart.items.length === 0;
         });
       };
 
@@ -123,6 +124,19 @@ angular.module('phundusApp')
           total += parseFloat($scope.cart.items[i].itemTotal);
         }
         return total;
+      };
+
+      $scope.submitOrder = function () {
+
+      };
+
+      $scope.clearCart = function () {
+        UsersCart.delete({userGuid: userGuid}, function () {
+          $scope.cart.items = [];
+          $scope.cartCleared = true;
+        }, function (res) {
+          Alert.error('Fehler beim Leeren des Warenkorbs: ' + res.data.message);
+        });
       };
     }
   ]);

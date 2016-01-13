@@ -91,11 +91,21 @@
   </table>
 </form>
 
-<div class="text-right" data-ng-show="cart.items.length > 0">
-  <p><a href="/cart/checkout" class="btn btn-primary btn-lg">Bestellen</a></p>
+<div class="row" data-ng-show="cart.items.length > 0">
+  <div class="col-xs-6 text-left">
+    <button type="button" class="btn btn-danger btn-lg" data-ng-click="clearCart()">Warenkorb leeren</button>
+  </div>
+  <div class="col-xs-6 text-right">
+    <a href="/cart/checkout" class="btn btn-primary btn-lg">Bestellen</a></p>
+  </div>
 </div>
 
-<div class="alert alert-info" data-ng-show="cart.items.length == 0">
+<div class="alert alert-info" data-ng-show="cart.items.length == 0 && !cartCleared">
   <strong>Nichts gefunden!</strong>
   Dein Warenkorb ist leer.
+</div>
+
+<div class="alert alert-success" data-ng-show="cart.items.length == 0 && cartCleared">
+  <strong>Jupp!</strong>
+  Dein Warenkorb wurde erfolgreich geleert.
 </div>
