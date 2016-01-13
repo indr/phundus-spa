@@ -8,13 +8,14 @@
     <tr>
       <th>#</th>
       <th>Artikel</th>
+      <th>Vermieter</th>
       <th class="text-center">Verfügbar</th>
       <th>Menge</th>
       <th>Von</th>
       <th>Bis</th>
       <th>Tage</th>
-      <th>Stückpreis/Woche</th>
-      <th>Total</th>
+      <!--<th>Stückpreis/Woche</th>-->
+      <th>Preis</th>
       <th></th>
     </tr>
     </thead>
@@ -22,10 +23,13 @@
     <tr data-ng-repeat="item in cart.items">
       <td>{{$index+1}}</td>
       <td>{{item.text}}</td>
+      <td>{{item.ownerName}}</td>
       <td class="text-center">
-        <button type="button" class="btn btn-success" data-ng-show="item.isAvailable && !item.availabilityChecking" data-ng-click="checkAvailability(item)"><span
+        <button type="button" class="btn btn-success" data-ng-show="item.isAvailable && !item.availabilityChecking"
+                data-ng-click="checkAvailability(item)"><span
           class="glyphicon glyphicon-ok"></span></button>
-        <button type="button" class="btn btn-danger" data-ng-show="!item.isAvailable && !item.availabilityChecking" data-ng-click="checkAvailability(item)">
+        <button type="button" class="btn btn-danger" data-ng-show="!item.isAvailable && !item.availabilityChecking"
+                data-ng-click="checkAvailability(item)">
           <span class="glyphicon glyphicon-remove"></span></button>
         <button type="button" class="btn btn-default" data-ng-show="item.availabilityChecking"><span
           class="glyphicon glyphicon-refresh glyphicon-spin"></span></button>
@@ -62,7 +66,7 @@
       </td>
 
       <td>{{item.days}}</td>
-      <td>{{item.unitPricePerWeek | number:2}}</td>
+      <!--<td>{{item.unitPricePerWeek | number:2}}</td>-->
       <td>{{item.itemTotal | number:2}}</td>
       <td data-ng-show="canEdit() && !item.editing">
         <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="editItem(item)"
@@ -86,6 +90,10 @@
     </tbody>
   </table>
 </form>
+
+<div class="text-right" data-ng-show="cart.items.length > 0">
+  <p><a href="/cart/checkout" class="btn btn-primary btn-lg">Bestellen</a></p>
+</div>
 
 <div class="alert alert-info" data-ng-show="cart.items.length == 0">
   <strong>Nichts gefunden!</strong>
