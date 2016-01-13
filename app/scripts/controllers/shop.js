@@ -18,8 +18,8 @@ angular.module('phundusApp')
 
 
 angular.module('phundusApp')
-  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Alert',
-    function (_, $scope, userGuid, UsersCart, Lessors, Alert) {
+  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Lessees', 'Alert',
+    function (_, $scope, userGuid, UsersCart, Lessors, Lessees, Alert) {
       UsersCart.get({userGuid: userGuid}, function (cart) {
 
         var byOwnerGuid = _.groupBy(cart.items, 'ownerGuid');
@@ -41,7 +41,15 @@ angular.module('phundusApp')
             Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
           });
         });
-        console.log($scope.orders);
+
+        Lessees.get({lesseeGuid: userGuid}, function (res) {
+          _.forEach($scope.orders, function (order) {
+            order.lessee = res;
+            console.log(res);
+          })
+        }, function (res) {
+          Alert.error('Fehler beim Laden des Mieters: ' + res.data.message);
+        });
 
       }, function (res) {
         Alert.error('Fehler beim Laden des Warenkorbes: ' + res.data.message);
@@ -49,7 +57,11 @@ angular.module('phundusApp')
 
       $scope.canPlaceOrder = function (order) {
         return _.every(order.legals);
-      }
+      };
+
+      $scope.placeOrder = function () {
+        Alert.error('Diese Funktion wurde noch nicht implementiert.');
+      };
     }
   ]);
 

@@ -67,6 +67,9 @@ angular.module('phundusApp')
   .factory('Feedback', ['$resource', function ($resource) {
     return $resource('/api/v0/feedback');
   }])
+  .factory('Lessees', ['$resource', function ($resource) {
+    return $resource('/api/v0/lessees/:lesseeGuid', {lesseeGuid: '@lesseeGuid'});
+  }])
   .factory('Lessors', ['$resource', function ($resource) {
     return $resource('/api/v0/lessors/:lessorGuid', {lessorGuid: '@lessorGuid'});
   }])
