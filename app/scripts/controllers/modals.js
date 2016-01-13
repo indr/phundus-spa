@@ -74,7 +74,7 @@ angular.module('phundusApp')
           }
         }).then(function (response) {
 
-          return response.data.map(function (item) {
+          return response.data.results.map(function (item) {
             return item;
           });
         });
