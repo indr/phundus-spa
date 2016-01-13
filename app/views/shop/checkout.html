@@ -1,0 +1,99 @@
+<div data-ng-repeat="order in orders">
+  <div class="page-header">
+    <h1>Bestellung
+      <small>bei {{order.lessor.name}}</small>
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Artikel</th>
+          <th>Menge</th>
+          <th>Von</th>
+          <th>Bis</th>
+          <th>Preis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="item in order.items">
+          <td>{{$index+1}}</td>
+          <td>{{item.text}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.fromUtc | date:'mediumDate'}}</td>
+          <td>{{item.toUtc | date:'mediumDate'}}</td>
+          <td>{{item.itemTotal | number:2}}</td>
+        </tr>
+        <tr style="font-weight:bold">
+          <td colspan="5" class="text-right">Total</td>
+          <td>{{order.total | number:2}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Vermieter</div>
+            <div class="panel-body">
+              <address style="white-space:pre-line; margin-bottom:0">{{order.lessor.address}}<br>
+                <abbr title="Telefon">P:</abbr> {{order.lessor.phoneNumber}}
+                <abbr title="E-Mail-Adresse">@:</abbr> {{order.lessor.emailAddress}}
+              </address>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Mieter</div>
+            <div class="panel-body">
+              <address style="white-space:pre-line; margin-bottom:0">{{order.lessor.address}}<br>
+                <abbr title="Telefon">P:</abbr> {{order.lessor.phoneNumber}}
+                <abbr title="E-Mail-Adresse">@:</abbr> {{order.lessor.emailAddress}}
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <label style="font-weight:normal">
+        <input type="checkbox" value="" data-ng-model="order.legals[0]">
+        Ich bin damit einverstanden, dass der Vermieter "{{order.lessor.name}}" und allfällige weitere mit dem Vermieter
+        in Beziehung stehenden Personen meine Kontaktinformationen wie Adresse, Telefonnummern und
+        E-Mail-Adressen einsiehen.
+      </label>
+    </div>
+    <div class="col-xs-12">
+      <label style="font-weight:normal">
+        <input type="checkbox" value="" data-ng-model="order.legals[1]">
+        Ich bin damit einverstanden, dass durch die Bestellung ein Vertrag nach OR Art. sowieso entsteht und ich für
+        Schäden an den Gegenständen haftbar bin. Ich bin mir bewusst, dass meine persönlich Haftpflichtversichung
+        sehr wahrscheinlich nicht für die Schäden aufkommt, da es sich um eine Ausleihe gegen Entgelt handelt.
+      </label>
+    </div>
+    <div class="col-xs-12">
+      <label style="font-weight:normal">
+        <input type="checkbox" value="" data-ng-model="order.legals[2]">
+        Ich bin mir bewusst, dass ich phundus und/oder die dahinter stehenden Personen nur als Plattformbetreiber
+        auftreten und weder Einfluss auf die Abwicklung der Miete, noch für Schadenersatz oder Haftung belangt werden
+        kann.
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <button type="button" class="btn btn-primary btn-lg" data-ng-click="placeOrder(order)" data-ng-disabled="!canPlaceOrder(order)">Bestellung ausführen</button>
+    </div>
+  </div>
+</div>

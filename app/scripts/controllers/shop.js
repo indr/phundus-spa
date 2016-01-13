@@ -18,9 +18,38 @@ angular.module('phundusApp')
 
 
 angular.module('phundusApp')
-  .controller('ShopCheckoutCtrl', ['$scope', 'UsersCart', 'Orders',
-    function ($scope, UsersCart, Orders) {
+  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Alert',
+    function (_, $scope, userGuid, UsersCart, Lessors, Alert) {
+      UsersCart.get({userGuid: userGuid}, function (cart) {
 
+        var byOwnerGuid = _.groupBy(cart.items, 'ownerGuid');
+
+        var orders = _.reduce(byOwnerGuid, function (result, items, ownerGuid) {
+          result.push({
+            lessorGuid: ownerGuid,
+            items: items,
+            total: _.sumBy(items, 'itemTotal'),
+            legals: [false, false, false]
+          });
+          return result;
+        }, []);
+
+        $scope.orders = _.forEach(orders, function (order) {
+          Lessors.get({lessorGuid: order.lessorGuid}, function (lessor) {
+            order.lessor = lessor;
+          }, function (res) {
+            Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
+          });
+        });
+        console.log($scope.orders);
+
+      }, function (res) {
+        Alert.error('Fehler beim Laden des Warenkorbes: ' + res.data.message);
+      });
+
+      $scope.canPlaceOrder = function (order) {
+        return _.every(order.legals);
+      }
     }
   ]);
 

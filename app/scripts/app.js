@@ -165,7 +165,7 @@ var app = angular
         data: {
           access: access.user
         },
-        template: '<p>checkout</p>',
+        templateUrl: 'views/shop/checkout.html',
         controller: 'ShopCheckoutCtrl',
         resolve: {
           userId: ['Auth', function (Auth) {
