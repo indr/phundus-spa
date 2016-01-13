@@ -160,6 +160,22 @@ var app = angular
           }]
         }
       })
+      .state('checkout', {
+        url: '/checkout',
+        data: {
+          access: access.user
+        },
+        template: '<p>checkout</p>',
+        controller: 'ShopCheckoutCtrl',
+        resolve: {
+          userId: ['Auth', function (Auth) {
+            return Auth.user.userId;
+          }],
+          userGuid: ['Auth', function (Auth) {
+            return Auth.user.userGuid;
+          }]
+        }
+      })
       .state('user', {
         abstract: true,
         url: '/users/:userId',

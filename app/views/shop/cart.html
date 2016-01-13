@@ -102,7 +102,7 @@
       class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="clearingCart"></span> Warenkorb leeren</button>
   </div>
   <div class="col-xs-6 text-right">
-    <a href="/cart/checkout" class="btn btn-primary btn-lg">Bestellen</a></p>
+    <button type="button" class="btn btn-primary btn-lg" data-ng-disabled="!canGoToCheckout()" data-ng-click="goToCheckout()">Weiter zur Bestellung</button></p>
   </div>
 </div>
 

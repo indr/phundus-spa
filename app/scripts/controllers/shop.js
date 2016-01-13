@@ -16,6 +16,14 @@ angular.module('phundusApp')
     }
   ]);
 
+
+angular.module('phundusApp')
+  .controller('ShopCheckoutCtrl', ['$scope', 'UsersCart', 'Orders',
+    function ($scope, UsersCart, Orders) {
+
+    }
+  ]);
+
 /**
  * @ngdoc function
  * @name phundusApp.controller:ShopCartCtrl
@@ -24,8 +32,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout',
-    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout) {
+  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout', '$state',
+    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout, $state) {
 
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
@@ -122,8 +130,20 @@ angular.module('phundusApp')
         return total;
       };
 
-      $scope.submitOrder = function () {
+      $scope.canGoToCheckout = function () {
+        if (!$scope.cart) {
+          return false;
+        }
+        return _.every($scope.cart.items, function (item) {
+          return !item.editing && item.isAvailable && !item.availabilityChecking;
+        })
+      };
 
+      $scope.goToCheckout = function () {
+        if (!$scope.canGoToCheckout()) {
+          return;
+        }
+        $state.go('checkout');
       };
 
       $scope.clearCart = function () {
