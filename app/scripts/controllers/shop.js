@@ -30,13 +30,15 @@ angular.module('phundusApp')
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
         $timeout(function () {
-        ShopItemsAvailabilityCheck.post(item, function (res) {
-          item.isAvailable = res.isAvailable;
-          item.availabilityChecking = false;
-        }, function (res) {
-          Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
-        });
-        }, 400);
+          ShopItemsAvailabilityCheck.post(item, function (res) {
+            item.isAvailable = res.isAvailable;
+            item.availabilityChecking = false;
+          }, function (res) {
+            item.isAvailable = false;
+            item.availabilityChecking = false;
+            Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
+          });
+        }, 100);
       };
 
       $scope.checkAvailability = checkAvailability;
