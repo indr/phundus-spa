@@ -24,8 +24,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$window', '$timeout',
-    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $window, $timeout) {
+  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout',
+    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout) {
 
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
@@ -95,10 +95,6 @@ angular.module('phundusApp')
       };
 
       $scope.removeItem = function (item) {
-        if (!$window.confirm('Möchten Sie die Position "' + item.text + '" wirklich löschen?')) {
-          return;
-        }
-
         UsersCartItems.delete({userGuid: userGuid, cartItemGuid: item.cartItemGuid}, function () {
           var idx = $scope.cart.items.indexOf(item);
           $scope.cart.items.splice(idx, 1);

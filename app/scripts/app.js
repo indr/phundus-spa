@@ -583,6 +583,8 @@ app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopo
     $rootScope.isLocalEnv = /(^localhost)/.test($location.host());
     $rootScope.$state = $state;
     confirmationPopoverDefaults.confirmButtonType = 'primary';
+    confirmationPopoverDefaults.confirmText = 'Ja';
+    confirmationPopoverDefaults.cancelText = 'Nein';
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
       if (!('data' in toState) || !('access' in toState.data)) {

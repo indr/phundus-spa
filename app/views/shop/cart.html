@@ -26,13 +26,13 @@
       <td>{{item.ownerName}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-success" data-ng-show="item.isAvailable && !item.availabilityChecking"
-                data-ng-click="checkAvailability(item)"><span
+                data-ng-click="checkAvailability(item)" title="Verfügbar!"><span
           class="glyphicon glyphicon-ok"></span></button>
         <button type="button" class="btn btn-danger" data-ng-show="!item.isAvailable && !item.availabilityChecking"
-                data-ng-click="checkAvailability(item)">
+                data-ng-click="checkAvailability(item)" title="Nicht verfügbar!">
           <span class="glyphicon glyphicon-remove"></span></button>
         <button type="button" class="btn btn-default" data-ng-show="item.availabilityChecking"><span
-          class="glyphicon glyphicon-refresh glyphicon-spin"></span></button>
+          class="glyphicon glyphicon-refresh glyphicon-spin" title="Verfügbarkeit wird geprüft..."></span></button>
       </td>
       <td data-ng-show="!item.editing">{{item.quantity}}</td>
       <td data-ng-show="item.editing" class="col-sm-1"
@@ -71,8 +71,10 @@
       <td data-ng-show="canEdit() && !item.editing">
         <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="editItem(item)"
            title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
-        <a data-ng-show="canEdit()" class="btn btn-default" href="" data-ng-click="removeItem(item)"
-           title="Entfernen"><span class="glyphicon glyphicon-remove"></span></a>
+        <button type="button" data-ng-show="canEdit()" class="btn btn-default"
+                data-mwl-confirm data-on-confirm="removeItem(item)" data-title="Bestätigung"
+                data-message="Möchtest du <b>{{item.text}}</b> wirklich entfernen?"
+                title="Artikel entfernen"><span class="glyphicon glyphicon-remove"></span></button>
       </td>
       <td data-ng-show="item.editing">
         <a class="btn btn-default" href="" data-ng-click="saveEditedItem(item)" title="Speichern"><span
@@ -93,7 +95,10 @@
 
 <div class="row" data-ng-show="cart.items.length > 0">
   <div class="col-xs-6 text-left">
-    <button type="button" class="btn btn-danger btn-lg" data-ng-click="clearCart()" data-ng-disabled="clearingCart"><span
+    <button type="button" class="btn btn-danger btn-lg"
+            data-mwl-confirm data-on-confirm="clearCart()" data-title="Bestätigung"
+            data-message="Möchtest du dein Warenkorb wirklich leeren?"
+            data-ng-disabled="clearingCart" title="Warenkorb leeren"><span
       class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="clearingCart"></span> Warenkorb leeren</button>
   </div>
   <div class="col-xs-6 text-right">
