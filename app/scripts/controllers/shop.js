@@ -24,11 +24,35 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'Alert', '$window',
-    function ($scope, userGuid, UsersCart, UsersCartItems, Alert, $window) {
+  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$window', '$timeout',
+    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $window, $timeout) {
+
+      var checkAvailability = function (item) {
+        item.availabilityChecking = true;
+        $timeout(function () {
+        ShopItemsAvailabilityCheck.post(item, function (res) {
+          item.isAvailable = res.isAvailable;
+          item.availabilityChecking = false;
+        }, function (res) {
+          Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
+        });
+        }, 400);
+      };
+
+      $scope.checkAvailability = checkAvailability;
+
+      var checkAllAvailabilities = function (items) {
+        if (!items) {
+          return;
+        }
+        _.forEach($scope.cart.items, function (item) {
+          checkAvailability(item);
+        });
+      };
 
       UsersCart.get({userGuid: userGuid}, function (res) {
         $scope.cart = res;
+        checkAllAvailabilities($scope.cart.items);
       }, function (res) {
         Alert.error('Fehler beim Laden des Warenkorbes: ' + res.data.message);
       });
@@ -41,7 +65,8 @@ angular.module('phundusApp')
         $scope.saveValues = {
           quantity: item.quantity,
           fromUtc: item.fromUtc,
-          toUtc: item.toUtc
+          toUtc: item.toUtc,
+          isAvailable: item.isAvailable
         };
 
         item.editing = true;
@@ -52,6 +77,7 @@ angular.module('phundusApp')
         item.quantity = $scope.saveValues.quantity;
         item.fromUtc = $scope.saveValues.fromUtc;
         item.toUtc = $scope.saveValues.toUtc;
+        item.isAvailable = $scope.saveValues.isAvailable;
       };
 
       $scope.saveEditedItem = function (item) {
@@ -60,6 +86,7 @@ angular.module('phundusApp')
           function () {
             item.editing = false;
             $scope.calculateDaysAndItemTotal(item);
+            checkAvailability(item);
           }, function (res) {
             Alert.error(res.data.message);
           });
@@ -78,7 +105,6 @@ angular.module('phundusApp')
 
       $scope.calculateDaysAndItemTotal = function (item) {
         var diff = (new Date(item.toUtc) - new Date(item.fromUtc)) + 1;
-        console.log(item.toUtc, item.fromUtc, diff);
         item.days = Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 
         item.itemTotal = Math.max(1, Math.round(item.unitPricePerWeek / 7 * item.days * item.quantity));

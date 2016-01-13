@@ -8,7 +8,7 @@
     <tr>
       <th>#</th>
       <th>Artikel</th>
-      <th>Verfügbar</th>
+      <th class="text-center">Verfügbar</th>
       <th>Menge</th>
       <th>Von</th>
       <th>Bis</th>
@@ -22,12 +22,19 @@
     <tr data-ng-repeat="item in cart.items">
       <td>{{$index+1}}</td>
       <td>{{item.text}}</td>
-      <td data-ng-show="item.isAvailable"><span class="glyphicon glyphicon-ok"></span></td>
-      <td data-ng-show="!item.isAvailable"><span class="glyphicon glyphicon-remove"></span></td>
+      <td class="text-center">
+        <button type="button" class="btn btn-success" data-ng-show="item.isAvailable && !item.availabilityChecking" data-ng-click="checkAvailability(item)"><span
+          class="glyphicon glyphicon-ok"></span></button>
+        <button type="button" class="btn btn-danger" data-ng-show="!item.isAvailable && !item.availabilityChecking" data-ng-click="checkAvailability(item)">
+          <span class="glyphicon glyphicon-remove"></span></button>
+        <button type="button" class="btn btn-default" data-ng-show="item.availabilityChecking"><span
+          class="glyphicon glyphicon-refresh glyphicon-spin"></span></button>
+      </td>
       <td data-ng-show="!item.editing">{{item.quantity}}</td>
       <td data-ng-show="item.editing" class="col-sm-1"
           data-ng-class="{'has-error':!cartForm.item_{{$index}}_quantity.$valid && cartForm.item_{{$index}}_quantity.$touched}">
-        <input class="form-control" type="number" required data-ng-model="item.quantity" name="item_{{$index}}_quantity"/>
+        <input class="form-control" type="number" required data-ng-model="item.quantity"
+               name="item_{{$index}}_quantity"/>
       </td>
       <td data-ng-show="!item.editing">{{item.fromUtc | date:'mediumDate'}}</td>
       <td data-ng-show="!item.editing">{{item.toUtc | date:'mediumDate'}}</td>
