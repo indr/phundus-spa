@@ -93,7 +93,8 @@
 
 <div class="row" data-ng-show="cart.items.length > 0">
   <div class="col-xs-6 text-left">
-    <button type="button" class="btn btn-danger btn-lg" data-ng-click="clearCart()">Warenkorb leeren</button>
+    <button type="button" class="btn btn-danger btn-lg" data-ng-click="clearCart()" data-ng-disabled="clearingCart"><span
+      class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="clearingCart"></span> Warenkorb leeren</button>
   </div>
   <div class="col-xs-6 text-right">
     <a href="/cart/checkout" class="btn btn-primary btn-lg">Bestellen</a></p>

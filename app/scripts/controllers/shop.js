@@ -131,10 +131,13 @@ angular.module('phundusApp')
       };
 
       $scope.clearCart = function () {
+        $scope.clearingCart = true;
         UsersCart.delete({userGuid: userGuid}, function () {
+          $scope.clearingCart = false;
           $scope.cart.items = [];
           $scope.cartCleared = true;
         }, function (res) {
+          $scope.clearingCart = false;
           Alert.error('Fehler beim Leeren des Warenkorbs: ' + res.data.message);
         });
       };
