@@ -94,6 +94,9 @@ angular.module('phundusApp')
   .factory('UsersCart', ['$resource', function ($resource) {
     return $resource('/api/v0/users/:userGuid/cart', {userGuid: '@userGuid'});
   }])
+  .factory('UsersCartItems', ['$resource', function ($resource) {
+    return $resource('/api/v0/users/:userGuid/cart/items/:cartItemGuid', {userGuid: '@userGuid', cartItemGuid: '@cartItemGuid'});
+  }])
   .factory('Relationships', ['$http', function ($http) {
     return {
       get: function (organizationId, success, error) {
