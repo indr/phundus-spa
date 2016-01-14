@@ -465,7 +465,7 @@ angular.module('phundusApp')
       $scope.organizationId = organizationId;
 
       Orders.query({organizationId: organizationId}, function (res) {
-        $scope.rowCollection = res.orders;
+        $scope.rowCollection = res.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function () {
         Alert.error('Fehler beim Laden der Bestellungen.');
