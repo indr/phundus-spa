@@ -18,8 +18,8 @@ angular.module('phundusApp')
 
 
 angular.module('phundusApp')
-  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Lessees', 'Alert',
-    function (_, $scope, userGuid, UsersCart, Lessors, Lessees, Alert) {
+  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert',
+    function (_, $scope, userGuid, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
       UsersCart.get({userGuid: userGuid}, function (cart) {
 
         var byOwnerGuid = _.groupBy(cart.items, 'ownerGuid');
@@ -59,8 +59,16 @@ angular.module('phundusApp')
         return _.every(order.legals);
       };
 
-      $scope.placeOrder = function () {
-        Alert.error('Diese Funktion wurde noch nicht implementiert.');
+      $scope.placeOrder = function (order) {
+        order.placing = true;
+        ShopOrders.post({lessorGuid: order.lessorGuid}, function () {
+          order.placing = false;
+          order.placed = true;
+        }, function (res) {
+          order.placing = false;
+          order.placed = false;
+          Alert.error('Fehler beim Bestellen der Materialien: ' + res.data.message);
+        });
       };
     }
   ]);

@@ -412,7 +412,7 @@ angular.module('phundusApp')
   .controller('ManageOrganizationMembersCtrl', ['$scope', 'organizationId', 'Members', 'Alert',
     function ($scope, organizationId, Members, Alert) {
       Members.query({organizationId: organizationId}, function (res) {
-        $scope.rowCollection = res.result;
+        $scope.rowCollection = res.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function () {
         Alert.error('Fehler beim Laden der Mitglieder.');
