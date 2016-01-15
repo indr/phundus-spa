@@ -168,17 +168,17 @@ angular.module('phundusApp')
     function ($scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
-      $scope.description = null;
+      $scope.data = {};
 
       Articles.get({ownerId: userId, articleId: articleId}, function (res) {
-        $scope.description = res.description;
+        $scope.data.description = res.description;
       }, function () {
         Alert.error('Fehler beim Laden der Beschreibung.');
       });
 
       $scope.submit = function () {
         $scope.form.$submitting = true;
-        Articles.patch({ownerId: userId, articleId: articleId, description: $scope.description}, function () {
+        Articles.patch({ownerId: userId, articleId: articleId, description: $scope.data.description}, function () {
           $scope.form.$submitting = false;
           Alert.success('Die Beschreibung wurde erfolgreich gespeichert.');
         }, function () {
@@ -205,17 +205,17 @@ angular.module('phundusApp')
     function ($scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
-      $scope.specification = null;
+      $scope.data = {};
 
       Articles.get({ownerId: userId, articleId: articleId}, function (res) {
-        $scope.specification = res.specification;
+        $scope.data.specification = res.specification;
       }, function () {
         Alert.error('Fehler beim Laden der Spezifikation.');
       });
 
       $scope.submit = function () {
         $scope.form.$submitting = true;
-        Articles.patch({ownerId: userId, articleId: articleId, specification: $scope.specification}, function () {
+        Articles.patch({ownerId: userId, articleId: articleId, specification: $scope.data.specification}, function () {
           $scope.form.$submitting = false;
           Alert.success('Die Spezifikation wurde erfolgreich gespeichert.');
         }, function () {

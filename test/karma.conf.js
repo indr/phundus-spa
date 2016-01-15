@@ -42,6 +42,8 @@ module.exports = function(config) {
       'bower_components/blueimp-file-upload/js/jquery.fileupload.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js',
+      'bower_components/tinymce-dist/tinymce.js',
+      'bower_components/angular-ui-tinymce/src/tinymce.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "bower_components/blueimp-load-image/js/load-image.all.min.js",

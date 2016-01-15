@@ -20,6 +20,7 @@ var app = angular
     'ui.bootstrap',
     'ui.gravatar',
     'ui.router',
+    'ui.tinymce',
     'mwl.confirm'
   ])
 
