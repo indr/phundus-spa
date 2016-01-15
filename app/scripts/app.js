@@ -352,7 +352,7 @@ var app = angular
           access: access.manager
         },
         url: '/organizations/{organizationId}',
-        template: '<ph-organization-navbar data-ng-show="organization" data-organization-id="organizationId"></ph-organization-navbar><ui-view/>',
+        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view/>',
         controller: ['$scope', 'organizationId', function ($scope, organizationId) {
           $scope.organizationId = organizationId
         }],
@@ -365,7 +365,7 @@ var app = angular
       .state('organizations.stores', {
         abstract: true,
         url: '/stores',
-        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view/>'
+        template: '<ui-view/>'
       })
       .state('organizations.stores.index', {
         url: '/',
@@ -375,7 +375,7 @@ var app = angular
       .state('organizations.articles', {
         abstract: true,
         url: '/articles',
-        template: '<ph-organization-navbar data-organization-id="organizationId"></ph-organization-navbar><ui-view/>'
+        template: '<ui-view/>'
       })
       .state('organizations.articles.index', {
         url: '/',
@@ -420,6 +420,16 @@ var app = angular
         url: '/files',
         templateUrl: 'views/manage/edit-article-files.html',
         controller: 'OrganizationsArticlesFilesCtrl'
+      })
+      .state('organizations.settings', {
+        abstract: true,
+        url: '/settings',
+        template: '<ui-view/>'
+      })
+      .state('organizations.settings.startpage', {
+        url: '/startpage',
+        templateUrl: 'views/organizations/settings-startpage.html',
+        controller: 'OrganizationsSettingsStartpageCtrl'
       });
 
     // Admin routes

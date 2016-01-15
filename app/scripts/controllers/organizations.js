@@ -95,6 +95,43 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
+ * @name phundusApp.controller:OrganizationsSettingsStartpageCtrl
+ * @description
+ * # OrganizationsSettingsStartpageCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsSettingsStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert',
+    function ($scope, organizationId, Organizations, Alert) {
+      var startpage = "";
+      $scope.data = {};
+
+      Organizations.get({organizationId: organizationId}, function (res) {
+        startpage = res.startpage;
+        $scope.data.startpage = startpage;
+      }, function () {
+        Alert.error('Fehler beim Laden der Startseite.');
+      });
+
+      $scope.submit = function () {
+        $scope.form.$submitting = true;
+        Organizations.patch({organizationId: organizationId, startpage: $scope.data.startpage}, function () {
+          $scope.form.$submitting = false;
+          Alert.success('Die Startseite wurde erfolgreich gespeichert.');
+        }, function () {
+          $scope.form.$submitting = false;
+          Alert.error('Fehler beim Speichern der Startseite.');
+        });
+      };
+
+      $scope.cancel = function () {
+        $scope.data.startpage = startpage;
+      };
+    }
+  ]);
+
+/**
+ * @ngdoc function
  * @name phundusApp.controller:OrganizationsStoreCtrl
  * @description
  * # OrganizationsStoreCtrl
@@ -115,7 +152,6 @@ angular.module('phundusApp')
       });
     }
   ]);
-
 
 /**
  * @ngdoc function
