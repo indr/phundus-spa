@@ -13,7 +13,7 @@ angular.module('phundusApp')
       if (input === undefined || input === null) {
         return null;
       }
-      length = length || 6;
+      length = length || 5;
       return input.substring(0, length);
     };
   });
