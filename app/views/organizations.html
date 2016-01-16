@@ -15,7 +15,8 @@
       </thead>
       <tbody>
       <tr data-ng-repeat="row in displayedOrganizations">
-        <td><a href="/{{row.url}}">{{row.name}}</a></td>
+        <td data-ng-show="row.url"><a href="/{{row.url}}">{{row.name}}</a></td>
+        <td data-ng-hide="row.url"><a href="" data-ui-sref="public.organization({organizationId: row.organizationId})">{{row.name}}</a></td>
         <td>{{row.address|replace:' *[\r\n]+ *':', '}}</td>
       </tr>
       </tbody>
