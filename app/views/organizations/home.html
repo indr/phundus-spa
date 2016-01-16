@@ -59,11 +59,9 @@
 
     <div data-ng-show="organization.stores[0]">
       <h3>Materialstelle</h3>
-      <address data-ng-show="organization.stores[0].address" style="white-space:pre">
-        {{organization.stores[0].address}}
+      <address data-ng-show="organization.stores[0].address" style="white-space:pre">{{organization.stores[0].address}}
       </address>
-      <div data-ng-show="organization.stores[0].openingHours" style="white-space:pre">
-        {{organization.stores[0].openingHours}}
+      <div data-ng-show="organization.stores[0].openingHours" style="white-space:pre">{{organization.stores[0].openingHours}}
       </div>
       <div data-ng-show="organization.stores[0].coordinate">
         <leaflet width="100%" height="400px" style="margin-bottom:10px"></leaflet>

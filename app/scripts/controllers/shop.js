@@ -18,15 +18,15 @@ angular.module('phundusApp')
 
 
 angular.module('phundusApp')
-  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert',
-    function (_, $scope, userGuid, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
-      UsersCart.get({userGuid: userGuid}, function (cart) {
+  .controller('ShopCheckoutCtrl', ['_', '$scope', 'userId', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert',
+    function (_, $scope, userId, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
+      UsersCart.get({userId: userId}, function (cart) {
 
-        var byOwnerGuid = _.groupBy(cart.items, 'ownerGuid');
+        var byOwnerId = _.groupBy(cart.items, 'ownerId');
 
-        var orders = _.reduce(byOwnerGuid, function (result, items, ownerGuid) {
+        var orders = _.reduce(byOwnerId, function (result, items, ownerId) {
           result.push({
-            lessorGuid: ownerGuid,
+            lessorId: ownerId,
             items: items,
             total: _.sumBy(items, 'itemTotal'),
             legals: [false, false, false]
@@ -35,14 +35,14 @@ angular.module('phundusApp')
         }, []);
 
         $scope.orders = _.forEach(orders, function (order) {
-          Lessors.get({lessorGuid: order.lessorGuid}, function (lessor) {
+          Lessors.get({lessorId: order.lessorId}, function (lessor) {
             order.lessor = lessor;
           }, function (res) {
             Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
           });
         });
 
-        Lessees.get({lesseeGuid: userGuid}, function (res) {
+        Lessees.get({lesseeId: userId}, function (res) {
           _.forEach($scope.orders, function (order) {
             order.lessee = res;
             console.log(res);
@@ -61,7 +61,7 @@ angular.module('phundusApp')
 
       $scope.placeOrder = function (order) {
         order.placing = true;
-        ShopOrders.post({lessorGuid: order.lessorGuid}, function () {
+        ShopOrders.post({lessorId: order.lessorId}, function () {
           order.placing = false;
           order.placed = true;
         }, function (res) {
@@ -81,8 +81,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['_', '$scope', 'userGuid', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout', '$state',
-    function (_, $scope, userGuid, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout, $state) {
+  .controller('ShopCartCtrl', ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout', '$state',
+    function (_, $scope, userId, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout, $state) {
 
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
@@ -109,7 +109,7 @@ angular.module('phundusApp')
         });
       };
 
-      UsersCart.get({userGuid: userGuid}, function (res) {
+      UsersCart.get({userId: userId}, function (res) {
         $scope.cart = res;
         checkAllAvailabilities($scope.cart.items);
       }, function (res) {
@@ -141,7 +141,7 @@ angular.module('phundusApp')
 
       $scope.saveEditedItem = function (item) {
 
-        UsersCartItems.patch({userGuid: userGuid, cartItemGuid: item.cartItemGuid}, item,
+        UsersCartItems.patch({userId: userId, cartItemId: item.cartItemId}, item,
           function () {
             item.editing = false;
             $scope.calculateDaysAndItemTotal(item);
@@ -152,7 +152,7 @@ angular.module('phundusApp')
       };
 
       $scope.removeItem = function (item) {
-        UsersCartItems.delete({userGuid: userGuid, cartItemGuid: item.cartItemGuid}, function () {
+        UsersCartItems.delete({userId: userId, cartItemId: item.cartItemId}, function () {
           var idx = $scope.cart.items.indexOf(item);
           $scope.cart.items.splice(idx, 1);
           $scope.cartCleared = $scope.cart.items.length === 0;
@@ -197,7 +197,7 @@ angular.module('phundusApp')
 
       $scope.clearCart = function () {
         $scope.clearingCart = true;
-        UsersCart.delete({userGuid: userGuid}, function () {
+        UsersCart.delete({userId: userId}, function () {
           $scope.clearingCart = false;
           $scope.cart.items = [];
           $scope.cartCleared = true;

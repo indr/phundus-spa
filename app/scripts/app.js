@@ -155,9 +155,6 @@ var app = angular
         resolve: {
           userId: ['Auth', function (Auth) {
             return Auth.user.userId;
-          }],
-          userGuid: ['Auth', function (Auth) {
-            return Auth.user.userGuid;
           }]
         }
       })
@@ -171,9 +168,6 @@ var app = angular
         resolve: {
           userId: ['Auth', function (Auth) {
             return Auth.user.userId;
-          }],
-          userGuid: ['Auth', function (Auth) {
-            return Auth.user.userGuid;
           }]
         }
       })

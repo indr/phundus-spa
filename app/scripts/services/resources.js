@@ -31,7 +31,7 @@ angular.module('phundusApp')
     return $resource('/api/v0/admin/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
   .factory('AdminUsers', ['$resource', function ($resource) {
-    return $resource('/api/v0/admin/users/:userGuid', {userGuid: '@userGuid'});
+    return $resource('/api/v0/admin/users/:userId', {userId: '@userId'});
   }])
   .factory('Applications', ['$resource', function ($resource) {
     return $resource(
@@ -68,10 +68,10 @@ angular.module('phundusApp')
     return $resource('/api/v0/feedback');
   }])
   .factory('Lessees', ['$resource', function ($resource) {
-    return $resource('/api/v0/lessees/:lesseeGuid', {lesseeGuid: '@lesseeGuid'});
+    return $resource('/api/v0/lessees/:lesseeId', {lesseeId: '@lesseeId'});
   }])
   .factory('Lessors', ['$resource', function ($resource) {
-    return $resource('/api/v0/lessors/:lessorGuid', {lessorGuid: '@lessorGuid'});
+    return $resource('/api/v0/lessors/:lessorId', {lessorId: '@lessorId'});
   }])
   .factory('Mails', ['$resource', function ($resource) {
     return $resource('/api/v0/mails/:mailId', {mailId: '@mailId'});
@@ -79,7 +79,7 @@ angular.module('phundusApp')
   .factory('Members', ['$resource', function ($resource) {
     return $resource('/api/v0/organizations/:organizationId/members/:memberId', {
       organizationId: '@organizationId',
-      memberId: '@id'
+      memberId: '@memberId'
     });
   }])
   .factory('Orders', ['$resource', function ($resource) {
@@ -98,12 +98,12 @@ angular.module('phundusApp')
     return $resource('/api/v0/users/:userId', {userId: '@userId'});
   }])
   .factory('UsersCart', ['$resource', function ($resource) {
-    return $resource('/api/v0/users/:userGuid/cart', {userGuid: '@userGuid'});
+    return $resource('/api/v0/users/:userId/cart', {userId: '@userId'});
   }])
   .factory('UsersCartItems', ['$resource', function ($resource) {
-    return $resource('/api/v0/users/:userGuid/cart/items/:cartItemGuid', {
-      userGuid: '@userGuid',
-      cartItemGuid: '@cartItemGuid'
+    return $resource('/api/v0/users/:userId/cart/items/:cartItemId', {
+      userId: '@userId',
+      cartItemId: '@cartItemId'
     });
   }])
   .factory('Relationships', ['$http', function ($http) {

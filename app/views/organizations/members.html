@@ -6,7 +6,7 @@
     </th>
   </tr>
   <tr>
-    <th data-st-sort="id">#</th>
+    <th data-st-sort="memberId">Id</th>
     <th data-st-sort="firstName">Vorname</th>
     <th data-st-sort="lastName">Nachname</th>
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
-    <td>{{row.id}}</td>
+    <td><ph-guid value="row.memberId"></ph-guid></td>
     <td>{{row.firstName}}</td>
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>

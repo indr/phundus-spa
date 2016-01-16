@@ -61,7 +61,7 @@ angular.module('phundusApp')
       $scope.store = null;
       $scope.articles = null;
 
-      Stores.query({ownerId: Auth.user.userGuid}, function (res) {
+      Stores.query({ownerId: Auth.user.userId}, function (res) {
 
         if (res.stores.length === 0) {
           $scope.loading = false;
@@ -300,7 +300,7 @@ angular.module('phundusApp')
       $scope.order = null;
 
       $scope.isLessor = function () {
-        return $scope.order && $scope.order.lessorId === Auth.user.userGuid;
+        return $scope.order && $scope.order.lessorId === Auth.user.userId;
       };
 
       Orders.get({orderId: orderId}, function (res) {

@@ -7,22 +7,31 @@
   </tr>
   <tr>
   <tr>
+    <th data-st-sort="requestedAtUtc">Datum</th>
     <th data-st-sort="firstName">Vorname</th>
     <th data-st-sort="lastName">Nachname</th>
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
-    <th data-st-sort="jsNumber">J+S-Nummer</th>
+    <th data-st-sort="customMemberNumber">Nummer</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
+    <td><ph-date value="row.requestedAtUtc"></ph-date></td>
     <td>{{row.firstName}}</td>
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>
-    <td>{{row.jsNumber}}</td>
+    <td>{{row.customMemberNumber}}</td>
     <td class="text-right">
-      <a class="btn btn-success btn-sm" href="" data-ng-click="approve(row)" data-ng-disabled="row.isApproving || row.isRejecting"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isApproving"></span> Bestätigen</a>
-      <a class="btn btn-default btn-sm" href="" data-ng-click="reject(row)" data-ng-disabled="row.isApproving || row.isRejecting"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isRejecting"></span> Ablehnen</a>
+      <button type="button" class="btn btn-success btn-sm" data-ng-disabled="row.isApproving || row.isRejecting"
+         data-mwl-confirm data-on-confirm="approve(row)" data-title="Bestätigung"
+         data-message="Möchtest du <strong>{{row.firstName}} {{row.lastName}}</strong> wirklich bestätigen?"
+         data-confirm-text="Ja" data-cancel-text="Nein"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isApproving"></span> Bestätigen</button>
+
+      <button type="button" class="btn btn-default btn-sm" data-ng-disabled="row.isApproving || row.isRejecting"
+              data-mwl-confirm data-on-confirm="reject(row)" data-title="Bestätigung"
+              data-message="Möchtest du <strong>{{row.firstName}} {{row.lastName}}</strong> wirklich ablehnen?"
+              data-confirm-text="Ja" data-cancel-text="Nein"><span class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="row.isRejecting"></span> Ablehnen</button>
     </td>
   </tr>
   </tbody>

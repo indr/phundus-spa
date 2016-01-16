@@ -175,8 +175,8 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ManageOrganizationApplicationsCtrl', ['_', '$scope', 'organizationId', 'Applications', 'Members', 'Alert', '$window',
-    function (_, $scope, organizationId, Applications, Members, Alert, $window) {
+  .controller('ManageOrganizationApplicationsCtrl', ['_', '$scope', 'organizationId', 'Applications', 'Members', 'Alert',
+    function (_, $scope, organizationId, Applications, Members, Alert) {
       Applications.query({organizationId: organizationId}, function (res) {
         $scope.rowCollection = res;
         $scope.displayedCollection = [].concat($scope.rowCollection);
@@ -184,36 +184,32 @@ angular.module('phundusApp')
         Alert.error('Fehler beim Laden der Beitrittsanfragen.');
       });
 
-      $scope.approve = function (application) {
-        if (!$window.confirm('Möchten Sie "' + application.firstName + ' ' + application.lastName + '" wirklich bestätigen?')) {
-          return;
-        }
-
-        application.isApproving = true;
-        Members.post({organizationId: organizationId, applicationId: application.id}, function () {
-          application.isApproved = true;
-          application.isApproving = false;
-          _.remove($scope.displayedCollection, {id: application.id});
-          _.remove($scope.rowCollection, {id: application.id});
+      $scope.approve = function (row) {
+        row.isApproving = true;
+        Members.post({organizationId: organizationId, applicationId: row.applicationId}, function () {
+          row.isApproved = true;
+          row.isApproving = false;
+          var index = $scope.rowCollection.indexOf(row);
+          if (index !== -1) {
+            $scope.rowCollection.splice(index, 1);
+          }
         }, function () {
-          application.isApproving = false;
+          row.isApproving = false;
           Alert.error('Fehler beim Bestätigen der Beitrittsanfrage.')
         });
       };
 
-      $scope.reject = function (application) {
-        if (!$window.confirm('Möchten Sie "' + application.firstName + ' ' + application.lastName + '" wirklich ablehnen?')) {
-          return;
-        }
-
-        application.isRejecting = true;
-        Applications.delete({organizationId: organizationId, applicationId: application.id}, function () {
-          application.isRejected = true;
-          application.isRejecting = false;
-          _.remove($scope.displayedCollection, {id: application.id});
-          _.remove($scope.rowCollection, {id: application.id});
+      $scope.reject = function (row) {
+        row.isRejecting = true;
+        Applications.delete({organizationId: organizationId, applicationId: row.applicationId}, function () {
+          row.isRejected = true;
+          row.isRejecting = false;
+          var index = $scope.rowCollection.indexOf(row);
+          if (index !== -1) {
+            $scope.rowCollection.splice(index, 1);
+          }
         }, function () {
-          application.isRejecting = false;
+          row.isRejecting = false;
           Alert.error('Fehler beim Ablehnen der Beitrittsanfrage.')
         });
       };
@@ -462,8 +458,7 @@ angular.module('phundusApp')
         row.isLockedSubmitting = true;
         Members.patch({
           organizationId: organizationId,
-          id: row.id,
-          guid: row.guid,
+          memberId: row.memberId,
           isLocked: row.isLocked
         }, function () {
           row.isLockedSubmitting = false;
@@ -478,8 +473,7 @@ angular.module('phundusApp')
         row.isManagerSubmitting = true;
         Members.patch({
           organizationId: organizationId,
-          id: row.id,
-          guid: row.guid,
+          memberId: row.memberId,
           isManager: row.isManager
         }, function () {
           row.isManagerSubmitting = false;

@@ -143,7 +143,7 @@ angular.module('phundusApp')
 
       $scope.toggleIsApproved = function (row) {
         row.isApprovedSubmitting = true;
-        AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isApproved: row.isApproved}, function () {
+        AdminUsers.patch({userId: row.userId, isApproved: row.isApproved}, function () {
           row.isApprovedSubmitting = false;
         }, function () {
           row.isApproved = !row.isApproved;
@@ -154,7 +154,7 @@ angular.module('phundusApp')
 
       $scope.toggleIsLocked = function (row) {
         row.isLockedSubmitting = true;
-        AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isLocked: row.isLocked}, function () {
+        AdminUsers.patch({userId: row.userId, isLocked: row.isLocked}, function () {
           row.isLockedSubmitting = false;
         }, function () {
           row.isLocked = !row.isLocked;
@@ -165,7 +165,7 @@ angular.module('phundusApp')
 
       $scope.toggleIsAdmin = function (row) {
         row.isAdminSubmitting = true;
-        AdminUsers.patch({userId: row.userId, userGuid: row.userGuid, isAdmin: row.isAdmin}, function () {
+        AdminUsers.patch({userId: row.userId, isAdmin: row.isAdmin}, function () {
           row.isAdminSubmitting = false;
         }, function () {
           row.isAdmin = !row.isAdmin;
