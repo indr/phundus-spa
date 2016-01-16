@@ -140,7 +140,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          open: false,
+          open: true,
           base: '<%= yeoman.dist %>',
           middleware: function (connect) {
             return [
@@ -435,6 +435,12 @@ module.exports = function (grunt) {
           cwd: 'bower_components/font-awesome',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          // TODO: I don't know how to properly include tinymce into the dist
+          expand: true,
+          cwd: 'bower_components/tinymce-dist',
+          src: 'skins/**/*',
+          dest: '<%= yeoman.dist %>/scripts'
         }]
       },
       styles: {
