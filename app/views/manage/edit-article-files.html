@@ -35,7 +35,7 @@
 
       <td style="width:50px" data-ng-show="hasPreview">
         <ph-checkbox data-spin="file.isPreviewSubmitting">
-          <input type="checkbox" data-ng-model="file.isPreview" data-ng-change="toggleIsPreview(file)" data-ng-disabled="file.isPreview || file.$state() == 'pending' || file.$state() == 'rejected' || file.$state() == 'resolved'" />
+          <input type="checkbox" data-ng-model="file.isPreview" data-ng-change="toggleIsPreview(file)" data-ng-disabled="isPreviewSubmitting || file.isPreview || file.$state() == 'pending' || file.$state() == 'rejected' || file.$state() == 'resolved'" />
           <label></label>
         </ph-checkbox>
 

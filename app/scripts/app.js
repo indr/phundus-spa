@@ -549,15 +549,16 @@ angular.module('phundusApp')
         }
       );
       $scope.toggleIsPreview = function(file) {
-        file.isPreviewSubmitting = true;
+        $scope.isPreviewSubmitting = file.isPreviewSubmitting = true;
         $http.patch(url + '/' + file.name, {isPreview: file.isPreview})
           .then(function() {
-            file.isPreviewSubmitting = false;
+
+            $scope.isPreviewSubmitting = file.isPreviewSubmitting = false;
             _.forEach($scope.queue, function (each) {
               each.isPreview = file === each;
             });
           }, function() {
-            file.isPreviewSubmitting = false;
+            $scope.isPreviewSubmitting = file.isPreviewSubmitting = false;
             file.isPreview = false;
             Alert.error('Fehler beim Setzen als Vorschaubild.');
           }
