@@ -420,10 +420,15 @@ var app = angular
         url: '/settings',
         template: '<ui-view/>'
       })
+      .state('organizations.settings.preferences', {
+        url: '/preferences',
+        templateUrl: 'views/organizations/edit-contact-details.html',
+        controller: 'OrganizationsEditContactDetailsCtrl'
+      })
       .state('organizations.settings.startpage', {
         url: '/startpage',
-        templateUrl: 'views/organizations/settings-startpage.html',
-        controller: 'OrganizationsSettingsStartpageCtrl'
+        templateUrl: 'views/organizations/edit-startpage.html',
+        controller: 'OrganizationsEditStartpageCtrl'
       });
 
     // Admin routes

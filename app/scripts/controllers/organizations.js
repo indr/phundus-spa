@@ -95,13 +95,50 @@ angular.module('phundusApp')
 
 /**
  * @ngdoc function
- * @name phundusApp.controller:OrganizationsSettingsStartpageCtrl
+ * @name phundusApp.controller:OrganizationsEditContactDetailsCtrl
  * @description
- * # OrganizationsSettingsStartpageCtrl
+ * # OrganizationsEditContactDetailsCtrl
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsSettingsStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert',
+  .controller('OrganizationsEditContactDetailsCtrl', ['_', '$scope', 'organizationId', 'Organizations', 'Alert',
+    function (_, $scope, organizationId, Organizations, Alert) {
+      $scope.contactDetails = null;
+
+      function reset() {
+        Organizations.get({organizationId: organizationId}, function (res) {
+          $scope.contactDetails = res.contactDetails;
+        }, function () {
+          Alert.error('Fehler beim Laden der Einstellungen.');
+        });
+      }
+
+      reset();
+
+      $scope.submit = function () {
+        $scope.form.$submitting = true;
+        Organizations.patch({organizationId: organizationId, contactDetails: $scope.contactDetails}, function () {
+          $scope.form.$submitting = false;
+          Alert.success('Die Einstellungen wurde erfolgreich gespeichert.');
+        }, function () {
+          $scope.form.$submitting = false;
+          Alert.error('Fehler beim Speichern der Einstellungen.');
+        });
+
+      };
+      $scope.cancel = reset;
+    }
+  ]);
+
+/**
+ * @ngdoc function
+ * @name phundusApp.controller:OrganizationsEditStartpageCtrl
+ * @description
+ * # OrganizationsEditStartpageCtrl
+ * Controller of the phundusApp
+ */
+angular.module('phundusApp')
+  .controller('OrganizationsEditStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert',
     function ($scope, organizationId, Organizations, Alert) {
       var startpage = "";
       $scope.data = {};
