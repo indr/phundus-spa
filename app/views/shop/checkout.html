@@ -77,32 +77,29 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <div class="checkbox">
-          <input type="checkbox" value="" id="checkbox_{{$index}}_legal_0" data-ng-model="order.legals[0]">
-          <label style="font-weight:normal" for="checkbox_{{$index}}_legal_0">
-            Ich bin damit einverstanden, dass der Vermieter "{{order.lessor.name}}" und allfällige weitere mit dem
-            Vermieter in Beziehung stehenden Personen meine Kontaktinformationen wie Adresse, Telefonnummern und
-            E-Mail-Adressen einsiehen.
-          </label>
-        </div>
+        <p>
+          Ich bin damit einverstanden, dass der Vermieter "{{order.lessor.name}}" und allfällige weitere mit dem
+          Vermieter in Beziehung stehenden Personen meine Kontaktinformationen wie Adresse, Telefonnummern und
+          E-Mail-Adressen einsiehen.
+        </p>
+
+        <p>
+          Ich bin damit einverstanden, dass durch die Bestellung ein Vertrag nach OR Art. sowieso entsteht und ich für
+          Schäden an den Gegenständen haftbar bin. Ich bin mir bewusst, dass meine persönliche Haftpflichtversichung
+          sehr wahrscheinlich nicht für die Schäden aufkommt, da es sich um eine Ausleihe gegen Entgelt handelt.
+        </p>
+
+        <p>
+          Ich bin mir bewusst, dass phundus und/oder die dahinter stehenden Personen nur als Plattformbetreiber
+          auftreten und weder Einfluss auf die Abwicklung der Miete, noch für Schadenersatz oder Haftung belangt
+          werden können.
+        </p>
       </div>
       <div class="col-xs-12">
         <div class="checkbox">
-          <input type="checkbox" value="" id="checkbox_{{$index}}_legal_1" data-ng-model="order.legals[1]">
-          <label style="font-weight:normal" for="checkbox_{{$index}}_legal_1">
-            Ich bin damit einverstanden, dass durch die Bestellung ein Vertrag nach OR Art. sowieso entsteht und ich für
-            Schäden an den Gegenständen haftbar bin. Ich bin mir bewusst, dass meine persönliche Haftpflichtversichung
-            sehr wahrscheinlich nicht für die Schäden aufkommt, da es sich um eine Ausleihe gegen Entgelt handelt.
-          </label>
-        </div>
-      </div>
-      <div class="col-xs-12">
-        <div class="checkbox">
-          <input type="checkbox" value="" id="checkbox_{{$index}}_legal_2" data-ng-model="order.legals[2]">
-          <label style="font-weight:normal" for="checkbox_{{$index}}_legal_2">
-            Ich bin mir bewusst, dass phundus und/oder die dahinter stehenden Personen nur als Plattformbetreiber
-            auftreten und weder Einfluss auf die Abwicklung der Miete, noch für Schadenersatz oder Haftung belangt
-            werden können.
+          <input type="checkbox" value="" id="checkbox_{{$index}}_legal_notice" data-ng-model="order.legal_notice">
+          <label style="font-weight:normal" for="checkbox_{{$index}}_legal_notice">
+            Ich habe diese Hinweise gelesen und bin damit einverstanden.
           </label>
         </div>
       </div>

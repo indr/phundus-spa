@@ -29,7 +29,7 @@ angular.module('phundusApp')
             lessorId: ownerId,
             items: items,
             total: _.sumBy(items, 'itemTotal'),
-            legals: [false, false, false]
+            legal_notice: false
           });
           return result;
         }, []);
@@ -56,7 +56,7 @@ angular.module('phundusApp')
       });
 
       $scope.canPlaceOrder = function (order) {
-        return _.every(order.legals);
+        return order.legal_notice;
       };
 
       $scope.placeOrder = function (order) {
