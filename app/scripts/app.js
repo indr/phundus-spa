@@ -420,7 +420,7 @@ var app = angular
         url: '/settings',
         template: '<ui-view/>'
       })
-      .state('organizations.settings.preferences', {
+      .state('organizations.settings.contact-details', {
         url: '/preferences',
         templateUrl: 'views/organizations/edit-contact-details.html',
         controller: 'OrganizationsEditContactDetailsCtrl'

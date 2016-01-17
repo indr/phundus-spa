@@ -101,32 +101,35 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsEditContactDetailsCtrl', ['_', '$scope', 'organizationId', 'Organizations', 'Alert',
-    function (_, $scope, organizationId, Organizations, Alert) {
+  .controller('OrganizationsEditContactDetailsCtrl', ['_', '$scope', 'organizationId', 'Organizations', 'Alert', '$state',
+    function (_, $scope, organizationId, Organizations, Alert, $state) {
       $scope.contactDetails = null;
 
-      function reset() {
-        Organizations.get({organizationId: organizationId}, function (res) {
-          $scope.contactDetails = res.contactDetails;
-        }, function () {
-          Alert.error('Fehler beim Laden der Einstellungen.');
-        });
-      }
 
-      reset();
+      Organizations.get({organizationId: organizationId}, function (res) {
+        $scope.contactDetails = res.contactDetails;
+      }, function () {
+        Alert.error('Fehler beim Laden der Einstellungen.');
+      });
+
+
+      var goBack = function () {
+        $state.go('public.organization', {organizationId: organizationId});
+      };
 
       $scope.submit = function () {
         $scope.form.$submitting = true;
         Organizations.patch({organizationId: organizationId, contactDetails: $scope.contactDetails}, function () {
           $scope.form.$submitting = false;
           Alert.success('Die Einstellungen wurde erfolgreich gespeichert.');
+          goBack();
         }, function () {
           $scope.form.$submitting = false;
           Alert.error('Fehler beim Speichern der Einstellungen.');
         });
 
       };
-      $scope.cancel = reset;
+      $scope.cancel = goBack;
     }
   ]);
 
@@ -138,32 +141,33 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsEditStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert',
-    function ($scope, organizationId, Organizations, Alert) {
-      var startpage = "";
+  .controller('OrganizationsEditStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert', '$state',
+    function ($scope, organizationId, Organizations, Alert, $state) {
       $scope.data = {};
 
       Organizations.get({organizationId: organizationId}, function (res) {
-        startpage = res.startpage;
-        $scope.data.startpage = startpage;
+        $scope.data.startpage = res.startpage;
       }, function () {
         Alert.error('Fehler beim Laden der Startseite.');
       });
+
+      var goBack = function () {
+        $state.go('public.organization', {organizationId: organizationId});
+      };
 
       $scope.submit = function () {
         $scope.form.$submitting = true;
         Organizations.patch({organizationId: organizationId, startpage: $scope.data.startpage}, function () {
           $scope.form.$submitting = false;
           Alert.success('Die Startseite wurde erfolgreich gespeichert.');
+          goBack();
         }, function () {
           $scope.form.$submitting = false;
           Alert.error('Fehler beim Speichern der Startseite.');
         });
       };
 
-      $scope.cancel = function () {
-        $scope.data.startpage = startpage;
-      };
+      $scope.cancel = goBack;
     }
   ]);
 
