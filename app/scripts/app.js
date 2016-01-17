@@ -531,9 +531,8 @@ angular.module('phundusApp')
   });
 
 angular.module('phundusApp')
-  .controller('MyFileUploadCtrl', [
-    '$scope', '$http', '$filter', '$window',
-    function ($scope, $http) {
+  .controller('MyFileUploadCtrl', ['_', '$scope', '$http', 'Alert', '$filter', '$window', '$timeout',
+    function (_, $scope, $http, Alert) {
       var url = $scope.url;
       $scope.options = {
         url: url
@@ -549,6 +548,21 @@ angular.module('phundusApp')
           $scope.loadingFiles = false;
         }
       );
+      $scope.toggleIsPreview = function(file) {
+        file.isPreviewSubmitting = true;
+        $http.patch(url + '/' + file.name, {isPreview: file.isPreview})
+          .then(function() {
+            file.isPreviewSubmitting = false;
+            _.forEach($scope.queue, function (each) {
+              each.isPreview = file === each;
+            });
+          }, function() {
+            file.isPreviewSubmitting = false;
+            file.isPreview = false;
+            Alert.error('Fehler beim Setzen als Vorschaubild.');
+          }
+        );
+      };
     }
   ])
   .controller('FileDestroyController', ['$scope', '$http',

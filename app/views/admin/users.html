@@ -24,7 +24,7 @@
     <td><ph-date value="row.signedUpAtUtc"></ph-date></td>
     <td><ph-date value="row.lastLogInAtUtc"></ph-date></td>
     <td>
-      <ph-checkbox data-spin="row.row.isApprovedSubmitting">
+      <ph-checkbox data-spin="row.isApprovedSubmitting">
         <input type="checkbox" data-ng-model="row.isApproved" data-ng-change="toggleIsApproved(row)" data-ng-disabled="row.isApproved" />
         <label></label>
       </ph-checkbox>

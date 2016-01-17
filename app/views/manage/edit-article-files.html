@@ -32,6 +32,15 @@
   <!-- The table listing the files available for upload/download -->
   <table class="table table-striped files ng-cloak">
     <tr data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+
+      <td style="width:50px" data-ng-show="hasPreview">
+        <ph-checkbox data-spin="file.isPreviewSubmitting">
+          <input type="checkbox" data-ng-model="file.isPreview" data-ng-change="toggleIsPreview(file)" data-ng-disabled="file.isPreview || file.$state() == 'pending' || file.$state() == 'rejected' || file.$state() == 'resolved'" />
+          <label></label>
+        </ph-checkbox>
+
+      </td>
+
       <td data-ng-switch data-on="!!file.thumbnailUrl">
         <div class="preview" data-ng-switch-when="true">
           <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
