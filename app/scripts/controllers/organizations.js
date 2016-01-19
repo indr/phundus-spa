@@ -67,7 +67,7 @@ angular.module('phundusApp')
 
         if (Auth.isLoggedIn()) {
           Relationships.get(organizationId, function (res) {
-            $scope.relationship = res;
+            $scope.relationship = res.result;
           }, function () {
             Alert.error('Fehler beim Laden des Mitgliedschaftsstatus.');
           });

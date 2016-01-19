@@ -11,8 +11,7 @@
     <div data-ng-show="relationship">
       <h3>Mitgliedschaft</h3>
 
-
-      <div data-ng-show="relationship.status == 'None'">
+      <div data-ng-show="relationship.status == 'none'">
         <p>Du kannst dieser Organisation
           <button type="button" class="btn btn-default btn-sm" data-ng-disabled="isJoining"
                   data-mwl-confirm data-on-confirm="join()" data-title="Bestätigung"
@@ -23,13 +22,16 @@
           .
         </p>
       </div>
-      <div data-ng-show="relationship.status == 'Member'">
+
+      <div data-ng-show="relationship.status == 'member'">
         <p>Du bist Mitglied seit dem {{relationship.timestamp | date: 'mediumDate'}}.</p>
       </div>
-      <div data-ng-show="relationship.status == 'Application'">
+
+      <div data-ng-show="relationship.status == 'application'">
         <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'mediumDate'}} beantragt.</p>
       </div>
-      <div data-ng-show="relationship.status == 'Rejected'">
+
+      <div data-ng-show="relationship.status == 'rejected'">
         <p>Dein Antrag zur Mitgliedschaft wurde am {{relationship.timestamp | date: 'mediumDate'}} abgelehnt.</p>
 
         <p>Du kannst die Mitgliedschaft erneut
