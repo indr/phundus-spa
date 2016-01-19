@@ -8,30 +8,18 @@
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div data-ng-show="relationship">
-      <h3>Mitgliedschaft</h3>
+    <h3>Mitgliedschaft</h3>
+    <div data-ng-show="relationship" data-ng-switch="relationship.status">
 
-      <div data-ng-show="relationship.status == 'none'">
-        <p>Du kannst dieser Organisation
-          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="isJoining"
-                  data-mwl-confirm data-on-confirm="join()" data-title="Bestätigung"
-                  data-message="Möchtest du der Organisation {{organization.name}} wirklich beitreten?"
-                  data-confirm-text="Ja" data-cancel-text="Nein"><span
-            class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isJoining"></span> beitreten
-          </button>
-          .
-        </p>
-      </div>
-
-      <div data-ng-show="relationship.status == 'member'">
+      <div data-ng-switch-when="member">
         <p>Du bist Mitglied seit dem {{relationship.timestamp | date: 'mediumDate'}}.</p>
       </div>
 
-      <div data-ng-show="relationship.status == 'application'">
+      <div data-ng-switch-when="application">
         <p>Du hast die Mitgliedschaft am {{relationship.timestamp | date: 'mediumDate'}} beantragt.</p>
       </div>
 
-      <div data-ng-show="relationship.status == 'rejected'">
+      <div data-ng-switch-when="rejected">
         <p>Dein Antrag zur Mitgliedschaft wurde am {{relationship.timestamp | date: 'mediumDate'}} abgelehnt.</p>
 
         <p>Du kannst die Mitgliedschaft erneut
@@ -40,6 +28,18 @@
                   data-message="Möchtest du der Organisation {{organization.name}} wirklich beitreten?"
                   data-confirm-text="Ja" data-cancel-text="Nein"><span
             class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isJoining"></span> beantragen
+          </button>
+          .
+        </p>
+      </div>
+
+      <div data-ng-switch-default>
+        <p>Du kannst dieser Organisation
+          <button type="button" class="btn btn-default btn-sm" data-ng-disabled="isJoining"
+                  data-mwl-confirm data-on-confirm="join()" data-title="Bestätigung"
+                  data-message="Möchtest du der Organisation {{organization.name}} wirklich beitreten?"
+                  data-confirm-text="Ja" data-cancel-text="Nein"><span
+            class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="isJoining"></span> beitreten
           </button>
           .
         </p>

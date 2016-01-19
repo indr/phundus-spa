@@ -82,7 +82,7 @@ angular.module('phundusApp')
           $scope.isJoining = false;
           Alert.info('Die Mitgliedschaft wurde beantragt. Du erhältst ein E-Mail wenn ein Administrator diese bestätigt oder ablehnt.');
           $scope.relationship = {
-            status: 'Application',
+            status: 'application',
             timestamp: new Date()
           };
         }, function () {
