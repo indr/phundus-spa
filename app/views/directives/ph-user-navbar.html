@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" style="margin-bottom:10px" data-ng-show="isHome">
   <li role="presentation" data-ui-sref-active="active">
-    <a href="" data-ui-sref="user.home({userId: userId})"><span class="glyphicon glyphicon-user"></span></a>
+    <a href="" data-ui-sref="user.home({userId: userId})" title="Profil"><span class="glyphicon glyphicon-user"></span></a>
   </li>
   <li role="presentation" data-ui-sref-active="active" active-nav="nestedTop" data-ng-show="user.store">
     <a href="" data-ui-sref="user.articles.index({userId: userId})">Material</a>
@@ -9,7 +9,7 @@
     <a href="" data-ui-sref="user.orders.index({userId: userId})">Bestellungen</a>
   </li>
   <li role="presentation" class="pull-right" data-ui-sref-active="active">
-    <a href="" data-ui-sref="user.account({userId: userId})"><span class="glyphicon glyphicon-cog"></span></a>
+    <a href="" data-ui-sref="user.account({userId: userId})" title="Einstellungen"><span class="glyphicon glyphicon-cog"></span></a>
   </li>
 </ul>
 

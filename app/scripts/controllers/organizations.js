@@ -171,6 +171,27 @@ angular.module('phundusApp')
     }
   ]);
 
+angular.module('phundusApp')
+  .controller('OrganizationsSettingsCtrl', ['$scope', 'organizationId', 'Alert', '$timeout',
+    function ($scope, organizationId, Alert, $timeout) {
+
+      $scope.publicFormReset = {publicRental: true};
+      $scope.publicFormModel = angular.copy($scope.publicFormReset);
+
+      $scope.submit = function (form, model) {
+        console.log(model);
+        form.$submitting = true;
+        $timeout(function () {
+          form.$submitting = false;
+          Alert.error('Dieses Feature ist noch nicht implementiert.');
+        }, 1000);
+      };
+      $scope.reset = function (formModel, resetModel) {
+        angular.copy(resetModel, formModel);
+      };
+    }
+  ]);
+
 /**
  * @ngdoc function
  * @name phundusApp.controller:OrganizationsStoreCtrl

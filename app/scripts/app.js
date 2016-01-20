@@ -416,16 +416,16 @@ var app = angular
         controller: 'OrganizationsArticlesFilesCtrl'
       })
       .state('organizations.settings', {
-        abstract: true,
         url: '/settings',
-        template: '<ui-view/>'
+        templateUrl: 'views/organizations/settings.html',
+        controller: 'OrganizationsSettingsCtrl'
       })
-      .state('organizations.settings.contact-details', {
-        url: '/preferences',
+      .state('organizations.contact-details', {
+        url: '/contact',
         templateUrl: 'views/organizations/edit-contact-details.html',
         controller: 'OrganizationsEditContactDetailsCtrl'
       })
-      .state('organizations.settings.startpage', {
+      .state('organizations.startpage', {
         url: '/startpage',
         templateUrl: 'views/organizations/edit-startpage.html',
         controller: 'OrganizationsEditStartpageCtrl'

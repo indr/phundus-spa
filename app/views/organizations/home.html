@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <h2>{{organization.name}} <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.settings.startpage({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h2>
+    <h2>{{organization.name}} <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.startpage({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h2>
 
     <div data-ng-bind-html="startpage"></div>
   </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div data-ng-show="hasContactOptions()">
-      <h3>Kontakt <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.settings.contact-details({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h3>
+      <h3>Kontakt <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.contact-details({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h3>
       <address data-ng-show="organization.address" style="white-space:pre">{{organization.address}}</address>
       <address>
         <div data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">

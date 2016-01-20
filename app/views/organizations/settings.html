@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1>Einstellungen</h1>
+</div>
+
+<form class="form-horizontal" name="publicForm" novalidate>
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="publicRental">Öffentlicher Verleih</label>
+
+    <div class="col-sm-9" data-has-error="publicForm.publicRental">
+      <div class="checkbox">
+        <input class="styled" id="publicRental" name="publicRental" type="checkbox" data-ng-model="publicFormModel.publicRental">
+        <label for="publicRental">
+          Das Material der Organisation öffentlich zugänglich machen. Dadurch können Benutzer, die nicht Mitglied der
+          Organisation sind, das Material in den Warenkorb legen und eine Bestellung an deine Organisation auslösen.
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <ph-submit class="btn-primary" data-ng-click="submit(publicForm, publicFormModel)"
+                 data-form="publicForm" data-text="Speichern"></ph-submit>
+      <button type="button" class="btn btn-default" data-ng-click="reset(publicFormModel, publicFormReset)">Verwerfen</button>
+    </div>
+  </div>
+</form>
