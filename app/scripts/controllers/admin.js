@@ -55,14 +55,6 @@ angular.module('phundusApp')
           });
         }
       };
-
-      $scope.show = function (mail) {
-        $scope.mail = mail;
-      };
-
-      $scope.close = function () {
-        $scope.mail = null;
-      };
     }
   ]);
 

@@ -1,17 +1,3 @@
-<div data-ng-show="mail">
-  <h2>{{mail.subject}}</h2>
-
-  <div data-ng-show="mail.textBody">
-    <p class="well" style="white-space:pre-wrap">{{mail.textBody}}</p>
-  </div>
-  <div data-ng-show="mail.htmlBody">
-    <p class="well" style="white-space:pre-wrap">{{mail.htmlBody}}</p>
-  </div>
-  <p>
-    <a class="btn btn-primary" data-ng-click="close()">Schliessen</a>
-  </p>
-</div>
-
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
@@ -29,8 +15,10 @@
     <td>{{row.date|date:'dd.MM.yyyy HH:mm:ss'}}</td>
     <td>{{row.subject}}</td>
     <td><span data-ng-repeat="to in row.to">{{to}}</span></td>
-    <td class="text-right"><a class="btn btn-primary btn-sm" data-ng-click="show(row)">Anzeigen</a> <a
-      class="btn btn-danger btn-sm" data-ng-click="delete(row)">Löschen</a></td>
+    <td class="text-right">
+      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/html" target="_blank" data-ng-show="row.hasHtmlPart">HTML</a>
+      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/text" target="_blank" data-ng-show="row.hasTextPart">Text</a>
+      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row)">Löschen</a></td>
   </tr>
   </tbody>
 </table>
