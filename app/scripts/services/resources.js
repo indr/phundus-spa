@@ -94,6 +94,9 @@ angular.module('phundusApp')
   .factory('Organizations', ['$resource', function ($resource) {
     return $resource('/api/v0/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
+  .factory('OrganizationSettings', ['$resource', function ($resource) {
+    return $resource('/api/v0/organizations/:organizationId/settings', {organizationId: '@organizationId'});
+  }])
   .factory('Users', ['$resource', function ($resource) {
     return $resource('/api/v0/users/:userId', {userId: '@userId'});
   }])

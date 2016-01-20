@@ -172,19 +172,27 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('OrganizationsSettingsCtrl', ['$scope', 'organizationId', 'Alert', '$timeout',
-    function ($scope, organizationId, Alert, $timeout) {
+  .controller('OrganizationsSettingsCtrl', ['_', '$scope', 'organizationId', 'OrganizationSettings', 'Alert',
+    function (_, $scope, organizationId, OrganizationSettings, Alert) {
 
-      $scope.publicFormReset = {publicRental: true};
-      $scope.publicFormModel = angular.copy($scope.publicFormReset);
+      OrganizationSettings.get({organizationId: organizationId}, function (res) {
+        $scope.publicFormReset = _.pick(res, ['organizationId', 'publicRental']);
+        $scope.publicFormModel = angular.copy($scope.publicFormReset);
+      }, function (res) {
+        Alert.error('Fehler beim Laden der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
+
+      });
 
       $scope.submit = function (form, model) {
         console.log(model);
         form.$submitting = true;
-        $timeout(function () {
+        OrganizationSettings.patch(model, function () {
           form.$submitting = false;
-          Alert.error('Dieses Feature ist noch nicht implementiert.');
-        }, 1000);
+          Alert.success('Die Einstellungen wurden erfolgreich gespeichert.');
+        }, function (res) {
+          form.$submitting = false;
+          Alert.error('Fehler beim Speichern der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
+        });
       };
       $scope.reset = function (formModel, resetModel) {
         angular.copy(resetModel, formModel);
