@@ -33,9 +33,9 @@ angular.module('phundusApp')
             }
             $scope.loginForm.$submitting = false;
           },
-          function () {
+          function (res) {
             $scope.loginForm.$submitting = false;
-            Alert.error("Das angegebene Passwort ist nicht korrekt.");
+            Alert.error('Fehler bei der Anmeldung: ' + res.message);
           }
         );
       };
