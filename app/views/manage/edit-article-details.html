@@ -29,23 +29,11 @@
       </div>
 
       <div class="form-group">
-        <label class="control-label col-sm-3" for="price">Preis pro Woche</label>
-
-        <div class="col-sm-9" data-has-error="form.price">
-          <input type="number" class="form-control" id="price" name="price" data-ng-model="article.price" min="0.01" required/>
-
-          <div role="alert" data-ng-messages="form.price.$error"
-               data-ng-show="form.price.$touched || form.$submitted">
-            <div data-ng-messages-include="views/messages.html"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
         <label class="control-label col-sm-3" for="grossStock">Bestand (Brutto)</label>
 
         <div class="col-sm-9" data-has-error="form.grossStock">
-          <input type="number" class="form-control" id="grossStock" name="grossStock" data-ng-model="article.grossStock" min="0" required/>
+          <input type="number" class="form-control" id="grossStock" name="grossStock" data-ng-model="article.grossStock"
+                 min="0" required/>
 
           <div role="alert" data-ng-messages="form.grossStock.$error"
                data-ng-show="form.grossStock.$touched || form.$submitted">
@@ -75,5 +63,51 @@
         </div>
       </div>
     </form>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-offset-2 col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Preise</h3>
+      </div>
+      <div class="panel-body">
+        <form name="formPrices" novalidate>
+          <div class="form-group" data-has-error="formPrices.publicPrice">
+            <label class="control-label" for="publicPrice">Preis pro Woche</label>
+
+            <input type="number" class="form-control" id="publicPrice" name="publicPrice"
+                   data-ng-model="pricesFormModel.publicPrice"
+                   min="0.01" required/>
+
+            <div role="alert" data-ng-messages="formPrices.publicPrice.$error"
+                 data-ng-show="formPrices.publicPrice.$touched || formPrices.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+
+          <div class="form-group" data-has-error="formPrices.memberPrice" data-ng-show="organizationId">
+            <label class="control-label" for="memberPrice">Mitgliederpreis</label>
+
+            <input type="number" class="form-control" id="memberPrice" name="memberPrice"
+                   data-ng-model="pricesFormModel.memberPrice"
+                   min="0.01"/>
+
+            <div role="alert" data-ng-messages="formPrices.memberPrice.$error"
+                 data-ng-show="formPrices.memberPrice.$touched || formPrices.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <ph-submit class="btn-primary" data-ng-click="submitPrices(formPrices, pricesFormModel)"
+                       data-form="formPrices" data-text="Speichern"></ph-submit>
+            <button type="button" class="btn btn-default" data-ng-click="resetPrices(formPrices, pricesFormModel, pricesFormReset)">
+              Verwerfen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

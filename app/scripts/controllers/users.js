@@ -124,14 +124,17 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesDetailsCtrl', ['$scope', '$state', 'userId', 'articleId', 'Articles', 'Alert',
-    function ($scope, $state, userId, articleId, Articles, Alert) {
+  .controller('UsersArticlesDetailsCtrl', ['_', '$scope', '$state', 'userId', 'articleId', 'Articles', 'Alert',
+    function (_, $scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
       $scope.article = null;
 
       Articles.get({ownerId: userId, articleId: articleId}, function (res) {
         $scope.article = res;
+
+        $scope.pricesFormReset = _.pick(res, ['publicPrice', 'memberPrice']);
+        $scope.pricesFormModel = angular.copy($scope.pricesFormReset);
       }, function () {
         Alert.error('Fehler beim Laden des Artikels.');
       });
@@ -152,6 +155,24 @@ angular.module('phundusApp')
 
       $scope.cancel = function () {
         $state.go('user.articles.articles', {userId: userId})
+      };
+
+      $scope.submitPrices = function (form, model) {
+        console.log(model);
+        form.$submitting = true;
+        Articles.patch({articleId: articleId, prices: model}, function () {
+          $scope.pricesFormReset = angular.copy($scope.pricesFormModel);
+          form.$setPristine();
+          form.$submitting = false;
+          Alert.success('Die Einstellungen wurden erfolgreich gespeichert.');
+        }, function (res) {
+          form.$submitting = false;
+          Alert.error('Fehler beim Speichern der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
+        });
+      };
+      $scope.resetPrices = function (form, formModel, resetModel) {
+        angular.copy(resetModel, formModel);
+        form.$setPristine();
       };
     }
   ]);
