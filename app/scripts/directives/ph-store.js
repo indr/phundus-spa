@@ -68,11 +68,8 @@ angular.module('phundusApp')
           scope.fromMap = function () {
             leafletData.getMap().then(function (map) {
               var center = map.getCenter();
-
-              //scope.store.coordinate = scope.store.coordinate || {};
               scope.store.coordinate = {latitude: center.lat, longitude: center.lng};
-              //scope.store.coordinate.latitude = center.lat;
-              //scope.store.coordinate.longitude = center.lng;
+              scope.coordinateForm.$setDirty();
             });
           };
 
