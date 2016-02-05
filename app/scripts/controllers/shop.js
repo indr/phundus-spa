@@ -16,6 +16,25 @@ angular.module('phundusApp')
     }
   ]);
 
+angular.module('phundusApp')
+  .controller('ShopItemCtrl', ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert',
+    function ($scope, itemId, ShopItems, Lessors, Alert) {
+      $scope.itemId = itemId;
+
+      ShopItems.get({itemId: itemId}, function (res) {
+        $scope.item = res;
+
+        Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
+          $scope.lessor = res;
+        }, function (res) {
+          Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
+        });
+      }, function (res) {
+        Alert.error('Fehler beim Laden des Artikels: ' + res.data.message);
+      });
+    }
+  ]);
+
 
 angular.module('phundusApp')
   .controller('ShopCheckoutCtrl', ['_', '$scope', 'userId', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert',

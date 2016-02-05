@@ -1,0 +1,14 @@
+<table class="table table-bordered table-hover table-striped" data-st-table="availabilities">
+  <thead>
+  <tr>
+    <th>Datum</th>
+    <th>Anzahl</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="each in availabilities">
+    <td>{{each.fromUtc | date:'mediumDate'}}</td>
+    <td>{{each.amount}}</td>
+  </tr>
+  </tbody>
+</table>

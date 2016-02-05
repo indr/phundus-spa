@@ -57,6 +57,16 @@ var app = angular
         template: '<ui-view />',
         controller: 'ShopCtrl'
       })
+      .state('public.shop-item', {
+        url: '/shop/:itemId',
+        templateUrl: 'views/shop/shop-item.html',
+        controller: 'ShopItemCtrl',
+        resolve: {
+          itemId: ['$stateParams', function ($stateParams) {
+            return $stateParams.itemId;
+          }]
+        }
+      })
       .state('public.organizations', {
         url: '/organizations',
         templateUrl: 'views/organizations.html',

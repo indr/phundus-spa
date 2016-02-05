@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>{{item.name}}
+    <small>{{item.lessor.name}}</small>
+  </h1>
+</div>
+
+<div class="row" data-ng-show="item">
+  <div class="col-xs-12 col-md-6">
+    <ph-shop-item-images images="item.images"></ph-shop-item-images>
+  </div>
+  <!--<div class="col-xs-12 col-md-6" data-ng-show="lessor">
+    <div class="panel panel-default">
+      <div class="panel-heading">Vermieter</div>
+      <div class="panel-body">
+        <address style="white-space:pre-line; margin-bottom:0">{{lessor.address}}<br>
+          <abbr title="Telefon">P:</abbr> {{lessor.phoneNumber}}
+          <abbr title="E-Mail-Adresse">@:</abbr> {{lessor.emailAddress}}
+        </address>
+      </div>
+    </div>
+  </div>-->
+</div>
+
+<div class="row" style="margin-top:20px">
+  <uib-tabset class="col-xs-12">
+    <uib-tab heading="Beschreibung">{{item.description}}</uib-tab>
+    <uib-tab heading="Spezifikation">{{item.specification}}</uib-tab>
+    <uib-tab heading="Dokumente">
+      <ph-shop-item-documents documents="item.documents"></ph-shop-item-documents>
+    </uib-tab>
+    <uib-tab heading="Verfügbarkeit">
+      <ph-shop-item-availability item-id="itemId"></ph-shop-item-availability>
+    </uib-tab>
+  </uib-tabset>
+</div>

@@ -108,6 +108,10 @@ tr th {
   cursor: pointer;
 }
 
+.tab-content {
+  margin-top: 10px;
+}
+
 .st-sort-ascent:before {
   content: '\25B2';
 }

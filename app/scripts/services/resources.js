@@ -119,6 +119,12 @@ angular.module('phundusApp')
   .factory('SchemaUpdate', ['$resource', function ($resource) {
     return $resource('/api/v0/schema-update');
   }])
+  .factory('ShopItems', ['$resource', function ($resource) {
+    return $resource('/api/v0/shop/items/:itemId', {itemId: '@itemId'});
+  }])
+  .factory('ShopItemAvailability', ['$resource', function ($resource) {
+    return $resource('/api/v0/shop/items/:itemId/availability', {itemId: '@itemId'});
+  }])
   .factory('ShopItemsAvailabilityCheck', ['$resource', function ($resource) {
     return $resource('/api/v0/shop/items/:itemId/availability-check', {itemId: '@articleId'});
   }])
