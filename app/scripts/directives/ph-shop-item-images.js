@@ -65,8 +65,8 @@ angular.module('phundusApp')
     }]);
 
 angular.module('phundusApp')
-  .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth',
-    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth) {
+  .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator',
+    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, PriceCalculator) {
       return {
         restrict: 'E',
         replace: true,
@@ -75,6 +75,8 @@ angular.module('phundusApp')
         },
         templateUrl: 'views/directives/ph-shop-item-add-to-cart.html',
         link: function (scope) {
+
+          var priceCalculator = null;
 
           var formModel = scope.addToCartFormModel = {
             userId: Auth.user.userId,
@@ -92,8 +94,10 @@ angular.module('phundusApp')
             if (!item) {
               return;
             }
+
+            priceCalculator = PriceCalculator(item.lessor.lessorId, item.publicPrice, item.memberPrice);
             formModel.itemId = formModel.articleId = item.itemId;
-            formModel.pricePerWeek = $filter('number')(item.publicPrice, 2);
+            formModel.pricePerWeek = $filter('number')(priceCalculator.getPrice(), 2);
             checkAvailability(formModel);
           });
 
@@ -128,9 +132,10 @@ angular.module('phundusApp')
           };
 
           scope.total = function () {
-            var days = Math.max(1, Math.ceil((new Date(formModel.toUtc) - new Date(formModel.fromUtc)) / (1000 * 60 * 60 * 24)));
-
-            return Math.round(100 * formModel.pricePerWeek / 7 * days * formModel.quantity) / 100;
+            if (!priceCalculator) {
+              return;
+            }
+            return priceCalculator.getTotal(formModel.fromUtc, formModel.toUtc, formModel.quantity, true);
           };
         }
       }
