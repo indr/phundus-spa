@@ -1,0 +1,68 @@
+<div>
+  <form name="addToCartForm" novalidate>
+    <div class="form-group" data-has-error="addToCartForm.fromUtc">
+      <label class="control-label" for="fromUtc">Von</label>
+
+      <p class="input-group">
+        <input type="text" class="form-control" id="fromUtc" name="fromUtc"
+               data-ng-model="addToCartFormModel.fromUtc" required
+               data-uib-datepicker-popup="mediumDate" data-is-open="fromUtcIsOpen"/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" data-ng-click="fromUtcIsOpen = true">
+              <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+
+    <div class="form-group" data-has-error="addToCartForm.toUtc">
+      <label class="control-label" for="toUtc">Bis</label>
+
+      <p class="input-group">
+        <input type="text" class="form-control" id="toUtc" name="toUtc"
+               data-ng-model="addToCartFormModel.toUtc" required
+               data-uib-datepicker-popup="mediumDate" data-is-open="toUtcIsOpen"/>
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" data-ng-click="toUtcIsOpen = true">
+              <i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+
+    <div class="col-xs-6 form-group" style="margin-left:0;padding-left:0">
+      <label class="control-label" for="pricePerWeek">Preis / Woche</label>
+
+      <input type="text" class="form-control" id="pricePerWeek" name="pricePerWeek"
+             data-ng-model="addToCartFormModel.pricePerWeek" readonly/>
+    </div>
+
+    <div class="col-offset-xs-6 col-xs-6 from-group" style="margin-right:0;padding-right:0" data-has-error="addToCartForm.quantity">
+      <label class="control-label" for="quantity">Anzahl</label>
+
+      <input type="number" class="form-control" id="quantity" name="quantity"
+             data-ng-model="addToCartFormModel.quantity" required />
+    </div>
+
+
+    <div class="col-xs-12" style="margin:0;padding:0">
+    <button type="button" class="btn btn-success" data-ng-show="addToCartFormModel.isAvailable && !addToCartFormModel.availabilityChecking"
+            data-ng-click="checkAvailability(addToCartFormModel)" title="Verfügbar!"><span
+      class="glyphicon glyphicon-ok"></span>
+    </button>
+    <button type="button" class="btn btn-danger" data-ng-show="!addToCartFormModel.isAvailable && !addToCartFormModel.availabilityChecking"
+            data-ng-click="checkAvailability(addToCartFormModel)" title="Nicht verfügbar!">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button type="button" class="btn btn-default" data-ng-show="addToCartFormModel.availabilityChecking"><span
+      class="glyphicon glyphicon-refresh glyphicon-spin" title="Verfügbarkeit wird geprüft..."></span>
+    </button>
+
+
+      <ph-submit class="btn-primary" data-ng-click="submit()"
+                 data-form="addToCartForm" data-text="{{total()|number:2}} CHF | In den Warenkorb"></ph-submit>
+
+
+    </div>
+  </form>
+
+</div>
