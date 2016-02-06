@@ -66,7 +66,7 @@ angular.module('phundusApp')
 
 angular.module('phundusApp')
   .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator',
-    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, PriceCalculator) {
+    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory) {
       return {
         restrict: 'E',
         replace: true,
@@ -95,7 +95,7 @@ angular.module('phundusApp')
               return;
             }
 
-            priceCalculator = PriceCalculator(item.lessor.lessorId, item.publicPrice, item.memberPrice);
+            priceCalculator = priceCalculatorFactory(item.lessor.lessorId, item.publicPrice, item.memberPrice);
             formModel.itemId = formModel.articleId = item.itemId;
             formModel.pricePerWeek = $filter('number')(priceCalculator.getPrice(), 2);
             checkAvailability(formModel);

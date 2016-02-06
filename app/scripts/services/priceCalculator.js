@@ -13,8 +13,12 @@ angular.module('phundusApp')
           return publicPrice;
         };
 
+        var getDays = function (fromUtc, toUtc) {
+            return Math.max(1, Math.ceil((toUtc - fromUtc) / (1000 * 60 * 60 * 24)));
+        };
+
         var getTotal = function (fromUtc, toUtc, quantity, round) {
-          var days = Math.max(1, Math.ceil((toUtc - fromUtc) / (1000 * 60 * 60 * 24)));
+          var days = getDays(fromUtc, toUtc);
           var result = Math.round(100 * getPrice() / 7 * days * quantity) / 100;
 
           if (!round) {
@@ -25,6 +29,7 @@ angular.module('phundusApp')
         };
 
         return {
+          getDays: getDays,
           getPrice: getPrice,
           getTotal: getTotal
         }

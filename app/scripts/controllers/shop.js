@@ -106,7 +106,12 @@ angular.module('phundusApp')
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
         $timeout(function () {
-          ShopItemsAvailabilityCheck.post(item, function (res) {
+          console.log(item);
+          var requestContent = _.pick(item, ['fromUtc', 'toUtc', 'quantity']);
+          requestContent.articleId = item.articleGuid;
+          requestContent.itemId = item.articleGuid;
+          console.log(requestContent);
+          ShopItemsAvailabilityCheck.post(requestContent, function (res) {
             item.isAvailable = res.isAvailable;
             item.availabilityChecking = false;
           }, function (res) {
