@@ -22,7 +22,7 @@ angular.module('phundusApp')
       return function (lessorId, publicPrice, memberPrice) {
 
         var getPrice = function () {
-          if (memberPrice && Auth.isMember(lessorId)) {
+          if (memberPrice && memberPrice > 0 && Auth.isMember(lessorId)) {
             return memberPrice;
           }
           return publicPrice;
