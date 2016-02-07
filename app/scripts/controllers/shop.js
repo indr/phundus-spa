@@ -17,21 +17,28 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('ShopItemCtrl', ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert',
-    function ($scope, itemId, ShopItems, Lessors, Alert) {
+  .controller('ShopItemCtrl', ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth',
+    function ($scope, itemId, ShopItems, Lessors, Alert, Auth) {
+      var lessor = null;
+
       $scope.itemId = itemId;
+      $scope.accessLevels = Auth.accessLevels;
 
       ShopItems.get({itemId: itemId}, function (res) {
         $scope.item = res;
 
         Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
-          $scope.lessor = res;
+          $scope.lessor = lessor =res;
         }, function (res) {
           Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
         });
       }, function (res) {
         Alert.error('Fehler beim Laden des Artikels: ' + res.data.message);
       });
+
+      $scope.canRent = function () {
+        return lessor && (lessor.publicRental || Auth.isMember(lessor.lessorId));
+      };
     }
   ]);
 
@@ -106,11 +113,9 @@ angular.module('phundusApp')
       var checkAvailability = function (item) {
         item.availabilityChecking = true;
         $timeout(function () {
-          console.log(item);
           var requestContent = _.pick(item, ['fromUtc', 'toUtc', 'quantity']);
           requestContent.articleId = item.articleGuid;
           requestContent.itemId = item.articleGuid;
-          console.log(requestContent);
           ShopItemsAvailabilityCheck.post(requestContent, function (res) {
             item.isAvailable = res.isAvailable;
             item.availabilityChecking = false;

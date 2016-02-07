@@ -14,7 +14,7 @@ angular.module('phundusApp')
         };
 
         var getDays = function (fromUtc, toUtc) {
-            return Math.max(1, Math.ceil((toUtc - fromUtc) / (1000 * 60 * 60 * 24)));
+          return Math.max(1, Math.ceil((toUtc - fromUtc) / (1000 * 60 * 60 * 24)));
         };
 
         var getTotal = function (fromUtc, toUtc, quantity, round) {

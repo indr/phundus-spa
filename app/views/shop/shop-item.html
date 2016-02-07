@@ -20,7 +20,17 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-3">
-    <ph-shop-item-add-to-cart item="item"></ph-shop-item-add-to-cart>
+    <div data-access-level="accessLevels.user" data-ng-show="lessor">
+      <ph-shop-item-add-to-cart item="item" data-ng-show="canRent()"></ph-shop-item-add-to-cart>
+
+      <div class="alert alert-info" data-ng-hide="canRent()">
+        Dieser Artikel steht nur den Mitglieder dieser Organisation zur Verfügung.
+      </div>
+    </div>
+
+    <div class="alert alert-info" data-access-level="accessLevels.anon">
+      Melde dich an um Artikel auszuleihen.
+    </div>
   </div>
 </div>
 
