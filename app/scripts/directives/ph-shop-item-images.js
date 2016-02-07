@@ -65,8 +65,8 @@ angular.module('phundusApp')
     }]);
 
 angular.module('phundusApp')
-  .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator',
-    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory) {
+  .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator', 'Shop',
+    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory, Shop) {
       return {
         restrict: 'E',
         replace: true,
@@ -78,10 +78,11 @@ angular.module('phundusApp')
 
           var priceCalculator = null;
 
+          console.log(Shop);
           var formModel = scope.addToCartFormModel = {
             userId: Auth.user.userId,
-            fromUtc: new Date(),
-            toUtc: new Date(),
+            fromUtc: Shop.fromUtc,
+            toUtc: Shop.toUtc,
             quantity: 1,
             isAvailable: false,
             availabilityChecking: false
@@ -98,19 +99,24 @@ angular.module('phundusApp')
             priceCalculator = priceCalculatorFactory(item.lessor.lessorId, item.publicPrice, item.memberPrice);
             formModel.itemId = formModel.articleId = item.itemId;
             formModel.pricePerWeek = $filter('number')(priceCalculator.getPrice(), 2);
-            checkAvailability(formModel);
+            checkAvailability();
           });
 
-          var checkAvailability = function (item) {
-            item.availabilityChecking = true;
-            var requestContent = _.pick(item, ['articleId', 'itemId', 'fromUtc', 'toUtc', 'quantity']);
+          var checkAvailability = function () {
+
+            if (formModel.itemId === undefined) {
+              return;
+            }
+
+            formModel.availabilityChecking = true;
+            var requestContent = _.pick(formModel, ['articleId', 'itemId', 'fromUtc', 'toUtc', 'quantity']);
 
             ShopItemsAvailabilityCheck.post(requestContent, function (res) {
-              item.isAvailable = res.isAvailable;
-              item.availabilityChecking = false;
+              formModel.isAvailable = res.isAvailable;
+              formModel.availabilityChecking = false;
             }, function (res) {
-              item.isAvailable = false;
-              item.availabilityChecking = false;
+              formModel.isAvailable = false;
+              formModel.availabilityChecking = false;
               Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
             });
 
@@ -118,13 +124,24 @@ angular.module('phundusApp')
 
           scope.checkAvailability = checkAvailability;
 
+          scope.$watch('addToCartFormModel.fromUtc', checkAvailability);
+          scope.$watch('addToCartFormModel.toUtc', checkAvailability);
+          scope.$watch('addToCartFormModel.quantity', checkAvailability);
+
           scope.submit = function () {
+
+            if (formModel.availabilityChecking || !formModel.isAvailable) {
+              Alert.error('Das Material ist im gewählten Zeitraum mit dieser Menge nicht verfügbar.');
+              return;
+            }
 
             var requestContent = _.pick(formModel, ['fromUtc', 'toUtc', 'quantity']);
             requestContent.articleGuid = formModel.itemId;
             requestContent.userId = Auth.user.userId;
 
             UsersCartItems.post(requestContent, function () {
+              Shop.fromUtc = requestContent.fromUtc;
+              Shop.toUtc = requestContent.toUtc;
               Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.');
             }, function (res) {
               Alert.error('Fehler beim Hinzufügen des Artikels in den Warenkorb: ' + res.data.message);
