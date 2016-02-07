@@ -107,7 +107,7 @@ angular.module('phundusApp')
 
         modalInstance.result.then(function (article) {
           Articles.post(article, function (res) {
-            $state.go('user.articles.article.details', {userId: userId, articleId: res.articleId});
+            $state.go('user.articles.article.details', {userId: userId, articleId: res.articleId, articleShortId: res.articleShortId});
           }, function () {
             Alert.error('Fehler beim Erstellen des Materials.');
           });
@@ -124,7 +124,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesDetailsCtrl', ['_', '$scope', '$state', 'userId', 'articleId', 'Articles', 'Alert',
+  .controller('UsersArticlesDetailsCtrl', ['_', '$scope', '$state', 'userId', 'articleShortId', 'Articles', 'Alert',
     function (_, $scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
@@ -185,7 +185,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesDescriptionCtrl', ['$scope', '$state', 'userId', 'articleId', 'Articles', 'Alert',
+  .controller('UsersArticlesDescriptionCtrl', ['$scope', '$state', 'userId', 'articleShortId', 'Articles', 'Alert',
     function ($scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
@@ -222,7 +222,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesSpecificationCtrl', ['$scope', '$state', 'userId', 'articleId', 'Articles', 'Alert',
+  .controller('UsersArticlesSpecificationCtrl', ['$scope', '$state', 'userId', 'articleShortId', 'Articles', 'Alert',
     function ($scope, $state, userId, articleId, Articles, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;
@@ -259,7 +259,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesFilesCtrl', ['$scope', 'userId', 'articleId',
+  .controller('UsersArticlesFilesCtrl', ['$scope', 'userId', 'articleShortId',
     function ($scope, userId, articleId) {
       $scope.url = '/api/v0/articles/' + articleId + '/files';
       $scope.hasPreview = true;
@@ -274,7 +274,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('UsersArticlesStockCtrl', ['$scope', 'userId', 'articleId', 'ArticlesStock', 'Alert',
+  .controller('UsersArticlesStockCtrl', ['$scope', 'userId', 'articleShortId', 'ArticlesStock', 'Alert',
     function ($scope, userId, articleId, ArticlesStock, Alert) {
       $scope.userId = userId;
       $scope.articleId = articleId;

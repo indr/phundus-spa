@@ -339,6 +339,7 @@ angular.module('phundusApp')
           Articles.post(article, function (res) {
             $state.go('organizations.articles.edit.details', {
               organizationId: organizationId,
+              articleShortId: res.articleShortId,
               articleId: res.articleId
             });
           }, function () {
@@ -357,7 +358,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesDetailsCtrl', ['_', '$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
+  .controller('OrganizationsArticlesDetailsCtrl', ['_', '$scope', '$state', 'organizationId', 'articleShortId', 'Articles', 'Alert',
     function (_, $scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
@@ -415,7 +416,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesDescriptionCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
+  .controller('OrganizationsArticlesDescriptionCtrl', ['$scope', '$state', 'organizationId', 'articleShortId', 'Articles', 'Alert',
     function ($scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
@@ -456,7 +457,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesSpecificationCtrl', ['$scope', '$state', 'organizationId', 'articleId', 'Articles', 'Alert',
+  .controller('OrganizationsArticlesSpecificationCtrl', ['$scope', '$state', 'organizationId', 'articleShortId', 'Articles', 'Alert',
     function ($scope, $state, organizationId, articleId, Articles, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;
@@ -497,7 +498,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesFilesCtrl', ['$scope', 'organizationId', 'articleId',
+  .controller('OrganizationsArticlesFilesCtrl', ['$scope', 'organizationId', 'articleShortId',
     function ($scope, organizationId, articleId) {
       $scope.url = '/api/v0/articles/' + articleId + '/files';
       $scope.hasPreview = true;
@@ -512,7 +513,7 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('OrganizationsArticlesStockCtrl', ['$scope', 'organizationId', 'articleId', 'ArticlesStock', 'Alert',
+  .controller('OrganizationsArticlesStockCtrl', ['$scope', 'organizationId', 'articleShortId', 'ArticlesStock', 'Alert',
     function ($scope, organizationId, articleId, ArticlesStock, Alert) {
       $scope.organizationId = organizationId;
       $scope.articleId = articleId;

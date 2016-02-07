@@ -47,7 +47,7 @@ var app = angular
           access: access.public
         }
       })
-      .state('public.feedback',{
+      .state('public.feedback', {
         url: '/feedback',
         templateUrl: 'views/public/feedback.html',
         controller: 'MetaFeedbackCtrl'
@@ -217,17 +217,27 @@ var app = angular
       })
       .state('user.articles.article', {
         abstract: true,
-        url: '/articles/:articleId',
-        template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId"></ph-user-article-navbar><ui-view/>',
-        controller: ['$scope', 'userId', 'articleId', function ($scope, userId, articleId) {
-          $scope.userId = userId;
-          $scope.articleId = articleId;
-        }],
+        url: '/articles/:articleId/:articleShortId',
+        template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId" data-article-short-id="articleShortId"></ph-user-article-navbar><ui-view/>',
+        controller: ['$scope', 'userId', 'articleId', 'articleShortId',
+          function ($scope, userId, articleId, articleShortId) {
+            $scope.userId = userId;
+            $scope.articleId = articleId;
+            $scope.articleShortId = articleShortId;
+          }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
             return $stateParams.articleId;
+          }],
+          articleShortId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleShortId;
           }]
         }
+      })
+      .state('user.articles.article.actions', {
+        url: '/actions',
+        templateUrl: 'views/inventory/article-actions.html',
+        controller: 'ArticlesActionsCtrl'
       })
       .state('user.articles.article.details', {
         url: '/',
@@ -388,17 +398,27 @@ var app = angular
       })
       .state('organizations.articles.edit', {
         abstract: true,
-        url: '/:articleId',
-        template: '<ph-organization-article-navbar data-organization-id="organizationId" data-article-id="articleId"></ph-organization-article-navbar><ui-view/>',
-        controller: ['$scope', 'organizationId', 'articleId', function ($scope, organizationId, articleId) {
-          $scope.organizationId = organizationId;
-          $scope.articleId = articleId;
-        }],
+        url: '/:articleId/:articleShortId',
+        template: '<ph-organization-article-navbar data-organization-id="organizationId" data-article-id="articleId" data-article-short-id="articleShortId"></ph-organization-article-navbar><ui-view/>',
+        controller: ['$scope', 'organizationId', 'articleId', 'articleShortId',
+          function ($scope, organizationId, articleId, articleShortId) {
+            $scope.organizationId = organizationId;
+            $scope.articleId = articleId;
+            $scope.articleShortId = articleShortId;
+          }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
             return $stateParams.articleId;
+          }],
+          articleShortId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleShortId;
           }]
         }
+      })
+      .state('organizations.articles.edit.actions', {
+        url: '/actions',
+        templateUrl: 'views/inventory/article-actions.html',
+        controller: 'ArticlesActionsCtrl'
       })
       .state('organizations.articles.edit.details', {
         url: '/',
@@ -563,16 +583,16 @@ angular.module('phundusApp')
           $scope.loadingFiles = false;
         }
       );
-      $scope.toggleIsPreview = function(file) {
+      $scope.toggleIsPreview = function (file) {
         $scope.isPreviewSubmitting = file.isPreviewSubmitting = true;
         $http.patch(url + '/' + file.name, {isPreview: file.isPreview})
-          .then(function() {
+          .then(function () {
 
             $scope.isPreviewSubmitting = file.isPreviewSubmitting = false;
             _.forEach($scope.queue, function (each) {
               each.isPreview = file === each;
             });
-          }, function() {
+          }, function () {
             $scope.isPreviewSubmitting = file.isPreviewSubmitting = false;
             file.isPreview = false;
             Alert.error('Fehler beim Setzen als Vorschaubild.');

@@ -6,7 +6,7 @@
     </th>
   </tr>
   <tr>
-    <th data-st-sort="id">Id</th>
+    <th data-st-sort="articleShortId">Id</th>
     <th data-st-sort-default="true" data-st-sort="name">Name</th>
     <th class="text-right" data-st-sort="grossStock">Bestand</th>
     <th class="text-right" data-st-sort="pricePublic">Preis</th>
@@ -18,15 +18,15 @@
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedArticles">
-    <td>{{row.id}}</td>
+    <td>{{row.articleShortId}}</td>
     <td>{{row.name}}</td>
     <td class="text-right">{{row.grossStock}}</td>
     <td class="text-right">{{row.publicPrice | number:2}}</td>
     <td class="text-right">{{row.memberPrice | number:2}}</td>
     <td class="text-right">
       <a class="btn btn-default btn-sm" href=""
-         data-ui-sref="organizations.articles.edit.details({organizationId: organizationId, articleId: row.id})">Bearbeiten</a>
-      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row.id, row.name)">Löschen</a>
+         data-ui-sref="organizations.articles.edit.details({organizationId: organizationId, articleId: row.articleId, articleShortId: row.articleShortId})">Bearbeiten</a>
+      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row.articleShortId, row.name)">Löschen</a>
     </td>
   </tr>
   </tbody>
