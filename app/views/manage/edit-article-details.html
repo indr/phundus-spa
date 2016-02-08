@@ -69,25 +69,12 @@
   <div class="col-xs-12 col-sm-10 col-md-4 col-lg-offset-2 col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Preise</h3>
+        <h3 class="panel-title">Preis pro Woche</h3>
       </div>
       <div class="panel-body">
         <form name="formPrices" novalidate>
-          <div class="form-group" data-has-error="formPrices.publicPrice">
-            <label class="control-label" for="publicPrice">Preis pro Woche</label>
-
-            <input type="number" class="form-control" id="publicPrice" name="publicPrice"
-                   data-ng-model="pricesFormModel.publicPrice"
-                   min="0.01" required/>
-
-            <div role="alert" data-ng-messages="formPrices.publicPrice.$error"
-                 data-ng-show="formPrices.publicPrice.$touched || formPrices.$submitted">
-              <div data-ng-messages-include="views/messages.html"></div>
-            </div>
-          </div>
-
           <div class="form-group" data-has-error="formPrices.memberPrice" data-ng-show="organizationId">
-            <label class="control-label" for="memberPrice">Mitgliederpreis</label>
+            <label class="control-label" for="memberPrice">Mitglieder</label>
 
             <input type="number" class="form-control" id="memberPrice" name="memberPrice"
                    data-ng-model="pricesFormModel.memberPrice"
@@ -95,6 +82,19 @@
 
             <div role="alert" data-ng-messages="formPrices.memberPrice.$error"
                  data-ng-show="formPrices.memberPrice.$touched || formPrices.$submitted">
+              <div data-ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+
+          <div class="form-group" data-has-error="formPrices.publicPrice">
+            <label class="control-label" for="publicPrice">Externe</label>
+
+            <input type="number" class="form-control" id="publicPrice" name="publicPrice"
+                   data-ng-model="pricesFormModel.publicPrice"
+                   min="0.01"/>
+
+            <div role="alert" data-ng-messages="formPrices.publicPrice.$error"
+                 data-ng-show="formPrices.publicPrice.$touched || formPrices.$submitted">
               <div data-ng-messages-include="views/messages.html"></div>
             </div>
           </div>
