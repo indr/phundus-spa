@@ -36,8 +36,8 @@
 
 <div class="row" style="margin-top:20px">
   <uib-tabset class="col-xs-12">
-    <uib-tab heading="Beschreibung">{{item.description}}</uib-tab>
-    <uib-tab heading="Spezifikation">{{item.specification}}</uib-tab>
+    <uib-tab heading="Beschreibung"><div data-ng-bind-html="item.description"></div></uib-tab>
+    <uib-tab heading="Spezifikation"><div data-ng-bind-html="item.specification"></div></uib-tab>
     <uib-tab heading="Dokumente">
       <ph-shop-item-documents documents="item.documents"></ph-shop-item-documents>
     </uib-tab>
