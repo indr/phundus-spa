@@ -1,6 +1,7 @@
 <div class="actions" data-ng-repeat="row in actions" data-ng-switch="row.type" style="margin-top:10px">
 
-  <strong>{{row.data.initiator.FullName}}</strong>
+  <strong data-ng-show="row.data.initiator">{{row.data.initiator.FullName}}</strong>
+  <span data-ng-hide="row.data.initiator">Jemand</span>
 
   <span data-ng-switch-when="ArticleCreated">hat den Artikel <b>{{row.data.name}}</b> erfasst.</span>
 
