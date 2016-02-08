@@ -1,3 +1,23 @@
-<div data-ng-repeat="row in actions" style="margin-top:10px">
-  <ph-date value="row.occuredOnUtc"></ph-date> {{row.name}}
+<div class="actions" data-ng-repeat="row in actions" data-ng-switch="row.type" style="margin-top:10px">
+
+  <strong>{{row.data.initiator.FullName}}</strong>
+
+  <span data-ng-switch-when="ArticleCreated">hat den Artikel <b>{{row.data.name}}</b> erfasst.</span>
+
+  <span data-ng-switch-when="PricesChanged">hat die Preise angepasst.</span>
+
+  <span data-ng-switch-when="SpecificationChanged">hat die Spezifikation aktualisiert.</span>
+
+  <span data-ng-switch-when="DescriptionChanged">hat die Beschreibung aktualisiert.</span>
+
+  <span data-ng-switch-when="ImageAdded">hat ein neues Bild hinzugefügt.</span>
+
+  <span data-ng-switch-when="ImageRemoved">hat ein Bild entfernt.</span>
+
+  <span data-ng-switch-default="">
+    {{row.name}}
+  </span>
+
+  <br>
+  <span am-time-ago="row.occuredOnUtc" title="{{row.occuredOnUtc | date:'medium'}}" class="text-muted" style="display:inline-block"></span>
 </div>

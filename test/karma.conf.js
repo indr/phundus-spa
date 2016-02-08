@@ -44,6 +44,8 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js',
       'bower_components/tinymce-dist/tinymce.js',
       'bower_components/angular-ui-tinymce/src/tinymce.js',
+      'bower_components/moment/moment.js',
+      'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "bower_components/blueimp-load-image/js/load-image.all.min.js",

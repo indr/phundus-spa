@@ -10,6 +10,7 @@
  */
 var app = angular
   .module('phundusApp', [
+    'angularMoment',
     'blueimp.fileupload',
     'leaflet-directive',
     'ngCookies',
@@ -648,14 +649,16 @@ app.filter('unique', function () {
   };
 });
 
-app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults',
-  function ($rootScope, $state, $location, Auth, Alert, confirmationPopoverDefaults) {
+app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults', 'amMoment',
+  function ($rootScope, $state, $location, Auth, Alert, confirmationPopoverDefaults, amMoment) {
     $rootScope.isTestEnv = /(^localhost)|(^acceptance)/.test($location.host());
     $rootScope.isLocalEnv = /(^localhost)/.test($location.host());
     $rootScope.$state = $state;
     confirmationPopoverDefaults.confirmButtonType = 'primary';
     confirmationPopoverDefaults.confirmText = 'Ja';
     confirmationPopoverDefaults.cancelText = 'Nein';
+
+    amMoment.changeLocale('de');
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState/*, fromParams*/) {
       if (!('data' in toState) || !('access' in toState.data)) {
