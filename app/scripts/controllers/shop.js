@@ -11,8 +11,37 @@ angular.module('phundusApp')
   .controller('ShopCtrl', ['$timeout', '$window',
     function ($timeout, $window) {
       $timeout(function () {
-        $window.location.href = 'shop';
+        $window.location.href = '#/shop';
       }, 0);
+    }
+  ]);
+
+angular.module('phundusApp')
+  .controller('ShopIndexCtrl', ['$scope', 'ShopItems', 'Alert',
+    function ($scope, ShopItems, Alert) {
+
+      $scope.currentPage = 1;
+      $scope.limit = 8;
+
+      var getItems = function () {
+        ShopItems.get({q: '', lessorId: null, offset: $scope.limit * ($scope.currentPage - 1), limit: $scope.limit}, function (res) {
+          $scope.offset = res.offset;
+          $scope.limit = res.limit;
+          $scope.totalItems = res.total;
+          $scope.currentPage = Math.ceil(($scope.offset + 1) / $scope.limit);
+          $scope.items = res.results;
+
+
+        }, function (res) {
+          Alert.error('Fehler beim Laden der Artikel: ' + res.data.message);
+        });
+      };
+
+
+
+      $scope.$watch('currentPage', function () {
+        getItems();
+      });
     }
   ]);
 

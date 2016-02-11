@@ -1,0 +1,9 @@
+
+.shop-item a:hover {
+  text-decoration: none;
+}
+
+.shop-item a:hover .thumbnail {
+
+  background-color: #eeeeee
+}

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-6 col-md-3 shop-item" data-ng-repeat="each in items">
+    <a href="" data-ui-sref="public.shop-item({itemId: each.itemId})">
+      <div class="thumbnail">
+        <img class="img-responsive" src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="">
+
+        <div class="caption">
+          <h3>{{each.name}}</h3>
+
+          <p>{{each.lessorName}}</p>
+
+          <p>CHF {{each.publicPrice | number:2}} <span class="text-muted" data-ng-show="each.memberPrice > 0">({{each.memberPrice | number:2}})</span>
+            / Woche</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="7"
+                    boundary-link-numbers="true" items-per-page="limit" class="pagination-lg" previous-text="&laquo;" next-text="&raquo;"></uib-pagination>
+  </div>
+</div>
