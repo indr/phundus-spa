@@ -1,0 +1,20 @@
+<div class="row search-box">
+  <div class="col-xs-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <label class="sr-only" for="searchQuery">Search query</label>
+        <input type="text" class="form-control" id="searchQuery" placeholder="Suchen"
+          data-ng-model="searchQuery">
+      </div>
+      in
+      <div class="form-group">
+        <label class="sr-only" for="lessor">Lessor</label>
+        <select class="form-control" id="lessor" name="lessorId" data-ng-model="lessorId"
+                data-ng-options="each.lessorGuid as each.name for each in lessors">
+          <option value="">allen Organisationen</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" data-ng-click="submit(searchQuery, lessorId)">phinden!</button>
+    </form>
+  </div>
+</div>

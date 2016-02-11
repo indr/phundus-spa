@@ -1,9 +1,15 @@
+<ph-shop-search data-submit="searchQuery"></ph-shop-search>
+
 <div class="row">
   <div class="col-xs-6 col-md-3 shop-item" data-ng-repeat="each in items">
     <a href="" data-ui-sref="public.shop-item({itemId: each.itemId})">
       <div class="thumbnail">
-        <img class="img-responsive" src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="">
-
+        <div data-ng-if="each.previewImageUrl">
+          <img class="img-responsive" ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="">
+        </div>
+        <div data-ng-if="!each.previewImageUrl">
+          <img class="img-responsive" data-holder="holder.js/260x180?auto=yes" alt="">
+        </div>
         <div class="caption">
           <h3>{{each.name}}</h3>
 

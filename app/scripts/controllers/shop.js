@@ -23,8 +23,13 @@ angular.module('phundusApp')
       $scope.currentPage = 1;
       $scope.limit = 8;
 
-      var getItems = function () {
-        ShopItems.get({q: '', lessorId: null, offset: $scope.limit * ($scope.currentPage - 1), limit: $scope.limit}, function (res) {
+      var getItems = function (searchQuery, lessorId) {
+        ShopItems.get({
+          q: searchQuery,
+          lessorId: lessorId,
+          offset: $scope.limit * ($scope.currentPage - 1),
+          limit: $scope.limit
+        }, function (res) {
           $scope.offset = res.offset;
           $scope.limit = res.limit;
           $scope.totalItems = res.total;
@@ -37,7 +42,7 @@ angular.module('phundusApp')
         });
       };
 
-
+      $scope.searchQuery = getItems;
 
       $scope.$watch('currentPage', function () {
         getItems();
@@ -57,7 +62,7 @@ angular.module('phundusApp')
         $scope.item = res;
 
         Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
-          $scope.lessor = lessor =res;
+          $scope.lessor = lessor = res;
         }, function (res) {
           Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
         });
