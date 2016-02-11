@@ -53,13 +53,13 @@ var app = angular
         templateUrl: 'views/public/feedback.html',
         controller: 'MetaFeedbackCtrl'
       })
+      //.state('public.index', {
+      //  url: '/',
+      //  template: '<ui-view />',
+      //  controller: 'ShopCtrl'
+      //})
       .state('public.index', {
         url: '/',
-        template: '<ui-view />',
-        controller: 'ShopCtrl'
-      })
-      .state('public.shop', {
-        url: '/shop/',
         templateUrl: 'views/shop/index.html',
         controller: 'ShopIndexCtrl'
       })
