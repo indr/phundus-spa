@@ -565,10 +565,11 @@ angular.module('phundusApp')
 angular.module('phundusApp')
   .filter('orderStatusText', function () {
     return function (input) {
-      return {
+      var status = {
         "Pending": "Provisorisch", "Approved": "Bestätigt", "Rejected": "Abgelehnt", "Closed": "Abgeschlossen"
-      }
-        [input];
+      };
+
+      return status[input] || input;
     };
   });
 
