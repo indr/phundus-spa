@@ -18,7 +18,14 @@ angular.module('phundusApp')
           scope.dropdownLabel = '';
           scope.filterChanged = filterChanged;
 
-          initialize();
+
+          scope.$watch('collection', function (newValue) {
+            if (!newValue) {
+              return;
+            }
+
+            initialize();
+          });
 
           function initialize() {
             bindCollection(scope.collection);
@@ -45,7 +52,7 @@ angular.module('phundusApp')
               return selected[0];
             }
 
-            return selected.length + ' items';
+            return selected.length + ' Elemente';
           }
 
           function getSelectedOptions() {
