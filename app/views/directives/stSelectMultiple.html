@@ -1,12 +1,15 @@
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
     {{dropdownLabel|orderStatusText}}
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li ng-repeat="item in distinctItems">
-      <label>
-        <input type="checkbox" ng-model="item.selected" ng-click="filterChanged()">{{item.value|orderStatusText}}</label>
+  <ul class="dropdown-menu">
+    <li data-ng-repeat="item in distinctItems">
+      <div class="checkbox" style="margin-left:10px">
+        <input class="styled" type="checkbox" ng-model="item.selected" ng-click="filterChanged()" id="item_{{$index}}">
+        <label for="item_{{$index}}">{{item.value|orderStatusText}}</label>
+      </div>
     </li>
   </ul>
 </div>
