@@ -4,14 +4,14 @@
   <div class="col-xs-6 col-md-3 shop-item" data-ng-repeat="each in items">
     <a href="" data-ui-sref="public.shop-item({itemId: each.itemId})">
       <div class="thumbnail">
-        <div data-ng-if="each.previewImageUrl">
-          <img class="img-responsive" ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="">
+        <div data-ng-if="each.previewImageUrl" style="min-height:180px">
+          <img class="img-responsive" data-ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="" style="margin:auto">
         </div>
-        <div data-ng-if="!each.previewImageUrl">
-          <img class="img-responsive" data-holder="holder.js/260x180?auto=yes" alt="">
+        <div data-ng-if="!each.previewImageUrl" style="min-height:180px">
+          <img class="img-responsive" data-holder="holder.js/260x180?auto=yes" alt="" style="margin:auto">
         </div>
         <div class="caption">
-          <h3>{{each.name}}</h3>
+          <h3 style="white-space:nowrap; overflow:hidden">{{each.name}}</h3>
 
           <p>{{each.lessorName}}</p>
 
