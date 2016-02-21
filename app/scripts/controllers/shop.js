@@ -23,10 +23,15 @@ angular.module('phundusApp')
       $scope.currentPage = 1;
       $scope.limit = 8;
 
-      var getItems = function (searchQuery, lessorId) {
+      var filter = {
+        searchQuery: null,
+        lessorId: null
+      };
+
+      var getItems = function () {
         ShopItems.get({
-          q: searchQuery,
-          lessorId: lessorId,
+          q: filter.searchQuery,
+          lessorId: filter.lessorId,
           offset: $scope.limit * ($scope.currentPage - 1),
           limit: $scope.limit
         }, function (res) {
@@ -42,7 +47,11 @@ angular.module('phundusApp')
         });
       };
 
-      $scope.searchQuery = getItems;
+      $scope.searchQuery = function (searchQuery, lessorId) {
+        filter.searchQuery = searchQuery;
+        filter.lessorId = lessorId;
+        getItems();
+      };
 
       $scope.$watch('currentPage', function () {
         getItems();
