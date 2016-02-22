@@ -12,8 +12,8 @@
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
     <th data-st-sort="jsNumber">J+S-Nummer</th>
     <th data-st-sort="role">Verwaltung</th>
+    <th data-st-sort="recievesEmailNotifications">E-Mails</th>
     <th data-st-sort="isLocked">Gesperrt</th>
-    <!--<th></th>-->
   </tr>
   </thead>
   <tbody>
@@ -26,6 +26,12 @@
     <td>
       <ph-checkbox class="checkbox-danger" data-spin="row.isManagerSubmitting">
         <input type="checkbox" data-ng-model="row.isManager" data-ng-change="toggleIsManager(row)" />
+        <label></label>
+      </ph-checkbox>
+    </td>
+    <td>
+      <ph-checkbox class="checkbox" data-spin="row.isRecievesEmailNotifications">
+        <input type="checkbox" data-ng-model="row.recievesEmailNotifications" data-ng-change="toggleRecievesEmailNotifications(row)" />
         <label></label>
       </ph-checkbox>
     </td>
