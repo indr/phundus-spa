@@ -7,6 +7,7 @@
     <th data-st-sort="organizationId">Id</th>
     <th data-st-sort="name">Name</th>
     <th data-st-sort="establishedAtUtc">Erstellt</th>
+    <th data-st-sort="plan">Plan</th>
     <th class="text-right"><button type="button" class="btn btn-primary" data-ng-click="establishOrganization()">Neue Organisation</button></th>
   </tr>
   </thead>
@@ -15,6 +16,17 @@
     <td><ph-guid data-value="row.organizationId"></ph-guid></td>
     <td>{{row.name}}</td>
     <td><ph-date data-value="row.establishedAtUtc"></ph-date></td>
+    <td>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{row.plan | organizationPlan}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="" data-ng-click="changePlan(row, 'free')">{{'free' | organizationPlan}}</a></li>
+          <li><a href="" data-ng-click="changePlan(row, 'paid')">{{'paid' | organizationPlan}}</a></li>
+        </ul>
+      </div>
+    </td>
     <td></td>
   </tr>
   </tbody>

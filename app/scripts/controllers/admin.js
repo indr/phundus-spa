@@ -84,13 +84,19 @@ angular.module('phundusApp')
           return;
         }
 
-        Organizations.post({name: name}, function(res) {
+        Organizations.post({name: name}, function (res) {
           Alert.success('Die Organisation wurde erfolgreich gegründet.');
           $state.go('public.organization', {organizationId: res.organizationId});
         }, function () {
           Alert.error('Fehler beim Gründen der Organisation.');
         })
-      }
+      };
+
+      $scope.changePlan = function (row, plan) {
+        Organizations.patch({organizationId: row.organizationId, plan: plan}, function () {
+          row.plan = plan;
+        });
+      };
     }
   ]);
 
