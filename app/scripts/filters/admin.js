@@ -6,7 +6,7 @@ angular.module('phundusApp')
       return function (input) {
         var plans = {
           "free": "Kostenlos",
-          "membership": "Mitglied"
+          "membership": "Mitgliedschaft"
         };
 
         return plans[input] || input;
