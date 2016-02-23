@@ -66,8 +66,8 @@ angular.module('phundusApp')
     }]);
 
 angular.module('phundusApp')
-  .directive('phShopItemAvailability', ['_', 'moment', '$filter', 'ShopItemAvailability', 'Alert',
-    function (_, moment, $filter, ShopItemAvailability, Alert) {
+  .directive('phShopItemAvailability', ['_', 'moment', '$filter', '$compile', 'ShopItemAvailability', 'Alert',
+    function (_, moment, $filter, $compile, ShopItemAvailability, Alert) {
       return {
         restrict: 'E',
         replace: true,
@@ -75,7 +75,7 @@ angular.module('phundusApp')
           itemId: '='
         },
         templateUrl: 'views/directives/ph-shop-item-availability.html',
-        link: function (scope) {
+        link: function (scope, element) {
 
           var populateChartData = function (data) {
 
@@ -105,6 +105,9 @@ angular.module('phundusApp')
             scope.chart = {
               data: chartData
             };
+
+            // I'm totally not sure what I'm doing...
+            $compile(element.contents())(scope);
           };
 
           ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
