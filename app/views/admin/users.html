@@ -10,9 +10,9 @@
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
     <th data-st-sort="signedUpAtUtc">Registriert am</th>
     <th data-st-sort="lastLogInAtUtc">Letztes Login</th>
-    <th data-st-sort="isApproved">Bestätigt</th>
-    <th data-st-sort="isAdmin">Admin</th>
-    <th data-st-sort="isLocked">Gesperrt</th>
+    <th data-st-sort="isApproved" style="text-align:center">Bestätigt</th>
+    <th data-st-sort="isAdmin" style="text-align:center">Admin</th>
+    <th data-st-sort="isLocked" style="text-align:center">Gesperrt</th>
   </tr>
   </thead>
   <tbody>
@@ -23,19 +23,19 @@
     <td>{{row.emailAddress}}</td>
     <td><ph-date value="row.signedUpAtUtc"></ph-date></td>
     <td><ph-date value="row.lastLogInAtUtc"></ph-date></td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox data-spin="row.isApprovedSubmitting">
         <input type="checkbox" data-ng-model="row.isApproved" data-ng-change="toggleIsApproved(row)" data-ng-disabled="row.isApproved" />
         <label></label>
       </ph-checkbox>
     </td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox class="checkbox-danger" data-spin="row.isAdminSubmitting">
         <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" />
         <label></label>
       </ph-checkbox>
     </td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox class="checkbox-warning" data-spin="row.isLockedSubmitting">
         <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
         <label></label>

@@ -1,7 +1,7 @@
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th colspan="7">
+    <th colspan="8">
       <input data-st-search class="form-control" type="search" placeholder="Suchen..."/>
     </th>
   </tr>
@@ -11,9 +11,9 @@
     <th data-st-sort="lastName">Nachname</th>
     <th data-st-sort="emailAddress">E-Mail-Adresse</th>
     <th data-st-sort="jsNumber">J+S-Nummer</th>
-    <th data-st-sort="role">Verwaltung</th>
-    <th data-st-sort="recievesEmailNotifications">E-Mails</th>
-    <th data-st-sort="isLocked">Gesperrt</th>
+    <th data-st-sort="role" style="text-align:center">Verwaltung</th>
+    <th data-st-sort="recievesEmailNotifications" style="text-align:center">E-Mails</th>
+    <th data-st-sort="isLocked" style="text-align:center">Gesperrt</th>
   </tr>
   </thead>
   <tbody>
@@ -23,19 +23,20 @@
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>
     <td>{{row.jsNumber}}</td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox class="checkbox-danger" data-spin="row.isManagerSubmitting">
         <input type="checkbox" data-ng-model="row.isManager" data-ng-change="toggleIsManager(row)" />
         <label></label>
       </ph-checkbox>
     </td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox class="checkbox" data-spin="row.isRecievesEmailNotifications">
-        <input type="checkbox" data-ng-model="row.recievesEmailNotifications" data-ng-change="toggleRecievesEmailNotifications(row)" />
+        <input type="checkbox" data-ng-model="row.recievesEmailNotifications" data-ng-change="toggleRecievesEmailNotifications(row)"
+          data-ng-enabled="row.isManager"/>
         <label></label>
       </ph-checkbox>
     </td>
-    <td>
+    <td style="text-align:center">
       <ph-checkbox class="checkbox-warning" data-spin="row.isLockedSubmitting">
         <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
         <label></label>
