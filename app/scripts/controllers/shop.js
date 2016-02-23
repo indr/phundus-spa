@@ -48,7 +48,7 @@ angular.module('phundusApp')
       };
 
       $scope.searchQuery = function (searchQuery, lessorId) {
-        filter.searchQuery = searchQuery;modals
+        filter.searchQuery = searchQuery;
         filter.lessorId = lessorId;
         getItems();
       };
@@ -58,7 +58,7 @@ angular.module('phundusApp')
       });
 
       $scope.showItem = function (item) {
-        var modalInstance = $uibModal.open({
+        $uibModal.open({
           templateUrl: 'views/shop/shop-item-modal.html',
           controller: 'ShopItemCtrl',
           resolve: {

@@ -66,8 +66,8 @@ angular.module('phundusApp')
     }]);
 
 angular.module('phundusApp')
-  .directive('phShopItemAvailability', ['ShopItemAvailability', 'Alert',
-    function (ShopItemAvailability, Alert) {
+  .directive('phShopItemAvailability', ['_', 'moment', '$filter', 'ShopItemAvailability', 'Alert',
+    function (_, moment, $filter, ShopItemAvailability, Alert) {
       return {
         restrict: 'E',
         replace: true,
@@ -76,8 +76,40 @@ angular.module('phundusApp')
         },
         templateUrl: 'views/directives/ph-shop-item-availability.html',
         link: function (scope) {
+
+          var populateChartData = function (data) {
+
+            var labels = _.map(data, function (each) {
+              return $filter('date')(each.fromUtc, 'mediumDate');
+            });
+            labels.push($filter('date')(moment(data[data.length-1].fromUtc).add(1, 'months').calendar(), 'mediumDate'));
+
+            var values = _.map(data, function (each) {
+              return each.amount;
+            });
+            values.push(values[values.length-1]);
+
+            var chartData = {
+              labels: labels,
+              datasets: [
+                {
+                  fillColor : "rgba(151,187,205,0.5)",
+                  strokeColor : "rgba(151,187,205,1)",
+                  pointColor : "rgba(151,187,205,1)",
+                  pointStrokeColor : "#fff",
+                  data : values
+                }
+              ]
+            };
+
+            scope.chart = {
+              data: chartData
+            };
+          };
+
           ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
             scope.availabilities = res.result;
+            populateChartData(res.result);
           }, function (res) {
             Alert.error('Fehler beim Laden der Verfügbarkeit: ' + res.data.message);
           });
@@ -99,7 +131,6 @@ angular.module('phundusApp')
 
           var priceCalculator = null;
 
-          console.log(Shop);
           var formModel = scope.addToCartFormModel = {
             userId: Auth.user.userId,
             fromUtc: Shop.fromUtc,

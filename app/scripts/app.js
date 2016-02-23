@@ -12,6 +12,7 @@ var app = angular
   .module('phundusApp', [
     'angularMoment',
     'blueimp.fileupload',
+    'chartjs-directive',
     'leaflet-directive',
     'ngCookies',
     'ngHolder',
