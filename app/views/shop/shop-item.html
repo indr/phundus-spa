@@ -1,8 +1,8 @@
-<div class="row" data-ng-show="item">
-  <div class="col-xs-12 col-md-8">
+<div class="row" data-ng-if="item != null">
+  <div class="col-xs-12 col-md-7">
     <ph-shop-item-images images="item.images"></ph-shop-item-images>
   </div>
-  <div class="col-xs-12 col-md-4">
+  <div class="col-xs-12 col-md-5">
     <div class="panel panel-default">
       <div class="panel-heading">Vermieter</div>
       <div class="panel-body">
@@ -16,7 +16,7 @@
 
 </div>
 
-<div class="row" style="margin-top:20px">
+<div class="row" style="margin-top:20px" data-ng-if="item != null">
   <div class="col-xs-12 col-md-4">
     <div data-access-level="accessLevels.user" data-ng-show="lessor">
       <ph-shop-item-add-to-cart item="item" data-ng-show="canRent()"></ph-shop-item-add-to-cart>
@@ -32,23 +32,17 @@
   </div>
 
   <uib-tabset class="col-xs-12 col-md-8">
-    <uib-tab heading="Beschreibung">
-      <div data-ng-bind-html="item.description"></div>
-      <div class="alert alert-info" data-ng-show="item.description == null">
-        Der Artikel hat keine Beschreibung.
-      </div>
-    </uib-tab>
-    <uib-tab heading="Spezifikation">
-      <div data-ng-bind-html="item.specification"></div>
-      <div class="alert alert-info" data-ng-show="item.specification == null">
-        Der Artikel hat keine Spezifikation.
-      </div>
-    </uib-tab>
-    <uib-tab heading="Dokumente">
-      <ph-shop-item-documents documents="item.documents"></ph-shop-item-documents>
-    </uib-tab>
     <uib-tab heading="Verfügbarkeit">
       <ph-shop-item-availability item-id="itemId"></ph-shop-item-availability>
+    </uib-tab>
+    <uib-tab heading="Beschreibung" data-ng-if="item.description != null">
+      <div data-ng-bind-html="item.description"></div>
+    </uib-tab>
+    <uib-tab heading="Spezifikation" data-ng-if="item.specification != null">
+      <div data-ng-bind-html="item.specification"></div>
+    </uib-tab>
+    <uib-tab heading="Dokumente" data-ng-if="item.documents.length > 0">
+      <ph-shop-item-documents documents="item.documents"></ph-shop-item-documents>
     </uib-tab>
   </uib-tabset>
 </div>

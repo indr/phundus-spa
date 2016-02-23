@@ -77,11 +77,14 @@ angular.module('phundusApp')
     function ($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
       var lessor = null;
 
+      $scope.isLoading = true;
+      $scope.item = null;
       $scope.itemId = itemId;
       $scope.accessLevels = Auth.accessLevels;
 
       ShopItems.get({itemId: itemId}, function (res) {
         $scope.item = res;
+        $scope.isLoading = false;
 
         Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
           $scope.lessor = lessor = res;
@@ -89,6 +92,7 @@ angular.module('phundusApp')
           Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
         });
       }, function (res) {
+        $scope.isLoading = false;
         Alert.error('Fehler beim Laden des Artikels: ' + res.data.message);
       });
 
@@ -98,6 +102,10 @@ angular.module('phundusApp')
 
       $scope.close = function () {
         $uibModalInstance.dismiss('cancel');
+      };
+
+      $scope.hasDocuments = function () {
+        return $scope.item && $scope.item.documents.length > 0;
       };
     }
   ]);
