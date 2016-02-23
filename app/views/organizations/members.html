@@ -32,7 +32,7 @@
     <td style="text-align:center">
       <ph-checkbox class="checkbox" data-spin="row.isRecievesEmailNotifications">
         <input type="checkbox" data-ng-model="row.recievesEmailNotifications" data-ng-change="toggleRecievesEmailNotifications(row)"
-          data-ng-enabled="row.isManager"/>
+          data-ng-disabled="!row.isManager"/>
         <label></label>
       </ph-checkbox>
     </td>
