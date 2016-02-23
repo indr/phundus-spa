@@ -13,8 +13,8 @@
       <div class="panel-heading">Vermieter</div>
       <div class="panel-body">
         <address style="white-space:pre-line; margin-bottom:0">{{lessor.address}}<br>
-          <abbr title="Telefon">P:</abbr> {{lessor.phoneNumber}}
-          <abbr title="E-Mail-Adresse">@:</abbr> {{lessor.emailAddress}}
+          <abbr title="Telefon" data-ng-show="lessor.phoneNumber">P:</abbr> {{lessor.phoneNumber}}
+          <abbr title="E-Mail-Adresse" data-ng-show="lessor.emailAddress">@:</abbr> {{lessor.emailAddress}}
         </address>
       </div>
     </div>
