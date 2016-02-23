@@ -46,7 +46,7 @@
         <a class="navbar-brand" href="" data-ui-sref="public.index" title="phundus">phundus</a>
       </div>
 
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+      <div class="collapse navbar-collapse ng-cloak" id="js-navbar-collapse">
 
         <!--<form class="navbar-form navbar-left" role="search">
           <div class="input-group">
@@ -98,19 +98,13 @@
               class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
           </li>
 
-          <!--
-          <li data-access-level="accessLevels.user" title="{{user.username}}">
-            <a href="" data-ui-sref="user.home({userId: user.userId})"><span
-              class="glyphicon glyphicon-user"></span><span class="visible-xs-inline" class="loggedOnTag"> {{user.username}}</span></a>
-          </li>
-          -->
-
-          <li data-access-level="accessLevels.user" class="dropdown" title="{{user.username}}">
+          <li data-access-level="accessLevels.user" class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false"><span
-              class="glyphicon glyphicon-user"></span><span class="visible-xs-inline"> {{user.username}}</span> <span class="caret"></span></a>
+              class="glyphicon glyphicon-user" title="{{user.username}}"></span><span class="visible-xs-inline"> {{user.username}}</span> <span class="caret" title="{{user.username}}"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="" data-ui-sref="user.home({userId: user.userId})">Profil</a></li>
+              <li><a href="" data-ui-sref="user.home({userId: user.userId})">{{user.fullName}}</a></li>
+              <li role="separator" class="divider"></li>
               <li><a href="" data-ui-sref="user.account({userId: user.userId})">Einstellungen</a></li>
               <li><a href="" data-ng-click="logout()">Abmelden</a></li>
             </ul>
