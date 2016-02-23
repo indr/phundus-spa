@@ -17,8 +17,8 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('ShopIndexCtrl', ['$scope', 'ShopItems', 'Alert',
-    function ($scope, ShopItems, Alert) {
+  .controller('ShopIndexCtrl', ['$scope', 'ShopItems', 'Alert', '$uibModal',
+    function ($scope, ShopItems, Alert, $uibModal) {
 
       $scope.currentPage = 1;
       $scope.limit = 8;
@@ -48,7 +48,7 @@ angular.module('phundusApp')
       };
 
       $scope.searchQuery = function (searchQuery, lessorId) {
-        filter.searchQuery = searchQuery;
+        filter.searchQuery = searchQuery;modals
         filter.lessorId = lessorId;
         getItems();
       };
@@ -56,12 +56,25 @@ angular.module('phundusApp')
       $scope.$watch('currentPage', function () {
         getItems();
       });
+
+      $scope.showItem = function (item) {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/shop/shop-item-modal.html',
+          controller: 'ShopItemCtrl',
+          resolve: {
+            itemId: function () {
+              return item.itemId;
+            }
+          },
+          size: 'lg'
+        });
+      };
     }
   ]);
 
 angular.module('phundusApp')
-  .controller('ShopItemCtrl', ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth',
-    function ($scope, itemId, ShopItems, Lessors, Alert, Auth) {
+  .controller('ShopItemCtrl', ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth', '$uibModalInstance',
+    function ($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
       var lessor = null;
 
       $scope.itemId = itemId;
@@ -81,6 +94,10 @@ angular.module('phundusApp')
 
       $scope.canRent = function () {
         return lessor && (lessor.publicRental || Auth.isMember(lessor.lessorId));
+      };
+
+      $scope.close = function () {
+        $uibModalInstance.dismiss('cancel');
       };
     }
   ]);

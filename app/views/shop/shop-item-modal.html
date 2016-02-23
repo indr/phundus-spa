@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" data-ng-click="close()" aria-label="Close"><span
+    aria-hidden="true">&times;</span></button>
+  <div style="display:block; float:right; margin-right: 20px">
+    <a href=""data-ui-sref="public.shop-item({itemId: item.itemId})" data-ng-click="close()" title="Permalink"><span style="font-size:1.5em" class="glyphicon glyphicon-link"></span></a>
+  </div>
+  <h3>{{item.name}}</h3>
+</div>
+<div class="modal-body">
+  <div data-ng-include data-src="'views/shop/shop-item.html'"></div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" type="button" data-ng-click="close()">Schliessen</button>
+</div>

@@ -66,12 +66,15 @@ var app = angular
       })
       .state('public.shop-item', {
         url: '/shop/:itemId',
-        templateUrl: 'views/shop/shop-item.html',
+        templateUrl: 'views/shop/shop-item-page.html',
         controller: 'ShopItemCtrl',
         resolve: {
           itemId: ['$stateParams', function ($stateParams) {
             return $stateParams.itemId;
-          }]
+          }],
+          $uibModalInstance: function () {
+            return null;
+          }
         }
       })
       .state('public.organizations', {
