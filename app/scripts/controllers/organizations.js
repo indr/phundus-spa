@@ -624,7 +624,7 @@ angular.module('phundusApp')
         });
 
         modalInstance.result.then(function (member) {
-          Orders.post({ownerId: $scope.organizationId, lesseeId: member.id}, function (data) {
+          Orders.post({ownerId: $scope.organizationId, lesseeId: member.memberId}, function (data) {
             $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
           }, function () {
             Alert.error('Fehler beim Erstellen der Bestellung.');
@@ -711,6 +711,7 @@ angular.module('phundusApp')
         });
 
         modalInstance.result.then(function (item) {
+          console.log(item);
           $scope.newItem.fromUtc = item.fromUtc;
           $scope.newItem.toUtc = item.toUtc;
           $scope.newItem.amount = item.amount;

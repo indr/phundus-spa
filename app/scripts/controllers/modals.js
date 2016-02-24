@@ -32,8 +32,8 @@ angular.module('phundusApp')
           return;
         }
         $uibModalInstance.close({
-          lessorId: lessorId, orderId: orderId, articleId: $scope.selected.id,
-          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, amount: $scope.amount
+          lessorId: lessorId, orderId: orderId, articleId: $scope.selected.articleId,
+          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.amount
         });
       };
 
