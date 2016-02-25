@@ -50,6 +50,7 @@ angular.module('phundusApp')
       $scope.searchQuery = function (searchQuery, lessorId) {
         filter.searchQuery = searchQuery;
         filter.lessorId = lessorId;
+        $scope.currentPage = 1;
         getItems();
       };
 
