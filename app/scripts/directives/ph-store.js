@@ -80,6 +80,17 @@ angular.module('phundusApp')
             trySetViewToStore();
           });
 
+          scope.updateName = function () {
+            scope.nameForm.$submitting = true;
+            Stores.patch({storeId: scope.store.storeId, name: scope.store.name}, function () {
+              scope.nameForm.$submitting = false;
+              scope.nameForm.$visible = false;
+            }, function () {
+              scope.nameForm.$submitting = false;
+              Alert.error('Fehler beim Speichern des Namens.');
+            });
+          };
+
           scope.updateAddress = function () {
             scope.addressForm.$submitting = true;
             Stores.patch({storeId: scope.store.storeId, address: scope.store.address}, function () {
