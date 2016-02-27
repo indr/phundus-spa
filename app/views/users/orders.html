@@ -9,7 +9,7 @@
     </th>
   </tr>
   <tr>
-    <th data-st-sort-default="true" data-st-sort="orderId">Nummer</th>
+    <th data-st-sort-default="true" data-st-sort="orderShortId">Nummer</th>
     <th data-st-sort="createdAtUtc">Erstellt</th>
     <th data-st-sort="lessorName">Vermieter</th>
     <th data-st-sort="lesseeName">Mieter</th>
@@ -19,7 +19,7 @@
   </thead>
   <tbody>
   <tr data-ng-repeat="order in displayedCollection">
-    <td>{{order.orderId}}</td>
+    <td>{{order.orderShortId}}</td>
     <td>
       <ph-date value="order.createdAtUtc"></ph-date>
     </td>
@@ -29,7 +29,7 @@
     <td class="text-right">
       <a class="btn btn-default btn-sm" href=""
          data-ui-sref="user.orders.order({userId: userId, orderId: order.orderId})">Öffnen</a>
-      <a class="btn btn-default btn-sm" href="/api/v0/orders/{{order.orderId}}.pdf">PDF</a>
+      <a class="btn btn-default btn-sm" href="/api/v0/orders/{{order.orderId}}/pdf">PDF</a>
     </td>
   </tr>
   </tbody>

@@ -1,4 +1,4 @@
-<h2>Bestellung {{order.orderId}}</h2>
+<h2>Bestellung {{order.orderShortId}}</h2>
 
 <div data-ng-show="order" class="row">
   <div class="col-lg-4">
@@ -110,7 +110,7 @@
 <div class="row">
   <div class="col-sm-6">
     <a class="btn btn-default" href="" ph-history-back>Zurück</a>
-    <a data-ng-show="order" class="btn btn-default" href="/api/orders/{{order.orderId}}.pdf">PDF</a>
+    <a data-ng-show="order" class="btn btn-default" href="/api/orders/{{order.orderId}}/pdf">PDF</a>
   </div>
   <div ng-show="order" class="col-sm-6" style="text-align:right">
     <a class="btn btn-default" data-ng-show="canEdit()" href="" data-ng-click="showAddItem(order)">Artikel

@@ -107,7 +107,11 @@ angular.module('phundusApp')
 
         modalInstance.result.then(function (article) {
           Articles.post(article, function (res) {
-            $state.go('user.articles.article.details', {userId: userId, articleId: res.articleId, articleShortId: res.articleShortId});
+            $state.go('user.articles.article.details', {
+              userId: userId,
+              articleId: res.articleId,
+              articleShortId: res.articleShortId
+            });
           }, function () {
             Alert.error('Fehler beim Erstellen des Materials.');
           });
