@@ -65,15 +65,15 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="amount">Menge</label>
+      <label class="col-sm-3 control-label" for="quantity">Menge</label>
 
       <div class="col-sm-9"
-           data-ng-class="{'has-error':!addItemForm.amount.$valid && addItemForm.amount.$touched}">
-        <input type="number" class="form-control" id="amount" name="amount" data-ng-model="amount"
+           data-ng-class="{'has-error':!addItemForm.quantity.$valid && addItemForm.quantity.$touched}">
+        <input type="number" class="form-control" id="quantity" name="quantity" data-ng-model="quantity"
                required min="0">
-        <span class="help-block" data-ng-show="addItemForm.amount.$error.required && addItemForm.amount.$touched">Erforderlich!</span>
-        <span class="help-block" data-ng-show="addItemForm.amount.$error.number">Keine gültige Zahl!</span>
-        <span class="help-block" data-ng-show="addItemForm.amount.$error.min || addItemForm.amount.$error.max">Die Menge muss grösser als 0 sein!</span>
+        <span class="help-block" data-ng-show="addItemForm.quantity.$error.required && addItemForm.quantity.$touched">Erforderlich!</span>
+        <span class="help-block" data-ng-show="addItemForm.quantity.$error.number">Keine gültige Zahl!</span>
+        <span class="help-block" data-ng-show="addItemForm.quantity.$error.min || addItemForm.quantity.$error.max">Die Menge muss grösser als 0 sein!</span>
       </div>
     </div>
 

@@ -365,7 +365,7 @@ angular.module('phundusApp')
       };
 
       $scope.newItem = {
-        articleId: '', amount: 1, fromUtc: new Date(), toUtc: new Date(), orderId: orderId
+        articleId: '', quantity: 1, fromUtc: new Date(), toUtc: new Date(), orderId: orderId
       };
 
       $scope.showAddItem = function () {
@@ -389,7 +389,7 @@ angular.module('phundusApp')
         modalInstance.result.then(function (item) {
           $scope.newItem.fromUtc = item.fromUtc;
           $scope.newItem.toUtc = item.toUtc;
-          $scope.newItem.amount = item.amount;
+          $scope.newItem.quantity = item.quantity;
 
           OrderItems.post(item, function (data) {
 
@@ -402,7 +402,7 @@ angular.module('phundusApp')
 
       $scope.editItem = function (item) {
         $scope.saveValues = {
-          amount: item.amount,
+          quantity: item.quantity,
           fromUtc: item.fromUtc,
           toUtc: item.toUtc,
           itemTotal: item.itemTotal
@@ -415,10 +415,10 @@ angular.module('phundusApp')
         item.editing = false;
         $scope.newItem.fromUtc = item.fromUtc;
         $scope.newItem.toUtc = item.toUtc;
-        $scope.newItem.amount = item.amount;
+        $scope.newItem.quantity = item.quantity;
         OrderItems.patch({orderId: $scope.order.orderId}, item,
           function (data) {
-            item.amount = data.amount;
+            item.quantity = data.quantity;
             item.fromUtc = data.fromUtc;
             item.toUtc = data.toUtc;
             item.isAvailable = data.isAvailable;
@@ -429,7 +429,7 @@ angular.module('phundusApp')
 
       $scope.cancelEditing = function (item) {
         item.editing = false;
-        item.amount = $scope.saveValues.amount;
+        item.quantity = $scope.saveValues.quantity;
         item.fromUtc = $scope.saveValues.fromUtc;
         item.toUtc = $scope.saveValues.toUtc;
         item.itemTotal = $scope.saveValues.itemTotal;
@@ -438,7 +438,7 @@ angular.module('phundusApp')
       $scope.calculateItemTotal = function (item) {
         var days = Math.max(1, Math.ceil((new Date(item.toUtc) - new Date(item.fromUtc)) / (1000 * 60 * 60 * 24)));
 
-        item.itemTotal = Math.round(100 * item.unitPrice / 7 * days * item.amount) / 100;
+        item.itemTotal = Math.round(100 * item.unitPrice / 7 * days * item.quantity) / 100;
       };
 
       $scope.removeItem = function (item) {

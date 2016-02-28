@@ -13,7 +13,7 @@
           <tbody>
           <tr data-ng-repeat="row in stock.availabilities">
             <td>{{row.fromUtc |date:'dd.MM.yyyy'}}</td>
-            <td>{{row.amount}}</td>
+            <td>{{row.quantity}}</td>
           </tr>
           </tbody>
         </table>
@@ -36,7 +36,7 @@
           <tr data-ng-repeat="row in stock.reservations">
             <td>{{row.fromUtc |date:'dd.MM.yyyy'}}</td>
             <td>{{row.toUtc |date:'dd.MM.yyyy'}}</td>
-            <td>{{row.amount}}</td>
+            <td>{{row.quantity}}</td>
           </tr>
           </tbody>
         </table>

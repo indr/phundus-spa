@@ -44,7 +44,7 @@
       <td data-ng-show="!item.isAvailable"><span class="glyphicon glyphicon-remove"></span></td>
       <td data-ng-show="!item.editing">{{item.fromUtc | date:'mediumDate'}}</td>
       <td data-ng-show="!item.editing">{{item.toUtc | date:'mediumDate'}}</td>
-      <td data-ng-show="!item.editing">{{item.amount}}</td>
+      <td data-ng-show="!item.editing">{{item.quantity}}</td>
       <td data-ng-show="item.editing" class="col-sm-2"
           data-ng-class="{'has-error':!orderForm.item_{{$index}}_fromUtc.$valid && orderForm.item_{{$index}}_fromUtc.$touched}">
         <p class="input-group">
@@ -68,8 +68,8 @@
         </p>
       </td>
       <td data-ng-show="item.editing" class="col-sm-1"
-          data-ng-class="{'has-error':!orderForm.item_{{$index}}_amount.$valid && orderForm.item_{{$index}}_amount.$touched}">
-        <input class="form-control" type="number" required data-ng-model="item.amount" name="item_{{$index}}_amount"/>
+          data-ng-class="{'has-error':!orderForm.item_{{$index}}_quantity.$valid && orderForm.item_{{$index}}_quantity.$touched}">
+        <input class="form-control" type="number" required data-ng-model="item.quantity" name="item_{{$index}}_quantity"/>
       </td>
       <td>{{item.unitPrice | number:2}}</td>
       <td data-ng-show="!item.editing">{{item.itemTotal | number:2}}</td>

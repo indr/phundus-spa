@@ -7,12 +7,12 @@ angular.module('phundusApp')
       if (item) {
         $scope.fromUtc = item.fromUtc;
         $scope.toUtc = item.toUtc;
-        $scope.amount = item.amount;
+        $scope.quantity = item.quantity;
       }
       else {
         $scope.fromUtc = new Date();
         $scope.toUtc = new Date();
-        $scope.amount = 1;
+        $scope.quantity = 1;
       }
 
       $scope.getArticles = function (val) {
@@ -33,7 +33,7 @@ angular.module('phundusApp')
         }
         $uibModalInstance.close({
           lessorId: lessorId, orderId: orderId, articleId: $scope.selected.articleId,
-          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.amount
+          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.quantity
         });
       };
 
@@ -48,13 +48,13 @@ angular.module('phundusApp')
     function ($scope, $uibModalInstance, ownerId) {
 
       $scope.name = '';
-      $scope.amount = 1;
+      $scope.quantity = 1;
 
       $scope.ok = function () {
         if (!$scope.form.$valid) {
           return;
         }
-        $uibModalInstance.close({ownerId: ownerId, name: $scope.name, amount: $scope.amount});
+        $uibModalInstance.close({ownerId: ownerId, name: $scope.name, quantity: $scope.quantity});
       };
 
       $scope.cancel = function () {

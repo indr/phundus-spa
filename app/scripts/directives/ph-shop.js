@@ -85,7 +85,7 @@ angular.module('phundusApp')
             labels.push($filter('date')(moment(data[data.length-1].fromUtc).add(1, 'months').calendar(), 'mediumDate'));
 
             var values = _.map(data, function (each) {
-              return each.amount;
+              return each.quantity;
             });
             values.push(values[values.length-1]);
 
