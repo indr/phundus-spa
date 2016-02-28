@@ -4,6 +4,12 @@
   <h3>E-Mail-Adresse ändern</h3>
 </div>
 <div class="modal-body">
+  <div class="alert alert-danger" data-ng-show="error">
+    {{error}}
+  </div>
+  <div class="alert alert-success" data-ng-show="success">
+    {{success}}
+  </div>
   <form name="formChangeEmailAddress" class="form-horizontal" novalidate>
 
     <div class="form-group">

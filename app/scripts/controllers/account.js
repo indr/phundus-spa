@@ -21,12 +21,15 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('AccountChangePasswordCtrl', ['$scope', '$uibModalInstance', 'Alert', 'AccountChangePassword',
-    function ($scope, $uibModalInstance, Alert, AccountChangePassword) {
+  .controller('AccountChangePasswordCtrl', ['$scope', '$uibModalInstance', '$timeout', 'AccountChangePassword',
+    function ($scope, $uibModalInstance, $timeout, AccountChangePassword) {
       $scope.ok = function () {
         if (!$scope.formChangePassword.$valid) {
           return;
         }
+
+        $scope.success = null;
+        $scope.error = null;
 
         $scope.formChangePassword.$submitting = true;
         AccountChangePassword.post($scope.changePassword, function () {
@@ -36,11 +39,13 @@ angular.module('phundusApp')
             $scope.formChangePassword.$setUntouched();
           }
           $scope.changePassword = {};
-          $uibModalInstance.close();
-          Alert.success('Das Passwort wurde geändert.');
+          $scope.success = 'Das Passwort wurde erfolgreich geändert.';
+          $timeout(function () {
+            $uibModalInstance.close();
+          }, 2000);
         }, function () {
-          $scope.formChangePassword.$suclosebmitting = false;
-          Alert.error('Fehler beim Ändern des Passworts.')
+          $scope.formChangePassword.$submitting = false;
+          $scope.error = 'Fehler beim Ändern des Passworts.';
         });
       };
 
@@ -51,12 +56,15 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('AccountChangeEmailAddressCtrl', ['$scope', '$uibModalInstance', 'Alert', 'AccountChangeEmailAddress',
-    function ($scope, $uibModalInstance, Alert, AccountChangeEmailAddress) {
+  .controller('AccountChangeEmailAddressCtrl', ['$scope', '$uibModalInstance', '$timeout', 'AccountChangeEmailAddress',
+    function ($scope, $uibModalInstance, $timeout, AccountChangeEmailAddress) {
       $scope.ok = function () {
         if (!$scope.formChangeEmailAddress.$valid) {
           return;
         }
+
+        $scope.success = null;
+        $scope.error = null;
 
         $scope.formChangeEmailAddress.$submitting = true;
         AccountChangeEmailAddress.post($scope.changeEmailAddress, function () {
@@ -66,11 +74,13 @@ angular.module('phundusApp')
             $scope.formChangeEmailAddress.$setUntouched();
           }
           $scope.changeEmailAddress = {};
-          $uibModalInstance.close();
-          Alert.success('Das Bestätigungs-E-Mail wurde versendet.');
+          $scope.success = 'Das Bestätigungs-E-Mail wurde versendet.';
+          $timeout(function () {
+            $uibModalInstance.close();
+          }, 2000);
         }, function () {
           $scope.formChangeEmailAddress.$submitting = false;
-          Alert.error('Fehler beim Ändern der E-Mail-Addresse.')
+          $scope.error = 'Fehler beim Ändern der E-Mail-Addresse.';
         });
 
       };
