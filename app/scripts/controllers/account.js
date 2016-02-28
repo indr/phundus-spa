@@ -1,8 +1,32 @@
 'use strict';
 
 angular.module('phundusApp')
-  .controller('UsersAccountCtrl', ['$scope', '$uibModal',
-    function ($scope, $uibModal) {
+  .controller('UsersAccountCtrl', ['$scope', '$uibModal', 'userId', 'Users',
+    function ($scope, $uibModal, userId, Users) {
+
+      Users.get({userId: userId}, function (res) {
+        var address = res.address;
+        address.postcode = parseInt(address.postcode);
+        $scope.address = address;
+        $scope.emailAddress = res.email;
+      });
+
+      $scope.showChangeContact = function () {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/account/modal-change-contact.html',
+          controller: 'AccountChangeContactCtrl',
+          resolve: {
+            userId: function () {
+              return userId
+            },
+            contact: angular.copy($scope.address)
+          }
+        });
+
+        modalInstance.result.then(function (contact) {
+          $scope.address = contact;
+        });
+      };
 
       $scope.showChangePassword = function () {
         $uibModal.open({
@@ -16,6 +40,36 @@ angular.module('phundusApp')
           templateUrl: 'views/account/modal-change-email-address.html',
           controller: 'AccountChangeEmailAddressCtrl'
         });
+      };
+    }
+  ]);
+
+angular.module('phundusApp')
+  .controller('AccountChangeContactCtrl', ['$scope', '$timeout', '$uibModalInstance', 'userId', 'contact', 'UsersAddress',
+    function ($scope, $timeout, $uibModalInstance, userId, contact, UsersAddress) {
+
+      $scope.contact = contact;
+
+      $scope.ok = function () {
+        if (!$scope.formChangeContact.$valid) {
+          return;
+        }
+
+        $scope.success = null;
+        $scope.error = null;
+
+        UsersAddress.put({userId: userId}, $scope.contact, function () {
+          $scope.success = 'Die Kontaktangaben wurden erfolgreich geändert.';
+          $timeout(function () {
+            $uibModalInstance.close($scope.contact);
+          }, 2000);
+        }, function () {
+          $scope.error = 'Fehler beim Speichern der Kontaktangaben.';
+        });
+      };
+
+      $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
       };
     }
   ]);
