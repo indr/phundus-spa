@@ -1,94 +1,12 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
-    <h2>E-Mail-Adresse ändern</h2>
-
-    <form name="formChangeEmailAddress" novalidate>
-      <div class="form-group" data-has-error="formChangeEmailAddress.password">
-        <label class="control-label" for="oldPassword">Aktuelles Passwort</label>
-
-        <input type="password" class="form-control" id="password" name="password" data-ng-model="changeEmailAddress.password"
-               required/>
-
-        <div role="alert" data-ng-messages="formChangeEmailAddress.password.$error"
-             data-ng-show="formChangeEmailAddress.password.$touched || formChangeEmailAddress.$submitted">
-          <div data-ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group" data-has-error="formChangeEmailAddress.newEmailAddress">
-        <label class="control-label" for="newEmailAddress">Neue E-Mail-Adresse</label>
-
-        <input type="email" class="form-control input" id="newEmailAddress" name="newEmailAddress"
-               data-ng-model="changeEmailAddress.newEmailAddress" required is-unique-email-address/>
-
-        <div role="alert" data-ng-messages="formChangeEmailAddress.newEmailAddress.$error"
-             data-ng-show="formChangeEmailAddress.newEmailAddress.$touched || formChangeEmailAddress.$submitted">
-          <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
-          <div data-ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group">
-        <ph-submit class="btn-primary btn" data-ng-click="submitChangeEmailAddress()"
-                   data-form="formChangeEmailAddress" data-text="Bestätigungs-E-Mail senden"></ph-submit>
-      </div>
-    </form>
-  </div>
-
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 col-lg-offset-2">
-    <h2>Passwort ändern</h2>
-
-    <form name="formChangePassword" novalidate>
-
-      <div class="form-group" data-has-error="formChangePassword.oldPassword">
-        <label class="control-label" for="oldPassword">Aktuelles Passwort</label>
-
-        <input type="password" class="form-control" id="oldPassword" name="oldPassword" data-ng-model="changePassword.oldPassword"
-               required/>
-
-        <div role="alert" data-ng-messages="formChangePassword.oldPassword.$error"
-             data-ng-show="formChangePassword.oldPassword.$touched || formChangePassword.$submitted">
-          <div data-ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group" data-has-error="formChangePassword.newPassword">
-        <label class="control-label" for="newPassword">Neues Passwort</label>
-
-        <input type="password" class="form-control" id="newPassword" name="newPassword" data-ng-model="changePassword.newPassword"
-               required/>
-
-        <div role="alert" data-ng-messages="formChangePassword.newPassword.$error"
-             data-ng-show="formChangePassword.newPassword.$touched || formChangePassword.$submitted">
-          <div data-ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group" data-has-error="formChangePassword.confirmPassword">
-        <label class="control-label" for="confirmPassword">Passwort (Wiederholung)</label>
-
-        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-               data-ng-model="changePassword.confirmPassword" required data-compare-to="changePassword.newPassword"/>
-
-        <div role="alert" data-ng-messages="formChangePassword.confirmPassword.$error"
-             data-ng-show="formChangePassword.confirmPassword.$touched || formChangePassword.$submitted">
-          <div class="help-block" data-ng-message="compareTo">Die Passwort-Wiederholung stimmt nicht mit dem
-            Passwort überein.
-          </div>
-          <div data-ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group">
-        <ph-submit class="btn-primary btn" data-ng-click="submitChangePassword()"
-                   data-form="formChangePassword" data-text="Passwort ändern"></ph-submit>
-      </div>
-
-    </form>
+  <div class="col-xs-12 col-sm-6"></div>
+  <div class="col-xs-12 col-sm-6">
+    <h2>Konto</h2>
+    <p>
+      <a href="" class="btn btn-default btn-lg" style="display:block" data-ng-click="showChangePassword()">Passwort ändern</a>
+    </p>
+    <p>
+      <a href="" class="btn btn-default btn-lg" style="display:block" data-ng-click="showChangeEmailAddress()">E-Mail-Adresse ändern</a>
+    </p>
   </div>
 </div>
