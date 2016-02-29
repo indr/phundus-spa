@@ -107,9 +107,11 @@ angular.module('phundusApp')
 
 
       Organizations.get({organizationId: organizationId}, function (res) {
-        $scope.contactDetails = res.contactDetails;
+        var contactDetails = res.contactDetails;
+        contactDetails.postcode = parseInt(contactDetails.postcode);
+        $scope.contactDetails = contactDetails;
       }, function () {
-        Alert.error('Fehler beim Laden der Einstellungen.');
+        Alert.error('Fehler beim Laden der Kontaktdetails.');
       });
 
 
@@ -121,11 +123,11 @@ angular.module('phundusApp')
         $scope.form.$submitting = true;
         Organizations.patch({organizationId: organizationId, contactDetails: $scope.contactDetails}, function () {
           $scope.form.$submitting = false;
-          Alert.success('Die Einstellungen wurde erfolgreich gespeichert.');
+          Alert.success('Die Kontaktdetails wurde erfolgreich gespeichert.');
           goBack();
         }, function () {
           $scope.form.$submitting = false;
-          Alert.error('Fehler beim Speichern der Einstellungen.');
+          Alert.error('Fehler beim Speichern der Kontaktdetails.');
         });
 
       };

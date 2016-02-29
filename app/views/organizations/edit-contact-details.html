@@ -16,11 +16,41 @@
             </div>
           </div>
   -->
-  <div class="form-group">
-    <label class="col-sm-3 control-label" for="postAddress">Anschrift / Adresse</label>
 
-    <div class="col-sm-9" data-has-error="form.postAddress">
-      <textarea class="form-control" id="postAddress" name="postAddress" data-ng-model="contactDetails.postAddress" rows="4"></textarea>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="line1">Anschrift</label>
+
+    <div class="col-sm-9" data-has-error="form.line1">
+      <input type="text" class="form-control" id="line1" name="line1" data-ng-model="contactDetails.line1">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="line2">Zusatz</label>
+
+    <div class="col-sm-9" data-has-error="form.line2">
+      <input type="text" class="form-control" id="line2" name="line2" data-ng-model="contactDetails.line2">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="street">Strasse</label>
+
+    <div class="col-sm-9" data-has-error="form.street">
+      <input type="text" class="form-control" id="street" name="street" data-ng-model="contactDetails.street">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-xs-12 col-sm-3 control-label" for="postcode">Postleitzahl / Ort</label>
+
+    <div class="col-xs-5 col-sm-3" data-has-error="form.postcode">
+      <input type="number" class="form-control" id="postcode" name="postcode" data-ng-model="contactDetails.postcode"
+             required min="1000" max="9999"/>
+    </div>
+    <div class="col-xs-7 col-sm-6" data-has-error="form.city">
+      <input type="text" class="form-control" id="city" name="city" data-ng-model="contactDetails.city">
     </div>
   </div>
 
