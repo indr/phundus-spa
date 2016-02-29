@@ -9,7 +9,7 @@
  */
 angular.module('phundusApp')
   .filter('replace', function () {
-    return function(input, pattern, replace) {
+    return function (input, pattern, replace) {
       if (input === undefined || input === null) {
         return null;
       }
