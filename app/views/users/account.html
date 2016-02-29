@@ -9,7 +9,11 @@
     </p>
 
     <p>
-      Telefon: {{address.phoneNumber}}
+      <span class="glyphicon glyphicon-earphone" title="Telefonnummer"></span> {{address.phoneNumber}}
+    </p>
+
+    <p>
+      <span class="glyphicon glyphicon-envelope" title="E-Mail-Adresse"></span> {{emailAddress}}
     </p>
 
     <p>
@@ -19,11 +23,7 @@
   </div>
   <div class="col-xs-12 col-sm-6">
     <h2>Konto</h2>
-
-    <p>
-      E-Mail-Adresse: {{emailAddress}}
-    </p>
-
+    
     <p>
       <a href="" class="btn btn-default btn-lg" style="display:block" data-ng-click="showChangeEmailAddress()">E-Mail-Adresse
         ändern</a>

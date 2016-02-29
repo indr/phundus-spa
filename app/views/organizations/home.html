@@ -48,14 +48,17 @@
 
     <div>
       <h3>Kontakt <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.contact-details({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h3>
-      <address data-ng-show="organization.address" style="white-space:pre">{{organization.address}}</address>
+      <address data-ng-show="organization.contact.postalAddress" style="white-space:pre">{{organization.contact.postalAddress}}</address>
       <address>
-        <div data-access-level="accessLevels.user" data-ng-show="organization.emailAddress">
-          E-Mail:
-          {{organization.emailAddress|replace:'@.*$':''}} AT <span style="display:none;">null.</span><span>{{organization.emailAddress|replace:'^.*@':''}}</span>
+        <div data-ng-show="organization.contact.phoneNumber">
+          <span class="glyphicon glyphicon-earphone" title="Telefonnummer"></span> {{organization.contact.phoneNumber}}
         </div>
-        <div data-ng-show="organization.website">Webseite:
-          <a href="{{organization.website}}">{{organization.website}}</a></div>
+        <div data-access-level="accessLevels.user" data-ng-show="organization.contact.emailAddress">
+          <span class="glyphicon glyphicon-envelope" title="E-Mail-Addresse"></span> {{organization.contact.emailAddress|replace:'@.*$':''}} AT <span style="display:none;">null.</span><span>{{organization.contact.emailAddress|replace:'^.*@':''}}</span>
+        </div>
+        <div data-ng-show="organization.contact.website">
+          <span class="glyphicon glyphicon-globe" title="Webseite"></span>
+          <a href="{{organization.contact.website}}">{{organization.contact.website}}</a></div>
       </address>
     </div>
 

@@ -107,7 +107,7 @@ angular.module('phundusApp')
 
 
       Organizations.get({organizationId: organizationId}, function (res) {
-        var contactDetails = res.contactDetails;
+        var contactDetails = res.contact;
         contactDetails.postcode = parseInt(contactDetails.postcode);
         $scope.contactDetails = contactDetails;
       }, function () {
