@@ -140,10 +140,25 @@ img.avatar {
   color: #666;
 }
 
+.vcard-postal-address {
+  white-space: pre-line;
+  margin-bottom: 15px;
+}
+
 .vcard-details {
   padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: solid #eee 1px;
+  list-style-type: none;
+}
+
+.vcard-details li {
+  margin-bottom: 4px;
+}
+
+.vcard-details span.glyphicon {
+  margin-right: 5px;
+
 }
 
 .vcard-memberships {

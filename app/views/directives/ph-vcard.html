@@ -1,0 +1,9 @@
+<div class="vcard" data-ng-show="vcard">
+  <address class="vcard-postal-address">{{vcard.postalAddress}}</address>
+
+  <ul class="vcard-details" style="border-bottom-width:0; margin-bottom:0; padding:0">
+    <li data-ng-show="vcard.phoneNumber"><span class="glyphicon glyphicon-earphone" title="Telefonnummer"></span> {{vcard.phoneNumber}}</li>
+    <li data-ng-show="vcard.emailAddress"><span class="glyphicon glyphicon-envelope" title="E-Mail-Adresse"></span> <ph-email-address data-email-address="vcard.emailAddress"></ph-email-address></li>
+    <li data-ng-show="vcard.website"><span class="glyphicon glyphicon-globe" title="Webseite"></span> <a href="{{vcard.website}}">{{vcard.website}}</a></li>
+  </ul>
+</div>
