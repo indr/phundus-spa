@@ -15,7 +15,6 @@ angular.module('phundusApp')
     }
   ])
 
-
   .directive('phVcard', [
     function () {
       return {
@@ -35,10 +34,26 @@ angular.module('phundusApp')
         scope: {
           lessor: '=lessor'
         },
-        template:
-        '<a data-ng-show="lessor.url" href="{{lessor.url}}">{{lessor.name}}</a>' +
+        template: '<a data-ng-show="lessor.url" href="{{lessor.url}}">{{lessor.name}}</a>' +
         '<a data-ng-show="!lessor.url && lessor.type == \'user\'" href="" data-ui-sref="user.home({userId: lessor.lessorId})">{{lessor.name}}</a>' +
         '<a data-ng-show="!lessor.url && lessor.type == \'organization\'" href="" data-ui-sref="public.organization({organizationId: lessor.lessorId})">{{lessor.name}}</a>'
       }
     }
-  ]);
+  ])
+
+  .directive('phEditArticleLink', [
+    function () {
+      return {
+        restrict: 'E',
+        scope: {
+          articleId: '=',
+          articleShortId: '=',
+          ownerId: '=',
+          ownerType: '='
+        },
+        template: '<a data-ng-show="ownerType == \'organization\'" href="" data-ui-sref="organizations.articles.edit.details({organizationId: ownerId, articleId: articleId, articleShortId: articleShortId})">org</a>' +
+        '<a data-ng-show="ownerType == \'user\'" href="" data-ui-sref="user.articles.article({userId: ownerId, articleId: articleId, articleShortId: articleShortId})">user</a>'
+      }
+    }
+  ])
+;

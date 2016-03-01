@@ -223,3 +223,7 @@ canvas {
   max-width: 800px;
   height: auto !important;
 }
+
+.glyphicon-lg {
+  font-size:1.5em;
+}

@@ -15,9 +15,9 @@
 <div class="row" style="margin-top:20px" data-ng-if="item != null">
   <div class="col-xs-12 col-md-4">
     <div data-access-level="accessLevels.user" data-ng-show="lessor">
-      <ph-shop-item-add-to-cart item="item" data-ng-show="canRent()"></ph-shop-item-add-to-cart>
+      <ph-shop-item-add-to-cart item="item" data-ng-show="canRent"></ph-shop-item-add-to-cart>
 
-      <div class="alert alert-info" data-ng-hide="canRent()">
+      <div class="alert alert-info" data-ng-hide="canRent">
         Dieser Artikel steht nur den Mitglieder dieser Organisation zur Verfügung.
       </div>
     </div>

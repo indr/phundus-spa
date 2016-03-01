@@ -7,7 +7,16 @@
     </div>
     <div class="col-xs-2" style="margin-top:15px">
       <div style="text-align:right">
-        <a href=""data-ui-sref="public.shop-item({itemId: item.itemId})" data-ng-click="close()" title="Permalink"><span style="font-size:1.5em" class="glyphicon glyphicon-link"></span></a>
+        <a href="" data-ui-sref="public.shop-item({itemId: item.itemId})" data-ng-click="close()"
+           title="Permalink"><span class="glyphicon glyphicon-link glyphicon-lg"></span></a>
+
+        <a data-ng-show="canEdit && item.lessor.type == 'organization'" href=""
+           data-ui-sref="organizations.articles.edit.details({organizationId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
+           data-ng-click="close()" title="Material bearbeiten"><span class="glyphicon glyphicon-pencil glyphicon-lg"></span></a>
+
+        <a data-ng-show="canEdit && item.lessor.type == 'user'" href=""
+           data-ui-sref="user.articles.article.details({userId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
+           data-ng-click="close()" title="Material bearbeiten"><span class="glyphicon glyphicon-pencil glyphicon-lg"></span></a>
       </div>
     </div>
   </div>

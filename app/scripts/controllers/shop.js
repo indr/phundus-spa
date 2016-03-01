@@ -82,6 +82,8 @@ angular.module('phundusApp')
       $scope.item = null;
       $scope.itemId = itemId;
       $scope.accessLevels = Auth.accessLevels;
+      $scope.canEdit = false;
+      $scope.canRent = false;
 
       ShopItems.get({itemId: itemId}, function (res) {
         $scope.item = res;
@@ -89,6 +91,9 @@ angular.module('phundusApp')
 
         Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
           $scope.lessor = lessor = res;
+
+          $scope.canEdit = (Auth.user.userId === lessor.lessorId) || (Auth.isManager(lessor.lessorId));
+          $scope.canRent = lessor.publicRental || Auth.isMember(lessor.lessorId);
         }, function (res) {
           Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);
         });
@@ -96,10 +101,6 @@ angular.module('phundusApp')
         $scope.isLoading = false;
         Alert.error('Fehler beim Laden des Artikels: ' + res.data.message);
       });
-
-      $scope.canRent = function () {
-        return lessor && (lessor.publicRental || Auth.isMember(lessor.lessorId));
-      };
 
       $scope.close = function () {
         if (!$uibModalInstance) {

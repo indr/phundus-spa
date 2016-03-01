@@ -64,13 +64,21 @@ angular.module('phundusApp')
         }
         return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
       },
+      isManager: function (organizationId, user) {
+        if (user === undefined) {
+          user = currentUser;
+        }
+        return user.memberships && user.memberships.some(function (each) {
+            return each.organizationId === organizationId && each.isManager;
+          });
+      },
       isMember: function (organizationId, user) {
         if (user === undefined) {
           user = currentUser;
         }
         return user.memberships && user.memberships.some(function (each) {
-          return each.organizationId === organizationId;
-        });
+            return each.organizationId === organizationId;
+          });
       },
       login: function (user, success, error) {
         $http.post('/api/v0/sessions', {

@@ -12,6 +12,7 @@ angular.module('phundusApp')
           , organizationId;
 
         $scope.user = Auth.user;
+
         $scope.$watch('user', function (user) {
           if (user.role) {
             userRole = user.role;
