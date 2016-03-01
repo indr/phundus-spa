@@ -102,6 +102,9 @@ angular.module('phundusApp')
       };
 
       $scope.close = function () {
+        if (!$uibModalInstance) {
+          return;
+        }
         $uibModalInstance.dismiss('cancel');
       };
 
