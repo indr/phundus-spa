@@ -33,6 +33,9 @@ angular.module('phundusApp')
   .factory('AdminOrganizations', ['$resource', function ($resource) {
     return $resource('/api/v0/admin/organizations/:organizationId', {organizationId: '@organizationId'});
   }])
+  .factory('Projections', ['$resource', function ($resource) {
+    return $resource('/api/v0/projections/:projectionId', {projectionId: '@projectionId'});
+  }])
   .factory('AdminUsers', ['$resource', function ($resource) {
     return $resource('/api/v0/admin/users/:userId', {userId: '@userId'});
   }])

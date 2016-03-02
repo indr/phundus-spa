@@ -98,16 +98,30 @@ angular.module('phundusApp')
         });
       };
     }
-  ]);
+  ])
 
-/**
- * @ngdoc function
- * @name phundusApp.controller:AdminSchemaUpdateCtrl
- * @description
- * # AdminSchemaUpdateCtrl
- * Controller of the phundusApp
- */
-angular.module('phundusApp')
+  .controller('AdminProjectionsCtrl', ['$scope', 'Projections',
+    function ($scope, Projections) {
+      Projections.query(function (res) {
+        $scope.maxEventId = res.maxEventId;
+        $scope.rowCollection = res.results;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
+      });
+
+      $scope.force = function (row) {
+        Projections.patch({projectionId: row.projectionId});
+      };
+
+      $scope.reset = function (row) {
+        Projections.put({projectionId: row.projectionId});
+      };
+
+      $scope.recreate = function (row) {
+        Projections.delete({projectionId: row.projectionId});
+      };
+    }
+  ])
+
   .controller('AdminSchemaUpdateCtrl', ['$scope', 'SchemaUpdate', 'Alert',
     function ($scope, SchemaUpdate, Alert) {
       $scope.loading = true;

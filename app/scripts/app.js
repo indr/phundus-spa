@@ -497,6 +497,11 @@ var app = angular
         templateUrl: 'views/admin/organizations.html',
         controller: 'AdminOrganizationsIndexCtrl'
       })
+      .state('admin.projections', {
+        url: '/projections',
+        templateUrl: 'views/admin/projections.html',
+        controller: 'AdminProjectionsCtrl'
+      })
       .state('admin.schemaUpdate', {
         url: '/schema-update',
         template: '<pre>{{schemaUpdate}}</pre>',

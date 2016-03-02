@@ -1,0 +1,39 @@
+<p>
+  Max event id: {{maxEventId}}
+</p>
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th colspan="5"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
+  </tr>
+  <tr>
+    <th data-st-sort="name">Name</th>
+    <th>Event</th>
+    <th>Behind</th>
+    <th></th>
+    <!--<th class="text-right"><a class="btn btn-danger" data-ng-click="delete()">Alle löschen</a></th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="row in displayedCollection">
+    <td>{{row.name}}</td>
+    <td>{{row.processedEventId}}</td>
+    <td>{{maxEventId - row.processedEventId}}</td>
+    <td class="text-right">
+      <a class="btn btn-success btn-sm" href="" data-ng-click="force(row)">Process</a>
+      <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)">Reset</a>
+      <a class="btn btn-danger btn-sm" href="" data-ng-click="recreate(row)">Recreate</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info" data-ng-show="!loading && rowCollection.length == 0">
+  <strong>Nichts gefunden!</strong>
+  Es sind keine Projektionen vorhanden.
+</div>
+
+<div class="alert alert-info" data-ng-show="!loading && displayedCollection.length == 0 && rowCollection.length > 0">
+  <strong>Nichts gefunden!</strong>
+  Deine Suche liefert keine Ergebnisse.
+</div>
