@@ -208,6 +208,9 @@ var app = angular
       })
       .state('user.home', {
         url: '',
+        data: {
+          access: access.public
+        },
         templateUrl: 'views/users/home.html',
         controller: 'UsersHomeCtrl'
       })
