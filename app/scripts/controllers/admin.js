@@ -121,7 +121,7 @@ angular.module('phundusApp')
       };
 
       $scope.showStatus = function (row) {
-        if (row.errorMessage == null) {
+        if (row.errorMessage === null) {
           return;
         }
         $window.alert(row.errorMessage);
