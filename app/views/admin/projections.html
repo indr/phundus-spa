@@ -1,36 +1,40 @@
-<p>
-  Max event id: {{maxEventId}}
-</p>
+<h1>Projections</h1>
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th colspan="5"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
-  </tr>
-  <tr>
-    <th data-ng-sort="status"></th>
+    <th data-st-sort="status">Status</th>
+    <th data-st-sort="context">Context</th>
     <th data-st-sort="name">Name</th>
     <th>Processed</th>
     <th>Event</th>
     <th>Behind</th>
     <th></th>
-    <!--<th class="text-right"><a class="btn btn-danger" data-ng-click="delete()">Alle löschen</a></th>-->
+  </tr>
+  <tr>
+    <th colspan="7"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
   </tr>
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
-    <td data-ng-switch="row.status">
-      <span data-ng-switch-when="success" class="glyphicon glyphicon-ok glyphicon-lg"></span>
-      <span data-ng-switch-when="warning" class="glyphicon glyphicon-warning-sign glyphicon-lg"></span>
-      <span data-ng-switch-when="danger" class="glyphicon glyphicon-remove glyphicon-lg"></span>
-      <span data-ng-switch-default="" class="glyphicon glyphicon-question-sign glyphicon-lg"></span>
+    <td>
+      <button type="button" data-ng-disabled data-ng-switch="row.status" class="btn btn-{{row.status}} btn-sm"
+              data-ng-click="showStatus(row)">
+        <span data-ng-switch-when="success" class="glyphicon glyphicon-ok"></span>
+        <span data-ng-switch-when="warning" class="glyphicon glyphicon-warning-sign"></span>
+        <span data-ng-switch-when="danger" class="glyphicon glyphicon-remove"></span>
+        <span data-ng-switch-default="" class="glyphicon glyphicon-question-sign"></span>
+      </button>
     </td>
-    <td>{{row.name | replace:'^Phundus\.':''}}</td>
+    <td>{{row.context}}</td>
+    <td>{{row.name}}</td>
     <td>{{row.processedAtUtc | date:'medium'}}</td>
     <td>{{row.processedEventId}}</td>
     <td>{{row.behind}}</td>
     <td class="text-right">
-      <a class="btn btn-success btn-sm" href="" data-ng-click="force(row)">Process</a>
-      <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)">Reset</a>
+      <a class="btn btn-primary btn-sm" href="" data-ng-click="force(row)" title="Process"><span
+        class="glyphicon glyphicon-arrow-right"></span></a>
+      <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)" title="Reset"><span
+        class="glyphicon glyphicon-refresh"></span></a>
       <!--<a class="btn btn-danger btn-sm" href="" data-ng-click="recreate(row)">Recreate</a>-->
     </td>
   </tr>

@@ -100,8 +100,8 @@ angular.module('phundusApp')
     }
   ])
 
-  .controller('AdminProjectionsCtrl', ['$scope', 'Projections',
-    function ($scope, Projections) {
+  .controller('AdminProjectionsCtrl', ['$scope', 'Projections', '$window',
+    function ($scope, Projections, $window) {
       Projections.query(function (res) {
         $scope.maxEventId = res.maxEventId;
         $scope.rowCollection = res.results;
@@ -118,6 +118,13 @@ angular.module('phundusApp')
 
       $scope.recreate = function (row) {
         Projections.delete({projectionId: row.projectionId});
+      };
+
+      $scope.showStatus = function (row) {
+        if (row.errorMessage == null) {
+          return;
+        }
+        $window.alert(row.errorMessage);
       };
     }
   ])
