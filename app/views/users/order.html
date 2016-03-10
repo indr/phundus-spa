@@ -72,14 +72,14 @@
         <input class="form-control" type="number" required data-ng-model="item.quantity" name="item_{{$index}}_quantity"/>
       </td>
       <td>{{item.unitPrice | number:2}}</td>
-      <td data-ng-show="!item.editing">{{item.itemTotal | number:2}}</td>
+      <td data-ng-show="!item.editing">{{item.lineTotal | number:2}}</td>
       <td data-ng-show="item.editing" class="col-sm-2"
-          data-ng-class="{'has-error':!orderForm.item_{{$index}}_itemTotal.$valid && orderForm.item_{{$index}}_itemTotal.$touched}">
+          data-ng-class="{'has-error':!orderForm.item_{{$index}}_lineTotal.$valid && orderForm.item_{{$index}}_lineTotal.$touched}">
         <p class="input-group">
-          <input class="form-control" type="text" required data-ng-model="item.itemTotal"
-                 name="item_{{$index}}_itemTotal"/>
+          <input class="form-control" type="text" required data-ng-model="item.lineTotal"
+                 name="item_{{$index}}_lineTotal"/>
         <span class="input-group-btn">
-          <button class="btn btn-default" data-ng-click="calculateItemTotal(item)" title="Preis berechnen">
+          <button class="btn btn-default" data-ng-click="calculateLineTotal(item)" title="Preis berechnen">
             <i class="glyphicon glyphicon-refresh"></i></button>
         </span>
         </p>

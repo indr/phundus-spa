@@ -359,7 +359,7 @@ angular.module('phundusApp')
         var total = 0;
 
         for (var i = 0; i < $scope.order.items.length; i++) {
-          total += parseFloat($scope.order.items[i].itemTotal);
+          total += parseFloat($scope.order.items[i].lineTotal);
         }
         return total;
       };
@@ -405,7 +405,7 @@ angular.module('phundusApp')
           quantity: item.quantity,
           fromUtc: item.fromUtc,
           toUtc: item.toUtc,
-          itemTotal: item.itemTotal
+          lineTotal: item.lineTotal
         };
 
         item.editing = true;
@@ -423,7 +423,7 @@ angular.module('phundusApp')
             item.toUtc = data.toUtc;
             item.isAvailable = data.isAvailable;
             item.unitPrice = data.unitPrice;
-            item.itemTotal = data.itemTotal;
+            item.lineTotal = data.lineTotal;
           });
       };
 
@@ -432,13 +432,13 @@ angular.module('phundusApp')
         item.quantity = $scope.saveValues.quantity;
         item.fromUtc = $scope.saveValues.fromUtc;
         item.toUtc = $scope.saveValues.toUtc;
-        item.itemTotal = $scope.saveValues.itemTotal;
+        item.lineTotal = $scope.saveValues.lineTotal;
       };
 
-      $scope.calculateItemTotal = function (item) {
+      $scope.calculateLineTotal = function (item) {
         var days = Math.max(1, Math.ceil((new Date(item.toUtc) - new Date(item.fromUtc)) / (1000 * 60 * 60 * 24)));
 
-        item.itemTotal = Math.round(100 * item.unitPrice / 7 * days * item.quantity) / 100;
+        item.lineTotal = Math.round(100 * item.unitPrice / 7 * days * item.quantity) / 100;
       };
 
       $scope.removeItem = function (item) {

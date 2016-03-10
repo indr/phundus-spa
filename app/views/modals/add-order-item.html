@@ -77,6 +77,15 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="lineTotal">Preis</label>
+
+      <div class="col-sm-9" data-has-error="addItemForm.lineTotal">
+        <input type="number" class="form-control" id="lineTotal" name="lineTotal" data-ng-model="lineTotal" required>
+        <span class="help-block" data-ng-show="addItemForm.lineTotal.$error.required && addItemForm.lineTotal.$touched">Erforderlich!</span>
+        <span class="help-block" data-ng-show="addItemForm.lineTotal.$error.number">Keine gültige Zahl!</span>
+      </div>
+    </div>
   </form>
 </div>
 <div class="modal-footer">

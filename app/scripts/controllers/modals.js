@@ -1,18 +1,31 @@
 'use strict';
 
 angular.module('phundusApp')
-  .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', '$http',
-    function ($scope, $uibModalInstance, lessorId, orderId, item, $http) {
+  .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', 'isMember', '$http', 'PriceCalculator',
+    function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, PriceCalculator) {
+      var priceCalculator = {
+        getTotal: function () {
+          return 0;
+        }
+      };
+
+      var calculateLineTotal = function () {
+        $scope.lineTotal = priceCalculator.getTotal($scope.fromUtc, $scope.toUtc, $scope.quantity, true);
+      };
 
       if (item) {
         $scope.fromUtc = item.fromUtc;
         $scope.toUtc = item.toUtc;
         $scope.quantity = item.quantity;
+        $scope.unitPrice = item.unitPrice;
+        $scope.lineTotal = item.lineTotal;
       }
       else {
         $scope.fromUtc = new Date();
         $scope.toUtc = new Date();
         $scope.quantity = 1;
+        $scope.unitPrice = 0;
+        $scope.lineTotal = 0;
       }
 
       $scope.getArticles = function (val) {
@@ -33,13 +46,43 @@ angular.module('phundusApp')
         }
         $uibModalInstance.close({
           lessorId: lessorId, orderId: orderId, articleId: $scope.selected.articleId,
-          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.quantity
+          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.quantity,
+          lineTotal: $scope.lineTotal
         });
       };
 
       $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
       };
+
+      $scope.$watch('selected', function (article) {
+        if (!article) {
+          return;
+        }
+        priceCalculator = PriceCalculator(lessorId, article.publicPrice, article.memberPrice);
+        calculateLineTotal();
+      });
+
+      $scope.$watch('fromUtc', function (fromUtc) {
+        if (!fromUtc) {
+          return;
+        }
+        calculateLineTotal();
+      });
+
+      $scope.$watch('toUtc', function (toUtc) {
+        if (!toUtc) {
+          return;
+        }
+        calculateLineTotal();
+      });
+
+      $scope.$watch('quantity', function (quantity) {
+        if (!quantity) {
+          return;
+        }
+        calculateLineTotal();
+      });
     }
   ]);
 
