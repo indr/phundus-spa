@@ -2,7 +2,7 @@
 
 angular.module('phundusApp')
   .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', 'isMember', '$http', 'PriceCalculator',
-    function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, PriceCalculator) {
+    function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, priceCalculatorFactory) {
       var priceCalculator = {
         getTotal: function () {
           return 0;
@@ -59,7 +59,7 @@ angular.module('phundusApp')
         if (!article) {
           return;
         }
-        priceCalculator = PriceCalculator(lessorId, article.publicPrice, article.memberPrice);
+        priceCalculator = priceCalculatorFactory(lessorId, article.publicPrice, article.memberPrice);
         calculateLineTotal();
       });
 
