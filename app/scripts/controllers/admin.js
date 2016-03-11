@@ -100,24 +100,24 @@ angular.module('phundusApp')
     }
   ])
 
-  .controller('AdminProjectionsCtrl', ['$scope', 'Projections', '$window',
-    function ($scope, Projections, $window) {
-      Projections.query(function (res) {
+  .controller('AdminNotificationProcessorsCtrl', ['$scope', 'NotificationProcessors', '$window',
+    function ($scope, Processors, $window) {
+      Processors.query(function (res) {
         $scope.maxEventId = res.maxEventId;
         $scope.rowCollection = res.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       });
 
       $scope.force = function (row) {
-        Projections.patch({projectionId: row.projectionId});
+        Processors.patch({processorId: row.processorId});
       };
 
       $scope.reset = function (row) {
-        Projections.put({projectionId: row.projectionId});
+        Processors.put({processorId: row.processorId});
       };
 
       $scope.recreate = function (row) {
-        Projections.delete({projectionId: row.projectionId});
+        Processors.delete({processorId: row.processorId});
       };
 
       $scope.showStatus = function (row) {

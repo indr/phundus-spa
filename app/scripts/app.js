@@ -500,10 +500,10 @@ var app = angular
         templateUrl: 'views/admin/organizations.html',
         controller: 'AdminOrganizationsIndexCtrl'
       })
-      .state('admin.projections', {
-        url: '/projections',
-        templateUrl: 'views/admin/projections.html',
-        controller: 'AdminProjectionsCtrl'
+      .state('admin.notification-processors', {
+        url: '/notification-processors',
+        templateUrl: 'views/admin/notification-processors.html',
+        controller: 'AdminNotificationProcessorsCtrl'
       })
       .state('admin.schemaUpdate', {
         url: '/schema-update',
