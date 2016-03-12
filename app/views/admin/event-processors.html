@@ -1,4 +1,4 @@
-<h1>Notification processors</h1>
+<h1>Event processors</h1>
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
@@ -33,7 +33,8 @@
     <td class="text-right">
       <a class="btn btn-primary btn-sm" href="" data-ng-click="force(row)" title="Process"><span
         class="glyphicon glyphicon-arrow-right"></span></a>
-      <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)" title="Reset"><span
+      <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)" title="Reset"
+         data-ng-show="row.isProjection"><span
         class="glyphicon glyphicon-refresh"></span></a>
       <!--<a class="btn btn-danger btn-sm" href="" data-ng-click="recreate(row)">Recreate</a>-->
     </td>
@@ -43,7 +44,7 @@
 
 <div class="alert alert-info" data-ng-show="!loading && rowCollection.length == 0">
   <strong>Nichts gefunden!</strong>
-  Es sind keine Projektionen vorhanden.
+  Es sind keine Event processors vorhanden.
 </div>
 
 <div class="alert alert-info" data-ng-show="!loading && displayedCollection.length == 0 && rowCollection.length > 0">

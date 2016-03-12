@@ -487,8 +487,14 @@ var app = angular
       })
       .state('admin.eventLog', {
         url: '/event-log',
-        templateUrl: 'views/admin/eventlog.html',
+        templateUrl: 'views/admin/event-log.html',
         controller: 'AdminEventLogCtrl'
+      })
+
+      .state('admin.eventProcessors', {
+        url: '/event-processors',
+        templateUrl: 'views/admin/event-processors.html',
+        controller: 'AdminEventProcessorsCtrl'
       })
       .state('admin.mails', {
         url: '/mails/',
@@ -499,11 +505,6 @@ var app = angular
         url: '/organizations/',
         templateUrl: 'views/admin/organizations.html',
         controller: 'AdminOrganizationsIndexCtrl'
-      })
-      .state('admin.notification-processors', {
-        url: '/notification-processors',
-        templateUrl: 'views/admin/notification-processors.html',
-        controller: 'AdminNotificationProcessorsCtrl'
       })
       .state('admin.schemaUpdate', {
         url: '/schema-update',

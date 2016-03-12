@@ -1,31 +1,47 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name phundusApp.controller:AdminEventLogCtrl
- * @description
- * # AdminEventLogCtrl
- * Controller of the phundusApp
- */
 angular.module('phundusApp')
-  .controller('AdminEventLogCtrl', ['$scope', 'EventLog', 'Alert',
-    function ($scope, EventLog, Alert) {
+
+  .controller('AdminEventLogCtrl', ['$scope', 'EventLog',
+    function ($scope, EventLog) {
       EventLog.query(function (res) {
-        $scope.eventLog = res;
-      }, function () {
-        Alert.error('Fehler beim Laden des Eventlogs.');
+        $scope.rowCollection = res.results;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
       });
     }
-  ]);
+  ])
 
-/**
- * @ngdoc function
- * @name phundusApp.controller:AdminMailsIndexCtrl
- * @description
- * # AdminMailsIndexCtrl
- * Controller of the phundusApp
- */
-angular.module('phundusApp')
+  .controller('AdminEventProcessorsCtrl', ['$scope', 'EventProcessors', '$window',
+    function ($scope, Processors, $window) {
+      Processors.query(function (res) {
+        $scope.maxEventId = res.maxEventId;
+        $scope.rowCollection = res.results;
+        $scope.displayedCollection = [].concat($scope.rowCollection);
+      });
+
+      $scope.force = function (row) {
+        Processors.patch({processorId: row.processorId});
+      };
+
+      $scope.reset = function (row) {
+        Processors.put({processorId: row.processorId});
+      };
+
+      $scope.recreate = function (row) {
+        Processors.delete({processorId: row.processorId});
+      };
+
+      $scope.showStatus = function (row) {
+        if (row.errorMessage === null) {
+          return;
+        }
+        $window.alert(row.errorMessage);
+      };
+    }
+  ])
+
+
+
   .controller('AdminMailsIndexCtrl', ['$scope', 'Mails', 'Auth', 'Alert',
     function ($scope, Mails, Auth, Alert) {
       $scope.loading = true;
@@ -96,35 +112,6 @@ angular.module('phundusApp')
         Organizations.patch({organizationId: row.organizationId, plan: plan}, function () {
           row.plan = plan;
         });
-      };
-    }
-  ])
-
-  .controller('AdminNotificationProcessorsCtrl', ['$scope', 'NotificationProcessors', '$window',
-    function ($scope, Processors, $window) {
-      Processors.query(function (res) {
-        $scope.maxEventId = res.maxEventId;
-        $scope.rowCollection = res.results;
-        $scope.displayedCollection = [].concat($scope.rowCollection);
-      });
-
-      $scope.force = function (row) {
-        Processors.patch({processorId: row.processorId});
-      };
-
-      $scope.reset = function (row) {
-        Processors.put({processorId: row.processorId});
-      };
-
-      $scope.recreate = function (row) {
-        Processors.delete({processorId: row.processorId});
-      };
-
-      $scope.showStatus = function (row) {
-        if (row.errorMessage === null) {
-          return;
-        }
-        $window.alert(row.errorMessage);
       };
     }
   ])

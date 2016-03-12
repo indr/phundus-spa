@@ -68,7 +68,10 @@ angular.module('phundusApp')
     });
   }])
   .factory('EventLog', ['$resource', function ($resource) {
-    return $resource('/api/v0/event-log', {}, {query: {method: 'GET', isArray: true}});
+    return $resource('/api/v0/event-log', {});
+  }])
+  .factory('EventProcessors', ['$resource', function ($resource) {
+    return $resource('/api/v0/event-processors/:processorId', {processorId: '@processorId'});
   }])
   .factory('Feedback', ['$resource', function ($resource) {
     return $resource('/api/v0/feedback');
@@ -87,9 +90,6 @@ angular.module('phundusApp')
       organizationId: '@organizationId',
       memberId: '@memberId'
     });
-  }])
-  .factory('NotificationProcessors', ['$resource', function ($resource) {
-    return $resource('/api/v0/notification-processors/:processorId', {processorId: '@processorId'});
   }])
   .factory('Orders', ['$resource', function ($resource) {
     return $resource('/api/v0/orders/:orderId', {orderId: '@orderId'});

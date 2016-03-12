@@ -1,0 +1,20 @@
+<h1>Event log</h1>
+<table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+  <thead>
+  <tr>
+    <th class="col-sm-2">Datum</th>
+    <th>Typ</th>
+    <th>Text</th>
+  </tr>
+  <tr>
+    <th colspan="7"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-ng-repeat="row in displayedCollection">
+    <td>{{row.occuredOnUtc | date: 'medium'}}</td>
+    <td>{{row.type}}</td>
+    <td>{{row.text}}</td>
+  </tr>
+  </tbody>
+</table>
