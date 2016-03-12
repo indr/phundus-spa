@@ -508,12 +508,12 @@ var app = angular
       })
       .state('admin.schemaUpdate', {
         url: '/schema-update',
-        template: '<pre>{{schemaUpdate}}</pre>',
+        template: '<h1>Schema-Update</h1><pre>{{schemaUpdate}}</pre>',
         controller: 'AdminSchemaUpdateCtrl'
       })
       .state('admin.status', {
         url: '/status',
-        template: '<div class="page-header"><h1>Status</h1></div><pre>{{data | json}}</pre>',
+        template: '<h1>Status</h1><pre>{{data | json}}</pre>',
         controller: 'AdminStatusCtrl'
       })
       .state('admin.users', {

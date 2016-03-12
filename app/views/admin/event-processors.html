@@ -1,13 +1,13 @@
-<h1>Event processors</h1>
+<h1>Event-Processors</h1>
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
     <th data-st-sort="status">Status</th>
     <th data-st-sort="context">Context</th>
     <th data-st-sort="name">Name</th>
-    <th>Processed</th>
-    <th>Event</th>
-    <th>Behind</th>
+    <th data-st-sort="processedAtUtc">Processed</th>
+    <th data-st-sort="processedEventId">Event</th>
+    <th data-st-sort="behind">Behind</th>
     <th></th>
   </tr>
   <tr>
@@ -31,11 +31,11 @@
     <td>{{row.processedEventId}}</td>
     <td>{{row.behind}}</td>
     <td class="text-right">
-      <a class="btn btn-primary btn-sm" href="" data-ng-click="force(row)" title="Process"><span
-        class="glyphicon glyphicon-arrow-right"></span></a>
       <a class="btn btn-warning btn-sm" href="" data-ng-click="reset(row)" title="Reset"
          data-ng-show="row.isProjection"><span
         class="glyphicon glyphicon-refresh"></span></a>
+      <a class="btn btn-primary btn-sm" href="" data-ng-click="process(row)" title="Process"><span
+        class="glyphicon glyphicon-arrow-right"></span></a>
       <!--<a class="btn btn-danger btn-sm" href="" data-ng-click="recreate(row)">Recreate</a>-->
     </td>
   </tr>

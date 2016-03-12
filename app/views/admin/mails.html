@@ -1,24 +1,30 @@
+<h1>E-Mails</h1>
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
   <tr>
-    <th colspan="4"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
-  </tr>
-  <tr>
-    <th data-st-sort="date">Datum</th>
+    <th data-st-sort="date" class="col-sm-2">Datum</th>
     <th data-st-sort="subject">Betreff</th>
     <th>Empfänger</th>
     <th class="text-right"><a class="btn btn-danger" data-ng-click="delete()">Alle löschen</a></th>
+  </tr>
+  <tr>
+    <th colspan="4"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
   </tr>
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
     <td>{{row.date|date:'dd.MM.yyyy HH:mm:ss'}}</td>
     <td>{{row.subject}}</td>
-    <td><span data-ng-repeat="to in row.to">{{to}}</span></td>
+    <td>
+      <div data-ng-repeat="to in row.to">{{to}}</div>
+    </td>
     <td class="text-right">
-      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/html" target="_blank" data-ng-show="row.hasHtmlPart">HTML</a>
-      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/text" target="_blank" data-ng-show="row.hasTextPart">Text</a>
-      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row)">Löschen</a></td>
+      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/html" target="_blank"
+         data-ng-show="row.hasHtmlPart" title="HTML-Ansicht öffnen"><span class="glyphicon glyphicon-new-window"></span></a>
+      <a class="btn btn-default btn-sm" href="/api/v0/mails/{{row.mailId}}/text" target="_blank"
+         data-ng-show="row.hasTextPart" title="Text-Ansicht öffnen"><span class="glyphicon glyphicon-new-window"></span></a>
+      <a class="btn btn-danger btn-sm" href="" data-ng-click="delete(row)" title="Löschen"><span
+        class="glyphicon glyphicon-remove"></span></a></td>
   </tr>
   </tbody>
 </table>

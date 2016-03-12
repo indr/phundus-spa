@@ -1,8 +1,6 @@
+<h1>Benutzer</h1>
 <table class="table table-hover" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
   <thead>
-  <tr>
-    <th colspan="9"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
-  </tr>
   <tr>
     <th data-st-sort="userId">Id</th>
     <th data-st-sort="firstName">Vorname</th>
@@ -14,30 +12,40 @@
     <th data-st-sort="isAdmin" style="text-align:center">Admin</th>
     <th data-st-sort="isLocked" style="text-align:center">Gesperrt</th>
   </tr>
+  <tr>
+    <th colspan="9"><input data-st-search class="form-control" type="search" placeholder="Suchen..."/></th>
+  </tr>
   </thead>
   <tbody>
   <tr data-ng-repeat="row in displayedCollection">
-    <td><ph-guid value="row.userId"></ph-guid></td>
+    <td>
+      <ph-guid value="row.userId"></ph-guid>
+    </td>
     <td>{{row.firstName}}</td>
     <td>{{row.lastName}}</td>
     <td>{{row.emailAddress}}</td>
-    <td><ph-date value="row.signedUpAtUtc"></ph-date></td>
-    <td><ph-date value="row.lastLogInAtUtc"></ph-date></td>
+    <td>
+      <ph-date value="row.signedUpAtUtc"></ph-date>
+    </td>
+    <td>
+      <ph-date value="row.lastLogInAtUtc"></ph-date>
+    </td>
     <td style="text-align:center">
       <ph-checkbox data-spin="row.isApprovedSubmitting">
-        <input type="checkbox" data-ng-model="row.isApproved" data-ng-change="toggleIsApproved(row)" data-ng-disabled="row.isApproved" />
+        <input type="checkbox" data-ng-model="row.isApproved" data-ng-change="toggleIsApproved(row)"
+               data-ng-disabled="row.isApproved"/>
         <label></label>
       </ph-checkbox>
     </td>
     <td style="text-align:center">
       <ph-checkbox class="checkbox-danger" data-spin="row.isAdminSubmitting">
-        <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)" />
+        <input type="checkbox" data-ng-model="row.isAdmin" data-ng-change="toggleIsAdmin(row)"/>
         <label></label>
       </ph-checkbox>
     </td>
     <td style="text-align:center">
       <ph-checkbox class="checkbox-warning" data-spin="row.isLockedSubmitting">
-        <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)" />
+        <input type="checkbox" data-ng-model="row.isLocked" data-ng-change="toggleIsLocked(row)"/>
         <label></label>
       </ph-checkbox>
     </td>

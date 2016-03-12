@@ -19,7 +19,7 @@ angular.module('phundusApp')
         $scope.displayedCollection = [].concat($scope.rowCollection);
       });
 
-      $scope.force = function (row) {
+      $scope.process = function (row) {
         Processors.patch({processorId: row.processorId});
       };
 
