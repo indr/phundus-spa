@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html data-ng-app="phundusApp">
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title data-ng-bind-template="{{viewTitle}}{{viewTitle ? ' - ' : ''}}phundus"></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="styles/shop.css">
   <!-- endbuild -->
 </head>
-<body data-ng-app="phundusApp">
+<body>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
@@ -204,6 +204,7 @@
 <script src="bower_components/holderjs/holder.js"></script>
 <script src="bower_components/angular-holderjs/src/holder.js"></script>
 <script src="bower_components/chartjs/Chart.js"></script>
+<script src="bower_components/angularjs-viewhead/angularjs-viewhead.js"></script>
 <!-- endbower -->
 <script src="bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js"></script>
 <script src="bower_components/angular-chartjs-directive/chartjs-directive.js"></script>

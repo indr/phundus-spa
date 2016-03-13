@@ -63,11 +63,11 @@ angular.module('phundusApp')
 
       Stores.query({ownerId: Auth.user.userId}, function (res) {
 
-        if (res.stores.length === 0) {
+        if (res.results.length === 0) {
           $scope.loading = false;
           return;
         }
-        $scope.store = res.stores[0];
+        $scope.store = res.results[0];
 
         Articles.query({ownerId: userId}, function (res) {
           $scope.articles = res.results;

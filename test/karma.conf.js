@@ -50,6 +50,7 @@ module.exports = function(config) {
       'bower_components/angular-holderjs/src/holder.js',
       'bower_components/chartjs/Chart.js',
       'bower_components/angular-chartjs-directive/chartjs-directive.js',
+      'bower_components/angularjs-viewhead/angularjs-viewhead.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "bower_components/blueimp-load-image/js/load-image.all.min.js",

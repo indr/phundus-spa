@@ -24,7 +24,8 @@ var app = angular
     'ui.gravatar',
     'ui.router',
     'ui.tinymce',
-    'mwl.confirm'
+    'mwl.confirm',
+    'viewhead'
   ])
 
   // http://snippetrepo.com/snippets/lodash-in-angularjs
@@ -53,7 +54,8 @@ var app = angular
       .state('public.feedback', {
         url: '/feedback',
         templateUrl: 'views/public/feedback.html',
-        controller: 'MetaFeedbackCtrl'
+        controller: 'MetaFeedbackCtrl',
+        title: 'Feedback'
       })
       //.state('public.index', {
       //  url: '/',
