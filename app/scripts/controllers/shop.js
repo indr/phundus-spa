@@ -144,7 +144,6 @@ angular.module('phundusApp')
         Lessees.get({lesseeId: userId}, function (res) {
           _.forEach($scope.orders, function (order) {
             order.lessee = res;
-            console.log(res);
           })
         }, function (res) {
           Alert.error('Fehler beim Laden des Mieters: ' + res.data.message);

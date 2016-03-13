@@ -113,7 +113,6 @@ var app = angular
         controller: 'MetaValidateCtrl',
         resolve: {
           key: ['$stateParams', function ($stateParams) {
-            console.log($stateParams);
             return $stateParams.key;
           }]
         }

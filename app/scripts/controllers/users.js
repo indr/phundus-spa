@@ -162,7 +162,6 @@ angular.module('phundusApp')
       };
 
       $scope.submitPrices = function (form, model) {
-        console.log(model);
         form.$submitting = true;
         Articles.patch({articleId: articleId, prices: model}, function () {
           $scope.pricesFormReset = angular.copy($scope.pricesFormModel);

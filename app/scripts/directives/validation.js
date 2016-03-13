@@ -49,7 +49,6 @@ angular.module('phundusApp')
         otherModelValue: "=bothOrNone"
       },
       link: function (scope, element, attributes, ngModel) {
-        console.log('otherModelValue', scope.otherModelValue);
         ngModel.$validators.bothOrNone = function (modelValue) {
           modelValue = modelValue || null;
           var other = scope.otherModelValue || null;

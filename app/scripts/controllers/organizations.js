@@ -186,7 +186,6 @@ angular.module('phundusApp')
       });
 
       $scope.submit = function (form, model) {
-        console.log(model);
         form.$submitting = true;
         OrganizationSettings.patch(model, function () {
           form.$submitting = false;
@@ -215,7 +214,7 @@ angular.module('phundusApp')
       $scope.store = null;
 
       Stores.query({ownerId: organizationId}, function (res) {
-        $scope.store = res.stores[0] || null;
+        $scope.store = res.results[0] || null;
         if (!$scope.store) {
           Alert.error('Die Materialstelle konnte nicht gefunden werden. Kontaktiere bitte das phundus-Team.');
         }
@@ -391,7 +390,6 @@ angular.module('phundusApp')
 
 
       $scope.submitPrices = function (form, model) {
-        console.log(model);
         form.$submitting = true;
         Articles.patch({articleId: articleId, prices: model}, function () {
           $scope.pricesFormReset = angular.copy($scope.pricesFormModel);
@@ -716,7 +714,6 @@ angular.module('phundusApp')
         });
 
         modalInstance.result.then(function (item) {
-          console.log(item);
           $scope.newItem.fromUtc = item.fromUtc;
           $scope.newItem.toUtc = item.toUtc;
           $scope.newItem.quantity = item.quantity;

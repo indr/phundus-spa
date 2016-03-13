@@ -29,7 +29,6 @@ angular.module('phundusApp')
           $scope.form.$submitting = false;
           $scope.submitted = true;
         }, function (res) {
-          console.log(res);
           $scope.form.$submitting = false;
           Alert.error('Fehler bei der Registrierung: ' + res.data.message);
         });
