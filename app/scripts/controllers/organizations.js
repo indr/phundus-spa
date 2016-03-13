@@ -249,7 +249,7 @@ angular.module('phundusApp')
   .controller('ManageOrganizationApplicationsCtrl', ['_', '$scope', 'organizationId', 'Applications', 'Members', 'Alert',
     function (_, $scope, organizationId, Applications, Members, Alert) {
       Applications.query({organizationId: organizationId}, function (res) {
-        $scope.rowCollection = res;
+        $scope.rowCollection = res.results;
         $scope.displayedCollection = [].concat($scope.rowCollection);
       }, function () {
         Alert.error('Fehler beim Laden der Beitrittsanfragen.');

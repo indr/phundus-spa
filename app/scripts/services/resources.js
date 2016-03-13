@@ -40,12 +40,7 @@ angular.module('phundusApp')
     return $resource(
       '/api/v0/organizations/:organizationId/applications/:applicationId', {
         organizationId: '@organizationId',
-        applicationId: '@id'
-      }, {
-        query: {
-          method: 'GET',
-          isArray: true
-        }
+        applicationId: '@applicationId'
       }
     );
   }])
