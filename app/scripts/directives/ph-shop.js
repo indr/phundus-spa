@@ -127,7 +127,8 @@ angular.module('phundusApp')
         restrict: 'E',
         replace: true,
         scope: {
-          item: '='
+          item: '=',
+          added: '='
         },
         templateUrl: 'views/directives/ph-shop-item-add-to-cart.html',
         link: function (scope) {
@@ -201,7 +202,11 @@ angular.module('phundusApp')
             UsersCartItems.post(requestContent, function () {
               Shop.fromUtc = requestContent.fromUtc;
               Shop.toUtc = requestContent.toUtc;
+              if (scope.added) {
+                scope.added();
+              }
               Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.');
+
             }, function (res) {
               Alert.error('Fehler beim Hinzufügen des Artikels in den Warenkorb: ' + res.data.message);
             })
