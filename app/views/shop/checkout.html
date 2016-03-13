@@ -95,7 +95,7 @@
           werden können.
         </p>
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12 text-right">
         <div class="checkbox">
           <input type="checkbox" value="" id="checkbox_{{$index}}_legal_notice" data-ng-model="order.legal_notice">
           <label style="font-weight:normal" for="checkbox_{{$index}}_legal_notice">
@@ -105,7 +105,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 text-right">
+      <div class="col-xs-6">
+        <a class="btn btn-default btn-lg" href="" data-ui-sref="cart">Zurück zum Warenkorb</a>
+      </div>
+      <div class="col-xs-6 text-right">
         <button type="button" class="btn btn-primary btn-lg" data-ng-click="placeOrder(order)"
                 data-ng-disabled="!canPlaceOrder(order) || order.placing"><span
           class="glyphicon glyphicon-refresh glyphicon-spin" data-ng-show="order.placing"></span> Bestellung ausführen
