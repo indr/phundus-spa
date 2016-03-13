@@ -23,6 +23,10 @@ angular.module('phundusApp')
         Processors.patch({processorId: row.processorId});
       };
 
+      $scope.processAll = function () {
+        Processors.patch();
+      };
+
       $scope.reset = function (row) {
         Processors.put({processorId: row.processorId});
       };
@@ -39,8 +43,6 @@ angular.module('phundusApp')
       };
     }
   ])
-
-
 
   .controller('AdminMailsIndexCtrl', ['$scope', 'Mails', 'Auth', 'Alert',
     function ($scope, Mails, Auth, Alert) {
