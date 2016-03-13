@@ -82,22 +82,22 @@ angular.module('phundusApp')
             var labels = _.map(data, function (each) {
               return $filter('date')(each.fromUtc, 'mediumDate');
             });
-            labels.push($filter('date')(moment(data[data.length-1].fromUtc).add(1, 'months').calendar(), 'mediumDate'));
+            labels.push($filter('date')(moment(data[data.length - 1].fromUtc).add(1, 'months').calendar(), 'mediumDate'));
 
             var values = _.map(data, function (each) {
               return each.quantity;
             });
-            values.push(values[values.length-1]);
+            values.push(values[values.length - 1]);
 
             var chartData = {
               labels: labels,
               datasets: [
                 {
-                  fillColor : "rgba(151,187,205,0.5)",
-                  strokeColor : "rgba(151,187,205,1)",
-                  pointColor : "rgba(151,187,205,1)",
-                  pointStrokeColor : "#fff",
-                  data : values
+                  fillColor: "rgba(151,187,205,0.5)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+                  pointStrokeColor: "#fff",
+                  data: values
                 }
               ]
             };
@@ -160,6 +160,10 @@ angular.module('phundusApp')
           var checkAvailability = function () {
 
             if (formModel.itemId === undefined) {
+              return;
+            }
+            if (formModel.toUtc < formModel.fromUtc) {
+              formModel.isAvailable = false;
               return;
             }
 
