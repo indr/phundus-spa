@@ -2,13 +2,18 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <h2 data-view-title>{{organization.name}} <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.startpage({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h2>
+    <h2 data-view-title>{{organization.name}} <a class="btn btn-default btn-sm" href=""
+                                                 data-access-level="accessLevels.manager"
+                                                 data-organization-id="organizationId"
+                                                 data-ui-sref="organizations.startpage({organizationId: organizationId})"><span
+      class="glyphicon glyphicon-pencil"></span></a></h2>
 
     <div data-ng-bind-html="startpage"></div>
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <h3>Mitgliedschaft</h3>
+
     <div data-ng-show="relationship" data-ng-switch="relationship.status">
 
       <div data-ng-switch-when="member">
@@ -47,20 +52,24 @@
     </div>
 
     <div>
-      <h3>Kontakt <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager" data-organization-id="organizationId" data-ui-sref="organizations.contact-details({organizationId: organizationId})"><span class="glyphicon glyphicon-pencil"></span></a></h3>
+      <h3>Kontakt <a class="btn btn-default btn-sm" href="" data-access-level="accessLevels.manager"
+                     data-organization-id="organizationId"
+                     data-ui-sref="organizations.contact-details({organizationId: organizationId})"><span
+        class="glyphicon glyphicon-pencil"></span></a></h3>
       <ph-vcard data-contact="organization.contact"></ph-vcard>
     </div>
+  </div>
+</div>
 
-    <div data-ng-show="organization.stores[0]">
-      <h3>Materialstelle</h3>
-      <address data-ng-show="organization.stores[0].address" style="white-space:pre">{{organization.stores[0].address}}
-      </address>
-      <div data-ng-show="organization.stores[0].openingHours" style="white-space:pre">{{organization.stores[0].openingHours}}
-      </div>
-      <div data-ng-show="organization.stores[0].coordinate">
-        <leaflet width="100%" height="400px" style="margin-bottom:10px"></leaflet>
-      </div>
-      <p></p>
+<div class="row" data-ng-show="organization.stores[0]">
+  <div class="col-xs-12">
+    <h3>Materialstelle</h3>
+    <ph-vcard data-contact="organization.stores[0].contact"></ph-vcard>
+    <div data-ng-show="organization.stores[0].openingHours" style="white-space:pre">{{organization.stores[0].openingHours}}
     </div>
+    <div data-ng-show="organization.stores[0].coordinate">
+      <leaflet width="100%" height="400px" style="margin-bottom:10px"></leaflet>
+    </div>
+    <p></p>
   </div>
 </div>
