@@ -214,7 +214,12 @@ angular.module('phundusApp')
       $scope.store = null;
 
       Stores.query({ownerId: organizationId}, function (res) {
-        $scope.store = res.results[0] || null;
+
+        var store = res.results[0] || null;
+        if (store && store.contact)
+          store.contact.postcode = parseInt(store.contact.postcode);
+        $scope.store = store;
+
         if (!$scope.store) {
           Alert.error('Die Materialstelle konnte nicht gefunden werden. Kontaktiere bitte das phundus-Team.');
         }

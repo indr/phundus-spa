@@ -36,36 +36,17 @@
     </div>
   </form>
 
-  <form name="addressForm" ph-editable="store.address" class="form-horizontal" novalidate>
-    <div class="form-group">
-      <label class="col-sm-3">Adresse
-        <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="addressForm.$show()"
-                data-ng-hide="addressForm.$visible">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
-      </label>
+  <div class="row">
+    <label class="col-sm-3">Kontakt
+      <button type="button" class="btn btn-default btn-sm pull-right" data-ng-click="showChangeContact()">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </label>
 
-      <div class="col-xs-12 col-sm-9" data-ng-hide="addressForm.$visible">
-        <p style="white-space:pre">{{store.address}}</p>
-      </div>
-
-      <div class="col-xs-12 col-sm-9" data-has-error="addressForm.address">
-        <div data-ng-show="addressForm.$visible">
-            <textarea class="form-control" data-ng-model="store.address"
-                      rows="4" name="address" required>{{store.address}}</textarea>
-        </div>
-      </div>
+    <div class="col-xs-12 col-sm-9" style="margin-bottom:15px">
+      <ph-vcard data-contact="store.contact"></ph-vcard>
     </div>
-    <div class="form-group" data-ng-show="addressForm.$visible">
-      <div class="col-sm-offset-3 col-sm-9">
-        <ph-submit class="btn-primary" data-ng-click="updateAddress()"
-                   data-form="addressForm" data-text="Speichern"></ph-submit>
-        <button type="button" class="btn btn-default" data-ng-click="addressForm.$cancel()">
-          Abbrechen
-        </button>
-      </div>
-    </div>
-  </form>
+  </div>
 
   <form name="openingHoursForm" ph-editable="store.openingHours" class="form-horizontal" novalidate>
     <div class="form-group">

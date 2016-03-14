@@ -8,8 +8,8 @@
  * # phStore
  */
 angular.module('phundusApp')
-  .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers',
-    function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers) {
+  .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers', '$uibModal',
+    function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, $uibModal) {
       return {
         restrict: 'E',
         replace: 'true',
@@ -89,16 +89,23 @@ angular.module('phundusApp')
             });
           };
 
-          scope.updateAddress = function () {
-            scope.addressForm.$submitting = true;
-            Stores.patch({storeId: scope.store.storeId, address: scope.store.address}, function () {
-              scope.addressForm.$submitting = false;
-              scope.addressForm.$visible = false;
-            }, function () {
-              scope.addressForm.$submitting = false;
-              Alert.error("Fehler beim Speichern der Adresse.");
+          scope.showChangeContact = function () {
+            var modalInstance = $uibModal.open({
+              templateUrl: 'views/inventory/modal-change-contact.html',
+              controller: 'StoresChangeContactCtrl',
+              resolve: {
+                storeId: function () {
+                  return scope.store.storeId
+                },
+                contact: angular.copy(scope.store.contact)
+              }
+            });
+
+            modalInstance.result.then(function (contact) {
+              scope.store.contact = contact;
             });
           };
+
           scope.updateOpeningHours = function () {
             scope.openingHoursForm.$submitting = true;
             Stores.patch({storeId: scope.store.storeId, openingHours: scope.store.openingHours}, function () {
