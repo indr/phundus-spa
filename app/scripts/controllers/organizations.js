@@ -216,8 +216,9 @@ angular.module('phundusApp')
       Stores.query({ownerId: organizationId}, function (res) {
 
         var store = res.results[0] || null;
-        if (store && store.contact)
+        if (store && store.contact) {
           store.contact.postcode = parseInt(store.contact.postcode);
+        }
         $scope.store = store;
 
         if (!$scope.store) {

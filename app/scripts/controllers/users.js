@@ -17,9 +17,10 @@ angular.module('phundusApp')
       Users.get({userId: userId}, function (res) {
         var user = res;
 
-        if (user.store && user.store.contact)
+        if (user.store && user.store.contact) {
           user.store.contact.postcode = parseInt(user.store.contact.postcode);
-
+        }
+        
         $scope.user = res;
 
       }, function () {
