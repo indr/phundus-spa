@@ -134,6 +134,7 @@ angular.module('phundusApp')
         link: function (scope) {
 
           var priceCalculator = null;
+          var product = null;
 
           var formModel = scope.addToCartFormModel = {
             userId: Auth.user.userId,
@@ -152,6 +153,7 @@ angular.module('phundusApp')
               return;
             }
 
+            product = item;
             priceCalculator = priceCalculatorFactory(item.lessor.lessorId, item.publicPrice, item.memberPrice);
             formModel.itemId = formModel.articleId = item.itemId;
             formModel.pricePerWeek = $filter('number')(priceCalculator.getPrice(), 2);
@@ -195,13 +197,14 @@ angular.module('phundusApp')
               return;
             }
 
-            var requestContent = _.pick(formModel, ['fromUtc', 'toUtc', 'quantity']);
-            requestContent.articleGuid = formModel.itemId;
-            requestContent.userId = Auth.user.userId;
+            var rq = _.pick(formModel, ['fromUtc', 'toUtc', 'quantity']);
+            rq.lessorId = product.lessor.lessorId;
+            rq.productId = product.itemId;
+            rq.userId = Auth.user.userId;
 
-            UsersCartItems.post(requestContent, function () {
-              Shop.fromUtc = requestContent.fromUtc;
-              Shop.toUtc = requestContent.toUtc;
+            UsersCartItems.post(rq, function () {
+              Shop.fromUtc = rq.fromUtc;
+              Shop.toUtc = rq.toUtc;
               if (scope.added) {
                 scope.added();
               }
