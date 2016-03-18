@@ -174,12 +174,20 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('OrganizationsSettingsCtrl', ['_', '$scope', 'organizationId', 'OrganizationSettings', 'Alert',
-    function (_, $scope, organizationId, OrganizationSettings, Alert) {
+  .controller('OrganizationsSettingsCtrl', ['_', '$scope', 'organizationId', 'OrganizationSettings', 'Alert', '$http',
+    function (_, $scope, organizationId, OrganizationSettings, Alert, $http) {
 
       OrganizationSettings.get({organizationId: organizationId}, function (res) {
         $scope.publicFormReset = _.pick(res, ['organizationId', 'publicRental']);
         $scope.publicFormModel = angular.copy($scope.publicFormReset);
+
+        $scope.pdfTemplateFormReset = _.pick(res, ['organizationId', 'pdfTemplate']);
+        $scope.pdfTemplateFormModel = angular.copy($scope.pdfTemplateFormReset);
+
+        $http.get('/api/v0/organizations/' + organizationId + '/files')
+          .success(function (data) {
+            $scope.files = data.files;
+          });
       }, function (res) {
         Alert.error('Fehler beim Laden der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
 

@@ -8,7 +8,8 @@
 
     <div class="col-sm-9" data-has-error="publicForm.publicRental">
       <div class="checkbox">
-        <input class="styled" id="publicRental" name="publicRental" type="checkbox" data-ng-model="publicFormModel.publicRental">
+        <input class="styled" id="publicRental" name="publicRental" type="checkbox"
+               data-ng-model="publicFormModel.publicRental">
         <label for="publicRental">
           Das Material der Organisation öffentlich zugänglich machen. Dadurch können Benutzer, die nicht Mitglied der
           Organisation sind, das Material in den Warenkorb legen und eine Bestellung an deine Organisation auslösen.
@@ -21,7 +22,30 @@
     <div class="col-sm-offset-3 col-sm-9">
       <ph-submit class="btn-primary" data-ng-click="submit(publicForm, publicFormModel)"
                  data-form="publicForm" data-text="Speichern"></ph-submit>
-      <button type="button" class="btn btn-default" data-ng-click="reset(publicFormModel, publicFormReset)">Verwerfen</button>
+      <button type="button" class="btn btn-default" data-ng-click="reset(publicFormModel, publicFormReset)">Verwerfen
+      </button>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal" style="margin-top:50px" name="pdfTemplateForm" novalidate>
+  <label class="col-sm-3 control-label" for="pdfTemplate">PDF-Template</label>
+
+  <div class="col-sm-9" data-has-error="pdfTemplateForm.pdfTemplate">
+    <select class="form-control" id="pdfTemplate" name="pdfTemplate" data-ng-model="pdfTemplateFormModel.pdfTemplate"
+            data-ng-options="file.name as file.name for file in files">
+      <option></option>
+    </select>
+    <span class="help-block">Wähle eine <a href="" data-ui-sref="manage.organization.files({organizationId: organizationId})">zuvor hochgeladene</a> PDF-Datei aus, die als Dokumentvorlage für die automatisch generierten PDF-Dateien, wie zum Beispiel die Bestellungen, verwendet werden soll.</span>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <ph-submit class="btn-primary" data-ng-click="submit(pdfTemplateForm, pdfTemplateFormModel)"
+                 data-form="pdfTemplateForm" data-text="Speichern"></ph-submit>
+      <button type="button" class="btn btn-default" data-ng-click="reset(pdfTemplateFormModel, pdfTemplateFormReset)">
+        Verwerfen
+      </button>
     </div>
   </div>
 </form>
