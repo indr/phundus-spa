@@ -728,13 +728,17 @@ angular.module('phundusApp')
         });
 
         modalInstance.result.then(function (item) {
+          console.log(item);
           $scope.newItem.fromUtc = item.fromUtc;
           $scope.newItem.toUtc = item.toUtc;
           $scope.newItem.quantity = item.quantity;
           $scope.newItem.lineTotal = item.lineTotal;
 
           OrderItems.post(item, function (data) {
-            $scope.order.items.push(data);
+            item.orderLineId = data.orderLineId;
+            item.orderItemId = data.orderLineId;
+            item.isAvailable = data.isAvailable;
+            $scope.order.items.push(item);
           }, function () {
             Alert.error('Fehler beim Hinzufügen des Materials.')
           });

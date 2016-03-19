@@ -4,12 +4,16 @@ angular.module('phundusApp')
   .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', 'isMember', '$http', 'PriceCalculator',
     function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, priceCalculatorFactory) {
       var priceCalculator = {
+        getPrice: function () {
+          return 0;
+        },
         getTotal: function () {
           return 0;
         }
       };
 
       var calculateLineTotal = function () {
+        $scope.unitPrice = priceCalculator.getPrice();
         $scope.lineTotal = priceCalculator.getTotal($scope.fromUtc, $scope.toUtc, $scope.quantity, true);
       };
 
@@ -45,8 +49,15 @@ angular.module('phundusApp')
           return;
         }
         $uibModalInstance.close({
-          lessorId: lessorId, orderId: orderId, articleId: $scope.selected.articleId,
-          fromUtc: $scope.fromUtc, toUtc: $scope.toUtc, quantity: $scope.quantity,
+          lessorId: lessorId,
+          orderId: orderId,
+          articleId: $scope.selected.articleId,
+          articleShortId: $scope.selected.articleShortId,
+          text: $scope.selected.name,
+          fromUtc: $scope.fromUtc,
+          toUtc: $scope.toUtc,
+          quantity: $scope.quantity,
+          unitPrice: $scope.unitPrice,
           lineTotal: $scope.lineTotal
         });
       };
