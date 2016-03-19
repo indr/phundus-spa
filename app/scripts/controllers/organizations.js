@@ -186,7 +186,7 @@ angular.module('phundusApp')
 
         $http.get('/api/v0/organizations/' + organizationId + '/files')
           .success(function (data) {
-            $scope.files = data.files;
+            $scope.files = _.filter(data.files, {'type': 'pdf'});
           });
       }, function (res) {
         Alert.error('Fehler beim Laden der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
