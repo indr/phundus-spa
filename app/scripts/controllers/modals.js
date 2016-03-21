@@ -118,11 +118,11 @@ angular.module('phundusApp')
   ]);
 
 angular.module('phundusApp')
-  .controller('CreateOrderModalInstCtrl', ['$scope', '$uibModalInstance', 'ownerId', '$http',
-    function ($scope, $uibModalInstance, ownerId, $http) {
+  .controller('CreateOrderModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', '$http',
+    function ($scope, $uibModalInstance, lessorId, $http) {
 
       $scope.getMembers = function (val) {
-        return $http.get('/api/v0/organizations/' + ownerId + '/members', {
+        return $http.get('/api/v0/organizations/' + lessorId + '/members', {
           params: {
             username: val
           }
