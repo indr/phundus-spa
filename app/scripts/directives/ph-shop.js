@@ -208,7 +208,7 @@ angular.module('phundusApp')
               if (scope.added) {
                 scope.added();
               }
-              Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.');
+              Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.', 'Jawohl!');
 
             }, function (res) {
               Alert.error('Fehler beim Hinzufügen des Artikels in den Warenkorb: ' + res.data.message);
