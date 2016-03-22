@@ -121,8 +121,8 @@ angular.module('phundusApp')
     }]);
 
 angular.module('phundusApp')
-  .directive('phShopItemAddToCart', ['_', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator', 'Shop',
-    function (_, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory, Shop) {
+  .directive('phShopItemAddToCart', ['_', '$', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator', 'Shop',
+    function (_, $, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory, Shop) {
       return {
         restrict: 'E',
         replace: true,
@@ -208,7 +208,8 @@ angular.module('phundusApp')
               if (scope.added) {
                 scope.added();
               }
-              Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.', 'Jawohl!');
+              //Alert.success('Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt.', 'Jawohl!');
+              $('#popover-glyphicon-cart').popover('show');
 
             }, function (res) {
               Alert.error('Fehler beim Hinzufügen des Artikels in den Warenkorb: ' + res.data.message);

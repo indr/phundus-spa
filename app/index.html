@@ -95,7 +95,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li data-access-level="accessLevels.user" title="Warenkorb">
             <a href="" data-ui-sref="cart" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="manual"
-               data-content="Artikel hinzugefügt." id="popover-glyphicon-cart"><span
+               data-content="Der Artikel wurde erfolgreich dem Warenkorb hinzugefügt." id="popover-glyphicon-cart"><span
               class="glyphicon glyphicon-shopping-cart"></span><span class="visible-xs-inline"> Warenkorb</span></a>
           </li>
 
@@ -117,8 +117,9 @@
     </div>
   </div>
 </div>
-  <div data-ui-view></div>
-
+  <div class="container">
+    <div data-ui-view></div>
+  </div>
   <div id="blueimp-gallery" class="blueimp-gallery">
     <div class="slides"></div>
     <h3 class="title"></h3>

@@ -8,14 +8,8 @@
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('NavCtrl', ['$rootScope', '$scope', '$state', '$location', '$window', 'Auth', 'Alert',
-    function ($rootScope, $scope, $state, $location, $window, Auth, Alert) {
-
-      $rootScope.alerts = Alert.alerts;
-
-      $rootScope.dismissAlert = function(type, id) {
-        Alert.dismiss(type, id);
-      };
+  .controller('NavCtrl', ['$scope', '$state', '$location', '$window', 'Auth', 'Alert',
+    function ($scope, $state, $location, $window, Auth, Alert) {
 
       $scope.user = Auth.user;
       $scope.userRoles = Auth.userRoles;
