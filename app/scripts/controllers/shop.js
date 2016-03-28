@@ -199,9 +199,12 @@ angular.module('phundusApp')
         };
 
         ShopProductsAvailabilityCheck.post(rq, function (res) {
-          _.forEach(items, function (each) {
-            each.isAvailable = res.isAvailable;
-            each.availabilityChecking = false;
+          _.forEach(res.items, function (each) {
+            var item = _.find(items, {'cartItemId': each.correlationId});
+            if (item) {
+              item.isAvailable = each.isAvailable;
+              item.availabilityChecking = false;
+            }
           });
         }, function (res) {
           _.forEach(items, function (each) {
