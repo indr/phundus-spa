@@ -179,43 +179,73 @@ angular.module('phundusApp')
  * Controller of the phundusApp
  */
 angular.module('phundusApp')
-  .controller('ShopCartCtrl', ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'Alert', '$timeout', '$state',
-    function (_, $scope, userId, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, Alert, $timeout, $state) {
+  .controller('ShopCartCtrl', ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'ShopProductsAvailabilityCheck', 'Alert', '$timeout', '$state',
+    function (_, $scope, userId, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, ShopProductsAvailabilityCheck, Alert, $timeout, $state) {
 
-      var checkAvailability = function (item) {
-        item.availabilityChecking = true;
-        $timeout(function () {
-          var requestContent = _.pick(item, ['fromUtc', 'toUtc', 'quantity']);
-          requestContent.articleId = item.articleGuid;
-          requestContent.itemId = item.articleGuid;
-          ShopItemsAvailabilityCheck.post(requestContent, function (res) {
-            item.isAvailable = res.isAvailable;
-            item.availabilityChecking = false;
-          }, function (res) {
-            item.isAvailable = false;
-            item.availabilityChecking = false;
-            Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
+      var cart = null;
+
+      var checkAvailability = function (productId, items) {
+        _.forEach(items, function (each) {
+          each.availabilityChecking = true;
+        });
+
+        var rq = {
+          productId: productId,
+          items: _.map(items, function (each) {
+            var result = _.pick(each, ['fromUtc', 'toUtc', 'quantity']);
+            result.correlationId = each.cartItemId;
+            return result;
+          })
+        };
+
+        ShopProductsAvailabilityCheck.post(rq, function (res) {
+          _.forEach(items, function (each) {
+            each.isAvailable = res.isAvailable;
+            each.availabilityChecking = false;
           });
-        }, 100);
+        }, function (res) {
+          _.forEach(items, function (each) {
+            each.isAvailable = false;
+            each.availabilityChecking = false;
+          });
+          Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
+        });
       };
 
-      $scope.checkAvailability = checkAvailability;
+
 
       var checkAllAvailabilities = function (items) {
         if (!items) {
           return;
         }
-        _.forEach($scope.cart.items, function (item) {
-          checkAvailability(item);
+
+        var groups = _.groupBy($scope.cart.items, 'productId');
+        _.forEach(groups, function (items, productId) {
+          checkAvailability(productId, items);
         });
       };
 
+      $scope.checkAvailability = function (item) {
+        if(!item) {
+          return;
+        }
+
+        var productId = item.productId;
+        var items = _.filter(cart.items, {'productId': productId});
+        if (items.length === 0) {
+          return;
+        }
+        checkAvailability(productId, items);
+      };
+
+
       UsersCart.get({userId: userId}, function (res) {
-        $scope.cart = res;
+        $scope.cart = cart = res;
         checkAllAvailabilities($scope.cart.items);
       }, function (res) {
         Alert.error('Fehler beim Laden des Warenkorbes: ' + res.data.message);
       });
+
 
       $scope.canEdit = function () {
         return true;
@@ -246,7 +276,7 @@ angular.module('phundusApp')
           function () {
             item.editing = false;
             $scope.calculateDaysAndItemTotal(item);
-            checkAvailability(item);
+            $scope.checkAvailability(item);
           }, function (res) {
             Alert.error(res.data.message);
           });
@@ -257,6 +287,7 @@ angular.module('phundusApp')
           var idx = $scope.cart.items.indexOf(item);
           $scope.cart.items.splice(idx, 1);
           $scope.cartCleared = $scope.cart.items.length === 0;
+          $scope.checkAvailability(item);
         });
       };
 

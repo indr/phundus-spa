@@ -138,6 +138,9 @@ angular.module('phundusApp')
   .factory('ShopOrders', ['$resource', function ($resource) {
     return $resource('/api/v0/shop/orders');
   }])
+  .factory('ShopProductsAvailabilityCheck', ['$resource', function ($resource) {
+    return $resource('/api/v0/shop/products/:productId/availability-check', {productId: '@productId'});
+  }])
   .factory('Validate', ['$resource', function ($resource) {
     return $resource('/api/v0/account/validate');
   }])
