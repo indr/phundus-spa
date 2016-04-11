@@ -4,11 +4,11 @@
   angular.module('phundusApp')
     .config(states);
 
-  states.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+  states.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'authProvider'];
 
-  function states($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  function states($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, authProvider) {
 
-    var access = window.routingConfig.accessLevels;
+    var access = authProvider.accessLevels;
 
     $stateProvider
       .state('anon', {

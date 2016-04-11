@@ -35,7 +35,7 @@
         $scope.createArticle = function () {
 
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/modals/create-article.html',
+            templateUrl: 'modules/organizations/views/modals/create-article.html',
             controller: 'CreateArticleModalInstCtrl',
             resolve: {
               ownerId: function () {

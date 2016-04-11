@@ -86,7 +86,7 @@
 
             scope.showChangeContact = function () {
               var modalInstance = $uibModal.open({
-                templateUrl: 'views/inventory/modal-change-contact.html',
+                templateUrl: 'modules/stores/views/inventory/modal-change-contact.html',
                 controller: 'StoresChangeContactCtrl',
                 resolve: {
                   storeId: function () {
@@ -124,7 +124,7 @@
               });
             }
           },
-          templateUrl: 'views/directives/ph-store.html'
+          templateUrl: 'modules/stores/views/directives/ph-store.html'
         }
       }]);
 

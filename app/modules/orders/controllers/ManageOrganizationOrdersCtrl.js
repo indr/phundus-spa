@@ -17,7 +17,7 @@
         $scope.createOrder = function () {
 
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/modals/create-order.html',
+            templateUrl: 'modules/orders/views/modals/create-order.html',
             controller: 'CreateOrderModalInstCtrl',
             resolve: {
               lessorId: function () {

@@ -13,7 +13,7 @@ angular.module('phundusApp')
           predicate: '@',
           predicateExpression: '='
         },
-        templateUrl: 'views/directives/stSelectMultiple.html',
+        templateUrl: 'modules/ui/views/directives/stSelectMultiple.html',
         link: function (scope, element, attr, table) {
           scope.dropdownLabel = '';
           scope.filterChanged = filterChanged;

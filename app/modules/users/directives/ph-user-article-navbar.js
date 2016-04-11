@@ -17,7 +17,7 @@
             $scope.userRoles = Auth.userRoles;
             //$scope.isHome = $scope.userId + '' === Auth.user.userId + '';
           },
-          templateUrl: 'views/directives/ph-user-article-navbar.html'
+          templateUrl: 'modules/users/views/directives/ph-user-article-navbar.html'
         }
       }
     ]);

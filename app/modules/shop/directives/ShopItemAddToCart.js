@@ -11,7 +11,7 @@
             item: '=',
             added: '='
           },
-          templateUrl: 'views/directives/ph-shop-item-add-to-cart.html',
+          templateUrl: 'modules/shop/views/directives/ph-shop-item-add-to-cart.html',
           link: function (scope) {
 
             var priceCalculator = null;

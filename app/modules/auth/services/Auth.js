@@ -2,11 +2,16 @@
 
 // http://www.frederiknakstad.com/2013/01/21/authentication-in-single-page-applications-with-angular-js/
 
-angular.module('phundusApp')
-  .factory('Auth', ['$http', '$cookies', '_', function ($http, $cookies, _) {
+(function () {
+  angular.module('phundusApp')
+    .factory('Auth', Auth);
 
-    var accessLevels = window.routingConfig.accessLevels
-      , userRoles = window.routingConfig.userRoles
+  Auth.$inject = ['$http', '$cookies', '_', 'auth'];
+
+  function Auth($http, $cookies, _, auth) {
+
+    var accessLevels = auth.accessLevels
+      , userRoles = auth.userRoles
       , currentUser = $cookies.getObject('ph.user') || {username: '', role: userRoles.public}
       , currentMembership = _.find(currentUser.memberships, {selected: true});
 
@@ -114,4 +119,5 @@ angular.module('phundusApp')
       userRoles: userRoles,
       user: currentUser
     };
-  }]);
+  }
+})();

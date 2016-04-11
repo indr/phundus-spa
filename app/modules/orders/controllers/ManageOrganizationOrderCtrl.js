@@ -56,7 +56,7 @@
         $scope.showAddItem = function () {
 
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/modals/add-order-item.html',
+            templateUrl: 'modules/orders/views/modals/add-order-item.html',
             controller: 'AddOrderItemModalInstCtrl',
             resolve: {
               lessorId: function () {
@@ -75,7 +75,6 @@
           });
 
           modalInstance.result.then(function (item) {
-            console.log(item);
             $scope.newItem.fromUtc = item.fromUtc;
             $scope.newItem.toUtc = item.toUtc;
             $scope.newItem.quantity = item.quantity;

@@ -10,7 +10,7 @@
           scope: {
             vcard: '=contact'
           },
-          templateUrl: 'views/directives/ph-vcard.html'
+          templateUrl: 'modules/ui/views/directives/ph-vcard.html'
         };
       }
     ])

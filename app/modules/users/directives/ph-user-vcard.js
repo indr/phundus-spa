@@ -11,7 +11,7 @@
           isEditable: '=',
           isHome: '='
         },
-        templateUrl: 'views/directives/ph-user-vcard.html'
+        templateUrl: 'modules/users/views/directives/ph-user-vcard.html'
       }
     }]);
 })();

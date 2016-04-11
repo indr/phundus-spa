@@ -13,7 +13,7 @@
           $scope.accessLevels = Auth.accessLevels;
           $scope.userRoles = Auth.userRoles;
         },
-        templateUrl: 'views/directives/ph-organization-navbar.html'
+        templateUrl: 'modules/organizations/views/directives/ph-organization-navbar.html'
       }
     }]);
 })();

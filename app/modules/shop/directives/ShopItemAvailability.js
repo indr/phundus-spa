@@ -10,7 +10,7 @@
           scope: {
             itemId: '='
           },
-          templateUrl: 'views/directives/ph-shop-item-availability.html',
+          templateUrl: 'modules/shop/views/directives/ph-shop-item-availability.html',
           link: function (scope, element) {
 
             var populateChartData = function (data) {

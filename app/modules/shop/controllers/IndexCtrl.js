@@ -47,7 +47,7 @@
 
     $scope.showItem = function (item) {
       $uibModal.open({
-        templateUrl: 'views/shop/shop-item-modal.html',
+        templateUrl: 'modules/shop/views/shop-item-modal.html',
         controller: 'ShopItemCtrl',
         resolve: {
           itemId: function () {

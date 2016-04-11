@@ -15,7 +15,7 @@
 
         $scope.showChangeContact = function () {
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/account/modal-change-contact.html',
+            templateUrl: 'modules/account/views/modals/modal-change-contact.html',
             controller: 'AccountChangeContactCtrl',
             resolve: {
               userId: function () {
@@ -32,14 +32,14 @@
 
         $scope.showChangePassword = function () {
           $uibModal.open({
-            templateUrl: 'views/account/modal-change-password.html',
+            templateUrl: 'modules/account/views/account/modal-change-password.html',
             controller: 'AccountChangePasswordCtrl'
           });
         };
 
         $scope.showChangeEmailAddress = function () {
           $uibModal.open({
-            templateUrl: 'views/account/modal-change-email-address.html',
+            templateUrl: 'modules/account/views/account/modal-change-email-address.html',
             controller: 'AccountChangeEmailAddressCtrl'
           });
         };

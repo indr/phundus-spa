@@ -9,7 +9,7 @@
         var showAlert = function (type, msg, title) {
           if (modal === null) {
             modal = $uibModal.open({
-              templateUrl: 'views/modals/alert.html',
+              templateUrl: 'modules/ui/views/modals/alert.html',
               controller: 'AlertModalInstCtrl',
               resolve: {
                 alert: function () {

@@ -91,7 +91,7 @@
       .state('manage.organization.settings', {
         url: '/settings',
         controller: 'ManageOrganizationsSettingsCtrl',
-        templateUrl: 'views/manage/organization-settings.html'
+        templateUrl: 'modules/organizations/views/manage/organization-settings.html'
       });
 
     // Organizations

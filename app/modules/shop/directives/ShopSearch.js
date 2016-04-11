@@ -10,7 +10,7 @@
           scope: {
             submit: '='
           },
-          templateUrl: 'views/directives/ph-shop-search.html',
+          templateUrl: 'modules/shop/views/directives/ph-shop-search.html',
           link: function (scope) {
             Lessors.get(function (res) {
               scope.lessors = res.results;

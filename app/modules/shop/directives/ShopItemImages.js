@@ -10,7 +10,7 @@
           scope: {
             images: '='
           },
-          templateUrl: 'views/directives/ph-shop-item-images.html',
+          templateUrl: 'modules/shop/views/directives/ph-shop-item-images.html',
           link: function (scope) {
 
             scope.$watch('images', function (images) {
