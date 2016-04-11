@@ -189,123 +189,143 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/common/services/routingConfig.js"></script>
+<script src="modules/auth/services/routingConfig.js"></script>
 <script src="scripts/app.js"></script>
-<!--
-
-<script src="scripts/common/services/accessLevels.js"></script>
 <script src="scripts/config.js"></script>
--->
-<!--
+<script src="scripts/states.js"></script>
+<script src="scripts/controllers/DebugCtrl.js"></script>
+<script src="scripts/controllers/FeedbackCtrl.js"></script>
+<script src="scripts/controllers/NavCtrl.js"></script>
+<script src="scripts/services/resources.js"></script>
 
-<script src="scripts/account/account.js"></script>
-<script src="scripts/account/controllers/AccountCtrl.js"></script>
-<script src="scripts/account/controllers/ChangeContactCtrl.js"></script>
-<script src="scripts/account/controllers/ChangeEmailAddressCtrl.js"></script>
-<script src="scripts/account/controllers/ChangePasswordCtrl.js"></script>
-<script src="scripts/account/controllers/LoginCtrl.js"></script>
-<script src="scripts/account/controllers/LogoutCtrl.js"></script>
-<script src="scripts/account/controllers/ResetPasswordCtrl.js"></script>
-<script src="scripts/account/controllers/SignUpCtrl.js"></script>
-<script src="scripts/account/controllers/ValidateCtrl.js"></script>
-<script src="scripts/account/directives/is-unique-email-address.js"></script>
-<script src="scripts/account/directives/is-unique-username.js"></script>
-<script src="scripts/account/services/resources.js"></script>
-<script src="scripts/admin/admin.js"></script>
-<script src="scripts/admin/controllers/EmailsCtrl.js"></script>
-<script src="scripts/admin/controllers/EventLogCtrl.js"></script>
-<script src="scripts/admin/controllers/EventProcessorsCtrl.js"></script>
-<script src="scripts/admin/controllers/OrganizationsCtrl.js"></script>
-<script src="scripts/admin/controllers/SchemaUpdateCtrl.js"></script>
-<script src="scripts/admin/controllers/StatusCtrl.js"></script>
-<script src="scripts/admin/controllers/UsersCtrl.js"></script>
-<script src="scripts/admin/filters/organization-plan.js"></script>
-<script src="scripts/admin/services/resources.js"></script>
-<script src="scripts/common/directives/accessLevel.js"></script>
-<script src="scripts/common/directives/both-or-none.js"></script>
-<script src="scripts/common/directives/compare-to.js"></script>
-<script src="scripts/common/directives/ph-guid.js"></script>
-<script src="scripts/common/directives/uuid.js"></script>
+<script src="modules/auth/directives/access-level.js"></script>
+<script src="modules/auth/services/accessLevels.js"></script>
+<script src="modules/auth/services/auth.js"></script>
+<script src="modules/auth/services/Auth.js"></script>
 
-<script src="scripts/common/services/Auth.js"></script>
-<script src="scripts/contracts/services/resources.js"></script>
-<script src="scripts/domain/services/PostalAddress.js"></script>
-<script src="scripts/domain/services/PriceCalculator.js"></script>
-<script src="scripts/inventory/controllers/ArticlesActionsCtrl.js"></script>
-<script src="scripts/inventory/controllers/CreateArticleModalInstCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesDescriptionCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesDetailsCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesFilesCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesSpecificationCtrl.js"></script>
-<script src="scripts/inventory/controllers/OrganizationsArticlesStockCtrl.js"></script>
-<script src="scripts/inventory/controllers/StoresChangeContactCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesDescriptionCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesDetailsCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesFilesCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesIndexCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesSpecificationCtrl.js"></script>
-<script src="scripts/inventory/controllers/UsersArticlesStockCtrl.js"></script>
-<script src="scripts/inventory/services/resources.js"></script>
-<script src="scripts/meta/controllers/DebugCtrl.js"></script>
-<script src="scripts/meta/controllers/FeedbackCtrl.js"></script>
-<script src="scripts/meta/controllers/NavCtrl.js"></script>
-<script src="scripts/meta/meta.js"></script>
-<script src="scripts/meta/services/resources.js"></script>
-<script src="scripts/orders/controllers/ManageOrganizationOrderCtrl.js"></script>
-<script src="scripts/orders/controllers/ManageOrganizationOrdersCtrl.js"></script>
-<script src="scripts/orders/controllers/ManageUserOrderCtrl.js"></script>
-<script src="scripts/orders/controllers/ManageUserOrdersCtrl.js"></script>
-<script src="scripts/orders/services/resources.js"></script>
-<script src="scripts/organizations/controllers/ApplicationsCtrl.js"></script>
-<script src="scripts/organizations/controllers/MembersCtrl.js"></script>
-<script src="scripts/organizations/controllers/OrganizationCtrl.js"></script>
-<script src="scripts/organizations/controllers/OrganizationsCtrl.js"></script>
-<script src="scripts/organizations/controllers/OrganizationsEditContactDetailsCtrl.js"></script>
-<script src="scripts/organizations/controllers/OrganizationsEditStartpageCtrl.js"></script>
-<script src="scripts/organizations/controllers/SettingsCtrl.js"></script>
-<script src="scripts/organizations/controllers/StoreCtrl.js"></script>
-<script src="scripts/organizations/directives/ph-organization-article-navbar.js"></script>
-<script src="scripts/organizations/directives/ph-organization-navbar.js"></script>
-<script src="scripts/organizations/services/resources.js"></script>
-<script src="scripts/shop/controllers/AddOrderItemModalInstCtrl.js"></script>
-<script src="scripts/shop/controllers/CartCtrl.js"></script>
-<script src="scripts/shop/controllers/CheckoutCtrl.js"></script>
-<script src="scripts/shop/controllers/CreateOrderModalInstCtrl.js"></script>
-<script src="scripts/shop/controllers/IndexCtrl.js"></script>
-<script src="scripts/shop/controllers/ProductCtrl.js"></script>
-<script src="scripts/shop/directives/ShopItemAddToCart.js"></script>
-<script src="scripts/shop/directives/ShopItemAvailability.js"></script>
-<script src="scripts/shop/directives/ShopItemDocuments.js"></script>
-<script src="scripts/shop/directives/ShopItemImages.js"></script>
-<script src="scripts/shop/directives/ShopSearch.js"></script>
-<script src="scripts/shop/services/resources.js"></script>
-<script src="scripts/shop/services/Shop.js"></script>
-<script src="scripts/shop/shop.js"></script>
-<script src="scripts/stores/directives/ph-store.js"></script>
-<script src="scripts/stores/services/resources.js"></script>
-<script src="scripts/ui/directives/active-nav.js"></script>
-<script src="scripts/ui/directives/has-error.js"></script>
-<script src="scripts/ui/directives/ph-checkbox.js"></script>
-<script src="scripts/ui/directives/ph-date.js"></script>
-<script src="scripts/ui/directives/ph-editable.js"></script>
-<script src="scripts/ui/directives/ph-edit-article-link.js"></script>
-<script src="scripts/ui/directives/ph-email-address.js"></script>
-<script src="scripts/ui/directives/ph-history-back.js"></script>
-<script src="scripts/ui/directives/ph-lessor-link.js"></script>
-<script src="scripts/ui/directives/ph-submit.js"></script>
-<script src="scripts/ui/directives/ph-vcard.js"></script>
-<script src="scripts/ui/directives/st-select-multiple.js"></script>
-<script src="scripts/ui/filters/guid.js"></script>
-<script src="scripts/ui/filters/replace.js"></script>
-<script src="scripts/ui/services/Alert.js"></script>
-<script src="scripts/users/controllers/HomeCtrl.js"></script>
-<script src="scripts/users/controllers/UsersCtrl.js"></script>
-<script src="scripts/users/directives/ph-user-article-navbar.js"></script>
-<script src="scripts/users/directives/ph-user-navbar.js"></script>
-<script src="scripts/users/directives/ph-user-vcard.js"></script>
-<script src="scripts/users/services/resources.js"></script>
--->
+<script src="modules/common/directives/both-or-none.js"></script>
+<script src="modules/common/directives/compare-to.js"></script>
+<script src="modules/common/directives/ph-guid.js"></script>
+<script src="modules/common/filters/unique.js"></script>
+<script src="modules/common/services/uuid.js"></script>
+
+<script src="modules/ui/config.js"></script>
+<script src="modules/ui/controllers/FileDestroyController.js"></script>
+<script src="modules/ui/controllers/MyFileUploadCtrl.js"></script>
+<script src="modules/ui/directives/active-nav.js"></script>
+<script src="modules/ui/directives/has-error.js"></script>
+<script src="modules/ui/directives/ph-checkbox.js"></script>
+<script src="modules/ui/directives/ph-date.js"></script>
+<script src="modules/ui/directives/ph-editable.js"></script>
+<script src="modules/ui/directives/ph-edit-article-link.js"></script>
+<script src="modules/ui/directives/ph-email-address.js"></script>
+<script src="modules/ui/directives/ph-history-back.js"></script>
+<script src="modules/ui/directives/ph-lessor-link.js"></script>
+<script src="modules/ui/directives/ph-submit.js"></script>
+<script src="modules/ui/directives/ph-vcard.js"></script>
+<script src="modules/ui/directives/st-select-multiple.js"></script>
+<script src="modules/ui/filters/guid.js"></script>
+<script src="modules/ui/filters/replace.js"></script>
+<script src="modules/ui/services/Alert.js"></script>
+
+<script src="modules/account/controllers/AccountCtrl.js"></script>
+<script src="modules/account/controllers/ChangeContactCtrl.js"></script>
+<script src="modules/account/controllers/ChangeEmailAddressCtrl.js"></script>
+<script src="modules/account/controllers/ChangePasswordCtrl.js"></script>
+<script src="modules/account/controllers/LoginCtrl.js"></script>
+<script src="modules/account/controllers/LogoutCtrl.js"></script>
+<script src="modules/account/controllers/ResetPasswordCtrl.js"></script>
+<script src="modules/account/controllers/SignUpCtrl.js"></script>
+<script src="modules/account/controllers/ValidateCtrl.js"></script>
+<script src="modules/account/directives/is-unique-email-address.js"></script>
+<script src="modules/account/directives/is-unique-username.js"></script>
+<script src="modules/account/services/resources.js"></script>
+<script src="modules/account/module.js"></script>
+
+<script src="modules/admin/controllers/EmailsCtrl.js"></script>
+<script src="modules/admin/controllers/EventLogCtrl.js"></script>
+<script src="modules/admin/controllers/EventProcessorsCtrl.js"></script>
+<script src="modules/admin/controllers/OrganizationsCtrl.js"></script>
+<script src="modules/admin/controllers/SchemaUpdateCtrl.js"></script>
+<script src="modules/admin/controllers/StatusCtrl.js"></script>
+<script src="modules/admin/controllers/UsersCtrl.js"></script>
+<script src="modules/admin/filters/organization-plan.js"></script>
+<script src="modules/admin/services/resources.js"></script>
+<script src="modules/admin/module.js"></script>
+
+<script src="modules/contracts/services/resources.js"></script>
+<script src="modules/contracts/module.js"></script>
+
+<script src="modules/domain/services/PostalAddress.js"></script>
+<script src="modules/domain/services/PriceCalculator.js"></script>
+<script src="modules/domain/module.js"></script>
+
+<script src="modules/inventory/controllers/ArticlesActionsCtrl.js"></script>
+<script src="modules/inventory/controllers/CreateArticleModalInstCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesDescriptionCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesDetailsCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesFilesCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesSpecificationCtrl.js"></script>
+<script src="modules/inventory/controllers/OrganizationsArticlesStockCtrl.js"></script>
+<script src="modules/inventory/controllers/StoresChangeContactCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesDescriptionCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesDetailsCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesFilesCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesIndexCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesSpecificationCtrl.js"></script>
+<script src="modules/inventory/controllers/UsersArticlesStockCtrl.js"></script>
+<script src="modules/inventory/services/resources.js"></script>
+<script src="modules/inventory/module.js"></script>
+
+<script src="modules/orders/controllers/ManageOrganizationOrderCtrl.js"></script>
+<script src="modules/orders/controllers/ManageOrganizationOrdersCtrl.js"></script>
+<script src="modules/orders/controllers/ManageUserOrderCtrl.js"></script>
+<script src="modules/orders/controllers/ManageUserOrdersCtrl.js"></script>
+<script src="modules/orders/filters/orderStatusText.js"></script>
+<script src="modules/orders/services/resources.js"></script>
+<script src="modules/orders/module.js"></script>
+
+<script src="modules/organizations/controllers/ApplicationsCtrl.js"></script>
+<script src="modules/organizations/controllers/MembersCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationsCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationsEditContactDetailsCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationsEditStartpageCtrl.js"></script>
+<script src="modules/organizations/controllers/SettingsCtrl.js"></script>
+<script src="modules/organizations/controllers/StoreCtrl.js"></script>
+<script src="modules/organizations/directives/ph-organization-article-navbar.js"></script>
+<script src="modules/organizations/directives/ph-organization-navbar.js"></script>
+<script src="modules/organizations/services/resources.js"></script>
+<script src="modules/organizations/module.js"></script>
+
+<script src="modules/shop/controllers/AddOrderItemModalInstCtrl.js"></script>
+<script src="modules/shop/controllers/CartCtrl.js"></script>
+<script src="modules/shop/controllers/CheckoutCtrl.js"></script>
+<script src="modules/shop/controllers/CreateOrderModalInstCtrl.js"></script>
+<script src="modules/shop/controllers/IndexCtrl.js"></script>
+<script src="modules/shop/controllers/ProductCtrl.js"></script>
+<script src="modules/shop/directives/ShopItemAddToCart.js"></script>
+<script src="modules/shop/directives/ShopItemAvailability.js"></script>
+<script src="modules/shop/directives/ShopItemDocuments.js"></script>
+<script src="modules/shop/directives/ShopItemImages.js"></script>
+<script src="modules/shop/directives/ShopSearch.js"></script>
+<script src="modules/shop/services/resources.js"></script>
+<script src="modules/shop/services/Shop.js"></script>
+<script src="modules/shop/module.js"></script>
+
+<script src="modules/stores/directives/ph-store.js"></script>
+<script src="modules/stores/services/resources.js"></script>
+<script src="modules/stores/module.js"></script>
+
+<script src="modules/users/controllers/HomeCtrl.js"></script>
+<script src="modules/users/controllers/UsersCtrl.js"></script>
+<script src="modules/users/directives/ph-user-article-navbar.js"></script>
+<script src="modules/users/directives/ph-user-navbar.js"></script>
+<script src="modules/users/directives/ph-user-vcard.js"></script>
+<script src="modules/users/services/resources.js"></script>
+<script src="modules/users/module.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>

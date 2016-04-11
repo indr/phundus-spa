@@ -65,9 +65,17 @@ module.exports = function(config) {
       "bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js",
       "bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js",
       "bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js",
-      "app/scripts/common/services/routingConfig.js",
+
+      "app/modules/auth/services/routingConfig.js",
       "app/scripts/app.js",
       "app/scripts/**/*.js",
+
+      "app/modules/common/**/*.js",
+      "app/modules/auth/**/*.js",
+      "app/modules/ui/**/*.js",
+
+      "app/modules/**/*.js",
+
       "test/mock/**/*.js",
       "test/spec/**/*.js"
     ],
