@@ -189,26 +189,23 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="modules/auth/services/routingConfig.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/config.js"></script>
-<script src="scripts/states.js"></script>
-<script src="scripts/controllers/DebugCtrl.js"></script>
-<script src="scripts/controllers/FeedbackCtrl.js"></script>
-<script src="scripts/controllers/NavCtrl.js"></script>
-<script src="scripts/services/resources.js"></script>
-
-<script src="modules/auth/directives/access-level.js"></script>
-<script src="modules/auth/services/accessLevels.js"></script>
-<script src="modules/auth/services/auth.js"></script>
-<script src="modules/auth/services/Auth.js"></script>
-
+<script src="modules/common/module.js"></script>
 <script src="modules/common/directives/both-or-none.js"></script>
 <script src="modules/common/directives/compare-to.js"></script>
 <script src="modules/common/directives/ph-guid.js"></script>
 <script src="modules/common/filters/unique.js"></script>
 <script src="modules/common/services/uuid.js"></script>
 
+<script src="modules/auth/module.js"></script>
+<script src="modules/auth/directives/access-level.js"></script>
+<script src="modules/auth/services/auth.js"></script>
+<script src="modules/auth/services/Auth.js"></script>
+
+<script src="modules/domain/module.js"></script>
+<script src="modules/domain/services/PostalAddress.js"></script>
+<script src="modules/domain/services/PriceCalculator.js"></script>
+
+<script src="modules/ui/module.js"></script>
 <script src="modules/ui/config.js"></script>
 <script src="modules/ui/controllers/FileDestroyController.js"></script>
 <script src="modules/ui/controllers/MyFileUploadCtrl.js"></script>
@@ -228,6 +225,18 @@
 <script src="modules/ui/filters/replace.js"></script>
 <script src="modules/ui/services/Alert.js"></script>
 
+<script src="modules/admin/module.js"></script>
+<script src="modules/admin/controllers/EmailsCtrl.js"></script>
+<script src="modules/admin/controllers/EventLogCtrl.js"></script>
+<script src="modules/admin/controllers/EventProcessorsCtrl.js"></script>
+<script src="modules/admin/controllers/OrganizationsCtrl.js"></script>
+<script src="modules/admin/controllers/SchemaUpdateCtrl.js"></script>
+<script src="modules/admin/controllers/StatusCtrl.js"></script>
+<script src="modules/admin/controllers/UsersCtrl.js"></script>
+<script src="modules/admin/filters/organization-plan.js"></script>
+<script src="modules/admin/services/resources.js"></script>
+
+<script src="modules/account/module.js"></script>
 <script src="modules/account/controllers/AccountCtrl.js"></script>
 <script src="modules/account/controllers/ChangeContactCtrl.js"></script>
 <script src="modules/account/controllers/ChangeEmailAddressCtrl.js"></script>
@@ -240,25 +249,24 @@
 <script src="modules/account/directives/is-unique-email-address.js"></script>
 <script src="modules/account/directives/is-unique-username.js"></script>
 <script src="modules/account/services/resources.js"></script>
-<script src="modules/account/module.js"></script>
 
-<script src="modules/admin/controllers/EmailsCtrl.js"></script>
-<script src="modules/admin/controllers/EventLogCtrl.js"></script>
-<script src="modules/admin/controllers/EventProcessorsCtrl.js"></script>
-<script src="modules/admin/controllers/OrganizationsCtrl.js"></script>
-<script src="modules/admin/controllers/SchemaUpdateCtrl.js"></script>
-<script src="modules/admin/controllers/StatusCtrl.js"></script>
-<script src="modules/admin/controllers/UsersCtrl.js"></script>
-<script src="modules/admin/filters/organization-plan.js"></script>
-<script src="modules/admin/services/resources.js"></script>
-<script src="modules/admin/module.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/states.js"></script>
+<script src="scripts/controllers/DebugCtrl.js"></script>
+<script src="scripts/controllers/FeedbackCtrl.js"></script>
+<script src="scripts/controllers/NavCtrl.js"></script>
+<script src="scripts/services/resources.js"></script>
+
+
+
+
+
+
 
 <script src="modules/contracts/services/resources.js"></script>
 <script src="modules/contracts/module.js"></script>
 
-<script src="modules/domain/services/PostalAddress.js"></script>
-<script src="modules/domain/services/PriceCalculator.js"></script>
-<script src="modules/domain/module.js"></script>
 
 <script src="modules/inventory/controllers/ArticlesActionsCtrl.js"></script>
 <script src="modules/inventory/controllers/CreateArticleModalInstCtrl.js"></script>
@@ -325,6 +333,7 @@
 <script src="modules/users/directives/ph-user-vcard.js"></script>
 <script src="modules/users/services/resources.js"></script>
 <script src="modules/users/module.js"></script>
+
 
 <!-- endbuild -->
 </body>

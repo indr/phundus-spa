@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.admin')
     .filter('organizationPlan', [
       function () {
         return function (input) {

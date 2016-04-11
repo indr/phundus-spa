@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('SignUp', ['$scope', 'Users', 'Organizations', 'Alert',
       function ($scope, Users, Organizations, Alert) {
         $scope.user = {};
@@ -31,5 +30,4 @@
 
       }
     ]);
-
 })();

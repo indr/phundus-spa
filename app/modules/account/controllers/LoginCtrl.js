@@ -1,8 +1,7 @@
 'use strict';
 
-(function() {
-
-  angular.module('phundusApp')
+(function () {
+  angular.module('ph.account')
     .controller('LoginCtrl', ['$scope', '$location', '$window', 'Auth', 'Alert',
       function ($scope, $location, $window, Auth, Alert) {
 
@@ -35,7 +34,7 @@
           );
         };
 
-        $scope.range = function(min, max, step) {
+        $scope.range = function (min, max, step) {
           step = step || 1;
           var input = [];
           for (var i = min; i <= max; i += step) {
@@ -50,6 +49,4 @@
           $scope.login();
         };
       }]);
-
-
 })();

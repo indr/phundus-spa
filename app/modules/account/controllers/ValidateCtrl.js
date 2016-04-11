@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('MetaValidateCtrl', ['$scope', 'Auth', 'Alert', 'Validate', 'key', '$timeout',
       function ($scope, Auth, Alert, Validate, key, $timeout) {
         $scope.validate = {
@@ -26,5 +25,4 @@
         }
       }
     ]);
-
 })();

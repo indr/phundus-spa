@@ -22,7 +22,7 @@
 
         <div role="alert" data-ng-messages="formChangeEmailAddress.password.$error"
              data-ng-show="formChangeEmailAddress.password.$touched || formChangeEmailAddress.$submitted">
-          <div data-ng-messages-include="views/messages.html"></div>
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
              data-ng-show="formChangeEmailAddress.newEmailAddress.$touched || formChangeEmailAddress.$submitted">
           <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
 
-          <div data-ng-messages-include="views/messages.html"></div>
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
         </div>
       </div>
     </div>

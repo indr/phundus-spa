@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .controller('MyFileUploadCtrl', ['_', '$scope', '$http', 'Alert', '$filter', '$window', '$timeout',
       function (_, $scope, $http, Alert) {
         var url = $scope.url;

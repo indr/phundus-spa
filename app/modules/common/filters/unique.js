@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.common')
     .filter('unique', function () {
       return function (arr, field) {
         if (!arr) {

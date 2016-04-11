@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.auth')
     .directive('accessLevel', ['Auth', function (Auth) {
       return {
         restrict: 'A',

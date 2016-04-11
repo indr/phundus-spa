@@ -3,7 +3,7 @@
 // http://www.frederiknakstad.com/2013/01/21/authentication-in-single-page-applications-with-angular-js/
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.auth')
     .factory('Auth', Auth);
 
   Auth.$inject = ['$http', '$cookies', '_', 'auth'];

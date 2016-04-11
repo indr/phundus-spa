@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .factory('AccountChangeEmailAddress', ['$resource', function ($resource) {
       return $resource('/api/account/change-email-address');
     }])

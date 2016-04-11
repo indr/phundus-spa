@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.domain')
     .factory('PriceCalculator', ['Auth',
       function (Auth) {
 

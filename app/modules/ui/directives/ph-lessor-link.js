@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .directive('phLessorLink', [
       function () {
         return {

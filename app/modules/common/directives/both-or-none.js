@@ -3,7 +3,7 @@
 // Inspired by https://stackoverflow.com/questions/25199449/how-to-validate-a-field-based-on-another-field-in-the-same-form-using-bootstrap
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.common')
     .directive('bothOrNone', [function () {
       return {
         restrict: 'A',

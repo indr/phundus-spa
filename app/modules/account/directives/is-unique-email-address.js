@@ -1,9 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
-
+  angular.module('ph.account')
     // http://bartwullems.blogspot.hu/2015/02/angular-13-pending.html
     .directive("isUniqueEmailAddress", ['$q', '$http', function ($q, $http) {
       return {

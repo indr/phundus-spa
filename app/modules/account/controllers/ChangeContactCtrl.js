@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('AccountChangeContactCtrl', ['$scope', '$timeout', '$uibModalInstance', 'userId', 'contact', 'UsersAddress',
       function ($scope, $timeout, $uibModalInstance, userId, contact, UsersAddress) {
 

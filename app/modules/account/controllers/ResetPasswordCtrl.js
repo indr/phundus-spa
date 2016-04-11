@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('ResetPasswordCtrl', ['$scope', 'Alert', 'AccountResetPassword',
       function ($scope, Alert, AccountResetPassword) {
         $scope.submitted = false;
@@ -19,5 +18,4 @@
         }
       }
     ]);
-
 })();

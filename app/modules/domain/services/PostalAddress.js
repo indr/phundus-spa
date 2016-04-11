@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.domain')
     .factory('PostalAddress', [
       function () {
         var fromFirstAndLastName = function (firstName, lastName, street, postcode, city) {

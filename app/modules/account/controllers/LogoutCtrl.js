@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('LogoutCtrl', ['$scope', '$location', '$window', 'Auth',
       function ($scope, $location, $window, Auth) {
 
@@ -22,5 +21,4 @@
           $location.path('/logged-out');
         }
       }]);
-
 })();

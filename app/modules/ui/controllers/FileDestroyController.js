@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .controller('FileDestroyController', ['$scope', '$http',
       function ($scope, $http) {
         var file = $scope.file,

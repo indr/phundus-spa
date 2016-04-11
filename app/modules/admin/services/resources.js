@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.admin')
     .factory('AdminOrganizations', ['$resource', function ($resource) {
       return $resource('/api/v0/admin/organizations/:organizationId', {organizationId: '@organizationId'});
     }])

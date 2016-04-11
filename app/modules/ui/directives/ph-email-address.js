@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .directive('phEmailAddress', [
       function () {
         return {

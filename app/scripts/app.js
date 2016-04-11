@@ -17,7 +17,14 @@
     'ui.router',
     'ui.tinymce',
     'mwl.confirm',
-    'viewhead'
+    'viewhead',
+
+    'ph.common',
+    'ph.auth',
+    'ph.domain',
+    'ph.ui',
+    'ph.admin',
+    'ph.account'
   ]);
 
   app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults', 'amMoment',

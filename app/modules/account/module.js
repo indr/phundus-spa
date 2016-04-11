@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.account', [])
     .config(states);
 
   states.$inject = ['$stateProvider', 'authProvider'];
@@ -65,7 +65,7 @@
       });
 
     function templateUrl(fileName) {
-      return 'scripts/account/views/' + fileName;
+      return 'modules/account/views/' + fileName;
     }
   }
 

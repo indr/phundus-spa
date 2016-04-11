@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('AccountChangePasswordCtrl', ['$scope', '$uibModalInstance', '$timeout', 'AccountChangePassword',
       function ($scope, $uibModalInstance, $timeout, AccountChangePassword) {
         $scope.ok = function () {

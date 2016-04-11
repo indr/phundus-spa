@@ -1,5 +1,5 @@
 'use strict';
 
 (function () {
-  angular.module('ph.domain', []);
+  angular.module('ph.auth', []);
 })();

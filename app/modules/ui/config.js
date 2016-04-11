@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .config(['uibDatepickerPopupConfig',
       function (uibDatepickerPopupConfig) {
         uibDatepickerPopupConfig.clearText = 'Leeren';

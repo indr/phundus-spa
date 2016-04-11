@@ -7,7 +7,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.common')
     .service('uuid4', function () {
       /**! http://stackoverflow.com/a/2117523/377392 */
       var fmt = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';

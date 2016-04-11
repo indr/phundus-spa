@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.common')
     .directive('phGuid', [function () {
       return {
         restrict: 'E',

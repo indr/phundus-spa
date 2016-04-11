@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.ui')
     .factory('Alert', ['_', '$timeout', 'uuid4', '$uibModal',
       function (_, $timeout, uuid4, $uibModal) {
         var modal = null;

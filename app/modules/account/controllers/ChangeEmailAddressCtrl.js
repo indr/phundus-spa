@@ -1,9 +1,7 @@
 'use strict';
 
 (function () {
-
-
-  angular.module('phundusApp')
+  angular.module('ph.account')
     .controller('AccountChangeEmailAddressCtrl', ['$scope', '$uibModalInstance', '$timeout', 'AccountChangeEmailAddress',
       function ($scope, $uibModalInstance, $timeout, AccountChangeEmailAddress) {
         $scope.ok = function () {
@@ -38,5 +36,4 @@
         };
       }
     ]);
-
 })();
