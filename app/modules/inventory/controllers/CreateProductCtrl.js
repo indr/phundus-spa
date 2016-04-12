@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.inventory')
     .controller('CreateArticleModalInstCtrl', ['$scope', '$uibModalInstance', 'ownerId',
       function ($scope, $uibModalInstance, ownerId) {
 

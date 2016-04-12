@@ -1,6 +1,7 @@
-(function () {
+'use strict';
 
-  angular.module('phundusApp')
+(function () {
+  angular.module('ph.inventory')
     .controller('ArticlesActionsCtrl', ['$scope', 'articleId', 'ArticlesActions', 'Alert',
       function ($scope, articleId, ArticlesActions, Alert) {
         ArticlesActions.get({articleId: articleId}, function (res) {

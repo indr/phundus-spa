@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  angular.module('ph.organizations', ['ph.inventory']);
+
   angular.module('phundusApp')
     .config(states);
 
@@ -109,6 +111,9 @@
         resolve: {
           organizationId: ['$stateParams', function ($stateParams) {
             return $stateParams.organizationId;
+          }],
+          tenantId: ['$stateParams', function ($stateParams) {
+            return $stateParams.organizationId;
           }]
         }
       })
@@ -122,6 +127,8 @@
         template: '<ph-store store="store" data-is-editable="true" loaded="true"></ph-store>',
         controller: 'OrganizationsStoreCtrl'
       })
+
+      /*** article / products ***/
       .state('organizations.articles', {
         abstract: true,
         url: '/articles',
@@ -144,43 +151,49 @@
           }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
-            return $stateParams.articleId;
+            return $stateParams.articleId || $stateParams.productId;
           }],
           articleShortId: ['$stateParams', function ($stateParams) {
             return $stateParams.articleShortId;
+          }],
+          productId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleId || $stateParams.productId;
           }]
         }
       })
       .state('organizations.articles.edit.actions', {
         url: '/actions',
-        templateUrl: templateUrl('article-actions.html'),
+        templateUrl: inventoryTemplateUrl('article-actions.html'),
         controller: 'ArticlesActionsCtrl'
       })
       .state('organizations.articles.edit.details', {
         url: '/',
-        templateUrl: templateUrl('edit-article-details.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-details.html'),
         controller: 'OrganizationsArticlesDetailsCtrl'
       })
       .state('organizations.articles.edit.description', {
         url: '/description',
-        templateUrl: templateUrl('edit-article-description.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-description.html'),
         controller: 'OrganizationsArticlesDescriptionCtrl'
       })
       .state('organizations.articles.edit.specification', {
         url: '/specification',
-        templateUrl: templateUrl('edit-article-specification.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-specification.html'),
         controller: 'OrganizationsArticlesSpecificationCtrl'
       })
       .state('organizations.articles.edit.stock', {
         url: '/stock',
-        templateUrl: templateUrl('edit-article-stock.html'),
-        controller: 'OrganizationsArticlesStockCtrl'
+        templateUrl: inventoryTemplateUrl('edit-article-stock.html'),
+        //controller: 'OrganizationsArticlesStockCtrl'
+        controller: 'ProductStockCtrl'
       })
       .state('organizations.articles.edit.files', {
         url: '/files',
-        templateUrl: templateUrl('edit-article-files.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-files.html'),
         controller: 'OrganizationsArticlesFilesCtrl'
       })
+      /*** ***/
+
       .state('organizations.settings', {
         url: '/settings',
         templateUrl: templateUrl('settings.html'),
@@ -199,6 +212,10 @@
 
     function templateUrl(fileName) {
       return 'modules/organizations/views/' + fileName;
+    }
+
+    function inventoryTemplateUrl(fileName) {
+      return 'modules/inventory/views/' + fileName;
     }
   }
 })();

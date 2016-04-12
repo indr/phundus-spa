@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  angular.module('ph.users', ['ph.inventory']);
+
   angular.module('phundusApp')
     .config(states);
 
@@ -22,6 +24,9 @@
         resolve: {
           userId: ['$stateParams', function ($stateParams) {
             return $stateParams.userId;
+          }],
+          tenantId: ['$stateParams', function ($stateParams) {
+            return $stateParams.userId;
           }]
         }
       })
@@ -34,6 +39,7 @@
         controller: 'UsersHomeCtrl'
       })
 
+      /*** articles / products ***/
       .state('user.articles', {
         abstract: true,
         url: '/articles',
@@ -56,43 +62,47 @@
           }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
-            return $stateParams.articleId;
+            return $stateParams.articleId || $stateParams.productId;
           }],
           articleShortId: ['$stateParams', function ($stateParams) {
             return $stateParams.articleShortId;
+          }],
+          productId: ['$stateParams', function ($stateParams) {
+            return $stateParams.articleId || $stateParams.productId;
           }]
         }
       })
       .state('user.articles.article.actions', {
         url: '/actions',
-        templateUrl: templateUrl('article-actions.html'),
+        templateUrl: inventoryTemplateUrl('article-actions.html'),
         controller: 'ArticlesActionsCtrl'
       })
       .state('user.articles.article.details', {
         url: '/',
-        templateUrl: templateUrl('edit-article-details.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-details.html'),
         controller: 'UsersArticlesDetailsCtrl'
       })
       .state('user.articles.article.description', {
         url: '/description',
-        templateUrl: templateUrl('edit-article-description.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-description.html'),
         controller: 'UsersArticlesDescriptionCtrl'
       })
       .state('user.articles.article.specification', {
         url: '/specification',
-        templateUrl: templateUrl('edit-article-specification.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-specification.html'),
         controller: 'UsersArticlesSpecificationCtrl'
       })
       .state('user.articles.article.stock', {
         url: '/stock',
-        templateUrl: templateUrl('edit-article-stock.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-stock.html'),
         controller: 'UsersArticlesStockCtrl'
       })
       .state('user.articles.article.files', {
         url: '/files',
-        templateUrl: templateUrl('edit-article-files.html'),
+        templateUrl: inventoryTemplateUrl('edit-article-files.html'),
         controller: 'UsersArticlesFilesCtrl'
       })
+      /*** ***/
 
       .state('user.orders', {
         abstract: true,
@@ -117,6 +127,10 @@
 
     function templateUrl(fileName) {
       return 'modules/users/views/' + fileName;
+    }
+
+    function inventoryTemplateUrl(fileName) {
+      return 'modules/inventory/views/' + fileName;
     }
   }
 })();

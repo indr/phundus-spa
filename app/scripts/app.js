@@ -24,7 +24,8 @@
     'ph.domain',
     'ph.ui',
     'ph.admin',
-    'ph.account'
+    'ph.account',
+    'ph.inventory'
   ]);
 
   app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults', 'amMoment',
