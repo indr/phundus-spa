@@ -39,26 +39,22 @@
         controller: 'UsersHomeCtrl'
       })
 
-      /*** articles / products ***/
-      .state('user.articles', {
-        abstract: true,
-        url: '/articles',
-        template: '<ui-view/>'
+      .state('user.products', {
+        url: '/products/',
+        templateUrl: templateUrl('products.html'),
+        controller: 'UsersProductsCtrl'
       })
-      .state('user.articles.index', {
-        url: '/',
-        templateUrl: templateUrl('articles.html'),
-        controller: 'UsersArticlesIndexCtrl'
-      })
-      .state('user.articles.article', {
+      .state('user.product', {
         abstract: true,
-        url: '/articles/:articleId/:articleShortId',
+        url: '/products/:articleId/:articleShortId',
         template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId" data-article-short-id="articleShortId"></ph-user-article-navbar><ui-view/>',
         controller: ['$scope', 'userId', 'articleId', 'articleShortId',
           function ($scope, userId, articleId, articleShortId) {
             $scope.userId = userId;
             $scope.articleId = articleId;
             $scope.articleShortId = articleShortId;
+            $scope.tenantId = userId;
+            $scope.productId = articleId;
           }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
@@ -72,37 +68,30 @@
           }]
         }
       })
-      .state('user.articles.article.actions', {
+      .state('user.product.actions', {
         url: '/actions',
-        templateUrl: inventoryTemplateUrl('article-actions.html'),
-        controller: 'ArticlesActionsCtrl'
+        template: '<view-title>Aktivitäten</view-title><div ph-inventory-product-activities tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('user.articles.article.details', {
+      .state('user.product.details', {
         url: '/',
-        templateUrl: inventoryTemplateUrl('edit-article-details.html'),
-        controller: 'UsersArticlesDetailsCtrl'
+        template: '<view-title>Material bearbeiten</view-title><div ph-inventory-product-details tenant-id="tenantId" product-id="productId" has-member-price="false"></div>'
       })
-      .state('user.articles.article.description', {
+      .state('user.product.description', {
         url: '/description',
-        templateUrl: inventoryTemplateUrl('edit-article-description.html'),
-        controller: 'UsersArticlesDescriptionCtrl'
+        template: '<view-title>Beschreibung bearbeiten</view-title><div ph-inventory-product-description tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('user.articles.article.specification', {
+      .state('user.product.specification', {
         url: '/specification',
-        templateUrl: inventoryTemplateUrl('edit-article-specification.html'),
-        controller: 'UsersArticlesSpecificationCtrl'
+        template: '<view-title>Spezifikation bearbeiten</view-title><div ph-inventory-product-specification tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('user.articles.article.stock', {
+      .state('user.product.stock', {
         url: '/stock',
-        templateUrl: inventoryTemplateUrl('edit-article-stock.html'),
-        controller: 'UsersArticlesStockCtrl'
+        template: '<view-title>Bestand</view-title><div ph-inventory-product-stock tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('user.articles.article.files', {
+      .state('user.product.files', {
         url: '/files',
-        templateUrl: inventoryTemplateUrl('edit-article-files.html'),
-        controller: 'UsersArticlesFilesCtrl'
+        template: '<view-title>Dateien</view-title><div ph-inventory-product-files tenant-id="tenantId" product-id="productId"></div>'
       })
-      /*** ***/
 
       .state('user.orders', {
         abstract: true,
@@ -127,10 +116,6 @@
 
     function templateUrl(fileName) {
       return 'modules/users/views/' + fileName;
-    }
-
-    function inventoryTemplateUrl(fileName) {
-      return 'modules/inventory/views/' + fileName;
     }
   }
 })();

@@ -3,8 +3,8 @@
 (function () {
 
   angular.module('phundusApp')
-    .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers', '$uibModal',
-      function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, $uibModal) {
+    .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers', '$uibModal', 'storeContactDetailsModalDialog',
+      function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, $uibModal, storeContactDetailsModalDialog) {
         return {
           restrict: 'E',
           replace: 'true',
@@ -85,20 +85,10 @@
             };
 
             scope.showChangeContact = function () {
-              var modalInstance = $uibModal.open({
-                templateUrl: 'modules/stores/views/inventory/modal-change-contact.html',
-                controller: 'StoresChangeContactCtrl',
-                resolve: {
-                  storeId: function () {
-                    return scope.store.storeId
-                  },
-                  contact: angular.copy(scope.store.contact)
-                }
-              });
-
-              modalInstance.result.then(function (contact) {
-                scope.store.contact = contact;
-              });
+              storeContactDetailsModalDialog(scope.store.storeId, angular.copy(scope.store.contact))
+                .then(function (contact) {
+                  scope.store.contact = contact;
+                });
             };
 
             scope.updateOpeningHours = function () {

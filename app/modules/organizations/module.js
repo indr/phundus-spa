@@ -128,26 +128,23 @@
         controller: 'OrganizationsStoreCtrl'
       })
 
-      /*** article / products ***/
-      .state('organizations.articles', {
-        abstract: true,
-        url: '/articles',
-        template: '<ui-view/>'
+
+      .state('organizations.products', {
+        url: '/products/',
+        templateUrl: templateUrl('products.html'),
+        controller: 'OrganizationsProductsCtrl'
       })
-      .state('organizations.articles.index', {
-        url: '/',
-        templateUrl: templateUrl('articles.html'),
-        controller: 'OrganizationsArticlesCtrl'
-      })
-      .state('organizations.articles.edit', {
+      .state('organizations.product', {
         abstract: true,
-        url: '/:articleId/:articleShortId',
+        url: '/products/:articleId/:articleShortId',
         template: '<ph-organization-article-navbar data-organization-id="organizationId" data-article-id="articleId" data-article-short-id="articleShortId"></ph-organization-article-navbar><ui-view/>',
         controller: ['$scope', 'organizationId', 'articleId', 'articleShortId',
           function ($scope, organizationId, articleId, articleShortId) {
             $scope.organizationId = organizationId;
             $scope.articleId = articleId;
             $scope.articleShortId = articleShortId;
+            $scope.productId = articleId;
+            $scope.tenantId = organizationId;
           }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
@@ -161,38 +158,30 @@
           }]
         }
       })
-      .state('organizations.articles.edit.actions', {
+      .state('organizations.product.actions', {
         url: '/actions',
-        templateUrl: inventoryTemplateUrl('article-actions.html'),
-        controller: 'ArticlesActionsCtrl'
+        template: '<view-title>Aktivitäten</view-title><div ph-inventory-product-activities tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('organizations.articles.edit.details', {
+      .state('organizations.product.details', {
         url: '/',
-        templateUrl: inventoryTemplateUrl('edit-article-details.html'),
-        controller: 'OrganizationsArticlesDetailsCtrl'
+        template: '<view-title>Material bearbeiten</view-title><div ph-inventory-product-details tenant-id="tenantId" product-id="productId" has-member-price="true"></div>'
       })
-      .state('organizations.articles.edit.description', {
+      .state('organizations.product.description', {
         url: '/description',
-        templateUrl: inventoryTemplateUrl('edit-article-description.html'),
-        controller: 'OrganizationsArticlesDescriptionCtrl'
+        template: '<view-title>Beschreibung bearbeiten</view-title><div ph-inventory-product-description tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('organizations.articles.edit.specification', {
+      .state('organizations.product.specification', {
         url: '/specification',
-        templateUrl: inventoryTemplateUrl('edit-article-specification.html'),
-        controller: 'OrganizationsArticlesSpecificationCtrl'
+        template: '<view-title>Spezifikation bearbeiten</view-title><div ph-inventory-product-specification tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('organizations.articles.edit.stock', {
+      .state('organizations.product.stock', {
         url: '/stock',
-        templateUrl: inventoryTemplateUrl('edit-article-stock.html'),
-        //controller: 'OrganizationsArticlesStockCtrl'
-        controller: 'ProductStockCtrl'
+        template: '<view-title>Bestand</view-title><div ph-inventory-product-stock tenant-id="tenantId" product-id="productId"></div>'
       })
-      .state('organizations.articles.edit.files', {
+      .state('organizations.product.files', {
         url: '/files',
-        templateUrl: inventoryTemplateUrl('edit-article-files.html'),
-        controller: 'OrganizationsArticlesFilesCtrl'
+        template: '<view-title>Dateien</view-title><div ph-inventory-product-files tenant-id="tenantId" product-id="productId"></div>'
       })
-      /*** ***/
 
       .state('organizations.settings', {
         url: '/settings',
@@ -212,10 +201,6 @@
 
     function templateUrl(fileName) {
       return 'modules/organizations/views/' + fileName;
-    }
-
-    function inventoryTemplateUrl(fileName) {
-      return 'modules/inventory/views/' + fileName;
     }
   }
 })();

@@ -12,8 +12,8 @@
             ownerId: '=',
             ownerType: '='
           },
-          template: '<a data-ng-show="ownerType == \'organization\'" href="" data-ui-sref="organizations.articles.edit.details({organizationId: ownerId, articleId: articleId, articleShortId: articleShortId})">org</a>' +
-          '<a data-ng-show="ownerType == \'user\'" href="" data-ui-sref="user.articles.article({userId: ownerId, articleId: articleId, articleShortId: articleShortId})">user</a>'
+          template: ['<a data-ng-show="ownerType == \'organization\'" href="" data-ui-sref="organizations.product.details({organizationId: ownerId, articleId: articleId, articleShortId: articleShortId})">org</a>',
+            '<a data-ng-show="ownerType == \'user\'" href="" data-ui-sref="user.product.details({userId: ownerId, articleId: articleId, articleShortId: articleShortId})">user</a>'].join('')
         }
       }
     ]);

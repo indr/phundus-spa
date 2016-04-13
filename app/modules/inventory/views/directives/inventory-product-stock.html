@@ -1,0 +1,48 @@
+<div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Verfügbarkeit</div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Ab</th>
+              <th>Anzahl</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="row in vm.availabilities">
+              <td>{{row.fromUtc |date:'dd.MM.yyyy'}}</td>
+              <td>{{row.quantity}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Reservationen</div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Von</th>
+              <th>Bis</th>
+              <th>Anzahl</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="row in vm.reservations">
+              <td>{{row.fromUtc |date:'dd.MM.yyyy'}}</td>
+              <td>{{row.toUtc |date:'dd.MM.yyyy'}}</td>
+              <td>{{row.quantity}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

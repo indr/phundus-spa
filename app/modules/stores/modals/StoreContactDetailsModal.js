@@ -1,8 +1,34 @@
-(function() {
+'use strict';
+
+(function () {
+  angular.module('phundusApp')
+    .factory('storeContactDetailsModalDialog', storeContactDetailsModalDialog);
+
+  storeContactDetailsModalDialog.$inject = ['$uibModal'];
+  function storeContactDetailsModalDialog($uibModal) {
+    return function(storeId, contact, success) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'modules/ui/views/modal-change-contact.html',
+        controller: 'StoresChangeContactModalInstCtrl',
+        resolve: {
+          storeId: function () {
+            return storeId
+          },
+          contact: function () {
+            return contact;
+          }
+        }
+      });
+
+      if (angular.isDefined(success))
+        modalInstance.result.then(success);
+      return modalInstance.result;
+    }
+  }
 
   angular.module('phundusApp')
 
-    .controller('StoresChangeContactCtrl', ['$scope', '$timeout', '$uibModalInstance', 'storeId', 'contact', 'Stores', 'PostalAddress',
+    .controller('StoresChangeContactModalInstCtrl', ['$scope', '$timeout', '$uibModalInstance', 'storeId', 'contact', 'Stores', 'PostalAddress',
       function ($scope, $timeout, $uibModalInstance, storeId, contact, Stores, PostalAddress) {
 
         $scope.contact = contact;
@@ -33,5 +59,4 @@
         };
       }
     ]);
-
 })();

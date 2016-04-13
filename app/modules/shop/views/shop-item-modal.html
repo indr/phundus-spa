@@ -11,11 +11,11 @@
            title="Permalink"><span class="glyphicon glyphicon-link glyphicon-lg"></span></a>
 
         <a data-ng-show="canEdit && item.lessor.type == 'organization'" href=""
-           data-ui-sref="organizations.articles.edit.details({organizationId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
+           data-ui-sref="organizations.product.details({organizationId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
            data-ng-click="close()" title="Material bearbeiten"><span class="glyphicon glyphicon-pencil glyphicon-lg"></span></a>
 
         <a data-ng-show="canEdit && item.lessor.type == 'user'" href=""
-           data-ui-sref="user.articles.article.details({userId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
+           data-ui-sref="user.product.details({userId: item.lessor.lessorId, articleId: item.itemId, articleShortId: item.itemShortId})"
            data-ng-click="close()" title="Material bearbeiten"><span class="glyphicon glyphicon-pencil glyphicon-lg"></span></a>
       </div>
     </div>

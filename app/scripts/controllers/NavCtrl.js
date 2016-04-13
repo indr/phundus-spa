@@ -1,5 +1,6 @@
-(function () {
+'use strict';
 
+(function () {
   angular.module('phundusApp')
     .controller('NavCtrl', ['$scope', '$state', '$location', '$window', 'Auth', 'Alert',
       function ($scope, $state, $location, $window, Auth, Alert) {
@@ -23,5 +24,4 @@
         };
       }
     ]);
-
 })();

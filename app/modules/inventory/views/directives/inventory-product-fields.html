@@ -1,0 +1,67 @@
+<div>
+  <form class="form-horizontal" name="ipf.form" novalidate>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="name">Name</label>
+
+      <div class="col-sm-9" data-has-error="ipf.form.name">
+        <input type="text" class="form-control" id="name" name="name"
+               data-ng-model="ipf.article.name" required autofocus/>
+
+        <div role="alert" data-ng-messages="ipf.form.name.$error"
+             data-ng-show="ipf.form.name.$touched || ipf.form.$submitted">
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="brand">Marke</label>
+
+      <div class="col-sm-9" data-has-error="ipf.form.brand">
+        <input type="text" class="form-control" id="brand" name="brand"
+               data-ng-model="ipf.article.brand"/>
+
+        <div role="alert" data-ng-messages="ipf.form.brand.$error"
+             data-ng-show="ipf.form.brand.$touched || ipf.form.$submitted">
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="grossStock">Bestand (Brutto)</label>
+
+      <div class="col-sm-9" data-has-error="ipf.form.grossStock">
+        <input type="number" class="form-control" id="grossStock" name="grossStock"
+               data-ng-model="ipf.article.grossStock" min="0" required/>
+
+        <div role="alert" data-ng-messages="ipf.form.grossStock.$error"
+             data-ng-show="ipf.form.grossStock.$touched || ipf.form.$submitted">
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="color">Farbe</label>
+
+      <div class="col-sm-9" data-has-error="ipf.form.color">
+        <input type="text" class="form-control" id="color" name="color"
+               data-ng-model="ipf.article.color"/>
+
+        <div role="alert" data-ng-messages="ipf.form.color.$error"
+             data-ng-show="ipf.form.color.$touched || ipf.form.$submitted">
+          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <ph-submit class="btn-primary" data-ng-click="ipf.submit()"
+                   data-form="ipf.form" data-text="Speichern"></ph-submit>
+        <a class="btn btn-default" href="" data-ng-click="ipf.cancel()">Abbrechen</a>
+      </div>
+    </div>
+  </form>
+</div>
