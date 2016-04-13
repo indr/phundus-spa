@@ -1,14 +1,6 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
-    .controller('ManageOrganizationsSettingsCtrl', ['$scope', 'organizationId',
-      function ($scope, organizationId) {
-        $scope.organizationId = organizationId
-      }
-    ]);
-  
   angular.module('phundusApp')
     .controller('OrganizationsSettingsCtrl', ['_', '$scope', 'organizationId', 'OrganizationSettings', 'Alert', '$http',
       function (_, $scope, organizationId, OrganizationSettings, Alert, $http) {

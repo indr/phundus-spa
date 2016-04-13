@@ -22,7 +22,7 @@
 
           Organizations.post({name: name}, function (res) {
             Alert.success('Die Organisation wurde erfolgreich gegründet.');
-            $state.go('public.organization', {organizationId: res.organizationId});
+            $state.go('organization.home', {organizationId: res.organizationId});
           }, function () {
             Alert.error('Fehler beim Gründen der Organisation.');
           })

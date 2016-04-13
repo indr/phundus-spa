@@ -64,10 +64,10 @@
                aria-haspopup="true" aria-expanded="false">Organisationen <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li data-ng-repeat="membership in user.memberships">
-                <a href="" data-ui-sref="public.organization({organizationId: membership.organizationId})">{{membership.organizationName}}</a>
+                <a href="" data-ui-sref="organization.home({organizationId: membership.organizationId})">{{membership.organizationName}}</a>
               </li>
               <li data-ng-show="user.memberships.length > 0" class="divider"></li>
-              <li><a href="" data-ui-sref="public.organizations">Suchen</a></li>
+              <li><a href="" data-ui-sref="organizations">Suchen</a></li>
             </ul>
           </li>
 
@@ -289,8 +289,8 @@
 <script src="modules/organizations/controllers/MembersCtrl.js"></script>
 <script src="modules/organizations/controllers/OrganizationCtrl.js"></script>
 <script src="modules/organizations/controllers/OrganizationsCtrl.js"></script>
-<script src="modules/organizations/controllers/OrganizationsEditContactDetailsCtrl.js"></script>
-<script src="modules/organizations/controllers/OrganizationsEditStartpageCtrl.js"></script>
+<script src="modules/organizations/controllers/EditContactDetailsCtrl.js"></script>
+<script src="modules/organizations/controllers/EditStartpageCtrl.js"></script>
 <script src="modules/organizations/controllers/ProductsCtrl.js"></script>
 <script src="modules/organizations/controllers/SettingsCtrl.js"></script>
 <script src="modules/organizations/controllers/StoreCtrl.js"></script>

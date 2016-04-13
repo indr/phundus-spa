@@ -28,7 +28,7 @@
 
           modalInstance.result.then(function (member) {
             Orders.post({lessorId: $scope.organizationId, lesseeId: member.memberId}, function (data) {
-              $state.go('manage.organization.order', {organizationId: organizationId, orderId: data.orderId});
+              $state.go('organization.order', {organizationId: organizationId, orderId: data.orderId});
             }, function () {
               Alert.error('Fehler beim Erstellen der Bestellung.');
             });

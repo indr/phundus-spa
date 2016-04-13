@@ -35,7 +35,7 @@
     $scope.createArticle = function () {
       createProductModalDialog(organizationId,
         function (product) {
-          $state.go('organizations.product.details', {
+          $state.go('organization.product.details', {
             organizationId: organizationId,
             articleShortId: product.articleShortId,
             articleId: product.articleId

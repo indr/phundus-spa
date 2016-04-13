@@ -27,6 +27,7 @@
     'ph.account',
     'ph.users',
     'ph.organizations',
+    'ph.orders',
     'ph.inventory'
   ]);
 

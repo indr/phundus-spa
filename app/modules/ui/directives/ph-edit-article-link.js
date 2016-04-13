@@ -12,7 +12,7 @@
             ownerId: '=',
             ownerType: '='
           },
-          template: ['<a data-ng-show="ownerType == \'organization\'" href="" data-ui-sref="organizations.product.details({organizationId: ownerId, articleId: articleId, articleShortId: articleShortId})">org</a>',
+          template: ['<a data-ng-show="ownerType == \'organization\'" href="" data-ui-sref="organization.product.details({organizationId: ownerId, articleId: articleId, articleShortId: articleShortId})">org</a>',
             '<a data-ng-show="ownerType == \'user\'" href="" data-ui-sref="user.product.details({userId: ownerId, articleId: articleId, articleShortId: articleShortId})">user</a>'].join('')
         }
       }

@@ -14,7 +14,7 @@
         });
 
         var goBack = function () {
-          $state.go('public.organization', {organizationId: organizationId});
+          $state.go('organization.home', {organizationId: organizationId});
         };
 
         $scope.submit = function () {
