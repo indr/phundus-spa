@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.orders')
     .controller('OrganizationOrdersCtrl', ['$scope', 'organizationId', 'Orders', 'Alert', '$state', '$uibModal',
       function ($scope, organizationId, Orders, Alert, $state, $uibModal) {
         $scope.organizationId = organizationId;
@@ -36,5 +35,4 @@
         };
       }
     ]);
-
 })();

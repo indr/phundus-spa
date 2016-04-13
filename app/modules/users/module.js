@@ -1,15 +1,13 @@
 'use strict';
 
 (function () {
-  angular.module('ph.users', [
+  var module = angular.module('ph.users', [
     'ph.inventory',
     'ph.orders']);
 
-  angular.module('phundusApp')
-    .config(states);
+  module.config(states);
 
   states.$inject = ['$stateProvider', 'authProvider'];
-
   function states($stateProvider, authProvider) {
 
     var access = authProvider.accessLevels;

@@ -1,6 +1,7 @@
-(function () {
+'use strict';
 
-  angular.module('phundusApp')
+(function () {
+  angular.module('ph.orders')
     .controller('CreateOrderModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', '$http',
       function ($scope, $uibModalInstance, lessorId, $http) {
 

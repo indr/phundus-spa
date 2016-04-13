@@ -1,11 +1,10 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.app')
     .config(states);
 
   states.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'authProvider'];
-
   function states($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, authProvider) {
 
     var access = authProvider.accessLevels;
@@ -24,17 +23,6 @@
         data: {
           access: access.public
         }
-      })
-      .state('public.feedback', {
-        url: '/feedback',
-        templateUrl: 'views/feedback.html',
-        controller: 'MetaFeedbackCtrl',
-        title: 'Feedback'
-      })
-      .state('public.debug', {
-        url: '/debug',
-        templateUrl: 'views/debug.html',
-        controller: 'DebugCtrl'
       })
       .state('public.404', {
         url: '/404',

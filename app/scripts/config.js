@@ -1,19 +1,7 @@
 'use strict';
 
 (function () {
-
-  var app = angular.module('phundusApp');
-
-  // http://snippetrepo.com/snippets/lodash-in-angularjs
-  //.factory('_', ['$window',
-  //  function ($window) {
-  //    // place lodash include before angular
-  //    return $window._;
-  //  }
-  //])
-  app
-    .constant('_', window._)
-    .constant('$', window.$);
+  var app = angular.module('ph.app');
 
   app.config(['$httpProvider', 'fileUploadProvider',
     function ($httpProvider, fileUploadProvider) {

@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.stores')
     .factory('storeContactDetailsModalDialog', storeContactDetailsModalDialog);
 
   storeContactDetailsModalDialog.$inject = ['$uibModal'];
@@ -26,8 +26,7 @@
     }
   }
 
-  angular.module('phundusApp')
-
+  angular.module('ph.stores')
     .controller('StoresChangeContactModalInstCtrl', ['$scope', '$timeout', '$uibModalInstance', 'storeId', 'contact', 'Stores', 'PostalAddress',
       function ($scope, $timeout, $uibModalInstance, storeId, contact, Stores, PostalAddress) {
 

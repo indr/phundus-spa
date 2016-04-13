@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.orders')
     .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', 'isMember', '$http', 'PriceCalculator',
       function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, priceCalculatorFactory) {
         var priceCalculator = {

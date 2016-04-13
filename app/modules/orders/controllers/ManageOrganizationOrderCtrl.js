@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.orders')
     .controller('OrganizationOrderCtrl', ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window', '$uibModal',
       function ($, $scope, organizationId, orderId, Orders, OrderItems, Alert, $window, $uibModal) {
         $scope.organizationId = organizationId;

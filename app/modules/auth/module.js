@@ -1,5 +1,8 @@
 'use strict';
 
 (function () {
-  angular.module('ph.auth', []);
+  angular.module('ph.auth', [
+    'ngCookies',
+    'ph.common'
+  ]);
 })();

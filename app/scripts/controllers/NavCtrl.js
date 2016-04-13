@@ -1,27 +1,29 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('NavCtrl', ['$scope', '$state', '$location', '$window', 'Auth', 'Alert',
-      function ($scope, $state, $location, $window, Auth, Alert) {
+  angular.module('ph.app')
+    .controller('NavCtrl', NavCtrl);
 
-        $scope.user = Auth.user;
-        $scope.userRoles = Auth.userRoles;
-        $scope.accessLevels = Auth.accessLevels;
+  NavCtrl.$inject = ['$scope', '$location', '$window', 'Auth', 'Alert'];
 
-        $scope.queryString = '';
-        $scope.search = function () {
-          $window.location.href = '/shop/Search?queryString=' + $scope.queryString;
-        };
+  function NavCtrl($scope, $location, $window, Auth, Alert) {
 
-        $scope.logout = function () {
-          Auth.logout(function () {
-              $location.path('/logged-out');
-            },
-            function (err) {
-              Alert.error(err);
-            });
-        };
-      }
-    ]);
+    $scope.user = Auth.user;
+    $scope.userRoles = Auth.userRoles;
+    $scope.accessLevels = Auth.accessLevels;
+
+    $scope.queryString = '';
+    $scope.search = function () {
+      $window.location.href = '/shop/Search?queryString=' + $scope.queryString;
+    };
+
+    $scope.logout = function () {
+      Auth.logout(function () {
+          $location.path('/logged-out');
+        },
+        function (err) {
+          Alert.error(err);
+        });
+    };
+  }
 })();

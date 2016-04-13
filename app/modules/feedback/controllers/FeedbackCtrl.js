@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('MetaFeedbackCtrl', MetaFeedbackCtrl);
+  angular.module('ph.feedback')
+    .controller('FeedbackCtrl', FeedbackCtrl);
 
-  MetaFeedbackCtrl.$inject = ['$scope', 'Auth', 'Alert', 'Feedback'];
-
-  function MetaFeedbackCtrl($scope, Auth, Alert, Feedback) {
+  FeedbackCtrl.$inject = ['$scope', 'Auth', 'Alert', 'Feedback'];
+  function FeedbackCtrl($scope, Auth, Alert, Feedback) {
     $scope.feedback = {
       emailAddress: Auth.user.username || undefined
     };

@@ -7,7 +7,6 @@
     .factory('Auth', Auth);
 
   Auth.$inject = ['$http', '$cookies', '_', 'auth'];
-
   function Auth($http, $cookies, _, auth) {
 
     var accessLevels = auth.accessLevels

@@ -4,6 +4,7 @@
   angular.module('ph.shop', [
       'ngResource',
       'ui.router',
+      'ph.alerts',
       'ph.auth',
       'ph.ui']
   ).config(states);

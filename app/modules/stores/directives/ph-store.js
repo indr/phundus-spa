@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  angular.module('phundusApp')
+  angular.module('ph.stores')
     .directive('phStore', ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers', '$uibModal', 'storeContactDetailsModalDialog',
       function ($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, $uibModal, storeContactDetailsModalDialog) {
         return {

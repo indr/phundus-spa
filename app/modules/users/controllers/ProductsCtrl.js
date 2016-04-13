@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.users')
     .controller('UserProductsCtrl', UsersProductsCtrl);
 
   UsersProductsCtrl.$inject = ['_', '$scope', 'userId', '$window', 'Stores', 'Articles', 'Alert', '$state', 'Auth'];

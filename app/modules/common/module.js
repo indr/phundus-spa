@@ -1,5 +1,8 @@
 'use strict';
 
 (function () {
-  angular.module('ph.common', []);
+  var module = angular.module('ph.common', []);
+
+  module.constant('_', window._);
+  module.constant('$', window.$);
 })();

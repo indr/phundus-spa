@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  var app = angular.module('phundusApp', [
+  var app = angular.module('ph.app', [
     'angularMoment',
     'blueimp.fileupload',
     'chartjs-directive',
     'leaflet-directive',
-    'ngCookies',
     'ngHolder',
     'ngMessages',
     'ngResource',
@@ -25,6 +24,8 @@
     'ph.ui',
     'ph.admin',
     'ph.account',
+    'ph.debug',
+    'ph.feedback',
     'ph.users',
     'ph.organizations',
     'ph.orders',
