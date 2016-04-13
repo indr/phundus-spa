@@ -2,12 +2,15 @@
 
 (function () {
   angular.module('ph.inventory')
-    .factory('createProductModalDialog', CreateProductModalDialog);
+    .factory('InventoryCreateProductModal', CreateProductModal);
 
-  CreateProductModalDialog.$inject = ['$uibModal', 'Articles', 'Alert'];
-  function CreateProductModalDialog($uibModal, Products, Alert) {
-    return open;
-    
+  CreateProductModal.$inject = ['$uibModal', 'Articles', 'Alert'];
+
+  function CreateProductModal($uibModal, Products, Alert) {
+    return {
+      open: open
+    };
+
     function open(tenantId, success) {
       var modalInstance = $uibModal.open({
         templateUrl: 'modules/inventory/views/modals/create-product.html',
@@ -27,7 +30,9 @@
     }
   }
 
+
   CreateProductModalInstCtrl.$inject = ['$scope', '$uibModalInstance', 'tenantId'];
+
   function CreateProductModalInstCtrl($scope, $uibModalInstance, tenantId) {
 
     $scope.name = '';

@@ -2,6 +2,27 @@
 
 (function () {
   angular.module('ph.orders')
+    .factory('OrdersAddOrderItemModal', AddOrderItemModal);
+
+  AddOrderItemModal.$inject = ['$uibModal'];
+
+  function AddOrderItemModal($uibModal) {
+    return {
+      open: open
+    };
+
+    function open(resolve) {
+      var modal = $uibModal.open({
+        templateUrl: 'modules/orders/views/modals/add-order-item.html',
+        controller: 'AddOrderItemModalInstCtrl',
+        resolve: resolve
+      });
+
+      return modal.result;
+    }
+  }
+
+  angular.module('ph.orders')
     .controller('AddOrderItemModalInstCtrl', ['$scope', '$uibModalInstance', 'lessorId', 'orderId', 'item', 'isMember', '$http', 'PriceCalculator',
       function ($scope, $uibModalInstance, lessorId, orderId, item, isMember, $http, priceCalculatorFactory) {
         var priceCalculator = {

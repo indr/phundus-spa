@@ -5,6 +5,7 @@
     .directive('phInventoryProductActivities', inventoryProductActivities);
 
   inventoryProductActivities.$inject = [];
+
   function inventoryProductActivities() {
     return {
       restrict: 'EA',

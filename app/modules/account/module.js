@@ -14,7 +14,7 @@
       .state('anon.signup', {
         url: '/signup',
         templateUrl: templateUrl('signup.html'),
-        controller: 'SignUp'
+        controller: 'SignUpCtrl'
       })
       .state('anon.login', {
         url: '/login',
@@ -61,7 +61,7 @@
       .state('user.account', {
         url: '/account',
         templateUrl: templateUrl('account.html'),
-        controller: 'UsersAccountCtrl'
+        controller: 'AccountCtrl'
       });
 
     function templateUrl(fileName) {

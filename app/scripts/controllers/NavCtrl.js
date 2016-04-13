@@ -7,7 +7,6 @@
   NavCtrl.$inject = ['$scope', '$location', '$window', 'Auth', 'Alert'];
 
   function NavCtrl($scope, $location, $window, Auth, Alert) {
-
     $scope.user = Auth.user;
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
