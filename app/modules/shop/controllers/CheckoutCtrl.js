@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('ShopCheckoutCtrl', CheckoutCtrl);
+  angular.module('ph.shop')
+    .controller('ShopCheckoutCtrl', ShopCheckoutCtrl);
 
-  CheckoutCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert'];
-
-  function CheckoutCtrl(_, $scope, userId, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
+  ShopCheckoutCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert'];
+  function ShopCheckoutCtrl(_, $scope, userId, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
     UsersCart.get({userId: userId}, function (cart) {
 
       var byOwnerId = _.groupBy(cart.items, 'ownerId');

@@ -1,7 +1,9 @@
 'use strict';
 
 (function () {
-  angular.module('ph.organizations', ['ph.inventory']);
+  angular.module('ph.organizations', [
+    'ph.inventory',
+    'ph.orders']);
 
   angular.module('phundusApp')
     .config(states);
@@ -56,7 +58,7 @@
       .state('organization.applications', {
         url: '/applications/',
         templateUrl: templateUrl('applications.html'),
-        controller: 'ManageOrganizationApplicationsCtrl'
+        controller: 'OrganizationApplicationsCtrl'
       })
       .state('organization.contact-details', {
         url: '/contact',
@@ -75,17 +77,17 @@
       .state('organization.members', {
         url: '/members/',
         templateUrl: templateUrl('members.html'),
-        controller: 'ManageOrganizationMembersCtrl'
+        controller: 'OrganizationMembersCtrl'
       })
       .state('organization.orders', {
         url: '/orders/',
         templateUrl: templateUrl('orders.html'),
-        controller: 'ManageOrganizationOrdersCtrl'
+        controller: 'OrganizationOrdersCtrl'
       })
       .state('organization.order', {
         url: '/orders/{orderId}',
         templateUrl: templateUrl('order.html'),
-        controller: 'ManageOrganizationOrderCtrl',
+        controller: 'OrganizationOrderCtrl',
         resolve: {
           orderId: ['$stateParams', function ($stateParams) {
             return $stateParams.orderId;

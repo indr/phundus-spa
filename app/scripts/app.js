@@ -28,6 +28,7 @@
     'ph.users',
     'ph.organizations',
     'ph.orders',
+    'ph.shop',
     'ph.inventory'
   ]);
 

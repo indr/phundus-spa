@@ -3,7 +3,7 @@
 (function () {
 
   angular.module('phundusApp')
-    .controller('ManageOrganizationOrderCtrl', ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window', '$uibModal',
+    .controller('OrganizationOrderCtrl', ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window', '$uibModal',
       function ($, $scope, organizationId, orderId, Orders, OrderItems, Alert, $window, $uibModal) {
         $scope.organizationId = organizationId;
         $scope.orderId = orderId;

@@ -1,18 +1,17 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .factory('Shop', [
-      function () {
+  angular.module('ph.shop')
+    .factory('Shop', Shop);
 
-        var fromUtc = new Date();
-        var toUtc = new Date();
-        toUtc.setDate(toUtc.getDate() + 7);
+  function Shop() {
+    var fromUtc = new Date();
+    var toUtc = new Date();
+    toUtc.setDate(toUtc.getDate() + 7);
 
-        return {
-          fromUtc: fromUtc,
-          toUtc: toUtc
-        };
-      }
-    ]);
+    return {
+      fromUtc: fromUtc,
+      toUtc: toUtc
+    };
+  }
 })();

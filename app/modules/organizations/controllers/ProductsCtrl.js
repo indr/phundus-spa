@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.organizations')
     .controller('OrganizationsProductsCtrl', OrganizationsProductCtrl);
 
   OrganizationsProductCtrl.$inject = ['_', '$scope', '$window', 'Articles', 'Auth', 'Alert', 'organizationId', '$state', 'createProductModalDialog'];

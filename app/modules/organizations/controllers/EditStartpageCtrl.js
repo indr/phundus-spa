@@ -1,35 +1,35 @@
 'use strict';
 
 (function () {
+  angular.module('ph.organizations')
+    .controller('OrganizationsEditStartpageCtrl', OrganizationsEditStartpageCtrl);
 
-  angular.module('phundusApp')
-    .controller('OrganizationsEditStartpageCtrl', ['$scope', 'organizationId', 'Organizations', 'Alert', '$state',
-      function ($scope, organizationId, Organizations, Alert, $state) {
-        $scope.data = {};
+  OrganizationsEditStartpageCtrl.$inject = ['$scope', 'organizationId', 'Organizations', 'Alert', '$state'];
+  function OrganizationsEditStartpageCtrl($scope, organizationId, Organizations, Alert, $state) {
+    $scope.data = {};
 
-        Organizations.get({organizationId: organizationId}, function (res) {
-          $scope.data.startpage = res.startpage;
-        }, function () {
-          Alert.error('Fehler beim Laden der Startseite.');
-        });
+    Organizations.get({organizationId: organizationId}, function (res) {
+      $scope.data.startpage = res.startpage;
+    }, function () {
+      Alert.error('Fehler beim Laden der Startseite.');
+    });
 
-        var goBack = function () {
-          $state.go('organization.home', {organizationId: organizationId});
-        };
+    var goBack = function () {
+      $state.go('organization.home', {organizationId: organizationId});
+    };
 
-        $scope.submit = function () {
-          $scope.form.$submitting = true;
-          Organizations.patch({organizationId: organizationId, startpage: $scope.data.startpage}, function () {
-            $scope.form.$submitting = false;
-            Alert.success('Die Startseite wurde erfolgreich gespeichert.');
-            goBack();
-          }, function () {
-            $scope.form.$submitting = false;
-            Alert.error('Fehler beim Speichern der Startseite.');
-          });
-        };
+    $scope.submit = function () {
+      $scope.form.$submitting = true;
+      Organizations.patch({organizationId: organizationId, startpage: $scope.data.startpage}, function () {
+        $scope.form.$submitting = false;
+        Alert.success('Die Startseite wurde erfolgreich gespeichert.');
+        goBack();
+      }, function () {
+        $scope.form.$submitting = false;
+        Alert.error('Fehler beim Speichern der Startseite.');
+      });
+    };
 
-        $scope.cancel = goBack;
-      }
-    ]);
+    $scope.cancel = goBack;
+  }
 })();

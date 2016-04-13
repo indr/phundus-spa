@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('ShopCartCtrl', CartCtrl);
+  angular.module('ph.shop')
+    .controller('ShopCartCtrl', ShopCartCtrl);
 
-  CartCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopItemsAvailabilityCheck', 'ShopProductsAvailabilityCheck', 'Alert', '$timeout', '$state'];
-
-  function CartCtrl(_, $scope, userId, UsersCart, UsersCartItems, ShopItemsAvailabilityCheck, ShopProductsAvailabilityCheck, Alert, $timeout, $state) {
+  ShopCartCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopProductsAvailabilityCheck', 'Alert', '$timeout', '$state'];
+  function ShopCartCtrl(_, $scope, userId, UsersCart, UsersCartItems, ShopProductsAvailabilityCheck, Alert, $timeout, $state) {
 
     var cart = null;
 

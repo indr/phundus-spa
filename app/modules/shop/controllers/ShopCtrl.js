@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('ShopIndexCtrl', IndexCtrl);
+  angular.module('ph.shop')
+    .controller('ShopCtrl', ShopCtrl);
 
-  IndexCtrl.$inject = ['$scope', 'ShopItems', 'Alert', '$uibModal'];
-
-  function IndexCtrl($scope, ShopItems, Alert, $uibModal) {
+  ShopCtrl.$inject = ['$scope', 'ShopItems', 'Alert', '$uibModal'];
+  function ShopCtrl($scope, ShopItems, Alert, $uibModal) {
     $scope.currentPage = 1;
     $scope.limit = 8;
 

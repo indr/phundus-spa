@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.organizations')
     .factory('Applications', ['$resource', function ($resource) {
       return $resource(
         '/api/v0/organizations/:organizationId/applications/:applicationId', {
@@ -29,5 +29,4 @@
         }
       }
     }])
-
 })();

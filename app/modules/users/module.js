@@ -1,7 +1,9 @@
 'use strict';
 
 (function () {
-  angular.module('ph.users', ['ph.inventory']);
+  angular.module('ph.users', [
+    'ph.inventory',
+    'ph.orders']);
 
   angular.module('phundusApp')
     .config(states);
@@ -101,12 +103,12 @@
       .state('user.orders.index', {
         url: '/',
         templateUrl: templateUrl('orders.html'),
-        controller: 'ManageUserOrdersCtrl'
+        controller: 'UserOrdersCtrl'
       })
       .state('user.orders.order', {
         url: '/{orderId}',
         templateUrl: templateUrl('order.html'),
-        controller: 'ManageUserOrderCtrl',
+        controller: 'UserOrderCtrl',
         resolve: {
           orderId: ['$stateParams', function ($stateParams) {
             return $stateParams.orderId;

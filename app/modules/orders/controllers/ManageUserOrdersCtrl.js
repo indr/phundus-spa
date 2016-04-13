@@ -3,7 +3,7 @@
 (function () {
 
   angular.module('phundusApp')
-    .controller('ManageUserOrdersCtrl', ['$scope', 'userId', 'Orders', 'Alert',
+    .controller('UserOrdersCtrl', ['$scope', 'userId', 'Orders', 'Alert',
       function ($scope, userId, Orders, Alert) {
         Orders.query({userId: userId}, function (res) {
           $scope.rowCollection = res.results;

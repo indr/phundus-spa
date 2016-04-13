@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.shop')
     .factory('Lessees', ['$resource', function ($resource) {
       return $resource('/api/v0/lessees/:lesseeId', {lesseeId: '@lesseeId'});
     }])

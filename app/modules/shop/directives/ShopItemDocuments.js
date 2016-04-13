@@ -1,16 +1,17 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .directive('phShopItemDocuments', [
-      function () {
-        return {
-          restrict: 'E',
-          replace: true,
-          scope: {
-            documents: '='
-          },
-          templateUrl: 'modules/shop/views/directives/ph-shop-item-documents.html'
-        }
-      }]);
+  angular.module('ph.shop')
+    .directive('phShopItemDocuments', shopItemDocuments);
+
+  function shopItemDocuments() {
+    return {
+      restrict: 'EA',
+      replace: true,
+      scope: {
+        documents: '='
+      },
+      templateUrl: 'modules/shop/views/directives/ph-shop-item-documents.html'
+    }
+  }
 })();

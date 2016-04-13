@@ -2,33 +2,33 @@
 
 (function () {
   angular.module('phundusApp')
-    .directive('phShopItemImages', [
-      function () {
-        return {
-          restrict: 'E',
-          replace: true,
-          scope: {
-            images: '='
-          },
-          templateUrl: 'modules/shop/views/directives/ph-shop-item-images.html',
-          link: function (scope) {
+    .directive('phShopItemImages', shopItemImages);
 
-            scope.$watch('images', function (images) {
-              if (!images) {
-                return;
-              }
-              var slides = scope.slides = [];
-              var currIndex = 0;
+  function shopItemImages() {
+    return {
+      restrict: 'EA',
+      replace: true,
+      scope: {
+        images: '='
+      },
+      templateUrl: 'modules/shop/views/directives/ph-shop-item-images.html',
+      link: function (scope) {
 
-
-              images.forEach(function (image) {
-                slides.push({
-                  image: image.url,
-                  id: currIndex++
-                });
-              });
-            });
+        scope.$watch('images', function (images) {
+          if (!images) {
+            return;
           }
-        }
-      }]);
+          var slides = scope.slides = [];
+          var currIndex = 0;
+
+          images.forEach(function (image) {
+            slides.push({
+              image: image.url,
+              id: currIndex++
+            });
+          });
+        });
+      }
+    }
+  }
 })();

@@ -1,11 +1,14 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .config(states);
+  angular.module('ph.shop', [
+      'ngResource',
+      'ui.router',
+      'ph.auth',
+      'ph.ui']
+  ).config(states);
 
   states.$inject = ['$stateProvider', 'authProvider'];
-
   function states($stateProvider, authProvider) {
 
     var access = authProvider.accessLevels;
@@ -14,7 +17,7 @@
       .state('public.index', {
         url: '/',
         templateUrl: templateUrl('index.html'),
-        controller: 'ShopIndexCtrl'
+        controller: 'ShopCtrl'
       })
       .state('public.shop-item', {
         url: '/shop/:itemId',

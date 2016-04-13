@@ -1,12 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
-    .controller('ShopItemCtrl', ProductCtrl);
+  angular.module('ph.shop')
+    .controller('ShopItemCtrl', ShopItemCtrl);
 
-  ProductCtrl.$inject = ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth', '$uibModalInstance'];
-
-  function ProductCtrl($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
+  ShopItemCtrl.$inject = ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth', '$uibModalInstance'];
+  function ShopItemCtrl($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
     var lessor = null;
 
     $scope.isLoading = true;

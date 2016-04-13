@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('phundusApp'));
+  beforeEach(module('ph.shop'));
 
   var ShopCtrl,
     scope;
@@ -11,7 +11,7 @@ describe('Controller: MainCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ShopCtrl = $controller('ShopIndexCtrl', {
+    ShopCtrl = $controller('ShopCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
