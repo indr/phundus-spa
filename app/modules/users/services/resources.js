@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('phundusApp')
+  angular.module('ph.users')
     .factory('Users', ['$resource', function ($resource) {
       return $resource('/api/v0/users/:userId', {userId: '@userId'});
     }])
@@ -17,5 +17,4 @@
         cartItemId: '@cartItemId'
       });
     }])
-
 })();

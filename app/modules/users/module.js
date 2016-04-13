@@ -20,7 +20,7 @@
           access: access.user
         },
         template: '<ph-user-navbar data-user-id="userId"></ph-user-navbar><ui-view/>',
-        controller: 'UsersCtrl',
+        controller: 'UserCtrl',
         resolve: {
           userId: ['$stateParams', function ($stateParams) {
             return $stateParams.userId;
@@ -36,13 +36,13 @@
           access: access.public
         },
         templateUrl: templateUrl('home.html'),
-        controller: 'UsersHomeCtrl'
+        controller: 'UserHomeCtrl'
       })
 
       .state('user.products', {
         url: '/products/',
         templateUrl: templateUrl('products.html'),
-        controller: 'UsersProductsCtrl'
+        controller: 'UserProductsCtrl'
       })
       .state('user.product', {
         abstract: true,

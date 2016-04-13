@@ -2,7 +2,7 @@
 
 (function () {
   angular.module('phundusApp')
-    .controller('UsersProductsCtrl', UsersProductsCtrl);
+    .controller('UserProductsCtrl', UsersProductsCtrl);
 
   UsersProductsCtrl.$inject = ['_', '$scope', 'userId', '$window', 'Stores', 'Articles', 'Alert', '$state', 'Auth'];
   function UsersProductsCtrl(_, $scope, userId, $window, Stores, Articles, Alert, $state, Auth) {

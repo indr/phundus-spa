@@ -25,6 +25,8 @@
     'ph.ui',
     'ph.admin',
     'ph.account',
+    'ph.users',
+    'ph.organizations',
     'ph.inventory'
   ]);
 
