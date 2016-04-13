@@ -4,7 +4,8 @@
   var module = angular.module('ph.organizations', [
     'ph.inventory',
     'ph.orders',
-    'ph.stores']);
+    'ph.stores',
+    'ph.upload']);
 
   module.config(states);
 
