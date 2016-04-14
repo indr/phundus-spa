@@ -5,7 +5,7 @@
     .controller('AccountCtrl', AccountCtrl);
 
   AccountCtrl.$inject = ['$scope', 'userId', 'Users', 'AccountEditContactDetailsModal', 'AccountChangePasswordModal', 'AccountChangeEmailAddressModal'];
-  
+
   function AccountCtrl($scope, userId, Users, EditContactDetailsModal, ChangePasswordModal, ChangeEmailAddressModal) {
     Users.get({userId: userId}, function (res) {
       var address = res.address;
@@ -15,14 +15,16 @@
     });
 
     $scope.showChangeContact = function () {
-      var resolve = {
+      var modal = EditContactDetailsModal.open({
         userId: userId,
-        contact: angular.copy($scope.address)
-      };
-      EditContactDetailsModal.open(resolve)
-        .then(function (contact) {
-          $scope.address = contact;
-        })
+        contact: function () {
+          return angular.copy($scope.address)
+        }
+      });
+
+      modal.then(function (contact) {
+        $scope.address = contact;
+      })
     };
 
     $scope.showChangePassword = function () {

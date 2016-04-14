@@ -20,10 +20,7 @@
                data-ng-model="changeEmailAddress.password"
                required/>
 
-        <div role="alert" data-ng-messages="formChangeEmailAddress.password.$error"
-             data-ng-show="formChangeEmailAddress.password.$touched || formChangeEmailAddress.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeEmailAddress.password"></div>
       </div>
     </div>
 
@@ -34,11 +31,8 @@
         <input type="email" class="form-control input" id="newEmailAddress" name="newEmailAddress"
                data-ng-model="changeEmailAddress.newEmailAddress" required is-unique-email-address/>
 
-        <div role="alert" data-ng-messages="formChangeEmailAddress.newEmailAddress.$error"
-             data-ng-show="formChangeEmailAddress.newEmailAddress.$touched || formChangeEmailAddress.$submitted">
+        <div ph-messages="formChangeEmailAddress.newEmailAddress">
           <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
-
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
         </div>
       </div>
     </div>

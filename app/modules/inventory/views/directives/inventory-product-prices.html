@@ -12,10 +12,7 @@
                  data-ng-model="ipp.pricesFormModel.memberPrice"
                  min="0.01"/>
 
-          <div role="alert" data-ng-messages="ipp.formPrices.memberPrice.$error"
-               data-ng-show="ipp.formPrices.memberPrice.$touched || ipp.formPrices.$submitted">
-            <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-          </div>
+          <div ph-messages="ipp.formPrices.memberPrice"></div>
         </div>
 
         <div class="form-group" data-has-error="ipp.formPrices.publicPrice">
@@ -25,10 +22,7 @@
                  data-ng-model="ipp.pricesFormModel.publicPrice"
                  min="0.01"/>
 
-          <div role="alert" data-ng-messages="ipp.formPrices.publicPrice.$error"
-               data-ng-show="ipp.formPrices.publicPrice.$touched || ipp.formPrices.$submitted">
-            <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-          </div>
+          <div ph-messages="ipp.formPrices.publicPrice"></div>
         </div>
 
         <div class="form-group">

@@ -21,11 +21,7 @@
         <input type="email" class="form-control input-lg" id="emailAddress" name="emailAddress"
                data-ng-model="feedback.emailAddress" required/>
 
-        <div role="alert" data-ng-messages="form.emailAddress.$error"
-             data-ng-show="form.emailAddress.$touched || form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
-
+        <div ph-messages="form.emailAddress"></div>
       </div>
 
       <div class="form-group" data-has-error="form.comment">
@@ -34,10 +30,7 @@
         <textarea class="form-control input-lg" id="comment" name="comment" data-ng-model="feedback.comment"
                   rows="10" required></textarea>
 
-        <div role="alert" data-ng-messages="form.comment.$error"
-             data-ng-show="form.comment.$touched || form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="form.comment"></div>
       </div>
 
       <div class="form-group">

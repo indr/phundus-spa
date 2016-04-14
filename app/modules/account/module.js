@@ -1,8 +1,11 @@
 'use strict';
 
 (function () {
-  angular.module('ph.account', [])
-    .config(states);
+  var module = angular.module('ph.account', [
+    'ph.messages'
+  ]);
+
+  module.config(states);
 
   states.$inject = ['$stateProvider', 'authProvider'];
 

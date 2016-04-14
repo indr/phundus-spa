@@ -4,18 +4,27 @@
   angular.module('ph.account')
     .factory('AccountEditContactDetailsModal', EditContactDetailsModal);
 
-  EditContactDetailsModal.$inject = [];
-  function EditContactDetailsModal(resolve) {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'modules/account/views/modals/change-contact.html',
-      controller: 'AccountChangeContactCtrl',
-      resolve: resolve
-    });
+  EditContactDetailsModal.$inject = ['$uibModal'];
 
-    return modalInstance.result;
+  function EditContactDetailsModal($uibModal) {
+    return {
+      open: open
+    };
+
+    function open(resolve) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'modules/account/views/modals/change-contact.html',
+        controller: ChangeContactDetailsModalInstCtrl,
+        resolve: resolve
+      });
+
+      return modalInstance.result;
+    }
   }
 
+
   ChangeContactDetailsModalInstCtrl.$inject = ['$scope', '$timeout', '$uibModalInstance', 'userId', 'contact', 'UsersAddress'];
+
   function ChangeContactDetailsModalInstCtrl($scope, $timeout, $uibModalInstance, userId, contact, UsersAddress) {
 
     $scope.contact = contact;

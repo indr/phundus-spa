@@ -1,0 +1,5 @@
+<div role="alert" data-ng-messages="field.$error"
+     data-ng-show="field.$touched || field.$$parentForm.$submitted">
+  <div data-ng-messages-include="modules/messages/views/messages.html"></div>
+  <ng-transclude></ng-transclude>
+</div>

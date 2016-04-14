@@ -46,11 +46,8 @@
                    data-ng-model="user.emailAddress" data-ng-model-options="{ debounce: 500 }" required
                    is-unique-email-address/>
 
-            <div role="alert" data-ng-messages="form.emailAddress.$error"
-                 data-ng-show="form.emailAddress.$touched || form.$submitted">
+            <div ph-messages="form.emailAddress">
               <span class="help-block" data-ng-message="isUnique">Die E-Mail-Adresse wird bereits verwendet.</span>
-
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -61,10 +58,7 @@
             <input type="password" class="form-control" id="password" name="password" data-ng-model="user.password"
                    required/>
 
-            <div role="alert" data-ng-messages="form.password.$error"
-                 data-ng-show="form.password.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.password"></div>
           </div>
         </div>
 
@@ -75,12 +69,8 @@
             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                    data-ng-model="user.confirmPassword" required data-compare-to="user.password"/>
 
-            <div role="alert" data-ng-messages="form.confirmPassword.$error"
-                 data-ng-show="form.confirmPassword.$touched || form.$submitted">
-              <div class="help-block" data-ng-message="compareTo">Die Passwort-Wiederholung stimmt nicht mit dem
-                Passwort überein.
-              </div>
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
+            <div ph-messages="form.confirmPassword">
+              <span class="help-block" data-ng-message="compareTo">Die Passwort-Wiederholung stimmt nicht mit dem Passwort überein.</span>
             </div>
           </div>
         </div>
@@ -94,10 +84,7 @@
             <input type="text" class="form-control" id="firstName" name="firstName" data-ng-model="user.firstName"
                    required/>
 
-            <div role="alert" data-ng-messages="form.firstName.$error"
-                 data-ng-show="form.firstName.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.firstName"></div>
           </div>
         </div>
         <div class="form-group">
@@ -107,10 +94,7 @@
             <input type="text" class="form-control" id="lastName" name="lastName" data-ng-model="user.lastName"
                    required/>
 
-            <div role="alert" data-ng-messages="form.lastName.$error"
-                 data-ng-show="form.lastName.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.lastName"></div>
           </div>
         </div>
         <div class="form-group">
@@ -119,10 +103,7 @@
           <div class="col-sm-7" data-has-error="form.street">
             <input type="text" class="form-control" id="street" name="street" data-ng-model="user.street" required/>
 
-            <div role="alert" data-ng-messages="form.street.$error"
-                 data-ng-show="form.street.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.street"></div>
           </div>
         </div>
         <div class="form-group">
@@ -132,11 +113,8 @@
             <input type="number" class="form-control" id="postcode" name="postcode" data-ng-model="user.postcode"
                    required min="1000" max="9999"/>
 
-            <div role="alert" data-ng-messages="form.postcode.$error"
-                 data-ng-show="form.postcode.$touched || form.$submitted">
+            <div ph-messages="form.postcode">
               <span class="help-block" data-ng-message="number, min, max">Die Postleitzahl ist ungültig.</span>
-
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
             </div>
           </div>
         </div>
@@ -146,10 +124,7 @@
           <div class="col-sm-7" data-has-error="form.city">
             <input type="text" class="form-control" id="city" name="city" data-ng-model="user.city" required/>
 
-            <div role="alert" data-ng-messages="form.city.$error"
-                 data-ng-show="form.city.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.city"></div>
           </div>
         </div>
         <div class="form-group">
@@ -159,10 +134,7 @@
             <input type="text" class="form-control" id="mobilePhone" name="mobilePhone" data-ng-model="user.mobilePhone"
                    required/>
 
-            <div role="alert" data-ng-messages="form.mobilePhone.$error"
-                 data-ng-show="form.mobilePhone.$touched || form.$submitted">
-              <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-            </div>
+            <div ph-messages="form.mobilePhone"></div>
           </div>
         </div>
       </fieldset>

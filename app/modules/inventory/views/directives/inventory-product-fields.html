@@ -7,10 +7,7 @@
         <input type="text" class="form-control" id="name" name="name"
                data-ng-model="ipf.article.name" required autofocus/>
 
-        <div role="alert" data-ng-messages="ipf.form.name.$error"
-             data-ng-show="ipf.form.name.$touched || ipf.form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="ipf.form.name"></div>
       </div>
     </div>
 
@@ -21,10 +18,7 @@
         <input type="text" class="form-control" id="brand" name="brand"
                data-ng-model="ipf.article.brand"/>
 
-        <div role="alert" data-ng-messages="ipf.form.brand.$error"
-             data-ng-show="ipf.form.brand.$touched || ipf.form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="ipf.form.brand"></div>
       </div>
     </div>
 
@@ -35,10 +29,7 @@
         <input type="number" class="form-control" id="grossStock" name="grossStock"
                data-ng-model="ipf.article.grossStock" min="0" required/>
 
-        <div role="alert" data-ng-messages="ipf.form.grossStock.$error"
-             data-ng-show="ipf.form.grossStock.$touched || ipf.form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="ipf.form.grossStock"></div>
       </div>
     </div>
 
@@ -49,10 +40,7 @@
         <input type="text" class="form-control" id="color" name="color"
                data-ng-model="ipf.article.color"/>
 
-        <div role="alert" data-ng-messages="ipf.form.color.$error"
-             data-ng-show="ipf.form.color.$touched || ipf.form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="ipf.form.color"></div>
       </div>
     </div>
 

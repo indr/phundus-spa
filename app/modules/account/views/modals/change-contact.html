@@ -18,10 +18,7 @@
         <input type="text" class="form-control" id="firstName" name="firstName" data-ng-model="contact.firstName"
                required/>
 
-        <div role="alert" data-ng-messages="formChangeContact.firstName.$error"
-             data-ng-show="formChangeContact.firstName.$touched || formChangeContact.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeContact.firstName"></div>
       </div>
     </div>
 
@@ -32,10 +29,7 @@
         <input type="text" class="form-control" id="lastName" name="lastName" data-ng-model="contact.lastName"
                required/>
 
-        <div role="alert" data-ng-messages="formChangeContact.lastName.$error"
-             data-ng-show="formChangeContact.lastName.$touched || formChangeContact.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeContact.lastName"></div>
       </div>
     </div>
 
@@ -45,10 +39,7 @@
       <div class="col-sm-8" data-has-error="formChangeContact.street">
         <input type="text" class="form-control" id="street" name="street" data-ng-model="contact.street" required/>
 
-        <div role="alert" data-ng-messages="formChangeContact.street.$error"
-             data-ng-show="formChangeContact.street.$touched || formChangeContact.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeContact.street"></div>
       </div>
     </div>
 
@@ -59,21 +50,15 @@
         <input type="number" class="form-control" id="postcode" name="postcode" data-ng-model="contact.postcode"
                required min="1000" max="9999"/>
 
-        <div role="alert" data-ng-messages="formChangeContact.postcode.$error"
-             data-ng-show="formChangeContact.postcode.$touched || formChangeContact.$submitted">
+        <div ph-messages="formChangeContact.postcode">
           <span class="help-block" data-ng-message="number, min, max">Die Postleitzahl ist ungültig.</span>
-
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
         </div>
       </div>
 
       <div class="col-xs-7 col-sm-5" data-has-error="formChangeContact.city">
         <input type="text" class="form-control" id="city" name="city" data-ng-model="contact.city" required/>
 
-        <div role="alert" data-ng-messages="formChangeContact.city.$error"
-             data-ng-show="formChangeContact.city.$touched || formChangeContact.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeContact.city"></div>
       </div>
     </div>
 
@@ -84,10 +69,7 @@
         <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" data-ng-model="contact.phoneNumber"
                required/>
 
-        <div role="alert" data-ng-messages="formChangeContact.phoneNumber.$error"
-             data-ng-show="formChangeContact.phoneNumber.$touched || formChangeContact.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
+        <div ph-messages="formChangeContact.phoneNumber"></div>
       </div>
     </div>
   </form>

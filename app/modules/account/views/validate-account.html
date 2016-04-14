@@ -27,11 +27,7 @@
         <input type="text" class="form-control input-lg" id="key" name="key"
                data-ng-model="validate.key" required/>
 
-        <div role="alert" data-ng-messages="form.key.$error"
-             data-ng-show="form.key.$touched || form.$submitted">
-          <div data-ng-messages-include="modules/ui/views/messages.html"></div>
-        </div>
-
+        <div ph-messages="form.key"></div>
       </div>
 
       <div class="form-group">

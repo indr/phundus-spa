@@ -87,10 +87,14 @@
         };
 
         scope.showChangeContact = function () {
-          EditContactDetailsModal(scope.store.storeId, angular.copy(scope.store.contact))
-            .then(function (contact) {
-              scope.store.contact = contact;
-            });
+          var modal = EditContactDetailsModal.open({
+            storeId: scope.store.storeId,
+            contact: angular.copy(scope.store.contact)
+          });
+
+          modal.then(function (contact) {
+            scope.store.contact = contact;
+          });
         };
 
         scope.updateOpeningHours = function () {

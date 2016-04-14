@@ -4,9 +4,9 @@
   angular.module('ph.account')
     .factory('AccountChangePasswordModal', ChangePasswordModal);
 
-  ChangePasswordModal.$inject = [];
+  ChangePasswordModal.$inject = ['$uibModal'];
 
-  function ChangePasswordModal() {
+  function ChangePasswordModal($uibModal) {
     return {
       open: open
     };

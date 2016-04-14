@@ -7,22 +7,17 @@
   EditContactDetailsModal.$inject = ['$uibModal'];
 
   function EditContactDetailsModal($uibModal) {
-    return function (storeId, contact, success) {
+    return {
+      open: open
+    };
+
+    function open(resolve) {
       var modalInstance = $uibModal.open({
-        templateUrl: 'modules/ui/views/modal-change-contact.html',
+        templateUrl: 'modules/stores/views/edit-contact-details.html',
         controller: EditContactDetailsModalInstCtrl,
-        resolve: {
-          storeId: function () {
-            return storeId
-          },
-          contact: function () {
-            return contact;
-          }
-        }
+        resolve: resolve
       });
 
-      if (angular.isDefined(success))
-        modalInstance.result.then(success);
       return modalInstance.result;
     }
   }
