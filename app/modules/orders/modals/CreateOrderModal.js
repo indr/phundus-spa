@@ -4,6 +4,7 @@
   angular.module('ph.orders')
     .factory('OrdersCreateOrderModal', CreateOrderModal);
 
+
   CreateOrderModal.$inject = ['$uibModal'];
 
   function CreateOrderModal($uibModal) {
@@ -14,7 +15,7 @@
     function open(resolve) {
       var modal = $uibModal.open({
         templateUrl: 'modules/orders/views/modals/create-order.html',
-        controller: 'CreateOrderModalInstCtrl',
+        controller: CreateOrderModalInstCtrl,
         resolve: resolve
       });
 

@@ -83,7 +83,8 @@
       .state('organization.orders', {
         url: '/orders/',
         templateUrl: templateUrl('orders.html'),
-        controller: 'OrganizationOrdersCtrl'
+        controller: 'OrganizationOrdersCtrl',
+        controllerAs: 'vm'
       })
       .state('organization.order', {
         url: '/orders/{orderId}',

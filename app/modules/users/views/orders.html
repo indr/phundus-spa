@@ -1,12 +1,12 @@
 <view-title>Bestellungen</view-title>
-<table class="table table-hover" data-st-set-filter="customFilter" data-st-table="displayedCollection" data-st-safe-src="rowCollection">
+<table class="table table-hover" data-st-set-filter="customFilter" data-st-table="vm.displayedCollection" data-st-safe-src="vm.rowCollection">
   <thead>
   <tr>
     <th colspan="4">
       <input data-st-search class="form-control" type="search" placeholder="Suchen..."/>
     </th>
     <th colspan="2">
-      <st-select-multiple collection="rowCollection" predicate="status"></st-select-multiple>
+      <st-select-multiple collection="vm.rowCollection" predicate="status"></st-select-multiple>
     </th>
   </tr>
   <tr>
@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr data-ng-repeat="order in displayedCollection">
+  <tr data-ng-repeat="order in vm.displayedCollection">
     <td>{{order.orderShortId}}</td>
     <td>
       <ph-date value="order.createdAtUtc"></ph-date>
@@ -36,12 +36,12 @@
   </tbody>
 </table>
 
-<div class="alert alert-info" data-ng-show="rowCollection.length == 0">
+<div class="alert alert-info" data-ng-show="vm.rowCollection.length == 0">
   <strong>Nichts gefunden!</strong>
   Es sind keine Bestellungen vorhanden.
 </div>
 
-<div class="alert alert-info" data-ng-show="displayedCollection.length == 0 && rowCollection.length > 0">
+<div class="alert alert-info" data-ng-show="vm.displayedCollection.length == 0 && vm.rowCollection.length > 0">
   <strong>Nichts gefunden!</strong>
   Deine Suche liefert keine Ergebnisse.
 </div>

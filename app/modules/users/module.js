@@ -9,7 +9,7 @@
   module.config(states);
 
   states.$inject = ['$stateProvider', 'authProvider'];
-  
+
   function states($stateProvider, authProvider) {
 
     var access = authProvider.accessLevels;
@@ -103,7 +103,8 @@
       .state('user.orders.index', {
         url: '/',
         templateUrl: templateUrl('orders.html'),
-        controller: 'UserOrdersCtrl'
+        controller: 'UserOrdersCtrl',
+        controllerAs: 'vm'
       })
       .state('user.orders.order', {
         url: '/{orderId}',

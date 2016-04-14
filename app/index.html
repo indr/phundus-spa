@@ -2,7 +2,7 @@
 <html data-ng-app="ph.app">
 <head>
   <meta charset="utf-8">
-  <title data-ng-bind-template="{{viewTitle}}{{viewTitle ? ' - ' : ''}}phundus"></title>
+  <title data-ng-bind-template="{{viewTitle}}{{viewTitle ? ' · ' : ''}}phundus"></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -284,20 +284,20 @@
 <script src="modules/contracts/services/resources.js"></script>
 
 <script src="modules/orders/module.js"></script>
-<script src="modules/orders/controllers/ManageOrganizationOrderCtrl.js"></script>
-<script src="modules/orders/controllers/ManageOrganizationOrdersCtrl.js"></script>
-<script src="modules/orders/controllers/ManageUserOrderCtrl.js"></script>
-<script src="modules/orders/controllers/ManageUserOrdersCtrl.js"></script>
 <script src="modules/orders/filters/orderStatusText.js"></script>
+<script src="modules/orders/modals/AddOrderItemModal.js"></script>
+<script src="modules/orders/modals/CreateOrderModal.js"></script>
 <script src="modules/orders/services/resources.js"></script>
 
 <script src="modules/organizations/module.js"></script>
 <script src="modules/organizations/controllers/ApplicationsCtrl.js"></script>
-<script src="modules/organizations/controllers/MembersCtrl.js"></script>
-<script src="modules/organizations/controllers/OrganizationCtrl.js"></script>
-<script src="modules/organizations/controllers/OrganizationsCtrl.js"></script>
 <script src="modules/organizations/controllers/EditContactDetailsCtrl.js"></script>
 <script src="modules/organizations/controllers/EditStartpageCtrl.js"></script>
+<script src="modules/organizations/controllers/MembersCtrl.js"></script>
+<script src="modules/organizations/controllers/OrderCtrl.js"></script>
+<script src="modules/organizations/controllers/OrdersCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationCtrl.js"></script>
+<script src="modules/organizations/controllers/OrganizationsCtrl.js"></script>
 <script src="modules/organizations/controllers/ProductsCtrl.js"></script>
 <script src="modules/organizations/controllers/SettingsCtrl.js"></script>
 <script src="modules/organizations/controllers/StoreCtrl.js"></script>
@@ -326,6 +326,8 @@
 
 <script src="modules/users/module.js"></script>
 <script src="modules/users/controllers/HomeCtrl.js"></script>
+<script src="modules/users/controllers/UserCtrl.js"></script>
+<script src="modules/users/controllers/OrdersCtrl.js"></script>
 <script src="modules/users/controllers/ProductsCtrl.js"></script>
 <script src="modules/users/controllers/UserCtrl.js"></script>
 <script src="modules/users/directives/ph-user-article-navbar.js"></script>
