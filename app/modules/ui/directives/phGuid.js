@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  angular.module('ph.common')
+  angular.module('ph.ui')
     .directive('phGuid', phGuid);
 
   function phGuid() {
