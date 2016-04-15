@@ -14,14 +14,15 @@
         tenantId: '=',
         articleId: '=productId'
       },
-      controller: ['_', '$scope', 'Articles', 'InventoryArticleTags', 'Alert', controller],
+      controller: ['_', '$scope', 'Articles', 'InventoryArticleTags', 'InventoryTags', 'Alert', controller],
       templateUrl: 'modules/inventory/views/directives/phInventoryArticleTagsInput.html'
     };
 
-    function controller(_, scope, Articles, Tags, Alert) {
+    function controller(_, scope, Articles, ArticleTags, Tags, Alert) {
       scope.tags = [];
       scope.tagAdded = tagAdded;
       scope.tagRemoved = tagRemoved;
+      scope.loadTags = loadTags;
 
       activate();
 
@@ -34,7 +35,7 @@
 
       function tagAdded(tag) {
         var rq = {tenantId: scope.tenantId, articleId: scope.articleId, name: tag.text};
-        Tags.post(rq, function () {
+        ArticleTags.post(rq, function () {
         }, function () {
           Alert.error('Fehler beim Hinzufügen des Tags.');
           _.remove(scope.tags, tag);
@@ -43,11 +44,20 @@
 
       function tagRemoved(tag) {
         var rq = {tenantId: scope.tenantId, articleId: scope.articleId, tag: tag.text};
-        Tags.delete(rq, function () {
+        ArticleTags.delete(rq, function () {
         }, function () {
           Alert.error('Fehler beim Entfernen des Tags.');
           scope.tags.push(tag);
         })
+      }
+
+      function loadTags(query) {
+        return Tags.query({q: query}).$promise
+          .then(function (res) {
+            return _.map(res.results, function (each) {
+              return each.name;
+            });
+          });
       }
     }
   }

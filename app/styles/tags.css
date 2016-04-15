@@ -1,8 +1,10 @@
 /*
  * http://cssglobe.com/pure-css3-post-tags/
+ *
+ * Another version: http://www.inserthtml.com/2012/02/css-tag-icons/
  */
 
-.tags {
+ul.tags {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -11,7 +13,7 @@
   list-style: none;
 }
 
-.tags li, .tags a {
+ul.tags li, ul.tags a {
   float: left;
   height: 24px;
   line-height: 24px;
@@ -19,7 +21,7 @@
   font-size: 11px;
 }
 
-.tags a {
+ul.tags a {
   margin-left: 20px;
   padding: 0 10px 0 12px;
   background: #0089e0;
@@ -33,7 +35,7 @@
   border-top-right-radius: 4px;
 }
 
-.tags a:before {
+ul.tags a:before {
   content: "";
   float: left;
   position: absolute;
@@ -46,7 +48,7 @@
   border-width: 12px 12px 12px 0;
 }
 
-.tags a:after {
+ul.tags a:after {
   content: "";
   position: absolute;
   top: 10px;
@@ -63,10 +65,10 @@
   box-shadow: -1px -1px 2px #004977;
 }
 
-.tags a:hover {
+ul.tags a:hover {
   background: #555;
 }
 
-.tags a:hover:before {
+ul.tags a:hover:before {
   border-color: transparent #555 transparent transparent;
 }

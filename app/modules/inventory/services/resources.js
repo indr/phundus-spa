@@ -16,4 +16,7 @@
         tenantId: '@tenantId', articleId: '@articleId', tag: '@tag'
       })
     }])
+    .factory('InventoryTags', ['$resource', function ($resource) {
+      return $resource('/api/v0/inventory/tags');
+    }])
 })();
