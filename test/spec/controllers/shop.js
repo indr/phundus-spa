@@ -12,8 +12,10 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     ShopCtrl = $controller('ShopCtrl', {
-      $scope: scope
+      $scope: scope,
       // place here mocked dependencies
+      queryString: null,
+      queryLessorId: null
     });
   }));
 

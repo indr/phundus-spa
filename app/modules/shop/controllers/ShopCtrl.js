@@ -37,7 +37,7 @@
         Alert.error('Fehler beim Laden der Artikel: ' + res.data.message);
       });
     };
-    
+
     $scope.$watch('currentPage', function () {
       getItems();
     });
