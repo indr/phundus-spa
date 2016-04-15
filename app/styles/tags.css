@@ -7,9 +7,6 @@
 ul.tags {
   margin: 0;
   padding: 0;
-  position: absolute;
-  right: 24px;
-  bottom: -12px;
   list-style: none;
 }
 
@@ -19,6 +16,7 @@ ul.tags li, ul.tags a {
   line-height: 24px;
   position: relative;
   font-size: 11px;
+  margin-bottom: 5px;
 }
 
 ul.tags a {
