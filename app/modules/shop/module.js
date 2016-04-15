@@ -16,9 +16,17 @@
 
     $stateProvider
       .state('public.index', {
-        url: '/',
+        url: '/?q&l',
         templateUrl: templateUrl('index.html'),
-        controller: 'ShopCtrl'
+        controller: 'ShopCtrl',
+        resolve: {
+          queryString: ['$stateParams', function ($stateParams) {
+            return $stateParams.q;
+          }],
+          queryLessorId: ['$stateParams', function ($stateParams) {
+            return $stateParams.l;
+          }]
+        }
       })
       .state('public.shop-item', {
         url: '/shop/:itemId',

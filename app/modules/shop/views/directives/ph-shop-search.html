@@ -4,7 +4,7 @@
       <div class="form-group">
         <label class="sr-only" for="searchQuery">Search query</label>
         <input type="text" class="form-control" id="searchQuery" placeholder="Suchen"
-          data-ng-model="searchQuery">
+          data-ng-model="queryString">
       </div>
       in
       <div class="form-group">
@@ -14,7 +14,7 @@
           <option value="">allen Organisationen</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary" data-ng-click="submit(searchQuery, lessorId)">phinden!</button>
+      <button type="submit" class="btn btn-primary" data-ng-click="query()">phinden!</button>
     </form>
   </div>
 </div>

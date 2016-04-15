@@ -4,14 +4,19 @@
   angular.module('ph.shop')
     .controller('ShopCtrl', ShopCtrl);
 
-  ShopCtrl.$inject = ['$scope', 'ShopItems', 'Alert', '$uibModal'];
-  function ShopCtrl($scope, ShopItems, Alert, $uibModal) {
+  ShopCtrl.$inject = ['$scope', 'ShopItems', 'Alert', '$uibModal', 'queryString', 'queryLessorId', 'ShopQueryService'];
+  function ShopCtrl($scope, ShopItems, Alert, $uibModal, queryString, queryLessorId, QueryService) {
     $scope.currentPage = 1;
     $scope.limit = 8;
 
+    QueryService.queryString = queryString;
+    QueryService.querylessorId = queryLessorId;
+
+    console.log(QueryService);
+
     var filter = {
-      searchQuery: null,
-      lessorId: null
+      searchQuery: queryString,
+      lessorId: queryLessorId
     };
 
     var getItems = function () {
@@ -32,14 +37,7 @@
         Alert.error('Fehler beim Laden der Artikel: ' + res.data.message);
       });
     };
-
-    $scope.searchQuery = function (searchQuery, lessorId) {
-      filter.searchQuery = searchQuery;
-      filter.lessorId = lessorId;
-      $scope.currentPage = 1;
-      getItems();
-    };
-
+    
     $scope.$watch('currentPage', function () {
       getItems();
     });

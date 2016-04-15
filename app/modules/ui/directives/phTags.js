@@ -10,7 +10,7 @@
       scope: {
         tags: '='
       },
-      template: '<ul class="tags"><li ng-repeat="tag in tags"><a href="#">{{tag}}</a></li></ul>'
+      template: '<ul class="tags"><li ng-repeat="tag in tags"><a href="#" data-ui-sref="public.index({q: tag})">{{tag}}</a></li></ul>'
     }
   }
 })();
