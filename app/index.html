@@ -10,12 +10,14 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
   <!-- endbower -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
   <link rel="stylesheet" href="bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"/>
   <link rel="stylesheet" href="bower_components/blueimp-gallery/css/blueimp-gallery.css"/>
   <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload.css"/>
   <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css"/>
+  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.bootstrap.css"/>
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
@@ -170,6 +172,7 @@
 <script src="bower_components/angular-holderjs/src/holder.js"></script>
 <script src="bower_components/chartjs/Chart.js"></script>
 <script src="bower_components/angularjs-viewhead/angularjs-viewhead.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 <!-- endbower -->
 <script src="bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js"></script>
 <script src="bower_components/angular-chartjs-directive/chartjs-directive.js"></script>
@@ -184,8 +187,9 @@
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
-<script src="bower_components/tinymce-dist/themes/modern/theme.js"></script>
 <script src="bower_components/moment/locale/de.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="bower_components/tinymce-dist/themes/modern/theme.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -277,6 +281,7 @@
 <script src="modules/inventory/directives/inventory-product-prices.js"></script>
 <script src="modules/inventory/directives/inventory-product-specification.js"></script>
 <script src="modules/inventory/directives/inventory-product-stock.js"></script>
+<script src="modules/inventory/directives/phInventoryArticleTagsInput.js"></script>
 <script src="modules/inventory/modals/CreateProductModal.js"></script>
 <script src="modules/inventory/services/resources.js"></script>
 
