@@ -4,10 +4,16 @@
   </div>
   <div class="col-xs-12 col-md-5">
     <div class="panel panel-default">
-      <div class="panel-heading"><ph-lessor-link lessor="lessor" data-ng-click="close()"></ph-lessor-link></div>
+      <div class="panel-heading">
+        <ph-lessor-link lessor="lessor" data-ng-click="close()"></ph-lessor-link>
+      </div>
       <div class="panel-body">
         <ph-vcard data-contact="lessor"></ph-vcard>
       </div>
+    </div>
+
+    <div style="margin-top:30px">
+      <ph-tags tags="item.tags"></ph-tags>
     </div>
   </div>
 </div>
