@@ -1,28 +1,23 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.shop')
     .controller('ShopCtrl', ShopCtrl);
 
+
   ShopCtrl.$inject = ['$scope', 'ShopItems', 'Alert', '$uibModal', 'queryString', 'queryLessorId', 'ShopQueryService'];
+
   function ShopCtrl($scope, ShopItems, Alert, $uibModal, queryString, queryLessorId, QueryService) {
     $scope.currentPage = 1;
     $scope.limit = 8;
 
-    QueryService.queryString = queryString;
-    QueryService.querylessorId = queryLessorId;
-
-    console.log(QueryService);
-
-    var filter = {
-      searchQuery: queryString,
-      lessorId: queryLessorId
-    };
+    QueryService.filter.lessorId = queryLessorId;
+    QueryService.filter.text = queryString;
 
     var getItems = function () {
       ShopItems.get({
-        q: filter.searchQuery,
-        lessorId: filter.lessorId,
+        q: QueryService.filter.text,
+        lessorId: QueryService.filter.lessorId,
         offset: $scope.limit * ($scope.currentPage - 1),
         limit: $scope.limit
       }, function (res) {

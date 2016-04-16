@@ -1,11 +1,12 @@
-<ph-shop-search data-submit="searchQuery"></ph-shop-search>
+<ph-shop-search></ph-shop-search>
 
 <div class="row">
   <div class="col-xs-6 col-md-3 shop-item" data-ng-repeat="each in items">
     <a href="" data-ng-click="showItem(each)">
       <div class="thumbnail">
         <div data-ng-if="each.previewImageUrl" style="min-height:180px">
-          <img class="img-responsive" data-ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt="" style="margin:auto">
+          <img class="img-responsive" data-ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt=""
+               style="margin:auto">
         </div>
         <div data-ng-if="!each.previewImageUrl" style="min-height:180px">
           <img class="img-responsive" data-holder="holder.js/260x180?auto=yes" alt="" style="margin:auto">
@@ -26,6 +27,7 @@
 <div class="row">
   <div class="col-xs-12 text-center">
     <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="7"
-                    boundary-link-numbers="true" items-per-page="limit" class="pagination-lg" previous-text="&laquo;" next-text="&raquo;"></uib-pagination>
+                    boundary-link-numbers="true" items-per-page="limit" class="pagination-lg"
+                    previous-text="&laquo;" next-text="&raquo;"></uib-pagination>
   </div>
 </div>
