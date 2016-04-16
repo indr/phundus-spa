@@ -194,27 +194,27 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="modules/common/module.js"></script>
+<script src="modules/common/common.module.js"></script>
 <script src="modules/common/directives/both-or-none.js"></script>
 <script src="modules/common/directives/compare-to.js"></script>
 <script src="modules/common/filters/unique.js"></script>
 <script src="modules/common/services/uuid.js"></script>
 
-<script src="modules/alerts/module.js"></script>
+<script src="modules/alerts/alerts.module.js"></script>
 <script src="modules/alerts/modals/AlertModal.js"></script>
 <script src="modules/alerts/services/Alert.js"></script>
 
-<script src="modules/auth/module.js"></script>
+<script src="modules/auth/auth.module.js"></script>
 <script src="modules/auth/directives/access-level.js"></script>
 <script src="modules/auth/services/auth.js"></script>
 <script src="modules/auth/services/Auth.js"></script>
 
-<script src="modules/domain/module.js"></script>
+<script src="modules/domain/domain.module.js"></script>
 <script src="modules/domain/services/PostalAddress.js"></script>
 <script src="modules/domain/services/PriceCalculator.js"></script>
 
-<script src="modules/ui/module.js"></script>
-<script src="modules/ui/config.js"></script>
+<script src="modules/ui/ui.module.js"></script>
+<script src="modules/ui/ui.config.js"></script>
 <script src="modules/ui/directives/active-nav.js"></script>
 <script src="modules/ui/directives/has-error.js"></script>
 <script src="modules/ui/directives/ph-checkbox.js"></script>
@@ -232,14 +232,14 @@
 <script src="modules/ui/filters/guid.js"></script>
 <script src="modules/ui/filters/replace.js"></script>
 
-<script src="modules/messages/module.js"></script>
+<script src="modules/messages/messages.module.js"></script>
 <script src="modules/messages/directives/phMessages.js"></script>
 
-<script src="modules/upload/module.js"></script>
+<script src="modules/upload/upload.module.js"></script>
 <script src="modules/upload/controllers/FileDestroyCtrl.js"></script>
 <script src="modules/upload/controllers/FileUploadCtrl.js"></script>
 
-<script src="modules/account/module.js"></script>
+<script src="modules/account/account.module.js"></script>
 <script src="modules/account/controllers/AccountCtrl.js"></script>
 <script src="modules/account/controllers/LoginCtrl.js"></script>
 <script src="modules/account/controllers/LogoutCtrl.js"></script>
@@ -253,7 +253,7 @@
 <script src="modules/account/modals/EditContactDetailsModal.js"></script>
 <script src="modules/account/services/resources.js"></script>
 
-<script src="modules/admin/module.js"></script>
+<script src="modules/admin/admin.module.js"></script>
 <script src="modules/admin/controllers/EmailsCtrl.js"></script>
 <script src="modules/admin/controllers/EventLogCtrl.js"></script>
 <script src="modules/admin/controllers/EventProcessorsCtrl.js"></script>
@@ -264,17 +264,17 @@
 <script src="modules/admin/filters/organization-plan.js"></script>
 <script src="modules/admin/services/resources.js"></script>
 
-<script src="modules/contracts/module.js"></script>
+<script src="modules/contracts/contracts.module.js"></script>
 <script src="modules/contracts/services/resources.js"></script>
 
-<script src="modules/debug/module.js"></script>
+<script src="modules/debug/debug.module.js"></script>
 <script src="modules/debug/controllers/DebugCtrl.js"></script>
 
-<script src="modules/feedback/module.js"></script>
+<script src="modules/feedback/feedback.module.js"></script>
 <script src="modules/feedback/controllers/FeedbackCtrl.js"></script>
 <script src="modules/feedback/services/resources.js"></script>
 
-<script src="modules/inventory/module.js"></script>
+<script src="modules/inventory/inventory.module.js"></script>
 <script src="modules/inventory/directives/inventory-product-activities.js"></script>
 <script src="modules/inventory/directives/inventory-product-description.js"></script>
 <script src="modules/inventory/directives/inventory-product-details.js"></script>
@@ -287,16 +287,16 @@
 <script src="modules/inventory/modals/CreateProductModal.js"></script>
 <script src="modules/inventory/services/resources.js"></script>
 
-<script src="modules/contracts/module.js"></script>
+<script src="modules/contracts/contracts.module.js"></script>
 <script src="modules/contracts/services/resources.js"></script>
 
-<script src="modules/orders/module.js"></script>
+<script src="modules/orders/orders.module.js"></script>
 <script src="modules/orders/filters/orderStatusText.js"></script>
 <script src="modules/orders/modals/AddOrderItemModal.js"></script>
 <script src="modules/orders/modals/CreateOrderModal.js"></script>
 <script src="modules/orders/services/resources.js"></script>
 
-<script src="modules/organizations/module.js"></script>
+<script src="modules/organizations/organizations.module.js"></script>
 <script src="modules/organizations/controllers/ApplicationsCtrl.js"></script>
 <script src="modules/organizations/controllers/EditContactDetailsCtrl.js"></script>
 <script src="modules/organizations/controllers/EditStartpageCtrl.js"></script>
@@ -312,7 +312,7 @@
 <script src="modules/organizations/directives/ph-organization-navbar.js"></script>
 <script src="modules/organizations/services/resources.js"></script>
 
-<script src="modules/shop/module.js"></script>
+<script src="modules/shop/shop.module.js"></script>
 <script src="modules/shop/controllers/CartCtrl.js"></script>
 <script src="modules/shop/controllers/CheckoutCtrl.js"></script>
 <script src="modules/shop/controllers/ShopItemCtrl.js"></script>
@@ -326,12 +326,12 @@
 <script src="modules/shop/services/resources.js"></script>
 <script src="modules/shop/services/Shop.js"></script>
 
-<script src="modules/stores/module.js"></script>
+<script src="modules/stores/stores.module.js"></script>
 <script src="modules/stores/directives/ph-store.js"></script>
 <script src="modules/stores/modals/EditContactDetailsModal.js"></script>
 <script src="modules/stores/services/resources.js"></script>
 
-<script src="modules/users/module.js"></script>
+<script src="modules/users/users.module.js"></script>
 <script src="modules/users/controllers/HomeCtrl.js"></script>
 <script src="modules/users/controllers/UserCtrl.js"></script>
 <script src="modules/users/controllers/OrdersCtrl.js"></script>
