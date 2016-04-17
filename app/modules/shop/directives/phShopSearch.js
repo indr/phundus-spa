@@ -9,7 +9,7 @@
     return {
       restrict: 'E',
       replace: true,
-      scope: true,
+      scope: {},
       templateUrl: 'modules/shop/views/directives/phShopSearch.html',
       controller: ['$scope', '$state', 'shopQueryService', 'shopLessorsResource', 'Alert', controller]
     };

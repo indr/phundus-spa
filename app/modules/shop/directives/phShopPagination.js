@@ -8,7 +8,7 @@
   function phShopPagination() {
     return {
       restrict: 'E',
-      scope: true,
+      scope: {},
       templateUrl: 'modules/shop/views/directives/phShopPagination.html',
       controller: ['$scope', 'shopQueryService', controller]
     };
