@@ -4,12 +4,27 @@
   angular.module('ph.shop')
     .factory('ShopQueryService', ShopQueryService);
 
-  function ShopQueryService() {
-    return {
-      filter: {
-        lessorId: null,
-        string: null
-      }
+
+  ShopQueryService.$inject = ['ShopItems'];
+
+  function ShopQueryService(ShopItems) {
+    var filter = {
+      lessorId: null,
+      string: null
     };
+
+    return {
+      filter: filter,
+      query: query
+    };
+
+    function query(page, limit) {
+      return ShopItems.get({
+        q: filter.text,
+        lessorId: filter.lessorId,
+        offset: limit * (page - 1),
+        limit: limit
+      }).$promise;
+    }
   }
 })();
