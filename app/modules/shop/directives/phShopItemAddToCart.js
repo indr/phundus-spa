@@ -1,11 +1,13 @@
-'use strict';
-
 (function () {
-  angular.module('ph.shop')
-    .directive('phShopItemAddToCart', shopItemAddToCart);
+  'use strict';
 
-  shopItemAddToCart.$inject = ['_', '$', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator', 'Shop', '$timeout'];
-  function shopItemAddToCart(_, $, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory, Shop, $timeout) {
+  angular.module('ph.shop')
+    .directive('phShopItemAddToCart', phShopItemAddToCart);
+
+
+  phShopItemAddToCart.$inject = ['_', '$', '$filter', 'ShopItemsAvailabilityCheck', 'UsersCartItems', 'Alert', 'Auth', 'PriceCalculator', 'Shop', '$timeout'];
+
+  function phShopItemAddToCart(_, $, $filter, ShopItemsAvailabilityCheck, UsersCartItems, Alert, Auth, priceCalculatorFactory, Shop, $timeout) {
     return {
       restrict: 'EA',
       replace: true,

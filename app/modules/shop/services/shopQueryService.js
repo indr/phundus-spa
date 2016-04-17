@@ -5,9 +5,9 @@
     .factory('shopQueryService', shopQueryService);
 
 
-  shopQueryService.$inject = ['ShopItems'];
+  shopQueryService.$inject = ['shopItemsResource'];
 
-  function shopQueryService(shopItemsApi) {
+  function shopQueryService(shopItems) {
     var _filter = {
       lessorId: null,
       string: null
@@ -31,7 +31,7 @@
         _filter.lessorId = filter.lessorId || _filter.lessorId;
         _filter.text = filter.text || _filter.text;
       }
-      return shopItemsApi.query({
+      return shopItems.query({
         q: _filter.text,
         lessorId: _filter.lessorId,
         offset: limit * (page - 1),

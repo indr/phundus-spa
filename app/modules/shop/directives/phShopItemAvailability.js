@@ -2,10 +2,12 @@
   'use strict';
 
   angular.module('ph.shop')
-    .directive('phShopItemAvailability', shopItemAvailability);
+    .directive('phShopItemAvailability', phShopItemAvailability);
 
-  shopItemAvailability.$inject = ['_', 'moment', '$filter', '$compile', 'ShopItemAvailability', 'Alert'];
-  function shopItemAvailability(_, moment, $filter, $compile, ShopItemAvailability, Alert) {
+
+  phShopItemAvailability.$inject = ['_', 'moment', '$filter', '$compile', 'ShopItemAvailability', 'Alert'];
+
+  function phShopItemAvailability(_, moment, $filter, $compile, ShopItemAvailability, Alert) {
     return {
       restrict: 'E',
       replace: true,

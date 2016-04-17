@@ -4,6 +4,7 @@
   angular.module('ph.shop')
     .directive('phShopItemImages', phShopItemImages);
 
+
   function phShopItemImages() {
     return {
       restrict: 'EA',

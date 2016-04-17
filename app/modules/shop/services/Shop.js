@@ -1,8 +1,9 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.shop')
     .factory('Shop', Shop);
+
 
   function Shop() {
     var fromUtc = new Date();

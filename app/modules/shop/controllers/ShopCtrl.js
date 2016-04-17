@@ -5,7 +5,7 @@
     .controller('ShopCtrl', ShopCtrl);
 
 
-  ShopCtrl.$inject = ['$scope', 'Alert', '$uibModal', 'queryString', 'queryLessorId', 'ShopQueryService'];
+  ShopCtrl.$inject = ['$scope', 'Alert', '$uibModal', 'queryString', 'queryLessorId', 'shopQueryService'];
 
   function ShopCtrl($scope, Alert, $uibModal, queryString, queryLessorId, queryService) {
 

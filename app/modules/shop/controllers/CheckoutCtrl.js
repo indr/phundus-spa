@@ -1,10 +1,12 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.shop')
     .controller('ShopCheckoutCtrl', ShopCheckoutCtrl);
 
-  ShopCheckoutCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'Lessors', 'Lessees', 'ShopOrders', 'Alert'];
+
+  ShopCheckoutCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'shopLessorsResource', 'Lessees', 'ShopOrders', 'Alert'];
+
   function ShopCheckoutCtrl(_, $scope, userId, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
     UsersCart.get({userId: userId}, function (cart) {
 

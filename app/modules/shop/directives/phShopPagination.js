@@ -4,12 +4,13 @@
   angular.module('ph.shop')
     .directive('phShopPagination', phShopPagination);
 
+
   function phShopPagination() {
     return {
       restrict: 'E',
       scope: true,
       templateUrl: 'modules/shop/views/directives/phShopPagination.html',
-      controller: ['$scope', 'ShopQueryService', controller]
+      controller: ['$scope', 'shopQueryService', controller]
     };
 
     function controller($scope, queryService) {

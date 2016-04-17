@@ -11,7 +11,7 @@
       replace: true,
       scope: true,
       templateUrl: 'modules/shop/views/directives/phShopSearch.html',
-      controller: ['$scope', '$state', 'ShopQueryService', 'Lessors', 'Alert', controller]
+      controller: ['$scope', '$state', 'shopQueryService', 'shopLessorsResource', 'Alert', controller]
     };
 
     function controller($scope, $state, queryService, lessorsApi, alert) {

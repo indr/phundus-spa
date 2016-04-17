@@ -5,7 +5,7 @@
     .controller('ShopItemCtrl', ShopItemCtrl);
 
 
-  ShopItemCtrl.$inject = ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth', '$uibModalInstance'];
+  ShopItemCtrl.$inject = ['$scope', 'itemId', 'shopItemsResource', 'shopLessorsResource', 'Alert', 'Auth', '$uibModalInstance'];
 
   function ShopItemCtrl($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
     var lessor = null;

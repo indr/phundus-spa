@@ -1,10 +1,12 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.shop')
     .controller('ShopCartCtrl', ShopCartCtrl);
 
+
   ShopCartCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopProductsAvailabilityCheck', 'Alert', '$timeout', '$state'];
+
   function ShopCartCtrl(_, $scope, userId, UsersCart, UsersCartItems, ShopProductsAvailabilityCheck, Alert, $timeout, $state) {
 
     var cart = null;
