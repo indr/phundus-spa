@@ -38,6 +38,7 @@
     "grunt-karma": "*",
     "grunt-newer": "^1.1.0",
     "grunt-ng-annotate": "^1.0.1",
+    "grunt-ngdocs": "^0.2.9",
     "grunt-shell": "^1.1.2",
     "grunt-svgmin": "^3.1.2",
     "grunt-usemin": "^3.0.0",

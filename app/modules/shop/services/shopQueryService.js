@@ -4,9 +4,12 @@
   angular.module('ph.shop')
     .factory('shopQueryService', shopQueryService);
 
-
+  /**
+   * @ngdoc service
+   * @name ph.shop.service:shopQueryService
+   * @description Service to query shop items. Provides support for paginationl.
+   */
   shopQueryService.$inject = ['shopItemsResource'];
-
   function shopQueryService(shopItems) {
     var _filter = {
       lessorId: null,

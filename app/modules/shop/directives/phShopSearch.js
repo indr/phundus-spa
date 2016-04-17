@@ -4,7 +4,11 @@
   angular.module('ph.shop')
     .directive('phShopSearch', phShopSearch);
 
-
+  /**
+   * @ngdoc directive
+   * @name ph.shop.directive:phShopSearch
+   * @description Search/filter control.
+   */
   function phShopSearch() {
     return {
       restrict: 'E',

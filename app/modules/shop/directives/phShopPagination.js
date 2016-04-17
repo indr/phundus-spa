@@ -4,7 +4,11 @@
   angular.module('ph.shop')
     .directive('phShopPagination', phShopPagination);
 
-
+  /**
+   * @ngdoc directive
+   * @name ph.shop.directive:phShopPagination
+   * @description Pagination control for shop items view.
+   */
   function phShopPagination() {
     return {
       restrict: 'E',

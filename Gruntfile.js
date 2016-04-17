@@ -449,6 +449,10 @@ module.exports = function (grunt) {
       }
     },
 
+    ngdocs: {
+      all: ['<%= yeoman.app %>/{modules,scripts}/**/*.js']
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
