@@ -1,10 +1,12 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.shop')
     .controller('ShopItemCtrl', ShopItemCtrl);
 
+
   ShopItemCtrl.$inject = ['$scope', 'itemId', 'ShopItems', 'Lessors', 'Alert', 'Auth', '$uibModalInstance'];
+
   function ShopItemCtrl($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
     var lessor = null;
 

@@ -1,10 +1,10 @@
-'use strict';
-
 (function () {
-  angular.module('ph.shop')
-    .directive('phShopItemImages', shopItemImages);
+  'use strict';
 
-  function shopItemImages() {
+  angular.module('ph.shop')
+    .directive('phShopItemImages', phShopItemImages);
+
+  function phShopItemImages() {
     return {
       restrict: 'EA',
       replace: true,

@@ -2,12 +2,12 @@
   'use strict';
 
   angular.module('ph.shop')
-    .factory('ShopQueryService', ShopQueryService);
+    .factory('shopQueryService', shopQueryService);
 
 
-  ShopQueryService.$inject = ['$q', 'ShopItems'];
+  shopQueryService.$inject = ['ShopItems'];
 
-  function ShopQueryService($q, shopItemsApi) {
+  function shopQueryService(shopItemsApi) {
     var _filter = {
       lessorId: null,
       string: null
