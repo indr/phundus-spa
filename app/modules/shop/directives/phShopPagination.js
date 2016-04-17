@@ -7,8 +7,13 @@
   function phShopPagination() {
     return {
       restrict: 'E',
-      scope: false,
-      templateUrl: 'modules/shop/views/directives/phShopPagination.html'
+      scope: true,
+      templateUrl: 'modules/shop/views/directives/phShopPagination.html',
+      controller: ['$scope', 'ShopQueryService', controller]
+    };
+
+    function controller($scope, queryService) {
+      $scope.page = queryService.page;
     }
   }
 })();

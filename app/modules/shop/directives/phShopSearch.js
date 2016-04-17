@@ -5,33 +5,40 @@
     .directive('phShopSearch', phShopSearch);
 
 
-  phShopSearch.$inject = ['Lessors', 'Alert', 'ShopQueryService', '$state'];
-
-  function phShopSearch(Lessors, Alert, QueryService, $state) {
+  function phShopSearch() {
     return {
       restrict: 'E',
       replace: true,
       scope: true,
       templateUrl: 'modules/shop/views/directives/phShopSearch.html',
-      link: function (scope) {
+      controller: ['$scope', '$state', 'ShopQueryService', 'Lessors', 'Alert', controller]
+    };
 
-        scope.filter = QueryService.filter;
-        scope.search = search;
+    function controller($scope, $state, queryService, lessorsApi, alert) {
 
-        activate();
+      $scope.filter = queryService.filter;
+      $scope.search = search;
 
-        function activate() {
-          Lessors.get(function (res) {
-            scope.lessors = res.results;
-          }, function (res) {
-            Alert.error('Fehler beim Laden der Vermieter: ' + res.data.message);
-          });
-        }
+      activate();
 
-        function search() {
-          $state.go('public.index', {q: scope.filter.text, l: scope.filter.lessorId});
-        }
+      function activate() {
+        lessorsApi.query().$promise
+          .then(queryLessorsCompleted)
+          .catch(queryLessorsFailed);
+      }
+
+      function search() {
+        $state.go('public.index', {q: $scope.filter.text, l: $scope.filter.lessorId});
+      }
+
+      function queryLessorsCompleted(res) {
+        $scope.lessors = res.results;
+      }
+
+      function queryLessorsFailed(res) {
+        alert.error('Fehler beim Laden der Vermieter: ' + res.data.message);
       }
     }
   }
-})();
+})
+();
