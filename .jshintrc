@@ -8,12 +8,11 @@
   "latedef": "nofunc",
   "laxcomma": true,
   "noarg": true,
-  "node": false,
+  "node": true,
   "strict": true,
   "undef": true,
   "unused": true,
   "globals": {
-    "angular": false,
-    "console": false
+    "angular": false
   }
 }
