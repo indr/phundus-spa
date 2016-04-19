@@ -8,7 +8,7 @@
   "latedef": "nofunc",
   "laxcomma": true,
   "noarg": true,
-  "node": true,
+  "node": false,
   "strict": true,
   "undef": true,
   "unused": true,
