@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  /* globals console: false */
+
   angular.module('ph.auth')
     .provider('auth', auth);
 
