@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.domain')
     .factory('PriceCalculator', ['Auth',
       function (Auth) {

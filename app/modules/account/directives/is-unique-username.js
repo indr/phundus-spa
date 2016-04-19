@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.account')
     // http://bartwullems.blogspot.hu/2015/02/angular-13-pending.html
     .directive("isUniqueUsername", ['$q', '$http', function ($q, $http) {

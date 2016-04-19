@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductDetails', inventoryProductDetails);
 
@@ -16,7 +16,6 @@
       },
       controllerAs: 'vm',
       controller: function () {
-        var vm = this;
       },
       templateUrl: 'modules/inventory/views/directives/inventory-product-details.html'
     }

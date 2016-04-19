@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductPrices', inventoryProductPrices);
 
@@ -15,13 +15,13 @@
         hasMemberPrice: '='
       },
       controllerAs: 'ipp',
-      controller: inventoryProductPricesCtrl,
+      controller: InventoryProductPricesCtrl,
       templateUrl: 'modules/inventory/views/directives/inventory-product-prices.html'
     }
   }
 
-  inventoryProductPricesCtrl.$inject = ['Articles', 'Alert'];
-  function inventoryProductPricesCtrl(Articles, Alert) {
+  InventoryProductPricesCtrl.$inject = ['_', 'Articles', 'Alert'];
+  function InventoryProductPricesCtrl(_, Articles, Alert) {
     var vm = this;
 
     Articles.get({ownerId: vm.tenantId, articleId: vm.productId},

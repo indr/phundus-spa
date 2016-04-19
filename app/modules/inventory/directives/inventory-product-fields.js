@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductFields', inventoryProductFields);
 
@@ -14,13 +14,13 @@
         productId: '='
       },
       controllerAs: 'ipf',
-      controller: inventoryProductFieldsCtrl,
+      controller: InventoryProductFieldsCtrl,
       templateUrl: 'modules/inventory/views/directives/inventory-product-fields.html'
     }
   }
 
-  inventoryProductFieldsCtrl.$inject = ['Articles', 'Alert'];
-  function inventoryProductFieldsCtrl(Articles, Alert) {
+  InventoryProductFieldsCtrl.$inject = ['Articles', 'Alert'];
+  function InventoryProductFieldsCtrl(Articles, Alert) {
     var vm = this;
 
     Articles.get({ownerId: vm.tenantId, articleId: vm.productId},

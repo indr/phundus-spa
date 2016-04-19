@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.account')
     .factory('AccountChangePasswordModal', ChangePasswordModal);
 
@@ -8,10 +8,10 @@
 
   function ChangePasswordModal($uibModal) {
     return {
-      open: open
+      open: openModal
     };
 
-    function open() {
+    function openModal() {
       $uibModal.open({
         templateUrl: 'modules/account/views/modals/change-password.html',
         controller: ChangePasswordModalInstCtrl

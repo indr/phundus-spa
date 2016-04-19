@@ -1,18 +1,17 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.account')
-    .factory('AccountChangeEmailAddressModal', ChangeEmailAddressModal);
+    .factory('AccountChangeEmailAddressModal', ['$uibModal', changeEmailAddressModal]);
 
-  ChangeEmailAddressModal.$inject = ['$uibModal'];
 
-  function ChangeEmailAddressModal($uibModal) {
+  function changeEmailAddressModal(uibModal) {
     return {
-      open: open
+      open: openModal
     };
 
-    function open() {
-      $uibModal.open({
+    function openModal() {
+      uibModal.open({
         templateUrl: 'modules/account/views/modals/change-email-address.html',
         controller: ChangeEmailAddressModalInstCtrl
       });

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductStock', inventoryProductStock);
 

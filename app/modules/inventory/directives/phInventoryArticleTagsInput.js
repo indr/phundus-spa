@@ -1,8 +1,8 @@
-'use strict';
-
-// https://ngmodules.com/modules/ngtagsinput
-
 (function () {
+  'use strict';
+
+  // https://ngmodules.com/modules/ngtagsinput
+
   angular.module('ph.inventory')
     .directive('phInventoryArticleTagsInput', phInventoryArticleTagsInput);
 

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.contracts')
     .factory('Contracts', ['$resource', function ($resource) {
       return $resource('/api/v0/contracts/:contractId', {contractId: '@contractId'});

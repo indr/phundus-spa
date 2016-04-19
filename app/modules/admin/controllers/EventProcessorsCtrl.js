@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.admin')
     .controller('AdminEventProcessorsCtrl', ['$scope', 'EventProcessors', '$window',
       function ($scope, Processors, $window) {

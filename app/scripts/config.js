@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   var app = angular.module('ph.app');
 
   app.config(['$httpProvider', 'fileUploadProvider',

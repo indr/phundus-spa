@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   var module = angular.module('ph.feedback', [
     'ngResource',
     'ui.router',

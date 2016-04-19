@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .factory('Articles', ['$resource', function ($resource) {
       return $resource('/api/v0/articles/:articleId', {articleId: '@articleId'});

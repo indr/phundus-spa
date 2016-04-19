@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.stores')
     .factory('StoresEditContactDetailsModal', EditContactDetailsModal);
 
@@ -8,10 +8,10 @@
 
   function EditContactDetailsModal($uibModal) {
     return {
-      open: open
+      open: openModal
     };
 
-    function open(resolve) {
+    function openModal(resolve) {
       var modalInstance = $uibModal.open({
         templateUrl: 'modules/stores/views/edit-contact-details.html',
         controller: EditContactDetailsModalInstCtrl,

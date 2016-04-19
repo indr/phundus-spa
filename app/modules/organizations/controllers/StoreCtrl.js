@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.organizations')
     .controller('OrganizationsStoreCtrl', OrganizationsStoreCtrl);
 
@@ -22,6 +22,5 @@
     }, function () {
       Alert.error('Fehler beim Laden der Materialstelle.');
     });
-
   }
 })();

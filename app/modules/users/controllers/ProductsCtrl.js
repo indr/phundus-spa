@@ -1,18 +1,17 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.users')
     .controller('UserProductsCtrl', UsersProductsCtrl);
 
   UsersProductsCtrl.$inject = ['_', '$scope', 'userId', '$window', 'Stores', 'Articles', 'Alert', '$state', 'Auth', 'InventoryCreateProductModal'];
 
-  function UsersProductsCtrl(_, $scope, userId, $window, Stores, Articles, Alert, $state, Auth, CreateProductModal) {
+  function UsersProductsCtrl(_, $scope, userId, $window, Stores, Articles, Alert, $state, Auth, createProductModal) {
     $scope.loading = true;
     $scope.store = null;
     $scope.articles = null;
 
     Stores.query({ownerId: Auth.user.userId}, function (res) {
-
       if (res.results.length === 0) {
         $scope.loading = false;
         return;
@@ -27,7 +26,6 @@
         Alert.error("Fehler beim Laden der Artikel.");
         $scope.loading = false;
       });
-
     });
 
     $scope.delete = function (articleId, name) {
@@ -44,12 +42,12 @@
     };
 
     $scope.createArticle = function () {
-      CreateProductModal(userId,
-        function (product) {
+      createProductModal.open(userId,
+        function (article) {
           $state.go('user.product.details', {
             userId: userId,
-            articleId: res.articleId,
-            articleShortId: res.articleShortId
+            articleId: article.articleId,
+            articleShortId: article.articleShortId
           });
         });
     };

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.orders')
     .factory('OrdersCreateOrderModal', CreateOrderModal);
 
@@ -9,10 +9,10 @@
 
   function CreateOrderModal($uibModal) {
     return {
-      open: open
+      open: openModal
     };
 
-    function open(resolve) {
+    function openModal(resolve) {
       var modal = $uibModal.open({
         templateUrl: 'modules/orders/views/modals/create-order.html',
         controller: CreateOrderModalInstCtrl,

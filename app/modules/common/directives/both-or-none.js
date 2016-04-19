@@ -1,8 +1,8 @@
-'use strict';
-
-// Inspired by https://stackoverflow.com/questions/25199449/how-to-validate-a-field-based-on-another-field-in-the-same-form-using-bootstrap
-
 (function () {
+  'use strict';
+
+  // Inspired by https://stackoverflow.com/questions/25199449/how-to-validate-a-field-based-on-another-field-in-the-same-form-using-bootstrap
+
   angular.module('ph.common')
     .directive('bothOrNone', [function () {
       return {

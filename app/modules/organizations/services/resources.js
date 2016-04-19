@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.organizations')
     .factory('Applications', ['$resource', function ($resource) {
       return $resource(

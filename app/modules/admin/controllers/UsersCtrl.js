@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.admin')
     .controller('AdminUsersIndexCtrl', ['$scope', 'AdminUsers', 'Alert',
       function ($scope, AdminUsers, Alert) {

@@ -1,11 +1,10 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductActivities', inventoryProductActivities);
 
   inventoryProductActivities.$inject = [];
-
   function inventoryProductActivities() {
     return {
       restrict: 'EA',
@@ -15,13 +14,13 @@
         productId: '='
       },
       controllerAs: 'ipa',
-      controller: inventoryProductActivitiesCtrl,
+      controller: InventoryProductActivitiesCtrl,
       templateUrl: 'modules/inventory/views/directives/inventory-product-activities.html'
     }
   }
 
-  inventoryProductActivitiesCtrl.$inject = ['ArticlesActions', 'Alert'];
-  function inventoryProductActivitiesCtrl(ArticlesActions, Alert) {
+  InventoryProductActivitiesCtrl.$inject = ['ArticlesActions', 'Alert'];
+  function InventoryProductActivitiesCtrl(ArticlesActions, Alert) {
     var vm = this;
 
     ArticlesActions.get({articleId: vm.productId}, function (res) {

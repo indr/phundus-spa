@@ -1,8 +1,8 @@
-'use strict';
-
-// http://www.frederiknakstad.com/2013/01/21/authentication-in-single-page-applications-with-angular-js/
-
 (function () {
+  'use strict';
+
+  // http://www.frederiknakstad.com/2013/01/21/authentication-in-single-page-applications-with-angular-js/
+
   angular.module('ph.auth')
     .factory('Auth', Auth);
 

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.auth')
     .directive('accessLevel', ['Auth', function (Auth) {
       return {

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.admin')
     .controller('AdminSchemaUpdateCtrl', ['$scope', 'SchemaUpdate', 'Alert',
       function ($scope, SchemaUpdate, Alert) {

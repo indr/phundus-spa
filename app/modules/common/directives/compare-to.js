@@ -1,8 +1,8 @@
-'use strict';
-
-// http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
-
 (function () {
+  'use strict';
+
+  // http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
+
   angular.module('ph.common')
     .directive("compareTo", [function () {
       return {

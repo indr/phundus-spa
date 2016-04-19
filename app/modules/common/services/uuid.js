@@ -1,12 +1,8 @@
-/**!
- * angular-uuid v0.1.0
- * @copyright 2013 Arunjit Singh <opensrc@ajsd.in>. All Rights Reserved.
- * @license MIT; see LICENCE.
- * [https://github.com/ajsd/angular-uuid.git]
- */
-'use strict';
-
 (function () {
+  'use strict';
+
+  // https://github.com/ajsd/angular-uuid
+
   angular.module('ph.common')
     .service('uuid4', function () {
       /**! http://stackoverflow.com/a/2117523/377392 */

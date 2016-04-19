@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .directive('phInventoryProductSpecification', inventoryProductSpecification);
 
@@ -14,13 +14,13 @@
         productId: '='
       },
       controllerAs: 'vm',
-      controller: inventoryProductSpecificationCtrl,
+      controller: InventoryProductSpecificationCtrl,
       templateUrl: 'modules/inventory/views/directives/inventory-product-specification.html'
     }
   }
 
-  inventoryProductSpecificationCtrl.$inject = ['Articles', 'Alert'];
-  function inventoryProductSpecificationCtrl(Articles, Alert) {
+  InventoryProductSpecificationCtrl.$inject = ['Articles', 'Alert'];
+  function InventoryProductSpecificationCtrl(Articles, Alert) {
     var vm = this;
 
     vm.data = {};

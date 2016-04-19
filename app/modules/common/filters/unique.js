@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.common')
     .filter('unique', function () {
       return function (arr, field) {

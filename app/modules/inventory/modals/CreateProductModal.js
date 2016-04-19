@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.inventory')
     .factory('InventoryCreateProductModal', CreateProductModal);
 
@@ -8,10 +8,10 @@
 
   function CreateProductModal($uibModal, Products, Alert) {
     return {
-      open: open
+      open: openModal
     };
 
-    function open(tenantId, success) {
+    function openModal(tenantId, success) {
       var modalInstance = $uibModal.open({
         templateUrl: 'modules/inventory/views/modals/create-product.html',
         controller: CreateProductModalInstCtrl,

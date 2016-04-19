@@ -1,8 +1,8 @@
-'use strict';
-
-// http://plnkr.co/edit/SOcUk1?p=info
-
 (function () {
+  'use strict';
+
+  // http://plnkr.co/edit/SOcUk1?p=info
+
   angular.module('ph.ui')
     .directive('stSelectMultiple', ['_',
       function (_) {

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.ui')
     .filter('replace', function () {
       return function (input, pattern, replace) {

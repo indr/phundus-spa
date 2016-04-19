@@ -1,17 +1,25 @@
-'use strict';
-
 (function () {
-  angular.module('ph.alerts')
-    .factory('Alert', Alert);
+  'use strict';
 
-  Alert.$inject = ['_', 'AlertModal'];
-  
-  function Alert(_, AlertModal) {
+  angular.module('ph.alerts')
+    .factory('Alert', alert);
+
+  alert.$inject = ['_', 'AlertModal'];
+
+  function alert(_, alertModal) {
     var modal = null;
 
-    var showAlert = function (type, msg, title) {
+    return {
+      danger: _.partial(showAlert, 'danger'),
+      error: _.partial(showAlert, 'danger'),
+      info: _.partial(showAlert, 'info'),
+      success: _.partial(showAlert, 'success'),
+      warning: _.partial(showAlert, 'warning')
+    };
+    
+    function showAlert(type, msg, title) {
       if (modal === null) {
-        modal = AlertModal.open({
+        modal = alertModal.open({
           alert: function () {
             return {
               type: type,
@@ -26,14 +34,6 @@
           modal = null;
         });
       }
-    };
-
-    return {
-      danger: _.partial(showAlert, 'danger'),
-      error: _.partial(showAlert, 'danger'),
-      info: _.partial(showAlert, 'info'),
-      success: _.partial(showAlert, 'success'),
-      warning: _.partial(showAlert, 'warning')
-    };
+    }
   }
 })();

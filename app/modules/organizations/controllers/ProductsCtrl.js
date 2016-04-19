@@ -1,11 +1,12 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.organizations')
     .controller('OrganizationsProductsCtrl', OrganizationsProductCtrl);
 
   OrganizationsProductCtrl.$inject = ['_', '$scope', '$window', 'Articles', 'Auth', 'Alert', 'organizationId', '$state', 'InventoryCreateProductModal'];
-  function OrganizationsProductCtrl(_, $scope, $window, Articles, Auth, Alert, organizationId, $state, CreateProductModal) {
+
+  function OrganizationsProductCtrl(_, $scope, $window, Articles, Auth, Alert, organizationId, $state, createProductModal) {
     $scope.loading = true;
     $scope.userRoles = Auth.userRoles;
     $scope.organizationId = organizationId;
@@ -33,12 +34,12 @@
     };
 
     $scope.createArticle = function () {
-      CreateProductModal.open(organizationId,
-        function (product) {
+      createProductModal.open(organizationId,
+        function (article) {
           $state.go('organization.product.details', {
             organizationId: organizationId,
-            articleShortId: product.articleShortId,
-            articleId: product.articleId
+            articleShortId: article.articleShortId,
+            articleId: article.articleId
           });
         });
     };

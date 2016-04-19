@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   angular.module('ph.orders')
     .controller('UserOrdersCtrl', UserOrdersCtrl);
 

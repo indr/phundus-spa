@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+  'use strict';
+
   var module = angular.module('ph.common', []);
 
   module.constant('_', window._);

@@ -1,7 +1,7 @@
-'use strict';
-
 (function () {
-  var module = angular.module('ph.ui', [
+  'use strict';
+
+  angular.module('ph.ui', [
     'ui.bootstrap',
     'ngTagsInput',
     'ph.common'
