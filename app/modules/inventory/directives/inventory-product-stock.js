@@ -4,7 +4,6 @@
   angular.module('ph.inventory')
     .directive('phInventoryProductStock', inventoryProductStock);
 
-  inventoryProductStock.$inject = [];
   function inventoryProductStock() {
     return {
       restrict: 'EA',
@@ -14,13 +13,13 @@
         productId: '='
       },
       controllerAs: 'vm',
-      controller: inventoryProductStockCtrl,
+      controller: InventoryProductStockCtrl,
       templateUrl: 'modules/inventory/views/directives/inventory-product-stock.html'
     }
   }
 
-  inventoryProductStockCtrl.$inject = ['ArticlesStock'];
-  function inventoryProductStockCtrl(ArticlesStock) {
+  InventoryProductStockCtrl.$inject = ['ArticlesStock'];
+  function InventoryProductStockCtrl(ArticlesStock) {
     var vm = this;
 
     ArticlesStock.get({ownerId: vm.tenantId, articleId: vm.productId},
