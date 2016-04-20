@@ -5,12 +5,12 @@
     .controller('ShopCtrl', ShopCtrl);
 
 
-  ShopCtrl.$inject = ['$scope', 'Alert', '$uibModal', 'queryString', 'queryLessorId', 'shopQueryService'];
+  ShopCtrl.$inject = ['$scope', 'Alert', 'shopItemModal', 'queryString', 'queryLessorId', 'shopQueryService'];
 
-  function ShopCtrl($scope, Alert, $uibModal, queryString, queryLessorId, queryService) {
+  function ShopCtrl($scope, Alert, shopItemModal, queryString, queryLessorId, queryService) {
 
     $scope.page = queryService.page;
-    $scope.showItem = openItem;
+    $scope.openItem = openItem;
 
     $scope.$watch('page.current', function (newValue, oldValue) {
       if (newValue === oldValue) {
@@ -44,17 +44,14 @@
       Alert.error('Fehler beim Laden der Artikel: ' + res.data.message);
     }
 
-    function openItem(item) {
-      $uibModal.open({
-        templateUrl: 'modules/shop/views/shop-item-modal.html',
-        controller: 'ShopItemCtrl',
-        resolve: {
-          itemId: function () {
-            return item.itemId;
-          }
-        },
-        size: 'lg'
-      });
+    function openItem($event, productId) {
+      $event.preventDefault();
+
+      shopItemModal.open({
+        itemId: function () {
+          return productId;
+        }
+      })
     }
   }
 })();
