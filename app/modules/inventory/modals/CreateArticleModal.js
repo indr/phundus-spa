@@ -2,11 +2,11 @@
   'use strict';
 
   angular.module('ph.inventory')
-    .factory('InventoryCreateProductModal', CreateProductModal);
+    .factory('inventoryCreateArticleModal', inventoryCreateArticleModal);
 
-  CreateProductModal.$inject = ['$uibModal', 'Articles', 'Alert'];
+  inventoryCreateArticleModal.$inject = ['$uibModal', 'Articles', 'Alert'];
 
-  function CreateProductModal($uibModal, Products, Alert) {
+  function inventoryCreateArticleModal($uibModal, Articles, Alert) {
     return {
       open: openModal
     };
@@ -14,7 +14,7 @@
     function openModal(tenantId, success) {
       var modalInstance = $uibModal.open({
         templateUrl: 'modules/inventory/views/modals/create-product.html',
-        controller: CreateProductModalInstCtrl,
+        controller: CreateArticleModalInstCtrl,
         resolve: {
           tenantId: function () {
             return tenantId;
@@ -22,8 +22,8 @@
         }
       });
 
-      modalInstance.result.then(function (product) {
-        Products.post(product, success, function () {
+      modalInstance.result.then(function (article) {
+        Articles.post(article, success, function () {
           Alert.error('Fehler beim Erstellen des Materials.');
         });
       });
@@ -31,9 +31,9 @@
   }
 
 
-  CreateProductModalInstCtrl.$inject = ['$scope', '$uibModalInstance', 'tenantId'];
+  CreateArticleModalInstCtrl.$inject = ['$scope', '$uibModalInstance', 'tenantId'];
 
-  function CreateProductModalInstCtrl($scope, $uibModalInstance, tenantId) {
+  function CreateArticleModalInstCtrl($scope, $uibModalInstance, tenantId) {
 
     $scope.name = '';
     $scope.quantity = 1;

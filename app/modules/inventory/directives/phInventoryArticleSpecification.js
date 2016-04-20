@@ -2,30 +2,30 @@
   'use strict';
 
   angular.module('ph.inventory')
-    .directive('phInventoryProductSpecification', inventoryProductSpecification);
+    .directive('phInventoryArticleSpecification', phInventoryArticleSpecification);
 
-  inventoryProductSpecification.$inject = [];
-  function inventoryProductSpecification() {
+  phInventoryArticleSpecification.$inject = [];
+  function phInventoryArticleSpecification() {
     return {
       restrict: 'EA',
       replace: 'true',
       bindToController: {
         tenantId: '=',
-        productId: '='
+        articleId: '='
       },
       controllerAs: 'vm',
-      controller: InventoryProductSpecificationCtrl,
-      templateUrl: 'modules/inventory/views/directives/inventory-product-specification.html'
+      controller: InventoryArticleSpecificationCtrl,
+      templateUrl: 'modules/inventory/views/directives/phInventoryArticleSpecification.html'
     }
   }
 
-  InventoryProductSpecificationCtrl.$inject = ['Articles', 'Alert'];
-  function InventoryProductSpecificationCtrl(Articles, Alert) {
+  InventoryArticleSpecificationCtrl.$inject = ['Articles', 'Alert'];
+  function InventoryArticleSpecificationCtrl(Articles, Alert) {
     var vm = this;
 
     vm.data = {};
 
-    Articles.get({ownerId: vm.tenantId, articleId: vm.productId}, function (res) {
+    Articles.get({ownerId: vm.tenantId, articleId: vm.articleId}, function (res) {
       vm.data.specification = res.specification;
     }, function () {
       Alert.error('Fehler beim Laden der Spezifikation.');
@@ -35,7 +35,7 @@
       vm.form.$submitting = true;
       Articles.patch({
         ownerId: vm.tenantId,
-        articleId: vm.productId,
+        articleId: vm.articleId,
         specification: vm.data.specification
       }, function () {
         vm.form.$submitting = false;

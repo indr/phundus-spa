@@ -12,26 +12,17 @@
       replace: 'true',
       scope: {
         tenantId: '=',
-        articleId: '=productId'
+        articleId: '=',
+        tags: '='
       },
-      controller: ['_', '$scope', 'Articles', 'InventoryArticleTags', 'InventoryTags', 'Alert', controller],
+      controller: ['_', '$scope', 'InventoryArticleTags', 'InventoryTags', 'Alert', controller],
       templateUrl: 'modules/inventory/views/directives/phInventoryArticleTagsInput.html'
     };
 
-    function controller(_, scope, Articles, ArticleTags, Tags, Alert) {
-      scope.tags = [];
+    function controller(_, scope, ArticleTags, Tags, Alert) {
       scope.tagAdded = tagAdded;
       scope.tagRemoved = tagRemoved;
       scope.loadTags = loadTags;
-
-      activate();
-
-      function activate() {
-        Articles.get({tenantId: scope.tenantId, articleId: scope.articleId},
-          function (res) {
-            scope.tags = res.tags;
-          });
-      }
 
       function tagAdded(tag) {
         var rq = {tenantId: scope.tenantId, articleId: scope.articleId, name: tag.text};

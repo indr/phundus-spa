@@ -52,11 +52,9 @@
         template: '<ph-user-article-navbar data-user-id="userId" data-article-id="articleId" data-article-short-id="articleShortId"></ph-user-article-navbar><ui-view/>',
         controller: ['$scope', 'userId', 'articleId', 'articleShortId',
           function ($scope, userId, articleId, articleShortId) {
-            $scope.userId = userId;
+            $scope.tenantId = userId;
             $scope.articleId = articleId;
             $scope.articleShortId = articleShortId;
-            $scope.tenantId = userId;
-            $scope.productId = articleId;
           }],
         resolve: {
           articleId: ['$stateParams', function ($stateParams) {
@@ -64,35 +62,31 @@
           }],
           articleShortId: ['$stateParams', function ($stateParams) {
             return $stateParams.articleShortId;
-          }],
-          productId: ['$stateParams', function ($stateParams) {
-            return $stateParams.articleId || $stateParams.productId;
-          }]
-        }
+          }]        }
       })
       .state('user.product.actions', {
         url: '/actions',
-        template: '<view-title>Aktivitäten</view-title><div ph-inventory-product-activities tenant-id="tenantId" product-id="productId"></div>'
+        template: '<view-title>Aktivitäten</view-title><div ph-inventory-article-activities tenant-id="tenantId" article-id="articleId"></div>'
       })
       .state('user.product.details', {
         url: '/',
-        template: '<view-title>Material bearbeiten</view-title><div ph-inventory-product-details tenant-id="tenantId" product-id="productId" has-member-price="false"></div>'
+        template: '<view-title>Material bearbeiten</view-title><div ph-inventory-article-details tenant-id="tenantId" article-id="articleId" has-member-price="false"></div>'
       })
       .state('user.product.description', {
         url: '/description',
-        template: '<view-title>Beschreibung bearbeiten</view-title><div ph-inventory-product-description tenant-id="tenantId" product-id="productId"></div>'
+        template: '<view-title>Beschreibung bearbeiten</view-title><div ph-inventory-article-description tenant-id="tenantId" article-id="articleId"></div>'
       })
       .state('user.product.specification', {
         url: '/specification',
-        template: '<view-title>Spezifikation bearbeiten</view-title><div ph-inventory-product-specification tenant-id="tenantId" product-id="productId"></div>'
+        template: '<view-title>Spezifikation bearbeiten</view-title><div ph-inventory-article-specification tenant-id="tenantId" article-id="articleId"></div>'
       })
       .state('user.product.stock', {
         url: '/stock',
-        template: '<view-title>Bestand</view-title><div ph-inventory-product-stock tenant-id="tenantId" product-id="productId"></div>'
+        template: '<view-title>Bestand</view-title><div ph-inventory-article-stock tenant-id="tenantId" article-id="articleId"></div>'
       })
       .state('user.product.files', {
         url: '/files',
-        template: '<view-title>Dateien</view-title><div ph-inventory-product-files tenant-id="tenantId" product-id="productId"></div>'
+        template: '<view-title>Dateien</view-title><div ph-inventory-article-files tenant-id="tenantId" article-id="articleId"></div>'
       })
 
       .state('user.orders', {
