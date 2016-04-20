@@ -13,7 +13,7 @@
 
     function openModal(tenantId, success) {
       var modalInstance = $uibModal.open({
-        templateUrl: 'modules/inventory/views/modals/create-product.html',
+        templateUrl: 'modules/inventory/views/modals/inventoryCreateArticleModal.html',
         controller: CreateArticleModalInstCtrl,
         resolve: {
           tenantId: function () {
