@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  /* globals console: false */
+  
   angular.module('ph.inventory')
     .directive('phInventoryArticlePrices', phInventoryArticlePrices);
 
