@@ -13,7 +13,7 @@
         item: '=',
         added: '='
       },
-      templateUrl: 'modules/shop/views/directives/ph-shop-item-add-to-cart.html',
+      templateUrl: 'modules/shop/views/directives/phShopItemAddToCart.html',
       controller: controller
     };
 

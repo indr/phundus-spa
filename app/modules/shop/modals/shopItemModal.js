@@ -4,7 +4,6 @@
   angular.module('ph.shop')
     .factory('shopItemModal', shopItemModal);
 
-  shopItemModal.$inject = ['$uibModal'];
 
   function shopItemModal($uibModal) {
     return {

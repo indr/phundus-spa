@@ -12,7 +12,7 @@
       scope: {
         documents: '='
       },
-      templateUrl: 'modules/shop/views/directives/ph-shop-item-documents.html'
+      templateUrl: 'modules/shop/views/directives/phShopItemDocuments.html'
     }
   }
 })();

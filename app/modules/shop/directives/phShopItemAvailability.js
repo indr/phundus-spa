@@ -5,8 +5,6 @@
     .directive('phShopItemAvailability', phShopItemAvailability);
 
 
-  phShopItemAvailability.$inject = ['_', 'moment', '$filter', '$compile', 'ShopItemAvailability', 'Alert'];
-
   function phShopItemAvailability(_, moment, $filter, $compile, ShopItemAvailability, Alert) {
     return {
       restrict: 'E',
@@ -14,7 +12,7 @@
       scope: {
         itemId: '='
       },
-      templateUrl: 'modules/shop/views/directives/ph-shop-item-availability.html',
+      templateUrl: 'modules/shop/views/directives/phShopItemAvailability.html',
       link: function (scope, element) {
 
         var populateChartData = function (data) {
