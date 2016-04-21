@@ -14,8 +14,10 @@ describe('Controller: MainCtrl', function () {
     ShopCtrl = $controller('ShopCtrl', {
       $scope: scope,
       // place here mocked dependencies
-      queryString: null,
-      queryLessorId: null
+      filter: {
+        text: null,
+        lessorId: null
+      }
     });
   }));
 
