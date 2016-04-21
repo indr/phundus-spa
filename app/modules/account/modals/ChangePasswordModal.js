@@ -4,7 +4,6 @@
   angular.module('ph.account')
     .factory('AccountChangePasswordModal', ChangePasswordModal);
 
-  ChangePasswordModal.$inject = ['$uibModal'];
 
   function ChangePasswordModal($uibModal) {
     return {
@@ -19,11 +18,12 @@
     }
   }
 
-
-  ChangePasswordModalInstCtrl.$inject = ['$scope', '$uibModalInstance', '$timeout', 'AccountChangePassword'];
-
+  /*@ngInject*/
   function ChangePasswordModalInstCtrl($scope, $uibModalInstance, $timeout, AccountChangePassword) {
-    $scope.ok = function () {
+    $scope.ok = ok;
+    $scope.cancel = cancel;
+
+    function ok() {
       if (!$scope.formChangePassword.$valid) {
         return;
       }
@@ -47,10 +47,10 @@
         $scope.formChangePassword.$submitting = false;
         $scope.error = 'Fehler beim Ändern des Passworts.';
       });
-    };
+    }
 
-    $scope.cancel = function () {
+    function cancel() {
       $uibModalInstance.dismiss('cancel');
-    };
+    }
   }
 })();

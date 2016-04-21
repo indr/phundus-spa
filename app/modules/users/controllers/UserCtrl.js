@@ -4,7 +4,7 @@
   angular.module('ph.users')
     .controller('UserCtrl', UserCtrl);
 
-  UserCtrl.$inject = ['$scope', 'userId', 'Users', 'Auth', 'Alert'];
+
   function UserCtrl($scope, userId, Users, Auth, Alert) {
     $scope.userId = userId;
     $scope.isHome = userId + '' === Auth.user.userId + '';

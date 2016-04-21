@@ -4,7 +4,6 @@
   angular.module('ph.account')
     .controller('AccountValidateCtrl', ValidateCtrl);
 
-  ValidateCtrl.$inject = ['$scope', 'Alert', 'Validate', 'key', '$timeout'];
 
   function ValidateCtrl($scope, Alert, Validate, key, $timeout) {
     $scope.validate = {

@@ -6,9 +6,8 @@
   angular.module('ph.auth')
     .factory('Auth', Auth);
 
-  Auth.$inject = ['$http', '$cookies', '_', 'auth'];
-  function Auth($http, $cookies, _, auth) {
 
+  function Auth($http, $cookies, _, auth) {
     var accessLevels = auth.accessLevels
       , userRoles = auth.userRoles
       , currentUser = $cookies.getObject('ph.user') || {username: '', role: userRoles.public}

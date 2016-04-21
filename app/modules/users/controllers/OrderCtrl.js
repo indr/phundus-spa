@@ -4,9 +4,8 @@
   angular.module('ph.orders')
     .controller('UserOrderCtrl', UserOrderCtrl);
 
-  UserOrderCtrl.$inject = ['$scope', 'userId', 'orderId', 'Orders', 'OrderItems', 'Auth', 'Alert', '$window', 'OrdersAddOrderItemModal'];
 
-  function UserOrderCtrl($scope, userId, orderId, Orders, OrderItems, Auth, Alert, $window, AddOrderItemModal) {
+  function UserOrderCtrl($scope, userId, orderId, Orders, OrderItems, Auth, Alert, $window, OrdersAddOrderItemModal) {
     $scope.userId = userId;
     $scope.orderId = orderId;
     $scope.order = null;
@@ -56,7 +55,7 @@
 
     $scope.showAddItem = function () {
 
-      var modal = AddOrderItemModal.open({
+      var modal = OrdersAddOrderItemModal.open({
         lessorId: function () {
           return $scope.order.lessorId;
         },

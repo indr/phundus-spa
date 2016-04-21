@@ -4,9 +4,8 @@
   angular.module('ph.organizations')
     .controller('OrganizationOrdersCtrl', OrganizationsOrdersCtrl);
 
-  OrganizationsOrdersCtrl.$inject = ['organizationId', 'Orders', '$state', 'OrdersCreateOrderModal'];
 
-  function OrganizationsOrdersCtrl(organizationId, Orders, $state, CreateOrderModal) {
+  function OrganizationsOrdersCtrl(organizationId, Orders, $state, OrdersCreateOrderModal) {
     var vm = this;
     vm.rowCollection = [];
     vm.displayedCollection = [];
@@ -22,7 +21,7 @@
     }
 
     function createOrder() {
-      var modal = CreateOrderModal.open({
+      var modal = OrdersCreateOrderModal.open({
         lessorId: function () {
           return organizationId;
         }

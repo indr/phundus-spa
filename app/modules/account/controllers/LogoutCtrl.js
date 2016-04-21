@@ -4,7 +4,7 @@
   angular.module('ph.account')
     .controller('LogoutCtrl', LogoutCtrl);
 
-  LogoutCtrl.$inject = ['$scope', '$location', 'Auth'];
+  
   function LogoutCtrl($scope, $location, Auth) {
     if (Auth.isLoggedIn) {
       Auth.logout(function () {

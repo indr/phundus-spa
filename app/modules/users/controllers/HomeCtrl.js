@@ -4,7 +4,7 @@
   angular.module('ph.users')
     .controller('UserHomeCtrl', UsersHomeCtrl);
 
-  UsersHomeCtrl.$inject = ['$scope', 'Stores', 'Alert'];
+
   function UsersHomeCtrl($scope, Stores, Alert) {
     $scope.openStore = function () {
       $scope.isOpeningStore = true;

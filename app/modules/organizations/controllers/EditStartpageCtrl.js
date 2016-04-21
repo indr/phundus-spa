@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationsEditStartpageCtrl', OrganizationsEditStartpageCtrl);
 
-  OrganizationsEditStartpageCtrl.$inject = ['$scope', 'organizationId', 'Organizations', 'Alert', '$state'];
+  
   function OrganizationsEditStartpageCtrl($scope, organizationId, Organizations, Alert, $state) {
     $scope.data = {};
 

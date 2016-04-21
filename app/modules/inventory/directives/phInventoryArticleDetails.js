@@ -4,7 +4,7 @@
   angular.module('ph.inventory')
     .directive('phInventoryArticleDetails', phInventoryArticleDetails);
 
-  phInventoryArticleDetails.$inject = [];
+
   function phInventoryArticleDetails() {
     return {
       restrict: 'EA',
@@ -15,11 +15,12 @@
         hasMemberPrice: '='
       },
       controllerAs: 'vm',
-      controller: Controller,
+      controller: InventoryArticleDetailsCtrl,
       templateUrl: 'modules/inventory/views/directives/phInventoryArticleDetails.html'
     };
 
-    function Controller(Articles) {
+    /*@ngInject*/
+    function InventoryArticleDetailsCtrl(Articles) {
       var vm = this;
       vm.article = null;
 

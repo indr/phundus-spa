@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationsSettingsCtrl', OrganizationsSettingsCtrl);
 
-  OrganizationsSettingsCtrl.$inject = ['_', '$scope', 'organizationId', 'OrganizationSettings', 'Alert', '$http'];
+
   function OrganizationsSettingsCtrl(_, $scope, organizationId, OrganizationSettings, Alert, $http) {
 
     OrganizationSettings.get({organizationId: organizationId}, function (res) {

@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .directive('phOrganizationArticleNavbar', organizationProductNavbar);
 
-  organizationProductNavbar.$inject = ['Auth'];
+
   function organizationProductNavbar(Auth) {
     return {
       restrict: 'EA',

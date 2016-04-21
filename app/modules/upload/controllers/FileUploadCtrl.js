@@ -4,7 +4,6 @@
   angular.module('ph.upload')
     .controller('FileUploadCtrl', FileUploadCtrl);
 
-  FileUploadCtrl.$inject = ['_', '$scope', '$http', 'Alert'];
 
   function FileUploadCtrl(_, $scope, $http, Alert) {
     var url = $scope.url;

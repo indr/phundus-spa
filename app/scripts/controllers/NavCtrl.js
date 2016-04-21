@@ -4,7 +4,6 @@
   angular.module('ph.app')
     .controller('NavCtrl', NavCtrl);
 
-  NavCtrl.$inject = ['$scope', '$location', '$window', 'Auth', 'Alert'];
 
   function NavCtrl($scope, $location, $window, Auth, Alert) {
     $scope.user = Auth.user;

@@ -4,7 +4,6 @@
   angular.module('ph.stores')
     .factory('StoresEditContactDetailsModal', EditContactDetailsModal);
 
-  EditContactDetailsModal.$inject = ['$uibModal'];
 
   function EditContactDetailsModal($uibModal) {
     return {
@@ -22,11 +21,8 @@
     }
   }
 
-
-  EditContactDetailsModalInstCtrl.$inject = ['$scope', '$timeout', '$uibModalInstance', 'storeId', 'contact', 'Stores', 'PostalAddress'];
-
+  /*@ngInject*/
   function EditContactDetailsModalInstCtrl($scope, $timeout, $uibModalInstance, storeId, contact, Stores, PostalAddress) {
-
     $scope.contact = contact;
 
     $scope.ok = function () {

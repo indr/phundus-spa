@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationCtrl', OrganizationCtrl);
 
-  OrganizationCtrl.$inject = ['organizationId', '$scope', '$sce', 'Alert', 'Auth', 'Organizations', 'Relationships', 'Applications', 'leafletData', 'leafletMarkersHelpers', '$timeout'];
+
   function OrganizationCtrl(organizationId, $scope, $sce, Alert, Auth, Organizations, Relationships, Applications, leafletData, leafletMarkersHelpers, $timeout) {
     $scope.loading = true;
     $scope.accessLevels = Auth.accessLevels;

@@ -4,7 +4,7 @@
   angular.module('ph.users')
     .directive('phUserNavbar', userNavbar);
 
-  userNavbar.$inject = ['Auth'];
+
   function userNavbar(Auth) {
     return {
       restrict: 'E',

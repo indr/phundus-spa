@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationsStoreCtrl', OrganizationsStoreCtrl);
 
-  OrganizationsStoreCtrl.$inject = ['$scope', 'organizationId', 'Stores', 'Alert'];
+
   function OrganizationsStoreCtrl($scope, organizationId, Stores, Alert) {
     $scope.store = null;
 

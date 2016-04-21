@@ -4,7 +4,7 @@
   angular.module('ph.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', '$location', '$window', 'Auth', 'Alert'];
+  
   function LoginCtrl($scope, $location, $window, Auth, Alert) {
     $scope.rememberMe = false;
     $scope.login = function () {

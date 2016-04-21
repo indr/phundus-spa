@@ -4,7 +4,6 @@
   angular.module('ph.alerts')
     .factory('AlertModal', AlertModal);
 
-  AlertModal.$inject = ['$uibModal'];
 
   function AlertModal($uibModal) {
     return {
@@ -21,9 +20,7 @@
     }
   }
 
-
-  AlertModalInstCtrl.$inject = ['$scope', 'alert'];
-
+  /*@ngInject*/
   function AlertModalInstCtrl($scope, alert) {
     var titles = {
       'danger': 'Fehler',

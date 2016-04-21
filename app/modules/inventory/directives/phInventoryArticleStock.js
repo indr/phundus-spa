@@ -4,6 +4,7 @@
   angular.module('ph.inventory')
     .directive('phInventoryArticleStock', phInventoryArticleStock);
 
+
   function phInventoryArticleStock() {
     return {
       restrict: 'EA',
@@ -18,7 +19,7 @@
     }
   }
 
-  InventoryArticleStockCtrl.$inject = ['ArticlesStock'];
+  /*@ngInject*/
   function InventoryArticleStockCtrl(ArticlesStock) {
     var vm = this;
 

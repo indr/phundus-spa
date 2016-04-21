@@ -4,7 +4,6 @@
   angular.module('ph.upload')
     .controller('FileDestroyController', FileDestroyCtrl);
 
-  FileDestroyCtrl.$inject = ['$scope', '$http'];
 
   function FileDestroyCtrl($scope, $http) {
     var file = $scope.file,

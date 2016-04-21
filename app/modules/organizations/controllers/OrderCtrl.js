@@ -4,7 +4,6 @@
   angular.module('ph.orders')
     .controller('OrganizationOrderCtrl', OrganizationOrderCtrl);
 
-  OrganizationOrderCtrl.$inject = ['$', '$scope', 'organizationId', 'orderId', 'Orders', 'OrderItems', 'Alert', '$window', 'OrdersAddOrderItemModal'];
 
   function OrganizationOrderCtrl($, $scope, organizationId, orderId, Orders, OrderItems, Alert, $window, OrdersAddOrderItemModal) {
     $scope.organizationId = organizationId;

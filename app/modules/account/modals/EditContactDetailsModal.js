@@ -4,7 +4,6 @@
   angular.module('ph.account')
     .factory('AccountEditContactDetailsModal', EditContactDetailsModal);
 
-  EditContactDetailsModal.$inject = ['$uibModal'];
 
   function EditContactDetailsModal($uibModal) {
     return {
@@ -22,14 +21,13 @@
     }
   }
 
-
-  ChangeContactDetailsModalInstCtrl.$inject = ['$scope', '$timeout', '$uibModalInstance', 'userId', 'contact', 'UsersAddress'];
-
+  /*@ngInject*/
   function ChangeContactDetailsModalInstCtrl($scope, $timeout, $uibModalInstance, userId, contact, UsersAddress) {
-
     $scope.contact = contact;
+    $scope.ok = ok;
+    $scope.cancel = cancel;
 
-    $scope.ok = function () {
+    function ok() {
       if (!$scope.formChangeContact.$valid) {
         return;
       }
@@ -45,10 +43,10 @@
       }, function () {
         $scope.error = 'Fehler beim Speichern der Kontaktangaben.';
       });
-    };
+    }
 
-    $scope.cancel = function () {
+    function cancel() {
       $uibModalInstance.dismiss('cancel');
-    };
+    }
   }
 })();

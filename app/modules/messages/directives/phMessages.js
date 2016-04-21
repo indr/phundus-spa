@@ -4,7 +4,6 @@
   angular.module('ph.messages')
     .directive('phMessages', phMessages);
 
-  phMessages.$inject = [];
 
   function phMessages() {
     return {

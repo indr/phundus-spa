@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationMembersCtrl', OrganizationMembersCtrl);
 
-  OrganizationMembersCtrl.$inject = ['$scope', 'organizationId', 'Members', 'Alert'];
+
   function OrganizationMembersCtrl($scope, organizationId, Members, Alert) {
     Members.query({organizationId: organizationId}, function (res) {
       $scope.rowCollection = res.results;

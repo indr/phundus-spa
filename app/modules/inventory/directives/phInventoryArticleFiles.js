@@ -4,7 +4,7 @@
   angular.module('ph.inventory')
     .directive('phInventoryArticleFiles', phInventoryArticleFiles);
 
-  phInventoryArticleFiles.$inject = [];
+
   function phInventoryArticleFiles() {
     return {
       restrict: 'EA',
@@ -18,7 +18,7 @@
     }
   }
 
-  InventoryArticleFilesCtrl.$inject = ['$scope'];
+  /*@ngInject*/
   function InventoryArticleFilesCtrl($scope) {
     $scope.url = '/api/v0/articles/' + $scope.articleId + '/files';
     $scope.hasPreview = true;

@@ -4,7 +4,7 @@
   angular.module('ph.account')
     .controller('ResetPasswordCtrl', ResetPasswordCtrl);
 
-  ResetPasswordCtrl.$inject = ['$scope', 'Alert', 'AccountResetPassword'];
+  
   function ResetPasswordCtrl($scope, Alert, AccountResetPassword) {
     $scope.submitted = false;
 

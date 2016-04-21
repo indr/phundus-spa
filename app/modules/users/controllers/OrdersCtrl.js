@@ -4,7 +4,6 @@
   angular.module('ph.orders')
     .controller('UserOrdersCtrl', UserOrdersCtrl);
 
-  UserOrdersCtrl.$inject = ['userId', 'Orders'];
 
   function UserOrdersCtrl(userId, Orders) {
     var vm = this;

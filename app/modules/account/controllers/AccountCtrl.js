@@ -4,9 +4,8 @@
   angular.module('ph.account')
     .controller('AccountCtrl', AccountCtrl);
 
-  AccountCtrl.$inject = ['$scope', 'userId', 'Users', 'AccountEditContactDetailsModal', 'AccountChangePasswordModal', 'AccountChangeEmailAddressModal'];
 
-  function AccountCtrl($scope, userId, Users, EditContactDetailsModal, ChangePasswordModal, ChangeEmailAddressModal) {
+  function AccountCtrl($scope, userId, Users, AccountEditContactDetailsModal, AccountChangePasswordModal, AccountChangeEmailAddressModal) {
     Users.get({userId: userId}, function (res) {
       var address = res.address;
       address.postcode = parseInt(address.postcode);
@@ -15,8 +14,10 @@
     });
 
     $scope.showChangeContact = function () {
-      var modal = EditContactDetailsModal.open({
-        userId: userId,
+      var modal = AccountEditContactDetailsModal.open({
+        userId: function () {
+          return userId
+        },
         contact: function () {
           return angular.copy($scope.address)
         }
@@ -28,11 +29,11 @@
     };
 
     $scope.showChangePassword = function () {
-      ChangePasswordModal.open();
+      AccountChangePasswordModal.open();
     };
 
     $scope.showChangeEmailAddress = function () {
-      ChangeEmailAddressModal.open();
+      AccountChangeEmailAddressModal.open();
     };
   }
 })();

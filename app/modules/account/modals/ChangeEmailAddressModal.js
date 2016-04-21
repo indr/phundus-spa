@@ -18,11 +18,12 @@
     }
   }
 
-
-  ChangeEmailAddressModalInstCtrl.$inject = ['$scope', '$uibModalInstance', '$timeout', 'AccountChangeEmailAddress'];
-
+  /*@ngInject*/
   function ChangeEmailAddressModalInstCtrl($scope, $uibModalInstance, $timeout, AccountChangeEmailAddress) {
-    $scope.ok = function () {
+    $scope.ok = ok;
+    $scope.cancel = cancel;
+
+    function ok() {
       if (!$scope.formChangeEmailAddress.$valid) {
         return;
       }
@@ -46,11 +47,10 @@
         $scope.formChangeEmailAddress.$submitting = false;
         $scope.error = 'Fehler beim Ändern der E-Mail-Addresse.';
       });
+    }
 
-    };
-
-    $scope.cancel = function () {
+    function cancel() {
       $uibModalInstance.dismiss('cancel');
-    };
+    }
   }
 })();

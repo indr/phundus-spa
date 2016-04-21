@@ -5,9 +5,7 @@
     .controller('ShopItemCtrl', ShopItemCtrl);
 
 
-  ShopItemCtrl.$inject = ['$scope', 'itemId', 'shopItemsResource', 'shopLessorsResource', 'Alert', 'Auth', '$uibModalInstance'];
-
-  function ShopItemCtrl($scope, itemId, ShopItems, Lessors, Alert, Auth, $uibModalInstance) {
+  function ShopItemCtrl($scope, itemId, shopItemsResource, shopLessorsResource, Alert, Auth, $uibModalInstance) {
     var lessor = null;
 
     $scope.isLoading = true;
@@ -17,11 +15,11 @@
     $scope.canEdit = false;
     $scope.canRent = false;
 
-    ShopItems.get({itemId: itemId}, function (res) {
+    shopItemsResource.get({itemId: itemId}, function (res) {
       $scope.item = res;
       $scope.isLoading = false;
 
-      Lessors.get({lessorId: res.lessor.lessorId}, function (res) {
+      shopLessorsResource.get({lessorId: res.lessor.lessorId}, function (res) {
         $scope.lessor = lessor = res;
 
         $scope.canEdit = (Auth.user.userId === lessor.lessorId) || (Auth.isManager(lessor.lessorId));

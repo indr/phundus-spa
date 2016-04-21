@@ -4,9 +4,8 @@
   angular.module('ph.users')
     .controller('UserProductsCtrl', UsersProductsCtrl);
 
-  UsersProductsCtrl.$inject = ['_', '$scope', 'userId', '$window', 'Stores', 'Articles', 'Alert', '$state', 'Auth', 'inventoryCreateArticleModal'];
 
-  function UsersProductsCtrl(_, $scope, userId, $window, Stores, Articles, Alert, $state, Auth, createArticleModal) {
+  function UsersProductsCtrl(_, $scope, userId, $window, Stores, Articles, Alert, $state, Auth, inventoryCreateArticleModal) {
     $scope.loading = true;
     $scope.store = null;
     $scope.articles = null;
@@ -42,7 +41,7 @@
     };
 
     $scope.createArticle = function () {
-      createArticleModal.open(userId,
+      inventoryCreateArticleModal.open(userId,
         function (article) {
           $state.go('user.product.details', {
             userId: userId,

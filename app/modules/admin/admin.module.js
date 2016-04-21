@@ -4,10 +4,8 @@
   angular.module('ph.admin', [])
     .config(states);
 
-  states.$inject = ['$stateProvider', 'authProvider'];
 
   function states($stateProvider, authProvider) {
-
     var access = authProvider.accessLevels;
 
     $stateProvider

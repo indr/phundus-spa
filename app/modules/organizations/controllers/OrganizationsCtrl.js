@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationsCtrl', OrganizationsCtrl);
 
-  OrganizationsCtrl.$inject = ['$scope', 'Organizations', 'Alert'];
+
   function OrganizationsCtrl($scope, Organizations, Alert) {
     $scope.loading = true;
 

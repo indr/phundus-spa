@@ -4,7 +4,6 @@
   angular.module('ph.account')
     .controller('SignUpCtrl', SignUpCtrl);
 
-  SignUpCtrl.$inject = ['$scope', 'Users', 'Organizations', 'Alert'];
 
   function SignUpCtrl($scope, Users, Organizations, Alert) {
     $scope.user = {};

@@ -4,9 +4,8 @@
   angular.module('ph.organizations')
     .controller('OrganizationsProductsCtrl', OrganizationsProductCtrl);
 
-  OrganizationsProductCtrl.$inject = ['_', '$scope', '$window', 'Articles', 'Auth', 'Alert', 'organizationId', '$state', 'inventoryCreateArticleModal'];
 
-  function OrganizationsProductCtrl(_, $scope, $window, Articles, Auth, Alert, organizationId, $state, createArticleModal) {
+  function OrganizationsProductCtrl(_, $scope, $window, Articles, Auth, Alert, organizationId, $state, inventoryCreateArticleModal) {
     $scope.loading = true;
     $scope.userRoles = Auth.userRoles;
     $scope.organizationId = organizationId;
@@ -34,7 +33,7 @@
     };
 
     $scope.createArticle = function () {
-      createArticleModal.open(organizationId,
+      inventoryCreateArticleModal.open(organizationId,
         function (article) {
           $state.go('organization.product.details', {
             organizationId: organizationId,

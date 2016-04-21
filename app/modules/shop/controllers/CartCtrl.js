@@ -5,10 +5,7 @@
     .controller('ShopCartCtrl', ShopCartCtrl);
 
 
-  ShopCartCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'UsersCartItems', 'ShopProductsAvailabilityCheck', 'Alert', '$timeout', '$state'];
-
-  function ShopCartCtrl(_, $scope, userId, UsersCart, UsersCartItems, ShopProductsAvailabilityCheck, Alert, $timeout, $state) {
-
+  function ShopCartCtrl(_, $scope, userId, UsersCart, UsersCartItems, ShopProductsAvailabilityCheck, Alert, $state) {
     var cart = null;
 
     var checkAvailability = function (productId, items) {
@@ -41,7 +38,6 @@
         Alert.error('Fehler beim Prüfen der Verfügbarkeit: ' + res.data.message);
       });
     };
-
 
     var checkAllAvailabilities = function (items) {
       if (!items) {

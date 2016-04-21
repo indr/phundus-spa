@@ -5,8 +5,6 @@
     .factory('OrdersCreateOrderModal', CreateOrderModal);
 
 
-  CreateOrderModal.$inject = ['$uibModal'];
-
   function CreateOrderModal($uibModal) {
     return {
       open: openModal
@@ -23,9 +21,7 @@
     }
   }
 
-
-  CreateOrderModalInstCtrl.$inject = ['$scope', '$uibModalInstance', 'lessorId', '$http'];
-
+  /*@ngInject*/
   function CreateOrderModalInstCtrl($scope, $uibModalInstance, lessorId, $http) {
 
     $scope.getMembers = function (val) {

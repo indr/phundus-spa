@@ -4,13 +4,13 @@
   angular.module('ph.shop')
     .factory('shopQueryService', shopQueryService);
 
+
   /**
    * @ngdoc service
    * @name ph.shop.service:shopQueryService
    * @description Service to query shop items. Provides support for paginationl.
    */
-  shopQueryService.$inject = ['shopItemsResource'];
-  function shopQueryService(shopItems) {
+  function shopQueryService(shopItemsResource) {
     var _filter = {
       lessorId: null,
       string: null
@@ -34,7 +34,7 @@
         _filter.lessorId = filter.lessorId || _filter.lessorId;
         _filter.text = filter.text || _filter.text;
       }
-      return shopItems.query({
+      return shopItemsResource.query({
         q: _filter.text,
         lessorId: _filter.lessorId,
         offset: limit * (page - 1),

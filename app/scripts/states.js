@@ -4,9 +4,8 @@
   angular.module('ph.app')
     .config(states);
 
-  states.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'authProvider'];
-  function states($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, authProvider) {
 
+  function states($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, authProvider) {
     var access = authProvider.accessLevels;
 
     $stateProvider

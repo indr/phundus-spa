@@ -4,9 +4,8 @@
   angular.module('ph.alerts')
     .factory('Alert', alert);
 
-  alert.$inject = ['_', 'AlertModal'];
 
-  function alert(_, alertModal) {
+  function alert(_, AlertModal) {
     var modal = null;
 
     return {
@@ -16,10 +15,10 @@
       success: _.partial(showAlert, 'success'),
       warning: _.partial(showAlert, 'warning')
     };
-    
+
     function showAlert(type, msg, title) {
       if (modal === null) {
-        modal = alertModal.open({
+        modal = AlertModal.open({
           alert: function () {
             return {
               type: type,

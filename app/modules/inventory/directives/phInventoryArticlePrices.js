@@ -4,7 +4,7 @@
   angular.module('ph.inventory')
     .directive('phInventoryArticlePrices', phInventoryArticlePrices);
 
-  phInventoryArticlePrices.$inject = [];
+
   function phInventoryArticlePrices() {
     return {
       restrict: 'EA',
@@ -20,7 +20,7 @@
     }
   }
 
-  InventoryArticlePricesCtrl.$inject = ['_', '$scope', 'Articles', 'Alert'];
+  /*@ngInject*/
   function InventoryArticlePricesCtrl(_, $scope, Articles, Alert) {
     $scope.submitPrices = submitPrices;
     $scope.resetPrices = resetPrices;

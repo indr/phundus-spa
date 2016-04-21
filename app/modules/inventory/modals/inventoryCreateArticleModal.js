@@ -4,7 +4,6 @@
   angular.module('ph.inventory')
     .factory('inventoryCreateArticleModal', inventoryCreateArticleModal);
 
-  inventoryCreateArticleModal.$inject = ['$uibModal', 'Articles', 'Alert'];
 
   function inventoryCreateArticleModal($uibModal, Articles, Alert) {
     return {
@@ -30,11 +29,8 @@
     }
   }
 
-
-  CreateArticleModalInstCtrl.$inject = ['$scope', '$uibModalInstance', 'tenantId'];
-
+  /*@ngInject*/
   function CreateArticleModalInstCtrl($scope, $uibModalInstance, tenantId) {
-
     $scope.name = '';
     $scope.quantity = 1;
 

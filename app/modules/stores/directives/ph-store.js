@@ -4,9 +4,8 @@
   angular.module('ph.stores')
     .directive('phStore', phStore);
 
-  phStore.$inject = ['$timeout', 'Stores', 'Alert', 'leafletData', 'leafletMarkersHelpers', 'StoresEditContactDetailsModal'];
 
-  function phStore($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, EditContactDetailsModal) {
+  function phStore($timeout, Stores, Alert, leafletData, leafletMarkersHelpers, StoresEditContactDetailsModal) {
     return {
       restrict: 'E',
       replace: 'true',
@@ -87,7 +86,7 @@
         };
 
         scope.showChangeContact = function () {
-          var modal = EditContactDetailsModal.open({
+          var modal = StoresEditContactDetailsModal.open({
             storeId: scope.store.storeId,
             contact: angular.copy(scope.store.contact)
           });

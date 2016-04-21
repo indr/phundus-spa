@@ -4,7 +4,7 @@
   angular.module('ph.inventory')
     .directive('phInventoryArticleSpecification', phInventoryArticleSpecification);
 
-  phInventoryArticleSpecification.$inject = [];
+
   function phInventoryArticleSpecification() {
     return {
       restrict: 'EA',
@@ -19,7 +19,7 @@
     }
   }
 
-  InventoryArticleSpecificationCtrl.$inject = ['Articles', 'Alert'];
+  /*@ngInject*/
   function InventoryArticleSpecificationCtrl(Articles, Alert) {
     var vm = this;
 

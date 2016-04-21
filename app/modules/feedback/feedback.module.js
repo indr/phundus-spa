@@ -10,7 +10,7 @@
 
   module.config(states);
 
-  states.$inject = ['$stateProvider'];
+
   function states($stateProvider) {
     $stateProvider
       .state('public.feedback', {

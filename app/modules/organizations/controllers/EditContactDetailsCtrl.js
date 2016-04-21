@@ -4,7 +4,7 @@
   angular.module('ph.organizations')
     .controller('OrganizationsEditContactDetailsCtrl', OrganizationsEditContactDetailsCtrl);
 
-  OrganizationsEditContactDetailsCtrl.$inject = ['_', '$scope', 'organizationId', 'Organizations', 'Alert', '$state'];
+
   function OrganizationsEditContactDetailsCtrl(_, $scope, organizationId, Organizations, Alert, $state) {
     $scope.contactDetails = null;
 

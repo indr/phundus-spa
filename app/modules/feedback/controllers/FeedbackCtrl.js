@@ -4,7 +4,7 @@
   angular.module('ph.feedback')
     .controller('FeedbackCtrl', FeedbackCtrl);
 
-  FeedbackCtrl.$inject = ['$scope', 'Auth', 'Alert', 'Feedback'];
+
   function FeedbackCtrl($scope, Auth, Alert, Feedback) {
     $scope.feedback = {
       emailAddress: Auth.user.username || undefined

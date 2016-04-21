@@ -5,9 +5,7 @@
     .controller('ShopCheckoutCtrl', ShopCheckoutCtrl);
 
 
-  ShopCheckoutCtrl.$inject = ['_', '$scope', 'userId', 'UsersCart', 'shopLessorsResource', 'Lessees', 'ShopOrders', 'Alert'];
-
-  function ShopCheckoutCtrl(_, $scope, userId, UsersCart, Lessors, Lessees, ShopOrders, Alert) {
+  function ShopCheckoutCtrl(_, $scope, userId, UsersCart, shopLessorsResource, Lessees, ShopOrders, Alert) {
     UsersCart.get({userId: userId}, function (cart) {
 
       var byOwnerId = _.groupBy(cart.items, 'ownerId');
@@ -23,7 +21,7 @@
       }, []);
 
       $scope.orders = _.forEach(orders, function (order) {
-        Lessors.get({lessorId: order.lessorId}, function (lessor) {
+        shopLessorsResource.get({lessorId: order.lessorId}, function (lessor) {
           order.lessor = lessor;
         }, function (res) {
           Alert.error('Fehler beim Laden des Vermieters: ' + res.data.message);

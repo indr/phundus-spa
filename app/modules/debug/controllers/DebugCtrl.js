@@ -4,7 +4,6 @@
   angular.module('ph.debug')
     .controller('DebugCtrl', DebugCtrl);
 
-  DebugCtrl.$inject = ['$', '$scope', '$http', '$cookies', '$timeout', '$location', 'Alert'];
 
   function DebugCtrl($, $scope, $http, $cookies, $timeout, $location, Alert) {
     $scope.status = {};
