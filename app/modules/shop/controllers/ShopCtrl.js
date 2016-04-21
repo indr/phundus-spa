@@ -4,12 +4,9 @@
   angular.module('ph.shop')
     .controller('ShopCtrl', ShopCtrl);
 
+  function ShopCtrl($scope, Alert, shopItemModal, filter, shopQueryService) {
 
-  ShopCtrl.$inject = ['$scope', 'Alert', 'shopItemModal', 'queryString', 'queryLessorId', 'shopQueryService'];
-
-  function ShopCtrl($scope, Alert, shopItemModal, queryString, queryLessorId, queryService) {
-
-    $scope.page = queryService.page;
+    $scope.page = shopQueryService.page;
     $scope.openItem = openItem;
 
     $scope.$watch('page.current', function (newValue, oldValue) {
@@ -22,16 +19,11 @@
     activate();
 
     function activate() {
-      var filter = {
-        lessorId: queryLessorId,
-        text: queryString
-      };
-
       query(1, filter);
     }
 
     function query(page, filter) {
-      queryService.query(page, 8, filter)
+      shopQueryService.query(page, 8, filter)
         .then(queryCompleted)
         .catch(queryFailed);
     }

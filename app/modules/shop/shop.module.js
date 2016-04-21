@@ -20,11 +20,11 @@
         templateUrl: templateUrl('index.html'),
         controller: 'ShopCtrl',
         resolve: {
-          queryString: ['$stateParams', function ($stateParams) {
-            return $stateParams.q;
-          }],
-          queryLessorId: ['$stateParams', function ($stateParams) {
-            return $stateParams.l;
+          filter: ['$stateParams', function ($stateParams) {
+            return {
+              text: $stateParams.q,
+              lessorId: $stateParams.l
+            };
           }]
         }
       })
