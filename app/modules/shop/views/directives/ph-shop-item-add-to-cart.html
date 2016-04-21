@@ -48,12 +48,12 @@
     <div class="col-xs-12" style="margin:0;padding:0">
       <button type="button" class="btn btn-success"
               data-ng-show="addToCartFormModel.isAvailable && !addToCartFormModel.availabilityChecking"
-              data-ng-click="checkAvailability(addToCartFormModel)" title="Verfügbar!"><span
+              data-ng-click="checkAvailability()" title="Verfügbar!"><span
         class="glyphicon glyphicon-ok"></span>
       </button>
       <button type="button" class="btn btn-danger"
               data-ng-show="!addToCartFormModel.isAvailable && !addToCartFormModel.availabilityChecking"
-              data-ng-click="checkAvailability(addToCartFormModel)" title="Nicht verfügbar!">
+              data-ng-click="checkAvailability()" title="Nicht verfügbar!">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
       <button type="button" class="btn btn-default" data-ng-show="addToCartFormModel.availabilityChecking"><span
