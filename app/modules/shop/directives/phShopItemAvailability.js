@@ -12,7 +12,8 @@
       scope: {
         itemId: '='
       },
-      templateUrl: 'modules/shop/views/directives/phShopItemAvailability.html',
+      //templateUrl: 'modules/shop/views/directives/phShopItemAvailability.html',
+      template: '<div></div>',
       link: link
     };
 
@@ -22,7 +23,8 @@
         $log.log('get()/succeeded');
         scope.availabilities = res.result;
         populateChartData(res.result);
-        recompile();
+        //recompile();
+        addChart();
 
       }, function (res) {
         $log.log('get()/failed');
@@ -76,6 +78,13 @@
         $log.log('recompile()');
         // I'm totally not sure what I'm doing...
         $compile(element.contents())(scope);
+      }
+
+      function addChart() {
+        $log.log('addChart()');
+        var chart = angular.element('<chart value="chart" width="800"></chart>');
+        element.append(chart);
+        $compile(element)(scope);
       }
     }
   }
