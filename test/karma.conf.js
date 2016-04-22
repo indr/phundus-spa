@@ -45,7 +45,6 @@ module.exports = function(config) {
       'bower_components/tinymce-dist/tinymce.js',
       'bower_components/angular-ui-tinymce/src/tinymce.js',
       'bower_components/moment/moment.js',
-      'bower_components/angular-moment/angular-moment.js',
       'bower_components/holderjs/holder.js',
       'bower_components/angular-holderjs/src/holder.js',
       'bower_components/chartjs/Chart.js',
