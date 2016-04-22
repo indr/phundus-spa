@@ -5,7 +5,7 @@
     .directive('phShopItemAvailability', phShopItemAvailability);
 
 
-  function phShopItemAvailability(_, moment, $filter, $compile, ShopItemAvailability, Alert) {
+  function phShopItemAvailability(_, $filter, $compile, ShopItemAvailability, Alert) {
     return {
       restrict: 'E',
       replace: true,
@@ -15,17 +15,19 @@
       templateUrl: 'modules/shop/views/directives/phShopItemAvailability.html',
       link: function (scope, element) {
 
-        var populateChartData = function (data) {
+        ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
+          scope.availabilities = res.result;
+          populateChartData(res.result);
 
-          var labels = _.map(data, function (each) {
-            return $filter('date')(each.fromUtc, 'mediumDate');
-          });
-          labels.push($filter('date')(moment(data[data.length - 1].fromUtc).add(1, 'months').calendar(), 'mediumDate'));
+          // I'm totally not sure what I'm doing...
+          $compile(element.contents())(scope);
+        }, function (res) {
+          Alert.error('Fehler beim Laden der Verfügbarkeit: ' + res.data.message);
+        });
 
-          var values = _.map(data, function (each) {
-            return each.quantity;
-          });
-          values.push(values[values.length - 1]);
+        function populateChartData(data) {
+          var labels = getLabels(data);
+          var values = getValues(data);
 
           var chartData = {
             labels: labels,
@@ -43,17 +45,25 @@
           scope.chart = {
             data: chartData
           };
+        }
 
-          // I'm totally not sure what I'm doing...
-          $compile(element.contents())(scope);
-        };
+        function getLabels(data) {
+          var labels = _.map(data, function (each) {
+            return $filter('date')(each.fromUtc, 'mediumDate');
+          });
+          labels.push('');
 
-        ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
-          scope.availabilities = res.result;
-          populateChartData(res.result);
-        }, function (res) {
-          Alert.error('Fehler beim Laden der Verfügbarkeit: ' + res.data.message);
-        });
+          return labels;
+        }
+
+        function getValues(data) {
+          var values = _.map(data, function (each) {
+            return each.quantity;
+          });
+          values.push(values[values.length - 1]);
+
+          return values;
+        }
       }
     }
   }
