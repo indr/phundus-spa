@@ -2,7 +2,6 @@
   'use strict';
 
   var app = angular.module('ph.app', [
-    'angularMoment',
     'blueimp.fileupload',
     'chartjs-directive',
     'leaflet-directive',
@@ -33,16 +32,14 @@
     'ph.inventory'
   ]);
 
-  app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults', 'amMoment',
-    function ($rootScope, $state, $location, Auth, Alert, confirmationPopoverDefaults, amMoment) {
+  app.run(['$rootScope', '$state', '$location', 'Auth', 'Alert', 'confirmationPopoverDefaults',
+    function ($rootScope, $state, $location, Auth, Alert, confirmationPopoverDefaults) {
       $rootScope.isTestEnv = /(^localhost)|(^acceptance)/.test($location.host());
       $rootScope.isLocalEnv = /(^localhost)/.test($location.host());
       $rootScope.$state = $state;
       confirmationPopoverDefaults.confirmButtonType = 'primary';
       confirmationPopoverDefaults.confirmText = 'Ja';
       confirmationPopoverDefaults.cancelText = 'Nein';
-
-      amMoment.changeLocale('de');
 
       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState) {
         if (!('data' in toState) || !('access' in toState.data)) {

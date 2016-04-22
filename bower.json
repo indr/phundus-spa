@@ -26,7 +26,6 @@
     "font-awesome": "~4.5.0",
     "angular-bootstrap-confirm": "~1.0.0",
     "angular-ui-tinymce": "~0.0.12",
-    "angular-moment": "~0.10.3",
     "moment": "~2.11.2",
     "holderjs": "~2.9.1",
     "angular-holderjs": "~1.1.0",
