@@ -65,7 +65,7 @@
       }
 
       function onAvailabilityRelatedValueChanged(newValue, oldValue) {
-        if (oldValue === undefined) {
+        if (newValue === oldValue || oldValue === undefined) {
           return;
         }
 
