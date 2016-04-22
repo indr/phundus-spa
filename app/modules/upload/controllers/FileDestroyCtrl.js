@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('ph.upload')
-    .controller('FileDestroyController', FileDestroyCtrl);
+    .controller('FileDestroyCtrl', FileDestroyCtrl);
 
 
   function FileDestroyCtrl($scope, $http) {
