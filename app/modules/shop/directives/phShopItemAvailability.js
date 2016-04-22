@@ -12,7 +12,6 @@
       scope: {
         itemId: '='
       },
-      //templateUrl: 'modules/shop/views/directives/phShopItemAvailability.html',
       template: '<div></div>',
       link: link
     };
@@ -72,12 +71,6 @@
         values.push(values[values.length - 1]);
 
         return values;
-      }
-
-      function recompile() {
-        $log.log('recompile()');
-        // I'm totally not sure what I'm doing...
-        $compile(element.contents())(scope);
       }
 
       function addChart() {
