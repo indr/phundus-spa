@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+  
+  /* globals console: false */
 
   angular.module('ph.messages')
     .directive('phMessages', phMessages);
