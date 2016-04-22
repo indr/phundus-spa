@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  
+
   angular.module('ph.inventory')
     .directive('phInventoryArticlePrices', phInventoryArticlePrices);
 
