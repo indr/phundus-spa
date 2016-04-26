@@ -2,6 +2,7 @@
   'use strict';
 
   var app = angular.module('ph.app', [
+    'angularMoment',
     'blueimp.fileupload',
     'chartjs-directive',
     'leaflet-directive',
