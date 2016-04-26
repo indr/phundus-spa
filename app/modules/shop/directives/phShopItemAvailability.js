@@ -16,9 +16,9 @@
       link: link
     };
 
-    function link(scope, element) {
+    function link(scope) {
       $log.log('link(scope, element)');
-      
+
       ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
         $log.log('get()/succeeded');
         scope.availabilities = res.result;
