@@ -5,7 +5,7 @@
     .controller('ShopItemCtrl', ShopItemCtrl);
 
 
-  function ShopItemCtrl($scope, itemId, shopItemsResource, shopLessorsResource, Alert, Auth, $uibModalInstance) {
+  function ShopItemCtrl($scope, itemId, shopItemsResource, shopLessorsResource, Alert, Auth, $uibModalInstance, $state) {
     var lessor = null;
 
     $scope.isLoading = true;
@@ -14,6 +14,8 @@
     $scope.accessLevels = Auth.accessLevels;
     $scope.canEdit = false;
     $scope.canRent = false;
+    $scope.close = close;
+    $scope.tagClicked = tagClicked;
 
     shopItemsResource.get({itemId: itemId}, function (res) {
       $scope.item = res;
@@ -32,15 +34,24 @@
       Alert.error('Fehler beim Laden des Artikels: ' + res.data.message);
     });
 
-    $scope.close = function () {
-      if (!$uibModalInstance) {
-        return;
-      }
-      $uibModalInstance.dismiss('cancel');
-    };
 
     $scope.hasDocuments = function () {
       return $scope.item && $scope.item.documents.length > 0;
     };
+
+    function close() {
+      if (!$uibModalInstance) {
+        return;
+      }
+      $uibModalInstance.dismiss('cancel');
+    }
+
+    function tagClicked(tag) {
+      close();
+
+      // Go to shop index and search full text with the tag keyword.
+      // Problem with this approach is, the query is not visible in the URL.
+      $state.go('public.index', {q: tag});
+    }
   }
 })();
