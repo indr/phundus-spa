@@ -4,7 +4,7 @@
   var app = angular.module('ph.app', [
     'angularMoment',
     'blueimp.fileupload',
-    'chartjs-directive',
+    'chart.js',
     'leaflet-directive',
     'ngHolder',
     'ngMessages',

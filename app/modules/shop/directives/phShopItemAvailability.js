@@ -12,18 +12,19 @@
       scope: {
         itemId: '='
       },
-      template: '<div></div>',
+      template: '<div><canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"></canvas></div>',
       link: link
     };
 
     function link(scope, element) {
       $log.log('link(scope, element)');
+      
       ShopItemAvailability.get({itemId: scope.itemId}, function (res) {
         $log.log('get()/succeeded');
         scope.availabilities = res.result;
         populateChartData(res.result);
         //recompile();
-        addChart();
+        //addChart();
 
       }, function (res) {
         $log.log('get()/failed');
@@ -35,22 +36,9 @@
         var labels = getLabels(data);
         var values = getValues(data);
 
-        var chartData = {
-          labels: labels,
-          datasets: [
-            {
-              fillColor: "rgba(151,187,205,0.5)",
-              strokeColor: "rgba(151,187,205,1)",
-              pointColor: "rgba(151,187,205,1)",
-              pointStrokeColor: "#fff",
-              data: values
-            }
-          ]
-        };
-
-        scope.chart = {
-          data: chartData
-        };
+        scope.labels = labels;
+        scope.series = [''];
+        scope.data = [values];
       }
 
       function getLabels(data) {
@@ -71,13 +59,6 @@
         values.push(values[values.length - 1]);
 
         return values;
-      }
-
-      function addChart() {
-        $log.log('addChart()');
-        var chart = angular.element('<chart value="chart" width="800"></chart>');
-        element.append(chart);
-        $compile(element)(scope);
       }
     }
   }
