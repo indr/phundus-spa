@@ -14,7 +14,7 @@
     $scope.accessLevels = Auth.accessLevels;
     $scope.canEdit = false;
     $scope.canRent = false;
-    $scope.close = close;
+    $scope.close = closeModal;
     $scope.tagClicked = tagClicked;
 
     shopItemsResource.get({itemId: itemId}, function (res) {
@@ -39,7 +39,7 @@
       return $scope.item && $scope.item.documents.length > 0;
     };
 
-    function close() {
+    function closeModal() {
       if (!$uibModalInstance) {
         return;
       }
@@ -47,7 +47,7 @@
     }
 
     function tagClicked(tag) {
-      close();
+      closeModal();
 
       // Go to shop index and search full text with the tag keyword.
       // Problem with this approach is, the query is not visible in the URL.
