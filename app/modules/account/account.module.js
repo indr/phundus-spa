@@ -36,7 +36,7 @@
       .state('public.validate-account', {
         url: '/validate/account?key',
         templateUrl: templateUrl('validate-account.html'),
-        controller: 'MetaValidateCtrl',
+        controller: 'AccountValidateCtrl',
         resolve: {
           key: ['$stateParams', function ($stateParams) {
             return $stateParams.key;
@@ -46,7 +46,7 @@
       .state('public.validate-e-mail-address', {
         url: '/validate/email-address?key',
         templateUrl: templateUrl('validate-email-address.html'),
-        controller: 'MetaValidateCtrl',
+        controller: 'AccountValidateCtrl',
         resolve: {
           key: ['$stateParams', function ($stateParams) {
             return $stateParams.key;
