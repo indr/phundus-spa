@@ -35,9 +35,10 @@
 
     function submit() {
       $scope.form.$submitting = true;
+      var model = $scope.formModel;
       Articles.patch({
-          ownerId: $scope.tenantId, articleId: $scope.articleId, name: $scope.article.name, brand: $scope.article.brand,
-          grossStock: $scope.article.grossStock, color: $scope.article.color
+          ownerId: $scope.tenantId, articleId: $scope.articleId, name: model.name, brand: model.brand,
+          grossStock: model.grossStock, color: model.color
         },
         function () {
           $scope.form.$submitting = false;
