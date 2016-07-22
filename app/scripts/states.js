@@ -26,6 +26,10 @@
       .state('public.404', {
         url: '/404',
         templateUrl: 'views/404.html'
+      })
+      .state('public.impressum', {
+        url: '/impressum',
+        templateUrl: 'views/impressum.html'
       });
 
     $urlRouterProvider.otherwise('/404');
