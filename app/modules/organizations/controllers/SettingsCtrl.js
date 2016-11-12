@@ -14,6 +14,9 @@
       $scope.pdfTemplateFormReset = _.pick(res, ['organizationId', 'pdfTemplate']);
       $scope.pdfTemplateFormModel = angular.copy($scope.pdfTemplateFormReset);
 
+      $scope.emailTemplateFormReset = _.pick(res, ['organizationId', 'orderReceivedEmail']);
+      $scope.emailTemplateFormModel = angular.copy($scope.emailTemplateFormReset);
+
       $http.get('/api/v0/organizations/' + organizationId + '/files')
         .success(function (data) {
           $scope.files = _.filter(data.files, {'type': 'pdf'});

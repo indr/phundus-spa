@@ -49,3 +49,25 @@
     </div>
   </div>
 </form>
+
+<form class="form-horizontal" style="margin-top:50px" name="emailTemplateForm" novalidate>
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="orderReceivedEmail">Bestellbestätigung</label>
+
+    <div class="col-sm-9" data-has-error="emailTemplateForm.orderReceivedEmail">
+      <textarea class="form-control" rows="6" id="orderReceivedEmail"
+                data-ng-model="emailTemplateFormModel.orderReceivedEmail"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <ph-submit class="btn-primary" data-ng-click="submit(emailTemplateForm, emailTemplateFormModel)"
+                 data-form="emailTemplateForm" data-text="Speichern"></ph-submit>
+      <button type="button" class="btn btn-default"
+              data-ng-click="reset(emailTemplateFormModel, emailTemplateFormReset)">
+        Verwerfen
+      </button>
+    </div>
+  </div>
+</form>
