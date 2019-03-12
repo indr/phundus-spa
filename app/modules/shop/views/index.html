@@ -5,7 +5,7 @@
     <a href="" data-ui-sref="public.shop-item({itemId: each.itemId})" data-ng-click="openItem($event, each.itemId)">
       <div class="thumbnail">
         <div data-ng-if="each.previewImageUrl" style="min-height:180px">
-          <img class="img-responsive" data-ng-src="{{each.previewImageUrl}}.ashx?maxwidth=260&maxheight=180" alt=""
+          <img class="img-responsive" data-ng-src="{{each.previewImageUrl}}" alt=""
                style="margin:auto">
         </div>
         <div data-ng-if="!each.previewImageUrl" style="min-height:180px">
