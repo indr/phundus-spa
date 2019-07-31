@@ -12,7 +12,7 @@
 
     function openModal(resolve) {
       var modalInstance = $uibModal.open({
-        templateUrl: 'modules/stores/views/edit-contact-details.html',
+        templateUrl: 'modules/stores/views/modals/edit-contact-details.html',
         controller: EditContactDetailsModalInstCtrl,
         resolve: resolve
       });

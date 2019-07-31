@@ -87,8 +87,8 @@
 
         scope.showChangeContact = function () {
           var modal = StoresEditContactDetailsModal.open({
-            storeId: scope.store.storeId,
-            contact: angular.copy(scope.store.contact)
+            storeId: function () { return scope.store.storeId; },
+            contact: function () { return angular.copy(scope.store.contact); }
           });
 
           modal.then(function (contact) {
