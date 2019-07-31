@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 name=phundus.spa
-version=0.0.0
-if [[ $TRAVIS_BUILD_NUMBER ]]
-then
-  version=0.0.$TRAVIS_BUILD_NUMBER
-fi
+version=$(node -e "console.log(require('./package.json').version)")
+#if [[ $TRAVIS_BUILD_NUMBER ]]
+#then
+#  version=0.0.$TRAVIS_BUILD_NUMBER
+#fi
 
 dist=$(pwd)/dist
 tmp=$(pwd)/.tmp
 tmp_nuget=$tmp/nuget
-filename=$tmp/$name.$version.nupkg
+filename=$(pwd)/$name.$version.nupkg
 
 
 echo Generating NuGet package $filename
