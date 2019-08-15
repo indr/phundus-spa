@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/indr/phundus-spa/compare/v0.1.0...v0.1.1) (2019-08-15)
+
+
+### Bug Fixes
+
+* unable to display users order details ([04b0891](https://github.com/indr/phundus-spa/commit/04b0891))
+
+
+### Features
+
+* add change organization's name ([ebfb763](https://github.com/indr/phundus-spa/commit/ebfb763))
+
 ## 0.1.0 (2019-07-31)
 
 
