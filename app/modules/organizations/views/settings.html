@@ -2,7 +2,31 @@
   <h1 data-view-title>Einstellungen</h1>
 </div>
 
-<form class="form-horizontal" name="publicForm" novalidate>
+<form class="form-horizontal" name="nameForm" novalidate>
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="name">Name</label>
+
+    <div class="col-sm-9" data-has-error="nameForm.name">
+      <input type="text" class="form-control" id="name" name="name"
+             data-ng-model="nameFormModel.name" required>
+
+      <div role="alert" data-ng-messages="nameForm.name.$error"
+           data-ng-show="nameForm.name.$touched || form.$submitted">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <ph-submit class="btn-primary" data-ng-click="submit(nameForm, nameFormModel)"
+                 data-form="nameForm" data-text="Speichern"></ph-submit>
+      <button type="button" class="btn btn-default" data-ng-click="reset(nameFormModel, nameFormReset)">Verwerfen
+      </button>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal" style="margin-top:50px" name="publicForm" novalidate>
   <div class="form-group">
     <label class="col-sm-3 control-label" for="publicRental">Öffentlicher Verleih</label>
 

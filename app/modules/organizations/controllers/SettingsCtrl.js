@@ -8,6 +8,9 @@
   function OrganizationsSettingsCtrl(_, $scope, organizationId, OrganizationSettings, Alert, $http) {
 
     OrganizationSettings.get({organizationId: organizationId}, function (res) {
+      $scope.nameFormReset = _.pick(res, ['organizationId', 'name']);
+      $scope.nameFormModel = angular.copy($scope.nameFormReset);
+
       $scope.publicFormReset = _.pick(res, ['organizationId', 'publicRental']);
       $scope.publicFormModel = angular.copy($scope.publicFormReset);
 
@@ -23,7 +26,6 @@
         });
     }, function (res) {
       Alert.error('Fehler beim Laden der Einstellungen: ' + (angular.isDefined(res.message) ? res.message : 'Unbekannter Fehler.'));
-
     });
 
     $scope.submit = function (form, model) {
